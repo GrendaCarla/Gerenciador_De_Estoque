@@ -11,6 +11,7 @@ public class Main {
         TelaAdministrador Janela = new TelaAdministrador();
         Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Janela.show();
+        //huehuehue
     }
     
 }
