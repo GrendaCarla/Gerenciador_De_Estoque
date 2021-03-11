@@ -1,6 +1,6 @@
 package Gerenciador_De_Estoque;
 
-public class Clientes {
+public class Clientes extends Enderecos{
     int IDCliente;
     String CPF;
     String Nome;
