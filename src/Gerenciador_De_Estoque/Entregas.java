@@ -1,7 +1,7 @@
 package Gerenciador_De_Estoque;
 
 public class Entregas {
-    
+    // lembrar de deixar privado depois
     int IDEntrega;
     int IDVenda;
     float Troco;

@@ -1,7 +1,7 @@
 package Gerenciador_De_Estoque;
 
 public class Compras {
-    
+    // lembrar de deixar privado depois
     int IDCompra;
     int IDFornecedor;
     String DataHoraDaCompra;

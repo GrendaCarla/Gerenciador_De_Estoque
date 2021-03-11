@@ -1,7 +1,7 @@
 package Gerenciador_De_Estoque;
 
 public class Produtos {
-    
+    // lembrar de deixar privado depois
     int IDProduto;
     String Nome;
     String Marca;

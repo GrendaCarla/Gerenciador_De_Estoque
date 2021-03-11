@@ -1,7 +1,7 @@
 package Gerenciador_De_Estoque;
 
 public class ItensComprados {
-    
+    // lembrar de deixar privado depois
     int IDItemComprado;
     int IDCompra;
     int IDProduto;

@@ -1,7 +1,7 @@
 package Gerenciador_De_Estoque;
 
-public class Fornecedores extends Enderecos{
-    
+public class Fornecedores extends EnderecosContatos{
+    // lembrar de deixar privado depois
     int IDFornecedor;
     String CNPJ;
     String RazaoSocial;
