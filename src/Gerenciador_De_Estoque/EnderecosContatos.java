@@ -2,19 +2,19 @@ package Gerenciador_De_Estoque;
 
 public abstract class EnderecosContatos {
     // lembrar de deixar privado depois
-    int IDEndereco;
-    String Pais;
-    String Estado;
-    String Cidade;
-    String Bairro;
-    String Rua;
-    String Numero;
+    private int IDEndereco;
+    private String Pais;
+    private String Estado;
+    private String Cidade;
+    private String Bairro;
+    private String Rua;
+    private String Numero;
     //--------------------
-    int IDContato;
-    String Telefone1;
-    String Telefone2;
-    String Email1;
-    String Email2;
+    private int IDContato;
+    private String Telefone1;
+    private String Telefone2;
+    private String Email1;
+    private String Email2;
     
     //-----------------------------------------
 

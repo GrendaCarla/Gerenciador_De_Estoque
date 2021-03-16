@@ -2,12 +2,12 @@ package Gerenciador_De_Estoque;
 
 public class Vendas {
     // lembrar de deixar privado depois
-    int IDVenda;
-    int IDCliente;
-    String DataHoraDaVenda;
-    float ValorTotal;
-    String FormaDePagamento;
-    boolean Entrega;
+    private int IDVenda;
+    private int IDCliente;
+    private String DataHoraDaVenda;
+    private float ValorTotal;
+    private String FormaDePagamento;
+    private boolean Entrega;
     
     //-----------------------------------------------//
     

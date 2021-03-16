@@ -2,11 +2,11 @@ package Gerenciador_De_Estoque;
 
 public class Compras {
     // lembrar de deixar privado depois
-    int IDCompra;
-    int IDFornecedor;
-    String DataHoraDaCompra;
-    float ValorTotal;
-    byte[] NotaFiscal;
+    private int IDCompra;
+    private int IDFornecedor;
+    private String DataHoraDaCompra;
+    private float ValorTotal;
+    private byte[] NotaFiscal;
     
     //-------------------------------------------------------//
     

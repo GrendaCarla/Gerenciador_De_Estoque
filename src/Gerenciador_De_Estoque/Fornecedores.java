@@ -8,18 +8,23 @@ public class Fornecedores extends EnderecosContatos{
     String sql;
     //-----------------------------------------------//
     void CadastrarEnderecoContato(){
-        sql = "INSERT INTO Enderecos (Pais, Estado, Cidade, Bairro, Rua, Numero) VALUES('" + Pais +  "', '" + Estado + "', '" + Cidade + "', '" + Bairro + "', '" + Rua + "', '" + Numero + "') "
-                + "INSERT INTO Contatos (Telefone1, Telefone2, Email1, Email1) VALUES('" + Telefone1 + "', '" + Telefone2 + "', '" + Email1 + "', '" + Email1 +"')";
-        
+        /*sql = "INSERT INTO Enderecos (Pais, Estado, Cidade, Bairro, Rua, Numero) VALUES('" + getPais() +  "', '" + getEstado() + "', '" + getCidade() + "', '" + getBairro() + "', '" + getRua() + "', '" + getNumero() + "') "
+              + "INSERT INTO Contatos (Telefone1, Telefone2, Email1, Email2) VALUES('" + getTelefone1() + "', '" + getTelefone2() + "', '" + getEmail1() + "', '" + getEmail2() + "')";
+        */
         ConnectionFactory conect = new ConnectionFactory();
-        conect.sql = this.sql;
-        conect.conectar();
+        /*conect.sql = this.sql;
+        conect.conectar();*/
         // puxar a os ultimos endereços e contatos cadastrados
-        CadastrarFornecedor();
+        sql = "select TOP 1 IDEndereco FROM Enderecos ORDER BY IDEndereco DESC";
+        
+        conect.sql = this.sql;
+        //setIDEndereco(1); 
+        conect.conectar();
+        //CadastrarFornecedor();
     }
     
     void CadastrarFornecedor(){
-        sql = "INSERT INTO Fornecedores (IDEndereco, IDContato, CNPJ, RazaoSocial, NomeFantasia) VALUES(" + IDEndereco + ", " + IDContato + ", '" + CNPJ + "', '" + RazaoSocial + "', '" + NomeFantasia +"')";
+        sql = "INSERT INTO Fornecedores (IDEndereco, IDContato, CNPJ, RazaoSocial, NomeFantasia) VALUES(" + getIDEndereco() + ", " + getIDContato() + ", '" + getCNPJ() + "', '" + getRazaoSocial() + "', '" + getNomeFantasia() +"')";
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;
         conect.conectar();

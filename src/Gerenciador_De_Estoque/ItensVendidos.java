@@ -2,11 +2,11 @@ package Gerenciador_De_Estoque;
 
 public class ItensVendidos {
     // lembrar de deixar privado depois
-    int IDItemVendido;
-    int IDVenda;
-    int IDProduto;
-    int Quantidade;
-    float ValorUnitario;
+    private int IDItemVendido;
+    private int IDVenda;
+    private int IDProduto;
+    private int Quantidade;
+    private float ValorUnitario;
     
     //-----------------------------------------------//
     

@@ -2,10 +2,10 @@ package Gerenciador_De_Estoque;
 
 public class Clientes extends EnderecosContatos{
     // lembrar de deixar privado depois
-    int IDCliente;
-    String CPF;
-    String Nome;
-    String DataDeNascimento;
+    private int IDCliente;
+    private String CPF;
+    private String Nome;
+    private String DataDeNascimento;
     
     //--------------------------------------------------------//
     

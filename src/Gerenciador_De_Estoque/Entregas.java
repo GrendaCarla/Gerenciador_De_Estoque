@@ -2,10 +2,10 @@ package Gerenciador_De_Estoque;
 
 public class Entregas {
     // lembrar de deixar privado depois
-    int IDEntrega;
-    int IDVenda;
-    float Troco;
-    boolean Entregue;
+    private int IDEntrega;
+    private int IDVenda;
+    private float Troco;
+    private boolean Entregue;
     
     //--------------------------------------------------//
     

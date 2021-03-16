@@ -2,14 +2,14 @@ package Gerenciador_De_Estoque;
 
 public class Produtos {
     // lembrar de deixar privado depois
-    int IDProduto;
-    String Nome;
-    String Marca;
-    String Medida;
-    float ValorVenda;
-    int Quantidade;
-    boolean Ativo;
-    String Descricao;
+    private  int IDProduto;
+    private  String Nome;
+    private  String Marca;
+    private  String Medida;
+    private  float ValorVenda;
+    private  int Quantidade;
+    private  boolean Ativo;
+    private  String Descricao;
     
     //------------------------------------------------//
     
