@@ -10,8 +10,11 @@ public class Fornecedores extends EnderecosContatos{
     private String NomeFantasia;
     String sql;
     ResultSet resultado;
+    
     //-----------------------------------------------//
-    void CadastrarEnderecoContato() throws SQLException{
+    
+    void CadastrarFornecedor()throws SQLException{
+        
         sql = "INSERT INTO Enderecos (Pais, Estado, Cidade, Bairro, Rua, Numero) VALUES('" + getPais() +  "', '" + getEstado() + "', '" + getCidade() + "', '" + getBairro() + "', '" + getRua() + "', '" + getNumero() + "') "
               + "INSERT INTO Contatos (Telefone1, Telefone2, Email1, Email2) VALUES('" + getTelefone1() + "', '" + getTelefone2() + "', '" + getEmail1() + "', '" + getEmail2() + "')";
         
@@ -25,28 +28,21 @@ public class Fornecedores extends EnderecosContatos{
         
         while (resultado.next()){
             setIDEndereco(resultado.getInt(1));
+            break;
         }
         
-        /*
-        sql = "select TOP 1 IDContato FROM Contatos ORDER BY IDEndereco DESC";
+        sql = "select TOP 1 IDContato FROM Contatos ORDER BY IDContato  DESC";
         conect.sql = this.sql;
         resultado = conect.retirar();
         
         while (resultado.next()){
             setIDContato(resultado.getInt(1));
-        }*/
-        
-        System.out.println(getIDEndereco());
-        System.out.println(getIDContato());
-        //CadastrarFornecedor();
-        
-    }
+        }
     
-    void CadastrarFornecedor(){
-        /*sql = "INSERT INTO Fornecedores (IDEndereco, IDContato, CNPJ, RazaoSocial, NomeFantasia) VALUES(" + getIDEndereco() + ", " + getIDContato() + ", '" + getCNPJ() + "', '" + getRazaoSocial() + "', '" + getNomeFantasia() +"')";
-        ConnectionFactory conect = new ConnectionFactory();
+        sql = "INSERT INTO Fornecedores (IDEndereco, IDContato, CNPJ, RazaoSocial, NomeFantasia) VALUES(" + getIDEndereco() + ", " + getIDContato() + ", '" + getCNPJ() + "', '" + getRazaoSocial() + "', '" + getNomeFantasia() +"')";
+       
         conect.sql = this.sql;
-        conect.inserir();*/
+        conect.inserir();
     }
     
     void AlterarFornecedor(){

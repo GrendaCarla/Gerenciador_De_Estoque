@@ -23,7 +23,10 @@ public class Main {
         forn.setTelefone1("1234234533");
         forn.setEmail1("adjnfkdkd@dnd.com");
         forn.setEmail2("");
-        forn.CadastrarEnderecoContato();
+        forn.setCNPJ("384757758892");
+        forn.setRazaoSocial("CEO");
+        forn.setNomeFantasia("empresa fantasma");
+        forn.CadastrarFornecedor();
                 
   
     }
