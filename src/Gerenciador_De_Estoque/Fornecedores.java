@@ -2,15 +2,19 @@ package Gerenciador_De_Estoque;
 
 public class Fornecedores extends EnderecosContatos{
     // lembrar de deixar privado depois
-    int IDFornecedor;
-    String CNPJ;
-    String RazaoSocial;
-    String NomeFantasia;
-    
+    private int IDFornecedor;
+    private String CNPJ;
+    private String RazaoSocial;
+    private String NomeFantasia;
+    String sql;
     //-----------------------------------------------//
+    void CadastrarEnderecoContato(){
+        sql = "INSERT INTO Enderecos (Pais, Estado, Cidade, Bairro, Rua, Numero) VALUES('" + Pais +  "', '" + Estado + "', '" + Cidade + "', '" + Bairro + "', '" + Rua + "', '" + Numero + "') "
+                + "INSERT INTO Contatos (Telefone1, Telefone2, Email1, Email1) VALUES('" + Telefone1 + "', '" + Telefone2 + "', '" + Email1 + "', '" + Email1 +"')";
+    }
     
     void CadastrarFornecedor(){
-        
+        sql = "INSERT INTO Fornecedores (IDEndereco, IDContato, CNPJ, RazaoSocial, NomeFantasia) VALUES(" + IDEndereco + ", " + IDContato + ", '" + CNPJ + "', '" + RazaoSocial + "', '" + NomeFantasia +"')";
     }
     
     void AlterarFornecedor(){
