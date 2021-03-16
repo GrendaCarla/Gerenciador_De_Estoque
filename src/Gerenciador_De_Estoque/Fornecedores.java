@@ -1,7 +1,6 @@
 package Gerenciador_De_Estoque;
 
 public class Fornecedores extends EnderecosContatos{
-    // lembrar de deixar privado depois
     private int IDFornecedor;
     private String CNPJ;
     private String RazaoSocial;
@@ -11,10 +10,19 @@ public class Fornecedores extends EnderecosContatos{
     void CadastrarEnderecoContato(){
         sql = "INSERT INTO Enderecos (Pais, Estado, Cidade, Bairro, Rua, Numero) VALUES('" + Pais +  "', '" + Estado + "', '" + Cidade + "', '" + Bairro + "', '" + Rua + "', '" + Numero + "') "
                 + "INSERT INTO Contatos (Telefone1, Telefone2, Email1, Email1) VALUES('" + Telefone1 + "', '" + Telefone2 + "', '" + Email1 + "', '" + Email1 +"')";
+        
+        ConnectionFactory conect = new ConnectionFactory();
+        conect.sql = this.sql;
+        conect.conectar();
+        // puxar a os ultimos endereços e contatos cadastrados
+        CadastrarFornecedor();
     }
     
     void CadastrarFornecedor(){
         sql = "INSERT INTO Fornecedores (IDEndereco, IDContato, CNPJ, RazaoSocial, NomeFantasia) VALUES(" + IDEndereco + ", " + IDContato + ", '" + CNPJ + "', '" + RazaoSocial + "', '" + NomeFantasia +"')";
+        ConnectionFactory conect = new ConnectionFactory();
+        conect.sql = this.sql;
+        conect.conectar();
     }
     
     void AlterarFornecedor(){
