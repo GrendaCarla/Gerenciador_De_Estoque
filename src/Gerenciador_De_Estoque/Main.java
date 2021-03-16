@@ -1,12 +1,13 @@
 package Gerenciador_De_Estoque;
 
+import java.sql.SQLException;
 import javax.swing.JFrame;
 
 
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         
         TelaAdministrador Janela = new TelaAdministrador();
         Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
