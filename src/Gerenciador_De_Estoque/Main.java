@@ -21,14 +21,17 @@ public class Main {
         forn.setRua("seila");
         forn.setNumero("123");
         forn.setTelefone1("1234234533");
+        forn.setTelefone2("");
         forn.setEmail1("adjnfkdkd@dnd.com");
         forn.setEmail2("");
         forn.setCNPJ("384757758892");
         forn.setRazaoSocial("CEO");
         forn.setNomeFantasia("empresa fantasma");
-        forn.CadastrarFornecedor();
+        
+        forn.ConsultarFornecedor();
+        //forn.AlterarFornecedor();
+        //forn.CadastrarFornecedor();
                 
-  
     }
     
 }
