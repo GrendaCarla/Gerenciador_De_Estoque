@@ -43,7 +43,7 @@ public class Main {
         //forn.AlterarFornecedor();
         //forn.CadastrarFornecedor();
         
-        Produtos forn = new Produtos();
+        /*Produtos forn = new Produtos();
         forn.setNome("rapadurassss");
         forn.setMarca("nordeste");
         forn.setMedida("cm");
@@ -53,8 +53,19 @@ public class Main {
         forn.setDescricao("");
         forn.setIDProduto(1);
             
-        forn.AlterarProduto();
+        forn.AlterarProduto();*/
         //forn.CadastrarProduto();
+        
+        /*Compras forn = new Compras();
+        
+        forn.setIDFornecedor(0);
+        forn.setDataHoraDaCompra("2021-03-17");
+        forn.setValorTotal(0);
+        
+        forn.CadastrarCompras();*/
+        
+        
+        
     }
     
 }

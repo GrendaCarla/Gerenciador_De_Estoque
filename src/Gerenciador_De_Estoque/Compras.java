@@ -1,17 +1,27 @@
 package Gerenciador_De_Estoque;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Compras {
     // lembrar de deixar privado depois
     private int IDCompra;
     private int IDFornecedor;
     private String DataHoraDaCompra;
     private float ValorTotal;
-    private byte[] NotaFiscal;
+    // um vetor com as informações q seram exibidas na pagina principal pro administrador escolher qual quer clicar
+    String sql;
+    ResultSet resultado;
     
     //-------------------------------------------------------//
     
-    void CadastrarCompras(){
+    void CadastrarCompras()throws SQLException{
+        sql = "INSERT INTO Compras (IDFornecedor, DataHoraDaCompra, ValorTotal, NotaFiscal) VALUES(" + getIDFornecedor() +  ", " + getDataHoraDaCompra() + ", " + getValorTotal() + ") ";
+           
         
+        ConnectionFactory conect = new ConnectionFactory();
+        conect.sql = this.sql;
+        conect.inserir();
     }
     
     void AtualizarProdutos(){
@@ -44,6 +54,14 @@ public class Compras {
         this.IDCompra = IDCompra;
     }
 
+    public int getIDFornecedor() {
+        return IDFornecedor;
+    }
+
+    public void setIDFornecedor(int IDFornecedor) {
+        this.IDFornecedor = IDFornecedor;
+    }
+
     public String getDataHoraDaCompra() {
         return DataHoraDaCompra;
     }
@@ -60,13 +78,4 @@ public class Compras {
         this.ValorTotal = ValorTotal;
     }
 
-    public byte[] getNotaFiscal() {
-        return NotaFiscal;
-    }
-
-    public void setNotaFiscal(byte[] NotaFiscal) {
-        this.NotaFiscal = NotaFiscal;
-    }
-    
-    
 }
