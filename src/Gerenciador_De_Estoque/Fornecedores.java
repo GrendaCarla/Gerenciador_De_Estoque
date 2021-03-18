@@ -8,6 +8,7 @@ public class Fornecedores extends EnderecosContatos{
     private String CNPJ;
     private String RazaoSocial;
     private String NomeFantasia;
+    // um vetor com as informações q seram exibidas na pagina principal pro administrador escolher qual quer clicar
     String sql;
     ResultSet resultado;
     
@@ -61,7 +62,7 @@ public class Fornecedores extends EnderecosContatos{
         sql = "select * from Enderecos e\n" +
         "INNER JOIN Fornecedores f ON e.IDEndereco = f.IDEndereco\n" +
         "INNER JOIN Contatos c ON c.IDContato = f.IDContato\n" +
-        "where IDFornecedor = 4"; //+ getIDFornecedor();
+        "where IDFornecedor = " + getIDFornecedor();
         
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;
