@@ -2,10 +2,8 @@ package Gerenciador_De_Estoque;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class Compras extends ItensComprados{
-    // lembrar de deixar privado depois
     private int IDFornecedor;
     private String DataHoraDaCompra;
     private float ValorTotal;
@@ -47,15 +45,12 @@ public class Compras extends ItensComprados{
             conect.sql = this.sql;
             conect.inserir();
        }
-      
-        
-       
     }
     
     void ConsultarCompras()throws SQLException{
         
-        /*sql = "select * from Compras \n" +
-        "where IDCompra = " + getIDCompra();
+        sql = "select * from Compras c\n"
+        + "where IDCompra = " + getIDCompra();
         
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;
@@ -63,11 +58,12 @@ public class Compras extends ItensComprados{
         
         while (resultado.next()){
             
-            setIDCompra(resultado.getInt(1));
             setIDFornecedor(resultado.getInt(2));
             setDataHoraDaCompra(resultado.getString(3));
             setValorTotal(resultado.getFloat(4));
-        }*/
+        }
+            
+        ConsultarItem();
     }
     
     void ConsultarComprasPorFornecedor(){

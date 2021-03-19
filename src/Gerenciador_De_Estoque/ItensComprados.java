@@ -13,11 +13,11 @@ public abstract class ItensComprados {
     // um vetor com as informações q seram exibidas na pagina principal pro administrador escolher qual quer clicar
     String sql;
     ResultSet resultado;
+    int i;
     
     //-----------------------------------------------------//
     
     void CadastrarItem()throws SQLException{
-        int i;
         ConnectionFactory conect = new ConnectionFactory();
         
         sql = "select TOP 1 IDCompra FROM Compras ORDER BY IDCompra DESC";
@@ -39,10 +39,26 @@ public abstract class ItensComprados {
     
     void AlterarItem(){
         
+        
     }
     
-    void ConsultarItens(){
+    void ConsultarItem()throws SQLException{
         
+        ConnectionFactory conect = new ConnectionFactory();
+        
+        sql = "select * from ItensComprados c\n"
+        + "where IDCompra = " + getIDCompra();
+        
+        conect.sql = this.sql;
+        resultado = conect.retirar();
+        
+        while (resultado.next()){
+            
+            setIDItemComprado(resultado.getInt(1));
+            setIDProduto(resultado.getInt(3));
+            setQuantidade(resultado.getInt(4));
+            setValorUnitario(resultado.getFloat(5));
+        }
     }
     
     //--------------------------------------------------------//

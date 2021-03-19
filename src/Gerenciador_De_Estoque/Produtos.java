@@ -60,6 +60,22 @@ public class Produtos {
         }
     }
     
+    float PegarValorProduto(int idProduto)throws SQLException{
+        
+        sql = "select ValorVenda from Produtos \n" + "where IDProduto = " + idProduto;
+        
+        ConnectionFactory conect = new ConnectionFactory();
+        conect.sql = this.sql;
+        resultado = conect.retirar();
+        float valor = 0; 
+        
+        while (resultado.next()){
+            valor = resultado.getFloat(1);
+        }
+        
+        return valor;
+    }
+    
     //-----------------------------------------------------//
 
     public int getIDProduto() {

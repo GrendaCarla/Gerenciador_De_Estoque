@@ -1,41 +1,80 @@
 package Gerenciador_De_Estoque;
 
-public class Vendas {
-    // lembrar de deixar privado depois
-    private int IDVenda;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class Vendas extends ItensVendidos {
     private int IDCliente;
     private String DataHoraDaVenda;
     private float ValorTotal;
     private String FormaDePagamento;
     private boolean Entrega;
+    // um vetor com as informações q seram exibidas na pagina principal pro administrador escolher qual quer clicar
+    int i;
     
     //-----------------------------------------------//
     
-    void CadastrarVenda(){
+    void CadastrarVendas()throws SQLException{
+        for(i = 0; i < getIDProduto().size(); i++){
+            getValorUnitarioProduto();
+        }
         
+        for(i = 0; i < getIDProduto().size(); i++){
+            setValorTotal(getValorTotal()+ (getValorUnitario().get(i) * getQuantidade().get(i)));
+        }
+        
+        sql = "INSERT INTO Vendas (IDCliente, DataHoraDaVenda, ValorTotal, FormaDePagamento, Entrega) VALUES(" + getIDCliente() +  ", convert(datetime,'" + getDataHoraDaVenda() + "',103)"  + ", " + getValorTotal() + ", '" + getFormaDePagamento() + "', 0) ";
+           
+        ConnectionFactory conect = new ConnectionFactory();
+        conect.sql = this.sql;
+        conect.inserir();
+        
+        CadastrarItem();
     }
     
-    void AtualizarProdutos(){
+    void AtualizarProdutos()throws SQLException{
         
+       ConnectionFactory conect = new ConnectionFactory();
+       
+       for(i = 0; i < getIDProduto().size(); i++){
+            sql = "select Quantidade FROM Produtos where IDProduto = " + getIDProduto().get(i);
+            conect.sql = this.sql;
+            resultado = conect.retirar();
+            int valor = 0;
+                    
+            while (resultado.next()){
+                valor = resultado.getInt(1);
+            }
+            
+            sql = "UPDATE Produtos\n" + "SET Quantidade = " + (valor - getQuantidade().get(i)) + "\n" + "WHERE IDProduto = " + getIDProduto().get(i) + "\n";
+            conect.sql = this.sql;
+            conect.inserir();
+       }
     }
     
-    void ConsultarVendas(){
+    void ConsultarVendas()throws SQLException{
+        sql = "select * from Vendas c\n"
+        + "where IDVenda = " + getIDVenda();
         
+        ConnectionFactory conect = new ConnectionFactory();
+        conect.sql = this.sql;
+        resultado = conect.retirar();
+        
+        while (resultado.next()){
+            
+            setIDCliente(resultado.getInt(2));
+            setDataHoraDaVenda(resultado.getString(3));
+            setValorTotal(resultado.getFloat(4));
+        }
+            
+        ConsultarItem();
     }
     
-    void ConsultarVendasPorPeriodo(){
+    void ConsultarVendasPorPeriodo()throws SQLException{
         
     }
     
     //-----------------------------------------------//
-
-    public int getIDVenda() {
-        return IDVenda;
-    }
-
-    public void setIDVenda(int IDVenda) {
-        this.IDVenda = IDVenda;
-    }
 
     public int getIDCliente() {
         return IDCliente;

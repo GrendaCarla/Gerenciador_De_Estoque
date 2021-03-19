@@ -79,9 +79,24 @@ public class Main {
         forn.setQuantidade(1);
         forn.setValorUnitario(7f);
         
-        forn.AtualizarProdutos();
+        forn.ConsultarCompras();
+        
+        //forn.AtualizarProdutos();
         
         //forn.CadastrarCompras();
+        
+        /*Vendas forn = new Vendas();
+        
+        forn.setIDCliente(2);
+        forn.setDataHoraDaVenda("19-03-2021 15:30:00");
+        forn.setFormaDePagamento("Debito");
+        forn.setIDProduto(1);
+        forn.setQuantidade(4);
+        
+        
+        forn.CadastrarVendas();
+        forn.AtualizarProdutos();*/
+        //forn.AtualizarProdutos();
         
     }
     
