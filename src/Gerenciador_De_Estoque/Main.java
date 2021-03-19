@@ -64,7 +64,22 @@ public class Main {
         
         forn.CadastrarCompras();*/
         
+        Compras forn = new Compras();
         
+        
+        forn.setIDFornecedor(4);
+        forn.setDataHoraDaCompra("19-03-2021 10:30:00");
+        forn.setIDProduto(1);
+        forn.setQuantidade(3);
+        forn.setValorUnitario(5f);
+        forn.setIDProduto(1);
+        forn.setQuantidade(3);
+        forn.setValorUnitario(3f);
+        forn.setIDProduto(1);
+        forn.setQuantidade(1);
+        forn.setValorUnitario(7f);
+        
+        forn.CadastrarCompras();
         
     }
     

@@ -2,40 +2,80 @@ package Gerenciador_De_Estoque;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class Compras {
+public class Compras extends ItensComprados{
     // lembrar de deixar privado depois
     private int IDCompra;
     private int IDFornecedor;
     private String DataHoraDaCompra;
     private float ValorTotal;
     // um vetor com as informações q seram exibidas na pagina principal pro administrador escolher qual quer clicar
-    String sql;
-    ResultSet resultado;
+    int i;
     
     //-------------------------------------------------------//
     
     void CadastrarCompras()throws SQLException{
-        sql = "INSERT INTO Compras (IDFornecedor, DataHoraDaCompra, ValorTotal, NotaFiscal) VALUES(" + getIDFornecedor() +  ", " + getDataHoraDaCompra() + ", " + getValorTotal() + ") ";
-           
         
+        for(i = 0; i < getValorUnitario().size(); i++){
+            setValorTotal(getValorTotal()+  (getValorUnitario().get(i) * getQuantidade().get(i)));
+        }
+        
+        sql = "INSERT INTO Compras (IDFornecedor, DataHoraDaCompra, ValorTotal) VALUES(" + getIDFornecedor() +  ", convert(datetime,'" + getDataHoraDaCompra() + "',103)"  + ", " + getValorTotal() + ") ";
+           
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;
         conect.inserir();
-    }
-    
-    void AtualizarProdutos(){
+        
+        sql = "select TOP 1 IDCompra FROM Compras ORDER BY IDCompra DESC";
+        conect.sql = this.sql;
+        resultado = conect.retirar();
+        
+        while (resultado.next()){
+            setIDCompra(resultado.getInt(1));
+            break;
+        }
+        
+        for(i = 0; i < getIDProduto().size(); i++){
+            
+            sql = "INSERT INTO ItensComprados (IDCompra, IDProduto, Quantidade, ValorUnitario) VALUES(" + getIDCompra() +  ", " + getIDProduto().get(i) + ", " + getQuantidade().get(i)  + ", " + getValorUnitario().get(i)  + ") ";
+            conect.sql = this.sql;
+            conect.inserir();
+        }
         
     }
     
-    void ConsultarCompras(){
+    void AtualizarProdutos()throws SQLException{
         
+       sql = "UPDATE Compras\n" + "SET IDFornecedor = " + getIDFornecedor() + ", DataHoraDaCompra = '" + getDataHoraDaCompra() + "', ValorTotal = " + getValorTotal() + "\n" + "WHERE IDCompra = " + getIDCompra() + "\n";
+       
+       ConnectionFactory conect = new ConnectionFactory();
+       conect.sql = this.sql;
+       conect.inserir();
+    }
+    
+    void ConsultarCompras()throws SQLException{
+        
+        sql = "select * from Compras \n" +
+        "where IDCompra = " + getIDCompra();
+        
+        ConnectionFactory conect = new ConnectionFactory();
+        conect.sql = this.sql;
+        resultado = conect.retirar();
+        
+        while (resultado.next()){
+            
+            setIDCompra(resultado.getInt(1));
+            setIDFornecedor(resultado.getInt(2));
+            setDataHoraDaCompra(resultado.getString(3));
+            setValorTotal(resultado.getFloat(4));
+        }
     }
     
     void ConsultarComprasPorFornecedor(){
         
     }
-    
+     
     void ConsultarComprasPorPeriodo(){
         
     }
