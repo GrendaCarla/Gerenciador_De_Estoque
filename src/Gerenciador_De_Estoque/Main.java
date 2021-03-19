@@ -79,7 +79,9 @@ public class Main {
         forn.setQuantidade(1);
         forn.setValorUnitario(7f);
         
-        forn.CadastrarCompras();
+        forn.AtualizarProdutos();
+        
+        //forn.CadastrarCompras();
         
     }
     

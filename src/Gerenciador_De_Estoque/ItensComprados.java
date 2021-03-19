@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public abstract class ItensComprados {
-    // lembrar de deixar privado depois
+    private int IDCompra;
     private ArrayList<Integer> IDItemComprado = new ArrayList<>();
     private ArrayList<Integer> IDProduto = new ArrayList<>();
     private ArrayList<Integer> Quantidade = new ArrayList<>();
@@ -17,14 +17,24 @@ public abstract class ItensComprados {
     //-----------------------------------------------------//
     
     void CadastrarItem()throws SQLException{
-        
-        /*sql = "INSERT INTO ItensComprados (Pais, Estado, Cidade, Bairro, Rua, Numero) VALUES('" + getPais() +  "', '" + getEstado() + "', '" + getCidade() + "', '" + getBairro() + "', '" + getRua() + "', '" + getNumero() + "') "
-              + "INSERT INTO Contatos (Telefone1, Telefone2, Email1, Email2) VALUES('" + getTelefone1() + "', '" + getTelefone2() + "', '" + getEmail1() + "', '" + getEmail2() + "')";
-        
+        int i;
         ConnectionFactory conect = new ConnectionFactory();
-        conect.sql = this.sql;
-        conect.inserir();*/
         
+        sql = "select TOP 1 IDCompra FROM Compras ORDER BY IDCompra DESC";
+        conect.sql = this.sql;
+        resultado = conect.retirar();
+        
+        while (resultado.next()){
+            setIDCompra(resultado.getInt(1));
+            break;
+        }
+        
+        for(i = 0; i < getIDProduto().size(); i++){
+            
+            sql = "INSERT INTO ItensComprados (IDCompra, IDProduto, Quantidade, ValorUnitario) VALUES(" + getIDCompra() +  ", " + getIDProduto().get(i) + ", " + getQuantidade().get(i)  + ", " + getValorUnitario().get(i)  + ") ";
+            conect.sql = this.sql;
+            conect.inserir();
+        }
     }
     
     void AlterarItem(){
@@ -36,6 +46,14 @@ public abstract class ItensComprados {
     }
     
     //--------------------------------------------------------//
+
+    public int getIDCompra() {
+        return IDCompra;
+    }
+
+    public void setIDCompra(int IDCompra) {
+        this.IDCompra = IDCompra;
+    }
 
     public ArrayList<Integer> getIDItemComprado() {
         return IDItemComprado;

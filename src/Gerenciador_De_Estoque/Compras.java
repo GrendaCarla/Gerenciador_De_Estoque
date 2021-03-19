@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class Compras extends ItensComprados{
     // lembrar de deixar privado depois
-    private int IDCompra;
     private int IDFornecedor;
     private String DataHoraDaCompra;
     private float ValorTotal;
@@ -27,36 +26,35 @@ public class Compras extends ItensComprados{
         conect.sql = this.sql;
         conect.inserir();
         
-        sql = "select TOP 1 IDCompra FROM Compras ORDER BY IDCompra DESC";
-        conect.sql = this.sql;
-        resultado = conect.retirar();
-        
-        while (resultado.next()){
-            setIDCompra(resultado.getInt(1));
-            break;
-        }
-        
-        for(i = 0; i < getIDProduto().size(); i++){
-            
-            sql = "INSERT INTO ItensComprados (IDCompra, IDProduto, Quantidade, ValorUnitario) VALUES(" + getIDCompra() +  ", " + getIDProduto().get(i) + ", " + getQuantidade().get(i)  + ", " + getValorUnitario().get(i)  + ") ";
-            conect.sql = this.sql;
-            conect.inserir();
-        }
-        
+        CadastrarItem();
     }
     
     void AtualizarProdutos()throws SQLException{
         
-       sql = "UPDATE Compras\n" + "SET IDFornecedor = " + getIDFornecedor() + ", DataHoraDaCompra = '" + getDataHoraDaCompra() + "', ValorTotal = " + getValorTotal() + "\n" + "WHERE IDCompra = " + getIDCompra() + "\n";
-       
        ConnectionFactory conect = new ConnectionFactory();
-       conect.sql = this.sql;
-       conect.inserir();
+       
+       for(i = 0; i < getIDProduto().size(); i++){
+            sql = "select Quantidade FROM Produtos where IDProduto = " + getIDProduto().get(i);
+            conect.sql = this.sql;
+            resultado = conect.retirar();
+            int valor = 0;
+                    
+            while (resultado.next()){
+                valor = resultado.getInt(1);
+            }
+            
+            sql = "UPDATE Produtos\n" + "SET Quantidade = " + (getQuantidade().get(i) + valor) + "\n" + "WHERE IDProduto = " + getIDProduto().get(i) + "\n";
+            conect.sql = this.sql;
+            conect.inserir();
+       }
+      
+        
+       
     }
     
     void ConsultarCompras()throws SQLException{
         
-        sql = "select * from Compras \n" +
+        /*sql = "select * from Compras \n" +
         "where IDCompra = " + getIDCompra();
         
         ConnectionFactory conect = new ConnectionFactory();
@@ -69,7 +67,7 @@ public class Compras extends ItensComprados{
             setIDFornecedor(resultado.getInt(2));
             setDataHoraDaCompra(resultado.getString(3));
             setValorTotal(resultado.getFloat(4));
-        }
+        }*/
     }
     
     void ConsultarComprasPorFornecedor(){
@@ -85,14 +83,6 @@ public class Compras extends ItensComprados{
     }
     
     //-----------------------------------------------------//
-
-    public int getIDCompra() {
-        return IDCompra;
-    }
-
-    public void setIDCompra(int IDCompra) {
-        this.IDCompra = IDCompra;
-    }
 
     public int getIDFornecedor() {
         return IDFornecedor;
