@@ -1,5 +1,7 @@
 package Gerenciador_De_Estoque;
 
+import java.sql.SQLException;
+
 public class TelaAdministrador extends javax.swing.JFrame {
 
     public TelaAdministrador() {
@@ -12,13 +14,13 @@ public class TelaAdministrador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
+        JTabbedPane = new javax.swing.JTabbedPane();
+        JP_Clientes = new javax.swing.JPanel();
+        JP_Estoque = new javax.swing.JPanel();
+        JP_Vendas = new javax.swing.JPanel();
+        JP_Entregas = new javax.swing.JPanel();
+        JP_Fornecedores = new javax.swing.JPanel();
+        JP_Compras = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -27,95 +29,95 @@ public class TelaAdministrador extends javax.swing.JFrame {
             }
         });
 
-        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        JTabbedPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout JP_ClientesLayout = new javax.swing.GroupLayout(JP_Clientes);
+        JP_Clientes.setLayout(JP_ClientesLayout);
+        JP_ClientesLayout.setHorizontalGroup(
+            JP_ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 621, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        JP_ClientesLayout.setVerticalGroup(
+            JP_ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 414, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Clientes", jPanel1);
+        JTabbedPane.addTab("Clientes", JP_Clientes);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout JP_EstoqueLayout = new javax.swing.GroupLayout(JP_Estoque);
+        JP_Estoque.setLayout(JP_EstoqueLayout);
+        JP_EstoqueLayout.setHorizontalGroup(
+            JP_EstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 621, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        JP_EstoqueLayout.setVerticalGroup(
+            JP_EstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 414, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Estoque", jPanel2);
+        JTabbedPane.addTab("Estoque", JP_Estoque);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout JP_VendasLayout = new javax.swing.GroupLayout(JP_Vendas);
+        JP_Vendas.setLayout(JP_VendasLayout);
+        JP_VendasLayout.setHorizontalGroup(
+            JP_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 621, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        JP_VendasLayout.setVerticalGroup(
+            JP_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 414, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Vendas", jPanel3);
+        JTabbedPane.addTab("Vendas", JP_Vendas);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout JP_EntregasLayout = new javax.swing.GroupLayout(JP_Entregas);
+        JP_Entregas.setLayout(JP_EntregasLayout);
+        JP_EntregasLayout.setHorizontalGroup(
+            JP_EntregasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 621, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        JP_EntregasLayout.setVerticalGroup(
+            JP_EntregasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 414, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Entregas", jPanel4);
+        JTabbedPane.addTab("Entregas", JP_Entregas);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout JP_FornecedoresLayout = new javax.swing.GroupLayout(JP_Fornecedores);
+        JP_Fornecedores.setLayout(JP_FornecedoresLayout);
+        JP_FornecedoresLayout.setHorizontalGroup(
+            JP_FornecedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 621, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        JP_FornecedoresLayout.setVerticalGroup(
+            JP_FornecedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 414, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Fornecedores", jPanel5);
+        JTabbedPane.addTab("Fornecedores", JP_Fornecedores);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout JP_ComprasLayout = new javax.swing.GroupLayout(JP_Compras);
+        JP_Compras.setLayout(JP_ComprasLayout);
+        JP_ComprasLayout.setHorizontalGroup(
+            JP_ComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 621, Short.MAX_VALUE)
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        JP_ComprasLayout.setVerticalGroup(
+            JP_ComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 414, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Compras", jPanel6);
+        JTabbedPane.addTab("Compras", JP_Compras);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(JTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(JTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -157,12 +159,39 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel JP_Clientes;
+    private javax.swing.JPanel JP_Compras;
+    private javax.swing.JPanel JP_Entregas;
+    private javax.swing.JPanel JP_Estoque;
+    private javax.swing.JPanel JP_Fornecedores;
+    private javax.swing.JPanel JP_Vendas;
+    private javax.swing.JTabbedPane JTabbedPane;
     // End of variables declaration//GEN-END:variables
+
+    Clientes cliente = new Clientes();
+    
+    public void CadastrarCliente()throws SQLException{
+        cliente.setPais(Pais);
+        cliente.setEstado(Estado);
+        cliente.setCidade(Cidade);
+        cliente.setBairro(Bairro);
+        cliente.setRua(Rua);
+        cliente.setNumero(Numero);
+        
+        cliente.setTelefone1(Telefone1);
+        cliente.setTelefone2(Telefone2);
+        cliente.setEmail1(Email1);
+        cliente.setEmail2(Email2);
+        
+        cliente.setCPF(CPF);
+        cliente.setDataDeNascimento(DataDeNascimento);
+        cliente.setNome(Nome);
+        
+        cliente.CadastrarCliente();
+    }
+
+    public void PegarListaClientes(){
+        
+    }
+    
 }

@@ -104,6 +104,10 @@ public class Clientes extends EnderecosContatos{
         
     }
     
+    void PegarListaClientes(){
+        
+    }
+    
     //------------------------------------------------------------//
 
     public int getIDCliente() {
