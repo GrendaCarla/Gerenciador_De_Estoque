@@ -9,9 +9,9 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         
-        /*TelaAdministrador Janela = new TelaAdministrador();
+        TelaAdministrador Janela = new TelaAdministrador();
         Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        Janela.show();*/
+        Janela.show();
         
         //Fornecedores forn = new Fornecedores();
         /*Clientes forn = new Clientes();
@@ -64,7 +64,7 @@ public class Main {
         
         forn.CadastrarCompras();*/
         
-        Compras forn = new Compras();
+        /*Compras forn = new Compras();
         
         
         forn.setIDFornecedor(4);
@@ -79,7 +79,7 @@ public class Main {
         forn.setQuantidade(1);
         forn.setValorUnitario(7f);
         
-        forn.ConsultarCompras();
+        forn.ConsultarCompras();*/
         
         //forn.AtualizarProdutos();
         
