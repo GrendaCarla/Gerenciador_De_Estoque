@@ -11,7 +11,7 @@ public class Produtos {
     private  String Medida;
     private  float ValorVenda;
     private  int Quantidade;
-    private  boolean Ativo;
+    private  int Ativo;
     private  String Descricao;
      // um vetor com as informações q seram exibidas na pagina principal pro administrador escolher qual quer clicar
     String sql;
@@ -21,7 +21,7 @@ public class Produtos {
     
     void CadastrarProduto()throws SQLException{
         
-        sql = "INSERT INTO Produtos (Nome, Marca, Medida, ValorVenda, Quantidade, Ativo, Descricao) VALUES('" + getNome() +  "', '" + getMarca() + "', '" + getMedida() + "', " + getValorVenda() + ", " + getQuantidade() + ", " + (getAtivo() == true? 1 : 0) + ", '" + getDescricao()+"') ";
+        sql = "INSERT INTO Produtos (Nome, Marca, Medida, ValorVenda, Quantidade, Ativo, Descricao) VALUES('" + getNome() +  "', '" + getMarca() + "', '" + getMedida() + "', " + getValorVenda() + ", " + getQuantidade() + ", " + getAtivo() + ", '" + getDescricao()+"') ";
         
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;
@@ -31,7 +31,7 @@ public class Produtos {
     
     void AlterarProduto()throws SQLException{
         
-       sql = "UPDATE Produtos\n" + "SET Nome = '" + getNome() + "', Marca = '" + getMarca() + "', Medida = '" + getMedida() + "', ValorVenda = " + getValorVenda() + ", Quantidade = " + getQuantidade() + ", Ativo = " + (getAtivo() == true? 1 : 0) + ", Descricao = '" + getDescricao() + "'\n" + "WHERE IDProduto = " + getIDProduto() + "\n";
+       sql = "UPDATE Produtos\n" + "SET Nome = '" + getNome() + "', Marca = '" + getMarca() + "', Medida = '" + getMedida() + "', ValorVenda = " + getValorVenda() + ", Quantidade = " + getQuantidade() + ", Ativo = " + getAtivo() + ", Descricao = '" + getDescricao() + "'\n" + "WHERE IDProduto = " + getIDProduto() + "\n";
        
        ConnectionFactory conect = new ConnectionFactory();
        conect.sql = this.sql;
@@ -54,7 +54,7 @@ public class Produtos {
             setMedida(resultado.getString(4));
             setValorVenda(resultado.getFloat(5));
             setQuantidade(resultado.getInt(6));
-            setAtivo(resultado.getBoolean(7));
+            setAtivo(resultado.getInt(7));
             setDescricao(resultado.getString(8));
             
         }
@@ -126,11 +126,11 @@ public class Produtos {
         this.Quantidade = Quantidade;
     }
 
-    public boolean getAtivo() {
+    public int getAtivo() {
         return Ativo;
     }
 
-    public void setAtivo(boolean Ativo) {
+    public void setAtivo(int Ativo) {
         this.Ativo = Ativo;
     }
 

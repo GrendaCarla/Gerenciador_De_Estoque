@@ -1,5 +1,6 @@
-package Gerenciador_De_Estoque;
+package Gerenciador_De_Estoque.Tela_Administrador;
 
+import Gerenciador_De_Estoque.Clientes;
 import java.sql.SQLException;
 
 public class TelaAdministrador extends javax.swing.JFrame {
@@ -19,7 +20,8 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jBntFornecedorInicialSair = new javax.swing.JButton();
+        jBntFornecedorInicialCadastrar = new javax.swing.JButton();
         JP_Compras = new javax.swing.JPanel();
         JP_Estoque = new javax.swing.JPanel();
         JP_Clientes = new javax.swing.JPanel();
@@ -84,9 +86,18 @@ public class TelaAdministrador extends javax.swing.JFrame {
         });
         JP_Fornecedores.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 920, 30));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton1.setText("Cadastrar");
-        JP_Fornecedores.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 10, 210, 60));
+        jBntFornecedorInicialSair.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jBntFornecedorInicialSair.setText("Sair");
+        jBntFornecedorInicialSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntFornecedorInicialSairActionPerformed(evt);
+            }
+        });
+        JP_Fornecedores.add(jBntFornecedorInicialSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 560, 150, 60));
+
+        jBntFornecedorInicialCadastrar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jBntFornecedorInicialCadastrar.setText("Cadastrar");
+        JP_Fornecedores.add(jBntFornecedorInicialCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 230, 210, 60));
 
         JTabbedPane.addTab("Fornecedores", JP_Fornecedores);
 
@@ -177,6 +188,10 @@ public class TelaAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jBntFornecedorInicialSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntFornecedorInicialSairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBntFornecedorInicialSairActionPerformed
+
     
     public static void main(String args[]) {
         
@@ -216,7 +231,8 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel JP_Fornecedores;
     private javax.swing.JPanel JP_Vendas;
     private javax.swing.JTabbedPane JTabbedPane;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBntFornecedorInicialCadastrar;
+    private javax.swing.JButton jBntFornecedorInicialSair;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;

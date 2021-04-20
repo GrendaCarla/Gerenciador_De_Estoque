@@ -1,5 +1,6 @@
 package Gerenciador_De_Estoque;
 
+import Gerenciador_De_Estoque.Tela_Administrador.TelaAdministrador;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 
@@ -11,12 +12,50 @@ public class Main {
         
         TelaAdministrador Janela = new TelaAdministrador();
         Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        Janela.show();
+        //Janela.show();
         
-        //Fornecedores forn = new Fornecedores();
+        
+        
+        
+        
+        /*Fornecedores forn = new Fornecedores();
+        
+        forn.setPais("Brasil");
+        forn.setEstado("SP");
+        forn.setCidade("campinas");
+        forn.setBairro("Bairro Rico");
+        forn.setRua("Ladrilho de Ouro");
+        forn.setNumero("123");
+        forn.setTelefone1("1111111111");
+        forn.setTelefone2("");
+        forn.setEmail1("adjnfkdkd@dnd.com");
+        forn.setEmail2("");
+        
+        forn.setCNPJ("384757758892");
+        forn.setRazaoSocial("CEO");
+        forn.setNomeFantasia("empresa fantasma");
+        
+        forn.setIDFornecedor(3);  //<------- OLHA NO BANCO ANTES
+        forn.setIDEndereco(5);    //<------- OLHA NO BANCO ANTES
+        forn.setIDContato(5);    //<------- OLHA NO BANCO ANTES
+        
+        
+        forn.CadastrarFornecedor();
+        forn.ConsultarFornecedor();
+        //forn.AlterarFornecedor();*/
+        
+        
+        
+         
+         
+        //---------------------------------------
+        
+        
+        
+        
         /*Clientes forn = new Clientes();
         
-        forn.setPais("Brasileiro");
+        forn.setPais("Brasil");
         forn.setEstado("SP");
         forn.setCidade("campinas");
         forn.setBairro("swift");
@@ -24,79 +63,95 @@ public class Main {
         forn.setNumero("123");
         forn.setTelefone1("1111111111");
         forn.setTelefone2("");
-        forn.setEmail1("adjnfkdkd@dnd.com");
+        forn.setEmail1("UniversidadeSaoFrancisco@mail.usf.edu.com");
         forn.setEmail2("");
-        //forn.setCNPJ("384757758892");
-        //forn.setRazaoSocial("CEO");
-        //forn.setNomeFantasia("empresa fantasma");
-        forn.setCPF("cjkdldkddd");
-        forn.setNome("ajaaaaa");
-        forn.setDataDeNascimento("1996-03-17");
-        forn.setIDCliente(2);
-        forn.setIDEndereco(14);
-        forn.setIDContato(14);
         
-        forn.ConsultarClientes();*/
-        //forn.AlterarCliente();
-        //forn.CadastrarCliente();
-       //forn.ConsultarFornecedor();
-        //forn.AlterarFornecedor();
-        //forn.CadastrarFornecedor();
+        forn.setCPF("2222222222");
+        forn.setNome("Gabriela Geovana");
+        forn.setDataDeNascimento("1996-03-17");
+        
+        forn.setIDCliente(3);  //<------- OLHA NO BANCO ANTES
+        forn.setIDEndereco(6); //<------- OLHA NO BANCO ANTES
+        forn.setIDContato(6);  //<------- OLHA NO BANCO ANTES
+        
+        
+        forn.CadastrarCliente();
+        forn.ConsultarClientes();
+        //forn.AlterarCliente();*/
+        
+        
+        
+        
+        
+        //----------------------------------------------------
+        
+        
+        
+        
         
         /*Produtos forn = new Produtos();
-        forn.setNome("rapadurassss");
-        forn.setMarca("nordeste");
-        forn.setMedida("cm");
-        forn.setValorVenda(5.25f);
-        forn.setQuantidade(2);
-        forn.setAtivo(true);
+        
+        forn.setNome("rapadura");
+        forn.setMarca("Doces Nordestino");
+        forn.setMedida("1,5kg");
+        forn.setValorVenda(25.00f);
+        forn.setQuantidade(4);
+        forn.setAtivo(1);
         forn.setDescricao("");
-        forn.setIDProduto(1);
+        
+        
             
-        forn.AlterarProduto();*/
-        //forn.CadastrarProduto();
+        forn.CadastrarProduto();
+        //forn.AlterarProduto();*/
+        
+        
+        
+        //---------------------------------------
+       
+       
+        
         
         /*Compras forn = new Compras();
         
-        forn.setIDFornecedor(0);
-        forn.setDataHoraDaCompra("2021-03-17");
-        forn.setValorTotal(0);
+        forn.setIDFornecedor(3);     //<------- OLHA NO BANCO ANTES
+        //forn.setDataHoraDaCompra("2021-03-17");
+        forn.setDataHoraDaCompra("17/03/2021");
+        forn.setValorTotal(0f);       //<------- SEMPRE 0
         
-        forn.CadastrarCompras();*/
-        
-        /*Compras forn = new Compras();
-        
-        
-        forn.setIDFornecedor(4);
-        forn.setDataHoraDaCompra("19-03-2021 10:30:00");
-        forn.setIDProduto(1);
+   
+        forn.setIDProduto(2);        //<------- OLHA NO BANCO ANTES
         forn.setQuantidade(3);
-        forn.setValorUnitario(5f);
-        forn.setIDProduto(1);
-        forn.setQuantidade(3);
-        forn.setValorUnitario(3f);
-        forn.setIDProduto(1);
-        forn.setQuantidade(1);
-        forn.setValorUnitario(7f);
+        forn.setValorUnitario(25.00f);
+ 
         
-        forn.ConsultarCompras();*/
         
-        //forn.AtualizarProdutos();
+        forn.CadastrarCompras();
+        forn.ConsultarCompras();
+        //forn.AtualizarProdutos();*/
         
-        //forn.CadastrarCompras();
+        
+        
+        
+        //---------------------------------------
+        
+       
+        
         
         /*Vendas forn = new Vendas();
         
-        forn.setIDCliente(2);
-        forn.setDataHoraDaVenda("19-03-2021 15:30:00");
+        forn.setIDCliente(3);   //<------- OLHA NO BANCO ANTES
+        forn.setDataHoraDaVenda("19/03/2021 15:30:00");
+        forn.setValorTotal(0f);      //<------- SEMPRE 0
         forn.setFormaDePagamento("Debito");
-        forn.setIDProduto(1);
-        forn.setQuantidade(4);
+                
+        forn.setIDProduto(2);         //<------- OLHA NO BANCO ANTES
+        forn.setQuantidade(1);
+        forn.setValorUnitario(25.00f);
         
         
         forn.CadastrarVendas();
-        forn.AtualizarProdutos();*/
-        //forn.AtualizarProdutos();
+        forn.ConsultarVendas();
+        //forn.AtualizarProdutos();*/
         
     }
     

@@ -8,7 +8,6 @@ public class Vendas extends ItensVendidos {
     private String DataHoraDaVenda;
     private float ValorTotal;
     private String FormaDePagamento;
-    private boolean Entrega;
     // um vetor com as informações q seram exibidas na pagina principal pro administrador escolher qual quer clicar
     int i;
     
@@ -23,7 +22,7 @@ public class Vendas extends ItensVendidos {
             setValorTotal(getValorTotal()+ (getValorUnitario().get(i) * getQuantidade().get(i)));
         }
         
-        sql = "INSERT INTO Vendas (IDCliente, DataHoraDaVenda, ValorTotal, FormaDePagamento, Entrega) VALUES(" + getIDCliente() +  ", convert(datetime,'" + getDataHoraDaVenda() + "',103)"  + ", " + getValorTotal() + ", '" + getFormaDePagamento() + "', 0) ";
+        sql = "INSERT INTO Vendas (IDCliente, DataHoraDaVenda, ValorTotal, FormaDePagamento) VALUES(" + getIDCliente() +  ", convert(datetime,'" + getDataHoraDaVenda() + "',103)"  + ", " + getValorTotal() + ", '" + getFormaDePagamento() + "') ";
            
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;
@@ -108,13 +107,6 @@ public class Vendas extends ItensVendidos {
         this.FormaDePagamento = FormaDePagamento;
     }
 
-    public boolean isEntrega() {
-        return Entrega;
-    }
-
-    public void setEntrega(boolean Entrega) {
-        this.Entrega = Entrega;
-    }
     
     
 }
