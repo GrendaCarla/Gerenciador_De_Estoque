@@ -1,6 +1,7 @@
 package Gerenciador_De_Estoque;
 
 import Gerenciador_De_Estoque.Tela_Administrador.TelaAdministrador;
+import Gerenciador_De_Estoque.Tela_Administrador.TelaFornecedorCadastro;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 
@@ -10,9 +11,10 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         
-        TelaAdministrador Janela = new TelaAdministrador();
+        //TelaAdministrador Janela = new TelaAdministrador();
+        TelaFornecedorCadastro Janela = new TelaFornecedorCadastro();
         Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //Janela.show();
+        Janela.show();
         
         
         

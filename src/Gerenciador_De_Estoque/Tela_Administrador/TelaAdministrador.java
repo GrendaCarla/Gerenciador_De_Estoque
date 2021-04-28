@@ -2,6 +2,7 @@ package Gerenciador_De_Estoque.Tela_Administrador;
 
 import Gerenciador_De_Estoque.Clientes;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 
 public class TelaAdministrador extends javax.swing.JFrame {
 
@@ -88,6 +89,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
         jBntFornecedorInicialSair.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jBntFornecedorInicialSair.setText("Sair");
+        jBntFornecedorInicialSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBntFornecedorInicialSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBntFornecedorInicialSairActionPerformed(evt);
@@ -97,6 +99,12 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
         jBntFornecedorInicialCadastrar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jBntFornecedorInicialCadastrar.setText("Cadastrar");
+        jBntFornecedorInicialCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntFornecedorInicialCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntFornecedorInicialCadastrarActionPerformed(evt);
+            }
+        });
         JP_Fornecedores.add(jBntFornecedorInicialCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 230, 210, 60));
 
         JTabbedPane.addTab("Fornecedores", JP_Fornecedores);
@@ -191,6 +199,12 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private void jBntFornecedorInicialSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntFornecedorInicialSairActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBntFornecedorInicialSairActionPerformed
+
+    private void jBntFornecedorInicialCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntFornecedorInicialCadastrarActionPerformed
+        TelaFornecedorCadastro principalFornededor = new TelaFornecedorCadastro();
+        principalFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        principalFornededor.show();
+    }//GEN-LAST:event_jBntFornecedorInicialCadastrarActionPerformed
 
     
     public static void main(String args[]) {
