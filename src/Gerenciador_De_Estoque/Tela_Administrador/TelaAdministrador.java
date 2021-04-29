@@ -204,6 +204,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
         TelaFornecedorCadastro principalFornededor = new TelaFornecedorCadastro();
         principalFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
         principalFornededor.show();
+        dispose();
     }//GEN-LAST:event_jBntFornecedorInicialCadastrarActionPerformed
 
     
