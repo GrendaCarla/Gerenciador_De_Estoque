@@ -19,7 +19,6 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
     Color corFundo1 = new Color(147, 87, 107);
     Color corFundo2 = new Color(227, 215, 206);
     Color corFundo3 = new Color(249,242,234);
-
     
     public TelaFornecedorCadastro() {
         initComponents();
@@ -128,14 +127,15 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jTFEstado.setBounds(180, 470, 91, 28);
 
         jTFCidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFCidade.setRequestFocusEnabled(false);
+        jTFCidade.setText("rtyui");
+        jTFCidade.setCaretPosition(0);
         jTFCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFCidadeActionPerformed(evt);
             }
         });
         getContentPane().add(jTFCidade);
-        jTFCidade.setBounds(630, 130, 327, 28);
+        jTFCidade.setBounds(820, 310, 327, 28);
 
         jTFBairro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFBairro.addActionListener(new java.awt.event.ActionListener() {
@@ -474,7 +474,7 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jLbCadastro.setBounds(CentralizarLargura(158, 2, 1),CentralizarAltura(39, 18, 1),159,39);
         jLbCadastro.setForeground(corFundo3);
         
-        jLbNomeFantasia.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 16, 4),116 + 30,30);
+        jLbNomeFantasia.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 16, 4),116 + 30 + 380 + 2,30);
         jTFNomeFantasia.setBounds(CentralizarLargura(116, 18,2)+ 116 + 30,CentralizarAltura(30, 16, 4),380,30);
         jLbNomeFantasia.setBackground(corFundo2);
         jLbNomeFantasia.setOpaque(true);
