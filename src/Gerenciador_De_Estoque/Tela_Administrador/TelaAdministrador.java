@@ -1,6 +1,8 @@
 package Gerenciador_De_Estoque.Tela_Administrador;
 
 import Gerenciador_De_Estoque.Clientes;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 
@@ -202,7 +204,14 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
     private void jBntFornecedorInicialCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntFornecedorInicialCadastrarActionPerformed
         TelaFornecedorCadastro principalFornededor = new TelaFornecedorCadastro();
-        principalFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //principalFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension d = tk.getScreenSize();
+
+        principalFornededor.setSize(d.width + 8, d.height - 37);
+        principalFornededor.setResizable(false);
+           
         principalFornededor.show();
         dispose();
     }//GEN-LAST:event_jBntFornecedorInicialCadastrarActionPerformed

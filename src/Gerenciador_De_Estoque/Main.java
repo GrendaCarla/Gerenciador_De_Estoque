@@ -2,6 +2,8 @@ package Gerenciador_De_Estoque;
 
 import Gerenciador_De_Estoque.Tela_Administrador.TelaAdministrador;
 import Gerenciador_De_Estoque.Tela_Administrador.TelaFornecedorCadastro;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 
@@ -11,12 +13,19 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         
-        //TelaAdministrador Janela = new TelaAdministrador();
-        TelaFornecedorCadastro Janela = new TelaFornecedorCadastro();
-        Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        TelaAdministrador Janela = new TelaAdministrador();
+        //TelaFornecedorCadastro Janela = new TelaFornecedorCadastro();
+        //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension d = tk.getScreenSize();
+
+        Janela.setSize(d.width + 8, d.height - 37);
+        Janela.setResizable(false);
+           
         Janela.show();
         
-        
+       
         
         
         

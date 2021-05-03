@@ -17,12 +17,12 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
     int largura = d.width;
     int altura = d.height;
     
-    Color corFundo1 = new Color(147, 87, 107);
-    Color corFundo2 = new Color(227, 215, 206);
-    Color corFundo3 = new Color(249,242,234);
-    Color corFundo4 = new Color(229,203,234);
-    Color corFonte1 = new Color(0,153,0);
-    Color corFonte2 = new Color(0,153,0);
+    Color corFundo1 = new Color(238, 247, 242);
+    Color corFundo2 = new Color(3, 152, 158);
+    Color corFundo3 = new Color(255, 255, 255);
+    Color corFundo4 = new Color(207,220,212);
+    Color corFundo5 = new Color(5,180,145);
+    Color corFundo6 = new Color(129,88,119);
     
     public TelaFornecedorCadastro() {
         initComponents();
@@ -78,7 +78,7 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jLbPais.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbPais.setText("  País:");
         getContentPane().add(jLbPais);
-        jLbPais.setBounds(171, 530, 50, 22);
+        jLbPais.setBounds(171, 530, 60, 22);
 
         jTFPais.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFPais.setBorder(null);
@@ -113,13 +113,13 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jLbNumero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbNumero.setText("  Número:");
         getContentPane().add(jLbNumero);
-        jLbNumero.setBounds(1072, 570, 80, 22);
+        jLbNumero.setBounds(1072, 570, 90, 22);
 
         jLbCadastro.setBackground(new java.awt.Color(204, 204, 204));
         jLbCadastro.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbCadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbCadastro.setText("CADASTRO ");
-        jLbCadastro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 215, 206), 7));
+        jLbCadastro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
         jLbCadastro.setOpaque(true);
         getContentPane().add(jLbCadastro);
         jLbCadastro.setBounds(392, 11, 400, 60);
@@ -177,7 +177,7 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jLbTelefone1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbTelefone1.setText("  Telefone 1:");
         getContentPane().add(jLbTelefone1);
-        jLbTelefone1.setBounds(240, 300, 90, 22);
+        jLbTelefone1.setBounds(240, 300, 110, 22);
 
         jTFTelefone1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFTelefone1.setBorder(null);
@@ -192,7 +192,7 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jLbTelefone2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbTelefone2.setText("  Telefone 2:");
         getContentPane().add(jLbTelefone2);
-        jLbTelefone2.setBounds(700, 300, 90, 22);
+        jLbTelefone2.setBounds(700, 300, 110, 22);
 
         jTFTelefone2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFTelefone2.setBorder(null);
@@ -217,7 +217,7 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jLbEmail1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbEmail1.setText("  E-mail 1:");
         getContentPane().add(jLbEmail1);
-        jLbEmail1.setBounds(240, 350, 83, 22);
+        jLbEmail1.setBounds(240, 350, 90, 22);
 
         jTFEmail1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFEmail1.setBorder(null);
@@ -237,9 +237,8 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jLbNomeFantasia.setBackground(new java.awt.Color(51, 255, 153));
         jLbNomeFantasia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbNomeFantasia.setText("  Nome Fantasia:");
-        jLbNomeFantasia.setOpaque(true);
         getContentPane().add(jLbNomeFantasia);
-        jLbNomeFantasia.setBounds(230, 130, 134, 22);
+        jLbNomeFantasia.setBounds(230, 130, 140, 22);
 
         jTFNomeFantasia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFNomeFantasia.setBorder(null);
@@ -282,7 +281,7 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jLbCNPJ.setBounds(340, 150, 60, 22);
 
         jBntCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBntCancelar.setForeground(new java.awt.Color(204, 0, 0));
+        jBntCancelar.setForeground(new java.awt.Color(255, 255, 255));
         jBntCancelar.setText("Cancelar");
         jBntCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBntCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -486,116 +485,122 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
     public void AlinhamentoDosItens() {
         
         jLbCadastro.setBounds(CentralizarLargura(400, 2, 1),CentralizarAltura(55, 18, 1),400,55);
-        jLbCadastro.setForeground(corFundo1);
-        jLbCadastro.setBackground(corFundo3);
+        jLbCadastro.setForeground(corFundo3);
+        jLbCadastro.setBackground(corFundo4);
          
         
-        jLbNomeFantasia.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 4),116 + 30 + 380 + 2,30);
-        jTFNomeFantasia.setBounds(CentralizarLargura(116, 18,2)+ 116 + 40,CentralizarAltura(30, 15, 4),370,30);
-        jLbNomeFantasia.setBackground(corFundo2);
+        jLbNomeFantasia.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 4),140 + 370 + 15 + 4,30);
+        jTFNomeFantasia.setBounds(CentralizarLargura(116, 18,2)+ 140 + 15,CentralizarAltura(30, 15, 4),370,30);
+        jLbNomeFantasia.setBackground(corFundo4);
         jLbNomeFantasia.setOpaque(true);
-        jTFNomeFantasia.setBackground(corFundo2);
+        jTFNomeFantasia.setBackground(corFundo4);
         jTFNomeFantasia.setOpaque(true);
         
         
-        jLbRazaoSocial.setBounds((largura/2 -(CentralizarLargura(380, 16, 5) + 380)) + largura/2, CentralizarAltura(26, 15, 4),116 +29 + 380,30);
-        jTFRazaoSocial.setBounds(largura - 380 - CentralizarLargura(116, 18,2), CentralizarAltura(26, 15, 4),380,30);
-        jLbRazaoSocial.setBackground(corFundo2);
+        jLbRazaoSocial.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(26, 15, 4),140 + 370 + 15 + 4,30);
+        jTFRazaoSocial.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 120 + 15, CentralizarAltura(26, 15, 4),390,30);
+        jLbRazaoSocial.setBackground(corFundo4);
         jLbRazaoSocial.setOpaque(true);
-        jTFRazaoSocial.setBackground(corFundo2);
+        jTFRazaoSocial.setBackground(corFundo4);
         jTFRazaoSocial.setOpaque(true);
         
-        jLbCNPJ.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 5),116 + 30 + 380 + 2,30);
-        jTFCNPJ.setBounds(CentralizarLargura(116, 18,1)+ 116 + 40,CentralizarAltura(30, 15, 5),445,30);
-        jLbCNPJ.setBackground(corFundo2);
+        jLbCNPJ.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 5),140 + 370 + 15 + 4,30);
+        jTFCNPJ.setBounds(CentralizarLargura(116, 18,2)+ 60 + 15,CentralizarAltura(30, 15, 5),450,30);
+        jLbCNPJ.setBackground(corFundo4);
         jLbCNPJ.setOpaque(true);
-        jTFCNPJ.setBackground(corFundo2);
+        jTFCNPJ.setBackground(corFundo4);
         jTFCNPJ.setOpaque(true);
         
         // ----------------------------------------------------------------------------------------------------
         
-        jLbTelefone1.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 7)-15,116 + 30 + 380 + 2,30);
-        jTFTelefone1.setBounds(CentralizarLargura(116, 18,2)+ 116+10,CentralizarAltura(30, 15, 7)-15,400,30);
-        jLbTelefone1.setBackground(corFundo2);
+        jLbTelefone1.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 55),140 + 370 + 15 + 4,30);
+        jTFTelefone1.setBounds(CentralizarLargura(116, 18,2)+ 110 +15,CentralizarAltura(30, 120, 55),400,30);
+        jLbTelefone1.setBackground(corFundo4);
         jLbTelefone1.setOpaque(true);
-        jTFTelefone1.setBackground(corFundo2);
+        jTFTelefone1.setBackground(corFundo4);
         jTFTelefone1.setOpaque(true);
         
-        jLbEmail1.setBounds((largura/2 -(CentralizarLargura(380, 16, 5) + 380)) + largura/2, CentralizarAltura(26, 15, 7)-15,116 +29 + 380,30);
-        jTFEmail1.setBounds(largura - 380 - CentralizarLargura(116, 18,2) -32, CentralizarAltura(26, 15, 7)-15,412,30);
-        jLbEmail1.setBackground(corFundo2);
+        jLbEmail1.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(30, 120, 55),140 + 370 + 15 + 4,30);
+        jTFEmail1.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 90 + 15, CentralizarAltura(30, 120, 55),420,30);
+        jLbEmail1.setBackground(corFundo4);
         jLbEmail1.setOpaque(true);
-        jTFEmail1.setBackground(corFundo2);
+        jTFEmail1.setBackground(corFundo4);
         jTFEmail1.setOpaque(true);
         
-        jLbTelefone2.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 8)-15,116 + 30 + 380 + 2,30);
-        jTFTelefone2.setBounds(CentralizarLargura(116, 18,2)+ 116+10,CentralizarAltura(30, 15, 8)-15,400,30);
-        jLbTelefone2.setBackground(corFundo2);
+        jLbTelefone2.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 64),140 + 370 + 15 + 4,30);
+        jTFTelefone2.setBounds(CentralizarLargura(116, 18,2)+ 110 + 15,CentralizarAltura(30, 120, 64),400,30);
+        jLbTelefone2.setBackground(corFundo4);
         jLbTelefone2.setOpaque(true);
-        jTFTelefone2.setBackground(corFundo2);
+        jTFTelefone2.setBackground(corFundo4);
         jTFTelefone2.setOpaque(true);
         
-        jLbEmail2.setBounds((largura/2 -(CentralizarLargura(380, 16, 5) + 380)) + largura/2, CentralizarAltura(26, 15, 8)-15,116 +29 + 380,30);
-        jTFEmail2.setBounds(largura - 380 - CentralizarLargura(116, 18,2) -32, CentralizarAltura(26, 15, 8)-15,412,30);
-        jLbEmail2.setBackground(corFundo2);
+        jLbEmail2.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(30, 120, 64),140 + 370 + 15 + 4,30);
+        jTFEmail2.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 90 + 15, CentralizarAltura(30, 120, 64),420,30);
+        jLbEmail2.setBackground(corFundo4);
         jLbEmail2.setOpaque(true);
-        jTFEmail2.setBackground(corFundo2);
+        jTFEmail2.setBackground(corFundo4);
         jTFEmail2.setOpaque(true);
         
         // ----------------------------------------------------------------------------------------------------
         
-        jLbPais.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 10)-30,116 + 180 + 1,30);
-        jTFPais.setBounds(CentralizarLargura(116, 18,2)+ 75,CentralizarAltura(30, 15, 10)-30,220,30);
-        jLbPais.setBackground(corFundo2);
+        jLbPais.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 9),60 + 15 + 220 + 4,30);
+        jTFPais.setBounds(CentralizarLargura(116, 18,2)+ 60 + 15,CentralizarAltura(30, 15, 9),220,30);
+        jLbPais.setBackground(corFundo4);
         jLbPais.setOpaque(true);
-        jTFPais.setBackground(corFundo2);
+        jTFPais.setBackground(corFundo4);
         jTFPais.setOpaque(true);
         
-        jLbEstado.setBounds(CentralizarLargura(116, 18,7)-10,CentralizarAltura(30, 15, 10)-30,116 + 255 + 1,30);
-        jTFEstado.setBounds(CentralizarLargura(116, 18,7)+ 90,CentralizarAltura(30, 15, 10)-30,270,30);
-        jLbEstado.setBackground(corFundo2);
+        // conta prara saber aonde deve colocar o estado para q fique centralizado entre o pais e a cidade
+        int espacoEstado = (((largura - CentralizarLargura(116, 18, 2) - 80 - 15 - 270 - 4)- (CentralizarLargura(116, 18,2)+ 60 + 220 + 15 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 60 + 220 + 15 + 4)) - (80 + 15 + 270 + 4)/2;
+        
+        jLbEstado.setBounds(espacoEstado,CentralizarAltura(30, 15, 9),80 + 15 + 270 + 4,30);
+        jTFEstado.setBounds(espacoEstado + 80+ 15,CentralizarAltura(30, 15, 9),270,30);
+        jLbEstado.setBackground(corFundo4);
         jLbEstado.setOpaque(true);
-        jTFEstado.setBackground(corFundo2);
+        jTFEstado.setBackground(corFundo4);
         jTFEstado.setOpaque(true);
         
-        jLbCidade.setBounds(CentralizarLargura(116, 18,13)-20,CentralizarAltura(30, 15, 10)-30,116 + 255 + 1,30);
-        jTFCidade.setBounds(CentralizarLargura(116, 18,13)+ 80,CentralizarAltura(30, 15, 10)-30,270,30);
-        jLbCidade.setBackground(corFundo2);
+        jLbCidade.setBounds(largura - CentralizarLargura(116, 18, 2) - 80 - 15 - 270 - 4,CentralizarAltura(30, 15, 9),80 + 15 + 270 + 4,30);
+        jTFCidade.setBounds(largura - CentralizarLargura(116, 18, 2) - 270 - 4,CentralizarAltura(30, 15, 9),270,30);
+        jLbCidade.setBackground(corFundo4);
         jLbCidade.setOpaque(true);
-        jTFCidade.setBackground(corFundo2);
+        jTFCidade.setBackground(corFundo4);
         jTFCidade.setOpaque(true);
         
         
-        jLbBairro.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 11)-30,116 + 180 + 1,30);
-        jTFBairro.setBounds(CentralizarLargura(116, 18,2)+ 90,CentralizarAltura(30, 15, 11)-30,300,30);
-        jLbBairro.setBackground(corFundo2);
+        jLbBairro.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 10),70 + 15 + 300 + 4,30);
+        jTFBairro.setBounds(CentralizarLargura(116, 18,2)+ 70 + 15,CentralizarAltura(30, 15, 10),300,30);
+        jLbBairro.setBackground(corFundo4);
         jLbBairro.setOpaque(true);
-        jTFBairro.setBackground(corFundo2);
+        jTFBairro.setBackground(corFundo4);
         jTFBairro.setOpaque(true);
         
-        jLbRua.setBounds(CentralizarLargura(116, 18,7)+120,CentralizarAltura(30, 15, 11)-30,116 + 255 + 1,30);
-        jTFRua.setBounds(CentralizarLargura(116, 18,7)+ 190,CentralizarAltura(30, 15, 11)-30,300,30);
-        jLbRua.setBackground(corFundo2);
+        // conta prara saber aonde deve colocar a rua para q fique centralizado entre o bairro e a numero
+        int espacoRua = (((largura - CentralizarLargura(116, 18, 2) - 90 - 15 - 100 - 4)- (CentralizarLargura(116, 18,2)+ 70 + 15 + 300 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 70 + 15 + 300 + 4)) - (50 + 15 + 320 + 4)/2;
+        
+        jLbRua.setBounds(espacoRua,CentralizarAltura(30, 15, 10),50 + 15 + 320 + 4,30);
+        jTFRua.setBounds(espacoRua + 50 + 15,CentralizarAltura(30, 15, 10),320,30);
+        jLbRua.setBackground(corFundo4);
         jLbRua.setOpaque(true);
-        jTFRua.setBackground(corFundo2);
+        jTFRua.setBackground(corFundo4);
         jTFRua.setOpaque(true);
         
-        jLbNumero.setBounds(CentralizarLargura(116, 18,13)-20+170,CentralizarAltura(30, 15, 11)-30,116 + 85 + 1,30);
-        jTFNumero.setBounds(CentralizarLargura(116, 18,13)+ 250,CentralizarAltura(30, 15, 11)-30,100,30);
-        jLbNumero.setBackground(corFundo2);
+        jLbNumero.setBounds(largura - CentralizarLargura(116, 18, 2) - 90 - 15 - 100 - 4,CentralizarAltura(30, 15, 10),90 + 15 + 100 + 4,30);
+        jTFNumero.setBounds(largura - CentralizarLargura(116, 18, 2) - 100 - 4,CentralizarAltura(30, 15, 10),100,30);
+        jLbNumero.setBackground(corFundo4);
         jLbNumero.setOpaque(true);
-        jTFNumero.setBackground(corFundo2);
+        jTFNumero.setBackground(corFundo4);
         jTFNumero.setOpaque(true);
         
-        jBntCadastrar.setBounds(CentralizarLargura(116, 18,6),CentralizarAltura(30, 15, 12)-10,150,40);
-        jBntCadastrar.setBackground(corFundo4);
+        jBntCadastrar.setBounds(CentralizarLargura(116, 18,6),CentralizarAltura(30, 30, 24),150,40);
+        jBntCadastrar.setBackground(corFundo5);
         jBntCadastrar.setOpaque(true);
-        jBntCadastrar.setForeground(corFonte1);
+        jBntCadastrar.setForeground(corFundo3);
         
-        jBntCancelar.setBounds(largura - CentralizarLargura(116, 18,6) - 150,CentralizarAltura(30, 15, 12)-10,150,40);
-        jBntCancelar.setBackground(corFundo4);
+        jBntCancelar.setBounds(largura - CentralizarLargura(116, 18,6) - 150,CentralizarAltura(30, 30, 24),150,40);
+        jBntCancelar.setBackground(corFundo6);
         jBntCancelar.setOpaque(true);
-        jBntCadastrar.setForeground(corFonte2);
+        jBntCancelar.setForeground(corFundo3);
         
     }
 
