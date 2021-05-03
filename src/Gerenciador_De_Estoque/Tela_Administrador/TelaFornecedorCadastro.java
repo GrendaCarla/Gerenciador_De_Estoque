@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.SwingConstants;
 
 public final class TelaFornecedorCadastro extends javax.swing.JFrame {
     
@@ -115,10 +116,13 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jLbNumero.setBounds(1072, 570, 80, 22);
 
         jLbCadastro.setBackground(new java.awt.Color(204, 204, 204));
-        jLbCadastro.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLbCadastro.setText("  CADASTRO ");
+        jLbCadastro.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLbCadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbCadastro.setText("CADASTRO ");
+        jLbCadastro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 215, 206), 7));
+        jLbCadastro.setOpaque(true);
         getContentPane().add(jLbCadastro);
-        jLbCadastro.setBounds(492, 11, 220, 44);
+        jLbCadastro.setBounds(392, 11, 400, 60);
 
         jTFEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFEstado.setBorder(null);
@@ -481,8 +485,10 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
     
     public void AlinhamentoDosItens() {
         
-        jLbCadastro.setBounds(CentralizarLargura(220, 2, 1),CentralizarAltura(39, 18, 1),220,39);
-        jLbCadastro.setForeground(corFundo3);
+        jLbCadastro.setBounds(CentralizarLargura(400, 2, 1),CentralizarAltura(55, 18, 1),400,55);
+        jLbCadastro.setForeground(corFundo1);
+        jLbCadastro.setBackground(corFundo3);
+         
         
         jLbNomeFantasia.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 4),116 + 30 + 380 + 2,30);
         jTFNomeFantasia.setBounds(CentralizarLargura(116, 18,2)+ 116 + 40,CentralizarAltura(30, 15, 4),370,30);
