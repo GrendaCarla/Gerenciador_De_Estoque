@@ -15,8 +15,8 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         
-        //TelaAdministrador Janela = new TelaAdministrador();
-        TelaClienteCadastro Janela = new TelaClienteCadastro();
+        TelaAdministrador Janela = new TelaAdministrador();
+        //TelaClienteCadastro Janela = new TelaClienteCadastro();
         //TelaFornecedorCadastro Janela = new TelaFornecedorCadastro();
         //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
