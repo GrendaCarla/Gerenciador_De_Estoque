@@ -5,12 +5,14 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.SQLException;
 import javax.swing.JFrame;
+import javax.swing.JTable;
 
 public class TelaAdministrador extends javax.swing.JFrame {
 
     public TelaAdministrador() {
         initComponents();
         
+        criarTabela();
     }
 
     
@@ -79,7 +81,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        JP_Fornecedores.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 920, 540));
+        JP_Fornecedores.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 390, 210, 230));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -262,27 +264,77 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-    Clientes cliente = new Clientes();
-    
-    public void CadastrarCliente()throws SQLException{
-        /*cliente.setPais(Pais);
-        cliente.setEstado(Estado);
-        cliente.setCidade(Cidade);
-        cliente.setBairro(Bairro);
-        cliente.setRua(Rua);
-        cliente.setNumero(Numero);
+    public void criarTabela() {
         
-        cliente.setTelefone1(Telefone1);
-        cliente.setTelefone2(Telefone2);
-        cliente.setEmail1(Email1);
-        cliente.setEmail2(Email2);
+        Object [][] dados = {
+            {null, null, null},
+            {null, null, null},
+            {null, null, null},
+            {null, null, null},
+            {null, null, null},
+            {null, null, null},
+            {null, null, null},
+            {null, null, null},
+            {null, null, null},
+            {null, null, null},
+            {null, null, null},
+            {null, null, null}
+        };
         
-        cliente.setCPF(CPF);
-        cliente.setDataDeNascimento(DataDeNascimento);
-        cliente.setNome(Nome);
+        String [] colunas = {"Nome", "Contato", "Endereço"};
         
-        cliente.CadastrarCliente();
-        */
+                    
+        JTable tabela1 = new JTable(dados, colunas);
+        
+        /*tabela1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        tabela1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nome", "Contato", "Endereço"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false,false, false, false,false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabela1.setRowHeight(25);
+        tabela1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabela1);
+        if (tabela1.getColumnModel().getColumnCount() > 0) {
+            tabela1.getColumnModel().getColumn(0).setResizable(false);
+            tabela1.getColumnModel().getColumn(1).setResizable(false);
+            tabela1.getColumnModel().getColumn(2).setResizable(false);
+            tabela1.getColumnModel().getColumn(3).setResizable(false);
+            tabela1.getColumnModel().getColumn(4).setResizable(false);
+            tabela1.getColumnModel().getColumn(5).setResizable(false);
+            tabela1.getColumnModel().getColumn(6).setResizable(false);
+            tabela1.getColumnModel().getColumn(7).setResizable(false);
+            tabela1.getColumnModel().getColumn(8).setResizable(false);
+        }*/
     }
 
     public void PegarListaClientes(){

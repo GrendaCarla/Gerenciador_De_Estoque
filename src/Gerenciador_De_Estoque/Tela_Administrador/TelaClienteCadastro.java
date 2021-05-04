@@ -134,9 +134,10 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         getContentPane().add(jTFCPF);
         jTFCPF.setBounds(610, 40, 0, 14);
 
+        jLbDataDeNascimento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbDataDeNascimento.setText("  DataDeNascimento:");
         getContentPane().add(jLbDataDeNascimento);
-        jLbDataDeNascimento.setBounds(570, 70, 130, 14);
+        jLbDataDeNascimento.setBounds(570, 70, 130, 22);
 
         jTFBairro.setBorder(null);
         getContentPane().add(jTFBairro);
@@ -159,9 +160,10 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         getContentPane().add(jLbPais);
         jLbPais.setBounds(580, 110, 34, 14);
 
+        jLbCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbCPF.setText("  CPF:");
         getContentPane().add(jLbCPF);
-        jLbCPF.setBounds(570, 40, 29, 14);
+        jLbCPF.setBounds(570, 40, 70, 22);
 
         jLbRua.setText("  Rua:");
         getContentPane().add(jLbRua);

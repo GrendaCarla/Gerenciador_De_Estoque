@@ -14,7 +14,7 @@ public class Fornecedores extends EnderecosContatos{
     
     //-----------------------------------------------//
     
-    void CadastrarFornecedor()throws SQLException{
+    public void CadastrarFornecedor()throws SQLException{
         
         sql = "INSERT INTO Enderecos (Pais, Estado, Cidade, Bairro, Rua, Numero) VALUES('" + getPais() +  "', '" + getEstado() + "', '" + getCidade() + "', '" + getBairro() + "', '" + getRua() + "', '" + getNumero() + "') "
               + "INSERT INTO Contatos (Telefone1, Telefone2, Email1, Email2) VALUES('" + getTelefone1() + "', '" + getTelefone2() + "', '" + getEmail1() + "', '" + getEmail2() + "')";

@@ -1,10 +1,14 @@
 
 package Gerenciador_De_Estoque.Tela_Administrador;
 
+import Gerenciador_De_Estoque.Fornecedores;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
@@ -324,14 +328,55 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBntCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCadastrarActionPerformed
-        // TODO add your handling code here:
+        Fornecedores fornecedor = new Fornecedores();
+        
+        fornecedor.setTelefone1(jTFTelefone1.getText());
+        fornecedor.setTelefone2(jTFTelefone2.getText());
+        fornecedor.setEmail1(jTFEmail1.getText());
+        fornecedor.setEmail2(jTFEmail2.getText());
+        
+        fornecedor.setPais(jTFPais.getText());
+        fornecedor.setEstado(jTFEstado.getText());
+        fornecedor.setCidade(jTFCidade.getText());
+        fornecedor.setBairro(jTFBairro.getText());
+        fornecedor.setRua(jTFRua.getText());
+        fornecedor.setNumero(jTFNumero.getText());
+       
+        fornecedor.setNomeFantasia(jTFNomeFantasia.getText());
+        fornecedor.setRazaoSocial(jTFRazaoSocial.getText());
+        fornecedor.setCNPJ(jTFCNPJ.getText());
+        
+        try {
+            fornecedor.CadastrarFornecedor();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        TelaAdministrador Janela = new TelaAdministrador();
+        //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension d = tk.getScreenSize();
+
+        Janela.setSize(d.width + 8, d.height - 37);
+        Janela.setResizable(false);
+           
+        Janela.show();
+        dispose();
     }//GEN-LAST:event_jBntCadastrarActionPerformed
 
     private void jBntCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCancelarActionPerformed
-        /*TelaAdministrador administrador = new TelaAdministrador();
-        administrador.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        administrador.show();
-        dispose();*/
+        TelaAdministrador Janela = new TelaAdministrador();
+        //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension d = tk.getScreenSize();
+
+        Janela.setSize(d.width + 8, d.height - 37);
+        Janela.setResizable(false);
+           
+        Janela.show();
+        dispose();
     }//GEN-LAST:event_jBntCancelarActionPerformed
 
     private void jTFCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCNPJActionPerformed
@@ -481,6 +526,56 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
     public int CentralizarAltura(int tamanhoObjeto, int posicao, int muti) { 
         return (altura/posicao)* muti - (tamanhoObjeto/2);
     }
+    
+    /*public void resolucao() { 
+        float mutip = 1;
+        
+        if(largura <= 1360 && largura >= 1300){
+            mutip = 1;
+        }else if (largura > 1360 && largura <= 1500){
+            mutip = 1.2f;
+        }else if (largura <= 1700 && largura > 1500){
+            mutip = 1.4f;
+        }else if (largura <= 1900 && largura > 1700){
+            mutip = 1.6f;
+        }
+        
+        
+        int fonte = Math.round(18 * mutip);
+        
+        int LBaltura = Math.round(30 * mutip);
+        
+        int LBlarguraNomeFantasia = Math.round(140 * mutip);
+        int LBlarguraRazaoSocial = Math.round(120 * mutip);
+        int LBlarguraCNPJ = Math.round(60 * mutip);
+        int LBlarguraTelefone1 = Math.round(90 * mutip);
+        int LBlarguraEmail1 = Math.round(110 * mutip);
+        int LBlarguraTelefone2 = Math.round(90 * mutip);
+        int LBlarguraEmail2 = Math.round(110 * mutip);
+        int LBlarguraPais = Math.round(60 * mutip);
+        int LBlarguraEstado = Math.round(80 * mutip);
+        int LBlarguraCidade = Math.round(80 * mutip);
+        int LBlarguraBairro = Math.round(70 * mutip);
+        int LBlarguraRua = Math.round(50 * mutip);
+        int LBlarguraNumero = Math.round(90 * mutip);
+        
+        int TFaltura = Math.round(30 * mutip);
+        
+        int TFlarguraNomeFantasia = Math.round(370 * mutip);
+        int TFlarguraRazaoSocial = Math.round(390 * mutip);
+        int TFlarguraCNPJ = Math.round(450 * mutip);
+        int TFlarguraTelefone1 = Math.round(400 * mutip);
+        int TFlarguraEmail1 = Math.round(420 * mutip);
+        int TFlarguraTelefone2 = Math.round(400 * mutip);
+        int TFlarguraEmail2 = Math.round(420 * mutip);
+        int TFlarguraPais = Math.round(220 * mutip);
+        int TFlarguraEstado = Math.round(270 * mutip);
+        int TFlarguraCidade = Math.round(270 * mutip);
+        int TFlarguraBairro = Math.round(300 * mutip);
+        int TFlarguraRua = Math.round(320 * mutip);
+        int TFlarguraNumero = Math.round(100 * mutip);
+        
+    }*/
     
     public void AlinhamentoDosItens() {
         
