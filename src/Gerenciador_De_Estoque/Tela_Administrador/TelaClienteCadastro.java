@@ -48,7 +48,6 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jLbTelefone2 = new javax.swing.JLabel();
         jLbNumero = new javax.swing.JLabel();
         jTFCPF = new javax.swing.JTextField();
-        jLbDataDeNascimento = new javax.swing.JLabel();
         jTFBairro = new javax.swing.JTextField();
         jTFNome = new javax.swing.JTextField();
         jTFRua = new javax.swing.JTextField();
@@ -61,6 +60,7 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jTFEmail1 = new javax.swing.JTextField();
         jTFEmail2 = new javax.swing.JTextField();
         jTFNumero = new javax.swing.JTextField();
+        jLbDataDeNascimento = new javax.swing.JLabel();
         jLbCadastro = new javax.swing.JLabel();
         jBntCadastrar = new javax.swing.JButton();
         jBntCancelar = new javax.swing.JButton();
@@ -72,14 +72,17 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1200, 465));
         getContentPane().setLayout(null);
 
+        jLbEmail1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbEmail1.setText("  Email1:");
         getContentPane().add(jLbEmail1);
-        jLbEmail1.setBounds(580, 370, 60, 14);
+        jLbEmail1.setBounds(580, 370, 80, 22);
 
+        jLbBairro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbBairro.setText("  Bairro:");
         getContentPane().add(jLbBairro);
-        jLbBairro.setBounds(560, 200, 40, 14);
+        jLbBairro.setBounds(560, 200, 80, 22);
 
+        jTFPais.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFPais.setBorder(null);
         jTFPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,28 +90,34 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTFPais);
-        jTFPais.setBounds(620, 110, 10, 14);
+        jTFPais.setBounds(620, 110, 10, 22);
 
+        jLbNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbNome.setText("  Nome:");
         getContentPane().add(jLbNome);
-        jLbNome.setBounds(570, 10, 37, 14);
+        jLbNome.setBounds(540, 10, 70, 22);
 
+        jLbEmail2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbEmail2.setText("  Email2:");
         getContentPane().add(jLbEmail2);
-        jLbEmail2.setBounds(580, 410, 50, 14);
+        jLbEmail2.setBounds(580, 410, 80, 22);
 
+        jLbTelefone1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbTelefone1.setText("  Telefone1:");
         getContentPane().add(jLbTelefone1);
-        jLbTelefone1.setBounds(570, 290, 60, 14);
+        jLbTelefone1.setBounds(570, 290, 60, 22);
 
+        jTFCidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFCidade.setBorder(null);
         getContentPane().add(jTFCidade);
-        jTFCidade.setBounds(610, 170, 0, 14);
+        jTFCidade.setBounds(610, 170, 0, 22);
 
+        jLbEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbEstado.setText("  Estado:");
         getContentPane().add(jLbEstado);
-        jLbEstado.setBounds(570, 140, 50, 14);
+        jLbEstado.setBounds(570, 140, 80, 22);
 
+        jTFDataDeNascimento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFDataDeNascimento.setBorder(null);
         jTFDataDeNascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,33 +125,34 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTFDataDeNascimento);
-        jTFDataDeNascimento.setBounds(680, 70, 59, 14);
+        jTFDataDeNascimento.setBounds(680, 70, 59, 22);
 
+        jLbCidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbCidade.setText("  Cidade:");
         getContentPane().add(jLbCidade);
-        jLbCidade.setBounds(560, 170, 50, 14);
+        jLbCidade.setBounds(560, 170, 80, 22);
 
+        jLbTelefone2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbTelefone2.setText("  Telefone2:");
         getContentPane().add(jLbTelefone2);
-        jLbTelefone2.setBounds(570, 330, 60, 14);
+        jLbTelefone2.setBounds(570, 330, 110, 22);
 
+        jLbNumero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbNumero.setText("  Numero:");
         getContentPane().add(jLbNumero);
-        jLbNumero.setBounds(570, 260, 50, 14);
+        jLbNumero.setBounds(570, 260, 90, 22);
 
+        jTFCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFCPF.setBorder(null);
         getContentPane().add(jTFCPF);
-        jTFCPF.setBounds(610, 40, 0, 14);
+        jTFCPF.setBounds(610, 40, 0, 22);
 
-        jLbDataDeNascimento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbDataDeNascimento.setText("  DataDeNascimento:");
-        getContentPane().add(jLbDataDeNascimento);
-        jLbDataDeNascimento.setBounds(570, 70, 130, 22);
-
+        jTFBairro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFBairro.setBorder(null);
         getContentPane().add(jTFBairro);
-        jTFBairro.setBounds(610, 200, 0, 14);
+        jTFBairro.setBounds(610, 200, 0, 22);
 
+        jTFNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFNome.setBorder(null);
         jTFNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,25 +160,29 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTFNome);
-        jTFNome.setBounds(610, 10, 59, 14);
+        jTFNome.setBounds(640, 10, 59, 22);
 
+        jTFRua.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFRua.setBorder(null);
         getContentPane().add(jTFRua);
-        jTFRua.setBounds(610, 230, 0, 14);
+        jTFRua.setBounds(610, 230, 0, 22);
 
+        jLbPais.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbPais.setText("  Pais:");
         getContentPane().add(jLbPais);
-        jLbPais.setBounds(580, 110, 34, 14);
+        jLbPais.setBounds(580, 110, 60, 22);
 
         jLbCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbCPF.setText("  CPF:");
         getContentPane().add(jLbCPF);
         jLbCPF.setBounds(570, 40, 70, 22);
 
+        jLbRua.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbRua.setText("  Rua:");
         getContentPane().add(jLbRua);
-        jLbRua.setBounds(570, 230, 29, 14);
+        jLbRua.setBounds(570, 224, 80, 30);
 
+        jTFEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFEstado.setBorder(null);
         jTFEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,27 +190,37 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTFEstado);
-        jTFEstado.setBounds(630, 140, 0, 14);
+        jTFEstado.setBounds(630, 140, 0, 22);
 
+        jTFTelefone1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFTelefone1.setBorder(null);
         getContentPane().add(jTFTelefone1);
-        jTFTelefone1.setBounds(650, 290, 0, 14);
+        jTFTelefone1.setBounds(650, 290, 0, 22);
 
+        jTFTelefone2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFTelefone2.setBorder(null);
         getContentPane().add(jTFTelefone2);
-        jTFTelefone2.setBounds(640, 330, 0, 14);
+        jTFTelefone2.setBounds(640, 330, 0, 22);
 
+        jTFEmail1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFEmail1.setBorder(null);
         getContentPane().add(jTFEmail1);
-        jTFEmail1.setBounds(650, 370, 0, 14);
+        jTFEmail1.setBounds(650, 370, 0, 22);
 
+        jTFEmail2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFEmail2.setBorder(null);
         getContentPane().add(jTFEmail2);
-        jTFEmail2.setBounds(650, 410, 0, 14);
+        jTFEmail2.setBounds(650, 410, 0, 22);
 
+        jTFNumero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFNumero.setBorder(null);
         getContentPane().add(jTFNumero);
-        jTFNumero.setBounds(600, 210, 0, 14);
+        jTFNumero.setBounds(600, 210, 0, 22);
+
+        jLbDataDeNascimento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbDataDeNascimento.setText("  Data de Nascimento:");
+        getContentPane().add(jLbDataDeNascimento);
+        jLbDataDeNascimento.setBounds(420, 20, 190, 22);
 
         jLbCadastro.setBackground(new java.awt.Color(204, 204, 204));
         jLbCadastro.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
@@ -383,7 +407,7 @@ public void corDeFundo() {
         
         
         jLbDataDeNascimento.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(26, 15, 4),140 + 370 + 15 + 4,30);
-        jTFDataDeNascimento.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 120 + 15, CentralizarAltura(26, 15, 4),390,30);
+        jTFDataDeNascimento.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 190 + 15, CentralizarAltura(26, 15, 4),320,30);
         jLbDataDeNascimento.setBackground(corFundo4);
         jLbDataDeNascimento.setOpaque(true);
         jTFDataDeNascimento.setBackground(corFundo4);
