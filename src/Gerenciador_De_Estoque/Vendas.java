@@ -13,7 +13,7 @@ public class Vendas extends ItensVendidos {
     
     //-----------------------------------------------//
     
-    void CadastrarVendas()throws SQLException{
+    public void CadastrarVendas()throws SQLException{
         for(i = 0; i < getIDProduto().size(); i++){
             getValorUnitarioProduto();
         }
@@ -31,7 +31,7 @@ public class Vendas extends ItensVendidos {
         CadastrarItem();
     }
     
-    void AtualizarProdutos()throws SQLException{
+    public void AtualizarProdutos()throws SQLException{
         
        ConnectionFactory conect = new ConnectionFactory();
        
@@ -51,7 +51,7 @@ public class Vendas extends ItensVendidos {
        }
     }
     
-    void ConsultarVendas()throws SQLException{
+    public void ConsultarVendas()throws SQLException{
         sql = "select * from Vendas c\n"
         + "where IDVenda = " + getIDVenda();
         
@@ -69,7 +69,7 @@ public class Vendas extends ItensVendidos {
         ConsultarItem();
     }
     
-    void ConsultarVendasPorPeriodo()throws SQLException{
+    public void ConsultarVendasPorPeriodo()throws SQLException{
         
     }
     

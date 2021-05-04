@@ -46,7 +46,7 @@ public class Fornecedores extends EnderecosContatos{
         conect.inserir();
     }
     
-    void AlterarFornecedor()throws SQLException{
+    public void AlterarFornecedor()throws SQLException{
         
        sql = "UPDATE Enderecos\n" + "SET Pais = '" + getPais() + "', Estado = '" + getEstado() + "', Cidade = '" + getCidade() + "', Bairro = '" + getBairro() + "', Rua = '" + getRua() + "', Numero = '" + getNumero() + "'\n" + "WHERE IDEndereco = " + getIDEndereco() + "\n"
         + "UPDATE Contatos\n" + "SET Telefone1 = '" + getTelefone1() + "', Telefone2 = '" + getTelefone2() + "', Email1 = '" + getEmail1() + "', Email2 = '" + getEmail2() + "'\n" + "WHERE IDContato = " + getIDContato() + "\n"
@@ -57,7 +57,7 @@ public class Fornecedores extends EnderecosContatos{
        conect.inserir();
     }
     
-    void ConsultarFornecedor()throws SQLException{
+    public void ConsultarFornecedor()throws SQLException{
         
         sql = "select * from Enderecos e\n" +
         "INNER JOIN Fornecedores f ON e.IDEndereco = f.IDEndereco\n" +
@@ -91,7 +91,7 @@ public class Fornecedores extends EnderecosContatos{
         }
     }
     
-    void ConsultarComprasPorFornecedor(){
+    public void ConsultarComprasPorFornecedor(){
         
     }
     

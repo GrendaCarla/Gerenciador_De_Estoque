@@ -12,7 +12,7 @@ public class Compras extends ItensComprados{
     
     //-------------------------------------------------------//
     
-    void CadastrarCompras()throws SQLException{
+    public void CadastrarCompras()throws SQLException{
         
         for(i = 0; i < getValorUnitario().size(); i++){
             setValorTotal(getValorTotal()+  (getValorUnitario().get(i) * getQuantidade().get(i)));
@@ -27,7 +27,7 @@ public class Compras extends ItensComprados{
         CadastrarItem();
     }
     
-    void AtualizarProdutos()throws SQLException{
+    public void AtualizarProdutos()throws SQLException{
         
        ConnectionFactory conect = new ConnectionFactory();
        
@@ -47,7 +47,7 @@ public class Compras extends ItensComprados{
        }
     }
     
-    void ConsultarCompras()throws SQLException{
+    public void ConsultarCompras()throws SQLException{
         
         sql = "select * from Compras c\n"
         + "where IDCompra = " + getIDCompra();
@@ -66,15 +66,15 @@ public class Compras extends ItensComprados{
         ConsultarItem();
     }
     
-    void ConsultarComprasPorFornecedor(){
+    public void ConsultarComprasPorFornecedor(){
         
     }
      
-    void ConsultarComprasPorPeriodo(){
+    public void ConsultarComprasPorPeriodo(){
         
     }
     
-    void ConsultarComprasPorProduto(){
+    public void ConsultarComprasPorProduto(){
         
     }
     

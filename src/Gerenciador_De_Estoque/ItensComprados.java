@@ -17,7 +17,7 @@ public abstract class ItensComprados {
     
     //-----------------------------------------------------//
     
-    void CadastrarItem()throws SQLException{
+    public void CadastrarItem()throws SQLException{
         ConnectionFactory conect = new ConnectionFactory();
         
         sql = "select TOP 1 IDCompra FROM Compras ORDER BY IDCompra DESC";
@@ -37,12 +37,12 @@ public abstract class ItensComprados {
         }
     }
     
-    void AlterarItem(){
+    public void AlterarItem(){
         
         
     }
     
-    void ConsultarItem()throws SQLException{
+    public void ConsultarItem()throws SQLException{
         
         ConnectionFactory conect = new ConnectionFactory();
         

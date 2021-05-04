@@ -1,10 +1,14 @@
 
 package Gerenciador_De_Estoque.Tela_Administrador;
 
+import Gerenciador_De_Estoque.Clientes;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 public final class TelaClienteCadastro extends javax.swing.JFrame {
@@ -38,7 +42,6 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jLbEmail1 = new javax.swing.JLabel();
         jLbBairro = new javax.swing.JLabel();
         jTFPais = new javax.swing.JTextField();
-        jLbNome = new javax.swing.JLabel();
         jLbEmail2 = new javax.swing.JLabel();
         jLbTelefone1 = new javax.swing.JLabel();
         jTFCidade = new javax.swing.JTextField();
@@ -61,6 +64,7 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jTFEmail2 = new javax.swing.JTextField();
         jTFNumero = new javax.swing.JTextField();
         jLbDataDeNascimento = new javax.swing.JLabel();
+        jLbNome = new javax.swing.JLabel();
         jLbCadastro = new javax.swing.JLabel();
         jBntCadastrar = new javax.swing.JButton();
         jBntCancelar = new javax.swing.JButton();
@@ -68,7 +72,6 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 465));
         setSize(new java.awt.Dimension(1200, 465));
         getContentPane().setLayout(null);
 
@@ -91,11 +94,6 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         });
         getContentPane().add(jTFPais);
         jTFPais.setBounds(620, 110, 10, 22);
-
-        jLbNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbNome.setText("  Nome:");
-        getContentPane().add(jLbNome);
-        jLbNome.setBounds(540, 10, 70, 22);
 
         jLbEmail2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbEmail2.setText("  Email2:");
@@ -222,14 +220,19 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         getContentPane().add(jLbDataDeNascimento);
         jLbDataDeNascimento.setBounds(420, 20, 190, 22);
 
+        jLbNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbNome.setText("  Nome:");
+        getContentPane().add(jLbNome);
+        jLbNome.setBounds(640, 70, 80, 22);
+
         jLbCadastro.setBackground(new java.awt.Color(204, 204, 204));
         jLbCadastro.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbCadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbCadastro.setText("CADASTRO ");
+        jLbCadastro.setText("CADASTRO DE CLIENTE");
         jLbCadastro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
         jLbCadastro.setOpaque(true);
         getContentPane().add(jLbCadastro);
-        jLbCadastro.setBounds(210, 10, 400, 60);
+        jLbCadastro.setBounds(40, 10, 570, 60);
 
         jBntCadastrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBntCadastrar.setForeground(new java.awt.Color(0, 153, 0));
@@ -290,14 +293,56 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFPaisActionPerformed
 
     private void jBntCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCadastrarActionPerformed
-        // TODO add your handling code here:
+        Clientes clientes = new Clientes();
+        
+        clientes.setTelefone1(jTFTelefone1.getText());
+        clientes.setTelefone2(jTFTelefone2.getText());
+        clientes.setEmail1(jTFEmail1.getText());
+        clientes.setEmail2(jTFEmail2.getText());
+        
+        clientes.setPais(jTFPais.getText());
+        clientes.setEstado(jTFEstado.getText());
+        clientes.setCidade(jTFCidade.getText());
+        clientes.setBairro(jTFBairro.getText());
+        clientes.setRua(jTFRua.getText());
+        clientes.setNumero(jTFNumero.getText());
+       
+        clientes.setNome(jTFNome.getText());
+        clientes.setDataDeNascimento(jTFDataDeNascimento.getText());
+        clientes.setCPF(jTFCPF.getText());
+        
+        
+        try {
+            clientes.CadastrarCliente();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaClienteCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        TelaAdministrador Janela = new TelaAdministrador();
+        //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension d = tk.getScreenSize();
+
+        Janela.setSize(d.width + 8, d.height - 37);
+        Janela.setResizable(false);
+           
+        Janela.show();
+        dispose();
     }//GEN-LAST:event_jBntCadastrarActionPerformed
 
     private void jBntCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCancelarActionPerformed
-        /*TelaAdministrador administrador = new TelaAdministrador();
-        administrador.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        administrador.show();
-        dispose();*/
+        TelaAdministrador Janela = new TelaAdministrador();
+        //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension d = tk.getScreenSize();
+
+        Janela.setSize(d.width + 8, d.height - 37);
+        Janela.setResizable(false);
+        Janela.show();
+        dispose();
     }//GEN-LAST:event_jBntCancelarActionPerformed
 
     
@@ -393,13 +438,13 @@ public void corDeFundo() {
     
     public void AlinhamentoDosItens() {
         
-        jLbCadastro.setBounds(CentralizarLargura(400, 2, 1),CentralizarAltura(55, 18, 1),400,55);
+        jLbCadastro.setBounds(CentralizarLargura(750, 2, 1),CentralizarAltura(55, 18, 1),750,55);
         jLbCadastro.setForeground(corFundo3);
         jLbCadastro.setBackground(corFundo4);
          
         
-        jLbNome.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 4),140 + 370 + 15 + 4,30);
-        jTFNome.setBounds(CentralizarLargura(116, 18,2)+ 70 + 15,CentralizarAltura(30, 15, 4),440,30);
+        jLbNome.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 4),80 + 15 + 430 + 4,30);
+        jTFNome.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15,CentralizarAltura(30, 15, 4),430,30);
         jLbNome.setBackground(corFundo4);
         jLbNome.setOpaque(true);
         jTFNome.setBackground(corFundo4);
@@ -413,7 +458,7 @@ public void corDeFundo() {
         jTFDataDeNascimento.setBackground(corFundo4);
         jTFDataDeNascimento.setOpaque(true);
         
-        jLbCPF.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 5),140 + 220 + 15 + 4,30);
+        jLbCPF.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 5),140 + 170 + 15 + 4,30);
         jTFCPF.setBounds(CentralizarLargura(116, 18,2)+ 60 + 15,CentralizarAltura(30, 15, 5),250,30);
         jLbCPF.setBackground(corFundo4);
         jLbCPF.setOpaque(true);

@@ -122,11 +122,11 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jLbCadastro.setBackground(new java.awt.Color(204, 204, 204));
         jLbCadastro.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbCadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbCadastro.setText("CADASTRO ");
+        jLbCadastro.setText("CADASTRO DE FORNECEDOR");
         jLbCadastro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
         jLbCadastro.setOpaque(true);
         getContentPane().add(jLbCadastro);
-        jLbCadastro.setBounds(392, 11, 400, 60);
+        jLbCadastro.setBounds(212, 11, 750, 60);
 
         jTFEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFEstado.setBorder(null);
@@ -374,7 +374,7 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
 
         Janela.setSize(d.width + 8, d.height - 37);
         Janela.setResizable(false);
-           
+         
         Janela.show();
         dispose();
     }//GEN-LAST:event_jBntCancelarActionPerformed
@@ -527,59 +527,9 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         return (altura/posicao)* muti - (tamanhoObjeto/2);
     }
     
-    /*public void resolucao() { 
-        float mutip = 1;
-        
-        if(largura <= 1360 && largura >= 1300){
-            mutip = 1;
-        }else if (largura > 1360 && largura <= 1500){
-            mutip = 1.2f;
-        }else if (largura <= 1700 && largura > 1500){
-            mutip = 1.4f;
-        }else if (largura <= 1900 && largura > 1700){
-            mutip = 1.6f;
-        }
-        
-        
-        int fonte = Math.round(18 * mutip);
-        
-        int LBaltura = Math.round(30 * mutip);
-        
-        int LBlarguraNomeFantasia = Math.round(140 * mutip);
-        int LBlarguraRazaoSocial = Math.round(120 * mutip);
-        int LBlarguraCNPJ = Math.round(60 * mutip);
-        int LBlarguraTelefone1 = Math.round(90 * mutip);
-        int LBlarguraEmail1 = Math.round(110 * mutip);
-        int LBlarguraTelefone2 = Math.round(90 * mutip);
-        int LBlarguraEmail2 = Math.round(110 * mutip);
-        int LBlarguraPais = Math.round(60 * mutip);
-        int LBlarguraEstado = Math.round(80 * mutip);
-        int LBlarguraCidade = Math.round(80 * mutip);
-        int LBlarguraBairro = Math.round(70 * mutip);
-        int LBlarguraRua = Math.round(50 * mutip);
-        int LBlarguraNumero = Math.round(90 * mutip);
-        
-        int TFaltura = Math.round(30 * mutip);
-        
-        int TFlarguraNomeFantasia = Math.round(370 * mutip);
-        int TFlarguraRazaoSocial = Math.round(390 * mutip);
-        int TFlarguraCNPJ = Math.round(450 * mutip);
-        int TFlarguraTelefone1 = Math.round(400 * mutip);
-        int TFlarguraEmail1 = Math.round(420 * mutip);
-        int TFlarguraTelefone2 = Math.round(400 * mutip);
-        int TFlarguraEmail2 = Math.round(420 * mutip);
-        int TFlarguraPais = Math.round(220 * mutip);
-        int TFlarguraEstado = Math.round(270 * mutip);
-        int TFlarguraCidade = Math.round(270 * mutip);
-        int TFlarguraBairro = Math.round(300 * mutip);
-        int TFlarguraRua = Math.round(320 * mutip);
-        int TFlarguraNumero = Math.round(100 * mutip);
-        
-    }*/
-    
     public void AlinhamentoDosItens() {
         
-        jLbCadastro.setBounds(CentralizarLargura(400, 2, 1),CentralizarAltura(55, 18, 1),400,55);
+        jLbCadastro.setBounds(CentralizarLargura(750, 2, 1),CentralizarAltura(55, 18, 1),750,55);
         jLbCadastro.setForeground(corFundo3);
         jLbCadastro.setBackground(corFundo4);
          

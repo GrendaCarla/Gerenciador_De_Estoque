@@ -15,7 +15,7 @@ public class Clientes extends EnderecosContatos{
     
     //--------------------------------------------------------//
     
-    void CadastrarCliente()throws SQLException{
+    public void CadastrarCliente()throws SQLException{
         
         sql = "INSERT INTO Enderecos (Pais, Estado, Cidade, Bairro, Rua, Numero) VALUES('" + getPais() +  "', '" + getEstado() + "', '" + getCidade() + "', '" + getBairro() + "', '" + getRua() + "', '" + getNumero() + "') "
               + "INSERT INTO Contatos (Telefone1, Telefone2, Email1, Email2) VALUES('" + getTelefone1() + "', '" + getTelefone2() + "', '" + getEmail1() + "', '" + getEmail2() + "')";
@@ -47,7 +47,7 @@ public class Clientes extends EnderecosContatos{
         conect.inserir();
     }
     
-    void AlterarCliente()throws SQLException{
+    public void AlterarCliente()throws SQLException{
         
        sql = "UPDATE Enderecos\n" + "SET Pais = '" + getPais() + "', Estado = '" + getEstado() + "', Cidade = '" + getCidade() + "', Bairro = '" + getBairro() + "', Rua = '" + getRua() + "', Numero = '" + getNumero() + "'\n" + "WHERE IDEndereco = " + getIDEndereco() + "\n"
         + "UPDATE Contatos\n" + "SET Telefone1 = '" + getTelefone1() + "', Telefone2 = '" + getTelefone2() + "', Email1 = '" + getEmail1() + "', Email2 = '" + getEmail2() + "'\n" + "WHERE IDContato = " + getIDContato() + "\n"
@@ -58,7 +58,7 @@ public class Clientes extends EnderecosContatos{
        conect.inserir();
     }
     
-    void ConsultarClientes()throws SQLException{
+    public void ConsultarClientes()throws SQLException{
         
         sql = "select * from Enderecos e\n" +
         "INNER JOIN Clientes cl ON e.IDEndereco = cl.IDEndereco\n" +
@@ -92,19 +92,19 @@ public class Clientes extends EnderecosContatos{
         }
     }
     
-    void ConsultarClientesPorTelefone(){
+    public void ConsultarClientesPorTelefone(){
         
     }
     
-    void ConsultarClientesPorCPF(){
+    public void ConsultarClientesPorCPF(){
         
     }
     
-    void ConsultarVendas(){
+    public void ConsultarVendas(){
         
     }
     
-    void PegarListaClientes(){
+    public void PegarListaClientes(){
         
     }
     

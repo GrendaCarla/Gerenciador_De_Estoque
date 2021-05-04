@@ -19,7 +19,7 @@ public class Produtos {
     
     //------------------------------------------------//
     
-    void CadastrarProduto()throws SQLException{
+    public void CadastrarProduto()throws SQLException{
         
         sql = "INSERT INTO Produtos (Nome, Marca, Medida, ValorVenda, Quantidade, Ativo, Descricao) VALUES('" + getNome() +  "', '" + getMarca() + "', '" + getMedida() + "', " + getValorVenda() + ", " + getQuantidade() + ", " + getAtivo() + ", '" + getDescricao()+"') ";
         
@@ -29,7 +29,7 @@ public class Produtos {
         
     }
     
-    void AlterarProduto()throws SQLException{
+    public void AlterarProduto()throws SQLException{
         
        sql = "UPDATE Produtos\n" + "SET Nome = '" + getNome() + "', Marca = '" + getMarca() + "', Medida = '" + getMedida() + "', ValorVenda = " + getValorVenda() + ", Quantidade = " + getQuantidade() + ", Ativo = " + getAtivo() + ", Descricao = '" + getDescricao() + "'\n" + "WHERE IDProduto = " + getIDProduto() + "\n";
        
@@ -38,7 +38,7 @@ public class Produtos {
        conect.inserir();
     }
     
-    void ConsultarProdutos()throws SQLException{
+    public void ConsultarProdutos()throws SQLException{
         
         sql = "select * from Produtos \n" + "where IDProduto = " + getIDProduto();
         
@@ -60,7 +60,7 @@ public class Produtos {
         }
     }
     
-    float PegarValorProduto(int idProduto)throws SQLException{
+    public float PegarValorProduto(int idProduto)throws SQLException{
         
         sql = "select ValorVenda from Produtos \n" + "where IDProduto = " + idProduto;
         
