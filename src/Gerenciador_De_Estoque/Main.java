@@ -28,8 +28,6 @@ public class Main {
            
         Janela.show();
         
-       
-        
         
         
         /*Fornecedores forn = new Fornecedores();

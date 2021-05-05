@@ -2,22 +2,24 @@ package Gerenciador_De_Estoque;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Fornecedores extends EnderecosContatos{
-    private int IDFornecedor;
-    private String CNPJ;
-    private String RazaoSocial;
-    private String NomeFantasia;
+    private List<Integer> IDFornecedor = new ArrayList<Integer>();
+    private List<String> CNPJ = new ArrayList<String>();
+    private List<String> RazaoSocial = new ArrayList<String>();
+    private List<String> NomeFantasia = new ArrayList<String>();
     // um vetor com as informações q seram exibidas na pagina principal pro administrador escolher qual quer clicar
     String sql;
     ResultSet resultado;
     
     //-----------------------------------------------//
     
-    public void CadastrarFornecedor()throws SQLException{
+    public void CadastrarFornecedor(String pais, String estado, String cidade, String bairro, String rua, String numero, String telefone1, String telefone2, String email1, String email2, int idEndereco, int idContato, String cnpj, String razaoSocial, String nomeFantasia)throws SQLException{
         
-        sql = "INSERT INTO Enderecos (Pais, Estado, Cidade, Bairro, Rua, Numero) VALUES('" + getPais() +  "', '" + getEstado() + "', '" + getCidade() + "', '" + getBairro() + "', '" + getRua() + "', '" + getNumero() + "') "
-              + "INSERT INTO Contatos (Telefone1, Telefone2, Email1, Email2) VALUES('" + getTelefone1() + "', '" + getTelefone2() + "', '" + getEmail1() + "', '" + getEmail2() + "')";
+        sql = "INSERT INTO Enderecos (Pais, Estado, Cidade, Bairro, Rua, Numero) VALUES('" + pais +  "', '" + estado + "', '" + cidade + "', '" + bairro + "', '" + rua + "', '" + numero + "') "
+              + "INSERT INTO Contatos (Telefone1, Telefone2, Email1, Email2) VALUES('" + telefone1 + "', '" + telefone2 + "', '" + email1 + "', '" + email2 + "')";
         
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;
@@ -40,17 +42,17 @@ public class Fornecedores extends EnderecosContatos{
             setIDContato(resultado.getInt(1));
         }
     
-        sql = "INSERT INTO Fornecedores (IDEndereco, IDContato, CNPJ, RazaoSocial, NomeFantasia) VALUES(" + getIDEndereco() + ", " + getIDContato() + ", '" + getCNPJ() + "', '" + getRazaoSocial() + "', '" + getNomeFantasia() +"')";
+        sql = "INSERT INTO Fornecedores (IDEndereco, IDContato, CNPJ, RazaoSocial, NomeFantasia) VALUES(" + idEndereco + ", " + idContato + ", '" + cnpj + "', '" + razaoSocial + "', '" + nomeFantasia +"')";
        
         conect.sql = this.sql;
         conect.inserir();
     }
     
-    public void AlterarFornecedor()throws SQLException{
+    public void AlterarFornecedor(String pais, String estado, String cidade, String bairro, String rua, String numero, String telefone1, String telefone2, String email1, String email2, int idEndereco, int idContato, String cnpj, String razaoSocial, String nomeFantasia, int idFornecedor)throws SQLException{
         
-       sql = "UPDATE Enderecos\n" + "SET Pais = '" + getPais() + "', Estado = '" + getEstado() + "', Cidade = '" + getCidade() + "', Bairro = '" + getBairro() + "', Rua = '" + getRua() + "', Numero = '" + getNumero() + "'\n" + "WHERE IDEndereco = " + getIDEndereco() + "\n"
-        + "UPDATE Contatos\n" + "SET Telefone1 = '" + getTelefone1() + "', Telefone2 = '" + getTelefone2() + "', Email1 = '" + getEmail1() + "', Email2 = '" + getEmail2() + "'\n" + "WHERE IDContato = " + getIDContato() + "\n"
-        + "UPDATE Fornecedores\n" + "SET CNPJ = '" + getCNPJ() + "', RazaoSocial = '" + getRazaoSocial() + "', NomeFantasia = '" + getNomeFantasia() + "'\n" + "WHERE IDFornecedor = " + getIDFornecedor() + "\n";
+       sql = "UPDATE Enderecos\n" + "SET Pais = '" + pais + "', Estado = '" + estado + "', Cidade = '" + cidade + "', Bairro = '" + bairro + "', Rua = '" + rua + "', Numero = '" + numero + "'\n" + "WHERE IDEndereco = " + idEndereco + "\n"
+        + "UPDATE Contatos\n" + "SET Telefone1 = '" + telefone1 + "', Telefone2 = '" + telefone2 + "', Email1 = '" + email1 + "', Email2 = '" + email2 + "'\n" + "WHERE IDContato = " + idContato + "\n"
+        + "UPDATE Fornecedores\n" + "SET CNPJ = '" + cnpj + "', RazaoSocial = '" + razaoSocial + "', NomeFantasia = '" + nomeFantasia + "'\n" + "WHERE IDFornecedor = " + idFornecedor + "\n";
        
        ConnectionFactory conect = new ConnectionFactory();
        conect.sql = this.sql;
@@ -61,15 +63,13 @@ public class Fornecedores extends EnderecosContatos{
         
         sql = "select * from Enderecos e\n" +
         "INNER JOIN Fornecedores f ON e.IDEndereco = f.IDEndereco\n" +
-        "INNER JOIN Contatos c ON c.IDContato = f.IDContato\n" +
-        "where IDFornecedor = " + getIDFornecedor();
+        "INNER JOIN Contatos c ON c.IDContato = f.IDContato\n";
         
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;
         resultado = conect.retirar();
-        
+      
         while (resultado.next()){
-            
             setIDEndereco(resultado.getInt(1));
             setPais(resultado.getString(2));
             setEstado(resultado.getString(3));
@@ -97,39 +97,36 @@ public class Fornecedores extends EnderecosContatos{
     
     //---------------------------------------------------//
 
-    public int getIDFornecedor() {
+    public List<Integer> getIDFornecedor() {
         return IDFornecedor;
     }
 
     public void setIDFornecedor(int IDFornecedor) {
-        this.IDFornecedor = IDFornecedor;
+        this.IDFornecedor.add(IDFornecedor);
     }
 
-    public String getCNPJ() {
+    public List<String> getCNPJ() {
         return CNPJ;
     }
 
     public void setCNPJ(String CNPJ) {
-        this.CNPJ = CNPJ;
+        this.CNPJ.add(CNPJ);
     }
 
-    public String getRazaoSocial() {
+    public List<String> getRazaoSocial() {
         return RazaoSocial;
     }
 
     public void setRazaoSocial(String RazaoSocial) {
-        this.RazaoSocial = RazaoSocial;
+        this.RazaoSocial.add(RazaoSocial);
     }
 
-    public String getNomeFantasia() {
+    public List<String> getNomeFantasia() {
         return NomeFantasia;
     }
 
     public void setNomeFantasia(String NomeFantasia) {
-        this.NomeFantasia = NomeFantasia;
+        this.NomeFantasia.add(NomeFantasia);
     }
-    
-    
-    
     
 }
