@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
-public final class TelaFornecedorCadastro extends javax.swing.JFrame {
+public class TelaFornecedorAlterar extends javax.swing.JFrame {
     
     // resolução tela pc
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -28,14 +28,16 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
     Color corFundo5 = new Color(5,180,145);
     Color corFundo6 = new Color(129,88,119);
     
-    public TelaFornecedorCadastro() {
+    int numero;
+
+    public TelaFornecedorAlterar() {
         initComponents();
-       
+        
         corDeFundo();
         TamanhoDoFundo();
         AlinhamentoDosItens();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -45,12 +47,12 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jTFCidade = new javax.swing.JTextField();
         jTFBairro = new javax.swing.JTextField();
         jTFRua = new javax.swing.JTextField();
-        jTFNumero = new javax.swing.JTextField();
         jTFTelefone1 = new javax.swing.JTextField();
         jTFTelefone2 = new javax.swing.JTextField();
         jTFEmail2 = new javax.swing.JTextField();
         jTFEmail1 = new javax.swing.JTextField();
         jTFNomeFantasia = new javax.swing.JTextField();
+        jTFNumero = new javax.swing.JTextField();
         jTFRazaoSocial = new javax.swing.JTextField();
         jTFCNPJ = new javax.swing.JTextField();
         jLbPais = new javax.swing.JLabel();
@@ -73,10 +75,6 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(147, 87, 107));
-        setName("FornecedorCadastro"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1340, 690));
-        setSize(new java.awt.Dimension(1340, 690));
         getContentPane().setLayout(null);
 
         jTFPais.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -129,16 +127,6 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         getContentPane().add(jTFRua);
         jTFRua.setBounds(150, 540, 327, 22);
 
-        jTFNumero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFNumero.setBorder(null);
-        jTFNumero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFNumeroActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTFNumero);
-        jTFNumero.setBounds(1170, 570, 110, 22);
-
         jTFTelefone1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFTelefone1.setBorder(null);
         jTFTelefone1.addActionListener(new java.awt.event.ActionListener() {
@@ -190,6 +178,16 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         });
         getContentPane().add(jTFNomeFantasia);
         jTFNomeFantasia.setBounds(370, 130, 280, 30);
+
+        jTFNumero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFNumero.setBorder(null);
+        jTFNumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFNumeroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTFNumero);
+        jTFNumero.setBounds(1170, 570, 110, 22);
 
         jTFRazaoSocial.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFRazaoSocial.setBorder(null);
@@ -244,7 +242,7 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jLbTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jLbTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbTitulo.setText("CADASTRAR FORNECEDOR");
+        jLbTitulo.setText("ALTERAR FORNECEDOR");
         jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
         jLbTitulo.setOpaque(true);
         getContentPane().add(jLbTitulo);
@@ -321,7 +319,6 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jPanel2.setLayout(null);
         jPanel1.add(jPanel2);
         jPanel2.setBounds(50, 24, 1200, 465);
-        jPanel2.getAccessibleContext().setAccessibleParent(this);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(30, 50, 1260, 550);
@@ -329,109 +326,107 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSalvarActionPerformed
-        Fornecedores fornecedor = new Fornecedores();
-        
-        try {
-            fornecedor.CadastrarFornecedor(jTFPais.getText(), jTFEstado.getText(), jTFCidade.getText(), jTFBairro.getText(), jTFRua.getText(), jTFNumero.getText(), jTFTelefone1.getText(), jTFTelefone2.getText(), jTFEmail1.getText(), jTFEmail2.getText(), jTFCNPJ.getText(), jTFRazaoSocial.getText(), jTFNomeFantasia.getText());
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        
-        try {
-            TelaAdministrador Janela = new TelaAdministrador();
-            //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            
-            Toolkit tk = Toolkit.getDefaultToolkit();
-            Dimension d = tk.getScreenSize();
-
-            Janela.setSize(d.width + 8, d.height - 37);
-            Janela.setResizable(false);
-
-            Janela.show();
-            dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-    }//GEN-LAST:event_jBntSalvarActionPerformed
-
-    private void jBntCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCancelarActionPerformed
-        
-        
-        try {
-            TelaAdministrador Janela = new TelaAdministrador();
-            //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            Toolkit tk = Toolkit.getDefaultToolkit();
-            Dimension d = tk.getScreenSize();
-
-            Janela.setSize(d.width + 8, d.height - 37);
-            Janela.setResizable(false);
-
-            Janela.show();
-            dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-       
-    }//GEN-LAST:event_jBntCancelarActionPerformed
-
-    private void jTFCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCNPJActionPerformed
+    private void jTFPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFPaisActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTFCNPJActionPerformed
-
-    private void jTFRazaoSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRazaoSocialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFRazaoSocialActionPerformed
-
-    private void jTFNomeFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeFantasiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFNomeFantasiaActionPerformed
-
-    private void jTFEmail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEmail1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFEmail1ActionPerformed
-
-    private void jTFEmail2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEmail2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFEmail2ActionPerformed
-
-    private void jTFTelefone2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelefone2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFTelefone2ActionPerformed
-
-    private void jTFTelefone1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelefone1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFTelefone1ActionPerformed
-
-    private void jTFNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNumeroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFNumeroActionPerformed
-
-    private void jTFRuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRuaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFRuaActionPerformed
-
-    private void jTFBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFBairroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFBairroActionPerformed
-
-    private void jTFCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFCidadeActionPerformed
+    }//GEN-LAST:event_jTFPaisActionPerformed
 
     private void jTFEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEstadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFEstadoActionPerformed
 
-    private void jTFPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFPaisActionPerformed
+    private void jTFCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCidadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTFPaisActionPerformed
+    }//GEN-LAST:event_jTFCidadeActionPerformed
 
+    private void jTFBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFBairroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFBairroActionPerformed
 
+    private void jTFRuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFRuaActionPerformed
+
+    private void jTFTelefone1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelefone1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFTelefone1ActionPerformed
+
+    private void jTFTelefone2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelefone2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFTelefone2ActionPerformed
+
+    private void jTFEmail2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEmail2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFEmail2ActionPerformed
+
+    private void jTFEmail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEmail1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFEmail1ActionPerformed
+
+    private void jTFNomeFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeFantasiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFNomeFantasiaActionPerformed
+
+    private void jTFRazaoSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRazaoSocialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFRazaoSocialActionPerformed
+
+    private void jTFCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCNPJActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFCNPJActionPerformed
+
+    private void jBntCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCancelarActionPerformed
+
+        try {
+            TelaFornecedorInfo Janela = new TelaFornecedorInfo();
+            //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            Toolkit tk = Toolkit.getDefaultToolkit();
+            Dimension d = tk.getScreenSize();
+
+            Janela.setSize(d.width + 8, d.height - 37);
+            Janela.setResizable(false);
+
+            Janela.show();
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jBntCancelarActionPerformed
+
+    private void jBntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSalvarActionPerformed
+
+        try {
+            
+            Fornecedores fornecedor = new Fornecedores();
+            fornecedor.ConsultarFornecedor();
+            
+            fornecedor.AlterarFornecedor(jTFPais.getText(), jTFEstado.getText(), jTFCidade.getText(), jTFBairro.getText(), jTFRua.getText(), jTFNumero.getText(), jTFTelefone1.getText(), jTFTelefone2.getText(), jTFEmail1.getText(), jTFEmail2.getText(), jTFCNPJ.getText(), jTFRazaoSocial.getText(), jTFNomeFantasia.getText(), numero);
+
+            
+            TelaAdministrador Janela = new TelaAdministrador();
+            //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+            Toolkit tk = Toolkit.getDefaultToolkit();
+            Dimension d = tk.getScreenSize();
+
+            Janela.setSize(d.width + 8, d.height - 37);
+            Janela.setResizable(false);
+
+            Janela.show();
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jBntSalvarActionPerformed
+
+    private void jTFNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNumeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFNumeroActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -446,23 +441,20 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaFornecedorAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaFornecedorAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaFornecedorAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaFornecedorAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaFornecedorCadastro().setVisible(true);
-                
-                
+                new TelaFornecedorAlterar().setVisible(true);
             }
         });
     }
@@ -500,7 +492,7 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
     private javax.swing.JTextField jTFTelefone1;
     private javax.swing.JTextField jTFTelefone2;
     // End of variables declaration//GEN-END:variables
-    
+
     public void corDeFundo() {
         
         getContentPane().setBackground(corFundo1);
@@ -648,6 +640,30 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jBntCancelar.setForeground(corFundo3);
         
     }
-
+    
+    public void PegarDados(int num) throws SQLException {
+        numero = num;
+                
+        Fornecedores fornecedor = new Fornecedores();
+        
+        fornecedor.ConsultarFornecedor();
+        
+        jTFNomeFantasia.setText(fornecedor.getNomeFantasia().get(num));
+        jTFRazaoSocial.setText(fornecedor.getRazaoSocial().get(num));
+        jTFCNPJ.setText(fornecedor.getCNPJ().get(num));
+        
+        jTFTelefone1.setText(fornecedor.getTelefone1().get(num));
+        jTFTelefone2.setText(fornecedor.getTelefone2().get(num));
+        jTFEmail1.setText(fornecedor.getEmail1().get(num));
+        jTFEmail2.setText(fornecedor.getEmail2().get(num));
+        
+        jTFPais.setText(fornecedor.getPais().get(num));
+        jTFEstado.setText(fornecedor.getEstado().get(num));
+        jTFCidade.setText(fornecedor.getCidade().get(num));
+        jTFBairro.setText(fornecedor.getBairro().get(num));
+        jTFRua.setText(fornecedor.getRua().get(num));
+        jTFNumero.setText(fornecedor.getNumero().get(num));
+        
+    }
 
 }

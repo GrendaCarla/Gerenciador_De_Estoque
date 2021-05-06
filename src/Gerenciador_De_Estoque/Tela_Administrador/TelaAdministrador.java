@@ -136,6 +136,11 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jBntLupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa.PNG"))); // NOI18N
         jBntLupa.setBorder(null);
         jBntLupa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntLupa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntLupaActionPerformed(evt);
+            }
+        });
         JP_Fornecedores.add(jBntLupa);
         jBntLupa.setBounds(980, 110, 20, 19);
 
@@ -305,25 +310,37 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFBarraDeBuscaFocusLost
 
     private void jTFornecedorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFornecedorFocusGained
-        System.out.println(jTFornecedor.getSelectedRow());
         
     }//GEN-LAST:event_jTFornecedorFocusGained
 
     private void jTFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFornecedorMouseClicked
         if (evt.getClickCount() == 2) {
-            TelaFornecedorInfo infoFornededor = new TelaFornecedorInfo();
-            //principalFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            
+            
+            try {
+                TelaFornecedorInfo infoFornededor = new TelaFornecedorInfo();
+                //principalFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                
+                Toolkit tk = Toolkit.getDefaultToolkit();
+                Dimension d = tk.getScreenSize();
 
-            Toolkit tk = Toolkit.getDefaultToolkit();
-            Dimension d = tk.getScreenSize();
+                infoFornededor.setSize(d.width + 8, d.height - 37);
+                infoFornededor.setResizable(false);
 
-            infoFornededor.setSize(d.width + 8, d.height - 37);
-            infoFornededor.setResizable(false);
+                infoFornededor.PegarDados(jTFornecedor.getSelectedRow());
 
-            infoFornededor.show();
-            dispose();
+                infoFornededor.show();
+                dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
     }//GEN-LAST:event_jTFornecedorMouseClicked
+
+    private void jBntLupaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntLupaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBntLupaActionPerformed
 
     
     public static void main(String args[]) {

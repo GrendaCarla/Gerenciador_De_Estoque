@@ -16,7 +16,7 @@ public class Fornecedores extends EnderecosContatos{
     
     //-----------------------------------------------//
     
-    public void CadastrarFornecedor(String pais, String estado, String cidade, String bairro, String rua, String numero, String telefone1, String telefone2, String email1, String email2, int idEndereco, int idContato, String cnpj, String razaoSocial, String nomeFantasia)throws SQLException{
+    public void CadastrarFornecedor(String pais, String estado, String cidade, String bairro, String rua, String numero, String telefone1, String telefone2, String email1, String email2, String cnpj, String razaoSocial, String nomeFantasia)throws SQLException{
         
         sql = "INSERT INTO Enderecos (Pais, Estado, Cidade, Bairro, Rua, Numero) VALUES('" + pais +  "', '" + estado + "', '" + cidade + "', '" + bairro + "', '" + rua + "', '" + numero + "') "
               + "INSERT INTO Contatos (Telefone1, Telefone2, Email1, Email2) VALUES('" + telefone1 + "', '" + telefone2 + "', '" + email1 + "', '" + email2 + "')";
@@ -29,30 +29,31 @@ public class Fornecedores extends EnderecosContatos{
         conect.sql = this.sql;
         resultado = conect.retirar();
         
-        while (resultado.next()){
-            setIDEndereco(resultado.getInt(1));
-            break;
-        }
+        resultado.next();
+        
+        int idEndereco = resultado.getInt(1);
+        
         
         sql = "select TOP 1 IDContato FROM Contatos ORDER BY IDContato  DESC";
         conect.sql = this.sql;
         resultado = conect.retirar();
         
-        while (resultado.next()){
-            setIDContato(resultado.getInt(1));
-        }
-    
+        resultado.next();
+        
+        int idContato = resultado.getInt(1);
+        
+        
         sql = "INSERT INTO Fornecedores (IDEndereco, IDContato, CNPJ, RazaoSocial, NomeFantasia) VALUES(" + idEndereco + ", " + idContato + ", '" + cnpj + "', '" + razaoSocial + "', '" + nomeFantasia +"')";
        
         conect.sql = this.sql;
         conect.inserir();
     }
     
-    public void AlterarFornecedor(String pais, String estado, String cidade, String bairro, String rua, String numero, String telefone1, String telefone2, String email1, String email2, int idEndereco, int idContato, String cnpj, String razaoSocial, String nomeFantasia, int idFornecedor)throws SQLException{
-        
-       sql = "UPDATE Enderecos\n" + "SET Pais = '" + pais + "', Estado = '" + estado + "', Cidade = '" + cidade + "', Bairro = '" + bairro + "', Rua = '" + rua + "', Numero = '" + numero + "'\n" + "WHERE IDEndereco = " + idEndereco + "\n"
-        + "UPDATE Contatos\n" + "SET Telefone1 = '" + telefone1 + "', Telefone2 = '" + telefone2 + "', Email1 = '" + email1 + "', Email2 = '" + email2 + "'\n" + "WHERE IDContato = " + idContato + "\n"
-        + "UPDATE Fornecedores\n" + "SET CNPJ = '" + cnpj + "', RazaoSocial = '" + razaoSocial + "', NomeFantasia = '" + nomeFantasia + "'\n" + "WHERE IDFornecedor = " + idFornecedor + "\n";
+    public void AlterarFornecedor(String pais, String estado, String cidade, String bairro, String rua, String numero, String telefone1, String telefone2, String email1, String email2, String cnpj, String razaoSocial, String nomeFantasia, int num)throws SQLException{
+    
+       sql = "UPDATE Enderecos\n" + "SET Pais = '" + pais + "', Estado = '" + estado + "', Cidade = '" + cidade + "', Bairro = '" + bairro + "', Rua = '" + rua + "', Numero = '" + numero + "'\n" + "WHERE IDEndereco = " + getIDEndereco().get(num) + "\n"
+        + "UPDATE Contatos\n" + "SET Telefone1 = '" + telefone1 + "', Telefone2 = '" + telefone2 + "', Email1 = '" + email1 + "', Email2 = '" + email2 + "'\n" + "WHERE IDContato = " + getIDContato().get(num) + "\n"
+        + "UPDATE Fornecedores\n" + "SET CNPJ = '" + cnpj + "', RazaoSocial = '" + razaoSocial + "', NomeFantasia = '" + nomeFantasia + "'\n" + "WHERE IDFornecedor = " + getIDFornecedor().get(num) + "\n";
        
        ConnectionFactory conect = new ConnectionFactory();
        conect.sql = this.sql;
