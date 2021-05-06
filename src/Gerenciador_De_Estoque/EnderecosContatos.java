@@ -20,6 +20,25 @@ public abstract class EnderecosContatos {
     private List<String> Email2 = new ArrayList<String>();
     
     //-----------------------------------------
+    
+    public void LimparEnderecosContatos(){
+       
+        this.IDEndereco.clear();
+        this.Pais.clear();
+        this.Estado.clear();
+        this.Cidade.clear();
+        this.Bairro.clear();
+        this.Rua.clear();
+        this.Numero.clear();
+        //--------------------
+        this.IDContato.clear();
+        this.Telefone1.clear();
+        this.Telefone2.clear();
+        this.Email1.clear();
+        this.Email2.clear();
+    }
+    
+    //-----------------------------------------------
 
     public List<Integer> getIDEndereco() {
         return IDEndereco;

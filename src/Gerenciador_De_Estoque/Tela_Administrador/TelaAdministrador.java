@@ -1,23 +1,18 @@
 package Gerenciador_De_Estoque.Tela_Administrador;
 
-import Gerenciador_De_Estoque.Clientes;
 import Gerenciador_De_Estoque.Fornecedores;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.border.LineBorder;
-import javax.swing.border.SoftBevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-
+import uk.ac.shef.wit.simmetrics.similaritymetrics.SmithWatermanGotoh;
+        
 public class TelaAdministrador extends javax.swing.JFrame {
     
     // resolução tela pc
@@ -35,29 +30,32 @@ public class TelaAdministrador extends javax.swing.JFrame {
     Color corFundo6 = new Color(129,88,119);
     Color corFont1 = new Color(0,0,0);
     Color corFont2 = new Color(195,195,195);
+    
+    List<Integer> pesquisa = new ArrayList<Integer>();
+    Fornecedores fornecedor = new Fornecedores();
 
     public TelaAdministrador() throws SQLException {
         initComponents();
         corDeFundo();
         TamanhoDoFundo();
-        criarTabela();
-        AlinhamentoDosItens();
+        iniciarPesquisaFornecedor();
+        AlinhamentoDosItensFornecedor();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         JTabbedPane = new javax.swing.JTabbedPane();
         JP_Fornecedores = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPaneFornecedor = new javax.swing.JScrollPane();
         jTFornecedor = new javax.swing.JTable();
-        jBntLupa = new javax.swing.JButton();
-        jTFBarraDeBusca = new javax.swing.JTextField();
-        jBntFornecedorInicialSair = new javax.swing.JButton();
-        jBntFornecedorInicialCadastrar = new javax.swing.JButton();
-        jLbBarraDeBusca = new javax.swing.JLabel();
+        jBntLupaFornecedor = new javax.swing.JButton();
+        jTFBarraDeBuscaFornecedor = new javax.swing.JTextField();
+        jBntSairFornecedor = new javax.swing.JButton();
+        jBntCadastrarFornecedor = new javax.swing.JButton();
+        jLbBarraDeBuscaFornecedor = new javax.swing.JLabel();
+        jBntVoltarFornecedor = new javax.swing.JButton();
         JP_Compras = new javax.swing.JPanel();
         JP_Estoque = new javax.swing.JPanel();
         JP_Clientes = new javax.swing.JPanel();
@@ -79,9 +77,9 @@ public class TelaAdministrador extends javax.swing.JFrame {
         JP_Fornecedores.setPreferredSize(new java.awt.Dimension(300, 500));
         JP_Fornecedores.setLayout(null);
 
-        jScrollPane1.setBackground(new java.awt.Color(102, 255, 51));
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 15));
-        jScrollPane1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jScrollPaneFornecedor.setBackground(new java.awt.Color(102, 255, 51));
+        jScrollPaneFornecedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 15));
+        jScrollPaneFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jTFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFornecedor.setModel(new javax.swing.table.DefaultTableModel(
@@ -123,76 +121,86 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 jTFornecedorMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTFornecedor);
+        jScrollPaneFornecedor.setViewportView(jTFornecedor);
         if (jTFornecedor.getColumnModel().getColumnCount() > 0) {
             jTFornecedor.getColumnModel().getColumn(0).setResizable(false);
             jTFornecedor.getColumnModel().getColumn(1).setResizable(false);
             jTFornecedor.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        JP_Fornecedores.add(jScrollPane1);
-        jScrollPane1.setBounds(40, 80, 920, 540);
+        JP_Fornecedores.add(jScrollPaneFornecedor);
+        jScrollPaneFornecedor.setBounds(40, 80, 920, 540);
 
-        jBntLupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa.PNG"))); // NOI18N
-        jBntLupa.setBorder(null);
-        jBntLupa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBntLupa.addActionListener(new java.awt.event.ActionListener() {
+        jBntLupaFornecedor.setBackground(new java.awt.Color(255, 255, 255));
+        jBntLupaFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa.PNG"))); // NOI18N
+        jBntLupaFornecedor.setBorder(null);
+        jBntLupaFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntLupaFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBntLupaActionPerformed(evt);
+                jBntLupaFornecedorActionPerformed(evt);
             }
         });
-        JP_Fornecedores.add(jBntLupa);
-        jBntLupa.setBounds(980, 110, 20, 19);
+        JP_Fornecedores.add(jBntLupaFornecedor);
+        jBntLupaFornecedor.setBounds(980, 110, 20, 19);
 
-        jTFBarraDeBusca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFBarraDeBusca.setForeground(new java.awt.Color(195, 195, 195));
-        jTFBarraDeBusca.setText("Fornecedor"); // NOI18N
-        jTFBarraDeBusca.setToolTipText("");
-        jTFBarraDeBusca.setBorder(null);
-        jTFBarraDeBusca.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTFBarraDeBuscaFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFBarraDeBuscaFornecedor.setToolTipText("");
+        jTFBarraDeBuscaFornecedor.setBorder(null);
+        jTFBarraDeBuscaFornecedor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTFBarraDeBuscaFocusGained(evt);
+                jTFBarraDeBuscaFornecedorFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTFBarraDeBuscaFocusLost(evt);
+                jTFBarraDeBuscaFornecedorFocusLost(evt);
             }
         });
-        jTFBarraDeBusca.addActionListener(new java.awt.event.ActionListener() {
+        jTFBarraDeBuscaFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFBarraDeBuscaActionPerformed(evt);
+                jTFBarraDeBuscaFornecedorActionPerformed(evt);
             }
         });
-        JP_Fornecedores.add(jTFBarraDeBusca);
-        jTFBarraDeBusca.setBounds(40, 30, 920, 30);
+        JP_Fornecedores.add(jTFBarraDeBuscaFornecedor);
+        jTFBarraDeBuscaFornecedor.setBounds(40, 30, 920, 30);
 
-        jBntFornecedorInicialSair.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBntFornecedorInicialSair.setForeground(new java.awt.Color(255, 255, 255));
-        jBntFornecedorInicialSair.setText("Sair");
-        jBntFornecedorInicialSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBntFornecedorInicialSair.addActionListener(new java.awt.event.ActionListener() {
+        jBntSairFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBntSairFornecedor.setForeground(new java.awt.Color(255, 255, 255));
+        jBntSairFornecedor.setText("Sair");
+        jBntSairFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntSairFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBntFornecedorInicialSairActionPerformed(evt);
+                jBntSairFornecedorActionPerformed(evt);
             }
         });
-        JP_Fornecedores.add(jBntFornecedorInicialSair);
-        jBntFornecedorInicialSair.setBounds(1090, 560, 150, 60);
+        JP_Fornecedores.add(jBntSairFornecedor);
+        jBntSairFornecedor.setBounds(1090, 560, 150, 60);
 
-        jBntFornecedorInicialCadastrar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jBntFornecedorInicialCadastrar.setForeground(new java.awt.Color(255, 255, 255));
-        jBntFornecedorInicialCadastrar.setText("CADASTRAR");
-        jBntFornecedorInicialCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBntFornecedorInicialCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        jBntCadastrarFornecedor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jBntCadastrarFornecedor.setForeground(new java.awt.Color(255, 255, 255));
+        jBntCadastrarFornecedor.setText("CADASTRAR");
+        jBntCadastrarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntCadastrarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBntFornecedorInicialCadastrarActionPerformed(evt);
+                jBntCadastrarFornecedorActionPerformed(evt);
             }
         });
-        JP_Fornecedores.add(jBntFornecedorInicialCadastrar);
-        jBntFornecedorInicialCadastrar.setBounds(1050, 230, 210, 60);
+        JP_Fornecedores.add(jBntCadastrarFornecedor);
+        jBntCadastrarFornecedor.setBounds(1050, 230, 210, 60);
 
-        jLbBarraDeBusca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 8));
-        jLbBarraDeBusca.setOpaque(true);
-        JP_Fornecedores.add(jLbBarraDeBusca);
-        jLbBarraDeBusca.setBounds(30, 10, 120, 20);
+        jLbBarraDeBuscaFornecedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 8));
+        jLbBarraDeBuscaFornecedor.setOpaque(true);
+        JP_Fornecedores.add(jLbBarraDeBuscaFornecedor);
+        jLbBarraDeBuscaFornecedor.setBounds(30, 10, 120, 20);
+
+        jBntVoltarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/voltar.PNG"))); // NOI18N
+        jBntVoltarFornecedor.setBorder(null);
+        jBntVoltarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntVoltarFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntVoltarFornecedorActionPerformed(evt);
+            }
+        });
+        JP_Fornecedores.add(jBntVoltarFornecedor);
+        jBntVoltarFornecedor.setBounds(1170, 40, 30, 24);
 
         JTabbedPane.addTab("Fornecedores", JP_Fornecedores);
 
@@ -273,15 +281,15 @@ public class TelaAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formComponentHidden
 
-    private void jTFBarraDeBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaActionPerformed
+    private void jTFBarraDeBuscaFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaFornecedorActionPerformed
         
-    }//GEN-LAST:event_jTFBarraDeBuscaActionPerformed
+    }//GEN-LAST:event_jTFBarraDeBuscaFornecedorActionPerformed
 
-    private void jBntFornecedorInicialSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntFornecedorInicialSairActionPerformed
+    private void jBntSairFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSairFornecedorActionPerformed
 
-    }//GEN-LAST:event_jBntFornecedorInicialSairActionPerformed
+    }//GEN-LAST:event_jBntSairFornecedorActionPerformed
 
-    private void jBntFornecedorInicialCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntFornecedorInicialCadastrarActionPerformed
+    private void jBntCadastrarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCadastrarFornecedorActionPerformed
         TelaFornecedorCadastro principalFornededor = new TelaFornecedorCadastro();
         //principalFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
@@ -293,21 +301,15 @@ public class TelaAdministrador extends javax.swing.JFrame {
            
         principalFornededor.show();
         dispose();
-    }//GEN-LAST:event_jBntFornecedorInicialCadastrarActionPerformed
+    }//GEN-LAST:event_jBntCadastrarFornecedorActionPerformed
 
-    private void jTFBarraDeBuscaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaFocusGained
-        if(jTFBarraDeBusca.getText().equals("Fornecedor")){
-            jTFBarraDeBusca.setText("");
-            jTFBarraDeBusca.setForeground(corFont1);
-        }
-    }//GEN-LAST:event_jTFBarraDeBuscaFocusGained
+    private void jTFBarraDeBuscaFornecedorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaFornecedorFocusGained
+       
+    }//GEN-LAST:event_jTFBarraDeBuscaFornecedorFocusGained
 
-    private void jTFBarraDeBuscaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaFocusLost
-        if(jTFBarraDeBusca.getText().equals("")){
-            jTFBarraDeBusca.setText("Fornecedor");
-            jTFBarraDeBusca.setForeground(corFont2);
-        }
-    }//GEN-LAST:event_jTFBarraDeBuscaFocusLost
+    private void jTFBarraDeBuscaFornecedorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaFornecedorFocusLost
+    
+    }//GEN-LAST:event_jTFBarraDeBuscaFornecedorFocusLost
 
     private void jTFornecedorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFornecedorFocusGained
         
@@ -315,7 +317,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
     private void jTFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFornecedorMouseClicked
         if (evt.getClickCount() == 2) {
-            
             
             try {
                 TelaFornecedorInfo infoFornededor = new TelaFornecedorInfo();
@@ -327,7 +328,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 infoFornededor.setSize(d.width + 8, d.height - 37);
                 infoFornededor.setResizable(false);
 
-                infoFornededor.PegarDados(jTFornecedor.getSelectedRow());
+                infoFornededor.PegarDados(pesquisa.get(jTFornecedor.getSelectedRow()));
 
                 infoFornededor.show();
                 dispose();
@@ -338,11 +339,40 @@ public class TelaAdministrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTFornecedorMouseClicked
 
-    private void jBntLupaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntLupaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBntLupaActionPerformed
+    private void jBntLupaFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntLupaFornecedorActionPerformed
+        if(jTFBarraDeBuscaFornecedor.getText() != ""){
+            try {
+                pesquisa.clear();
 
-    
+                for(int i=0; i< fornecedor.getNomeFantasia().size(); i++){
+
+                    if(comparaStrings(fornecedor.getNomeFantasia().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
+                       comparaStrings(fornecedor.getEmail1().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
+                       comparaStrings(fornecedor.getEstado().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
+                       comparaStrings(fornecedor.getCidade().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
+                       comparaStrings(fornecedor.getBairro().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65){
+
+                       pesquisa.add(i);
+                    }
+
+                }
+
+                criarTabelaFornecedor();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jBntLupaFornecedorActionPerformed
+
+    private void jBntVoltarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntVoltarFornecedorActionPerformed
+        try {
+            iniciarPesquisaFornecedor();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBntVoltarFornecedorActionPerformed
+
     public static void main(String args[]) {
         
         try {
@@ -385,16 +415,35 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel JP_Fornecedores;
     private javax.swing.JPanel JP_Vendas;
     private javax.swing.JTabbedPane JTabbedPane;
-    private javax.swing.JButton jBntFornecedorInicialCadastrar;
-    private javax.swing.JButton jBntFornecedorInicialSair;
-    private javax.swing.JButton jBntLupa;
-    private javax.swing.JLabel jLbBarraDeBusca;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTFBarraDeBusca;
+    private javax.swing.JButton jBntCadastrarFornecedor;
+    private javax.swing.JButton jBntLupaFornecedor;
+    private javax.swing.JButton jBntSairFornecedor;
+    private javax.swing.JButton jBntVoltarFornecedor;
+    private javax.swing.JLabel jLbBarraDeBuscaFornecedor;
+    private javax.swing.JScrollPane jScrollPaneFornecedor;
+    private javax.swing.JTextField jTFBarraDeBuscaFornecedor;
     private javax.swing.JTable jTFornecedor;
     // End of variables declaration//GEN-END:variables
 
-    public void criarTabela() throws SQLException {
+    public double comparaStrings(String stringA, String stringB) {
+        SmithWatermanGotoh algorithm = new SmithWatermanGotoh();
+        return algorithm.getSimilarity(stringA, stringB);
+    }
+    
+    public void iniciarPesquisaFornecedor() throws SQLException{
+        fornecedor.LimparFornecedor();
+        
+        fornecedor.ConsultarFornecedor();
+        pesquisa.clear();
+        
+        for(int i=0; i< fornecedor.getIDFornecedor().size(); i++){
+            pesquisa.add(i);
+        }
+        
+        criarTabelaFornecedor();
+    }
+    
+    public void criarTabelaFornecedor() throws SQLException {
         
         jTFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18));
         
@@ -426,7 +475,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTFornecedor.setRowHeight(25);
         jTFornecedor.getTableHeader().setReorderingAllowed(false);
         
-        jScrollPane1.setViewportView(jTFornecedor);
+        jScrollPaneFornecedor.setViewportView(jTFornecedor);
         if (jTFornecedor.getColumnModel().getColumnCount() > 0) {
             jTFornecedor.getColumnModel().getColumn(0).setResizable(false);
             jTFornecedor.getColumnModel().getColumn(1).setResizable(false);
@@ -437,28 +486,19 @@ public class TelaAdministrador extends javax.swing.JFrame {
             jTFornecedor.getColumnModel().getColumn(1).setMaxWidth(350);
         }
         
-        Fornecedores fornecedor = new Fornecedores();
-        fornecedor.ConsultarFornecedor();
-                
-        for(int i=0; i< fornecedor.getIDFornecedor().size(); i++){
-        
+        for(int i=0; i< pesquisa.size(); i++){
+
             DefaultTableModel model = (DefaultTableModel) jTFornecedor.getModel();
-            model.addRow(new Object[]{" " + fornecedor.getNomeFantasia().get(i), " " + fornecedor.getEmail1().get(i), " " +fornecedor.getCidade().get(i) + ", " + fornecedor.getBairro().get(i) + ", " + fornecedor.getEstado().get(i)});
+            model.addRow(new Object[]{" " + fornecedor.getNomeFantasia().get(pesquisa.get(i)), " " + fornecedor.getEmail1().get(pesquisa.get(i)), " " +fornecedor.getCidade().get(pesquisa.get(i)) + ", " + fornecedor.getBairro().get(pesquisa.get(i)) + ", " + fornecedor.getEstado().get(pesquisa.get(i))});
         }
     }
 
-    public void PegarListaClientes(){
-        
-    }
-    
     public void corDeFundo() {
         
        getContentPane().setBackground(corFundo3);
        JTabbedPane.setBackground(corFundo2);
        
        JP_Fornecedores.setBackground(corFundo1);
-       
-        
     }
     
     public void TamanhoDoFundo() {
@@ -474,17 +514,21 @@ public class TelaAdministrador extends javax.swing.JFrame {
         return (altura/posicao)* muti - (tamanhoObjeto/2);
     }
     
-    public void AlinhamentoDosItens() {
+    public void AlinhamentoDosItensFornecedor() {
         
-        jTFBarraDeBusca.setBounds(20 + 8+ 8,CentralizarAltura(28, 20, 2),largura - 40 - 180 - 55 - 50 - 8-8,28);
-        jLbBarraDeBusca.setBounds(20,CentralizarAltura(28, 20, 2)-8,largura - 40 - 180 - 55,44);
-        jLbBarraDeBusca.setBackground(corFundo3);
-        jLbBarraDeBusca.setOpaque(true);
+        jTFBarraDeBuscaFornecedor.setBounds(20 + 8+ 8,CentralizarAltura(28, 20, 2),largura - 40 - 180 - 55 - 50 - 8-8 - 30 - 10,28);
+        jLbBarraDeBuscaFornecedor.setBounds(20,CentralizarAltura(28, 20, 2)-8,largura - 40 - 180 - 55 - 30 -10,44);
+        jLbBarraDeBuscaFornecedor.setBackground(corFundo3);
+        jLbBarraDeBuscaFornecedor.setOpaque(true);
         
-        jBntLupa.setBounds(largura - 40 - 180 - 55 - 12,CentralizarAltura(28, 20, 2)+5,20,19);
+        jBntLupaFornecedor.setBounds(largura - 40 - 180 - 55 - 12 - 30 - 10 - 2,CentralizarAltura(24, 20, 2),24,23);
         
-        jScrollPane1.setBounds(20,CentralizarAltura(28, 40,7),largura - 40 - 180 - 55,altura - 37 - CentralizarAltura(28, 40,7) - 80);
-        jScrollPane1.setBackground(corFundo4);
+        jBntVoltarFornecedor.setBounds(largura - 40 - 180 - 55 - 12,CentralizarAltura(34, 20, 2),34,34);
+        jBntVoltarFornecedor.setBackground(corFundo1);
+        jBntVoltarFornecedor.setOpaque(true);
+        
+        jScrollPaneFornecedor.setBounds(20,CentralizarAltura(28, 40,7),largura - 40 - 180 - 55,altura - 37 - CentralizarAltura(28, 40,7) - 80);
+        jScrollPaneFornecedor.setBackground(corFundo4);
         
         jTFornecedor.setGridColor(corFundo2);
         jTFornecedor.setSelectionBackground(corFundo1);
@@ -492,13 +536,13 @@ public class TelaAdministrador extends javax.swing.JFrame {
         
         int espacoBNTCadastrar = (largura - (largura - 40 - 180 - 55+20))/2 + (largura - 40 - 180 - 55+20) - 180/2;
         
-        jBntFornecedorInicialCadastrar.setBounds(espacoBNTCadastrar,CentralizarAltura(60, 15, 5)+10,180,60);
-        jBntFornecedorInicialCadastrar.setBackground(corFundo2);
+        jBntCadastrarFornecedor.setBounds(espacoBNTCadastrar,CentralizarAltura(60, 15, 5)+10,180,60);
+        jBntCadastrarFornecedor.setBackground(corFundo2);
         
         int espacoBNTSair = (largura - (largura - 40 - 180 - 55+20))/2 + (largura - 40 - 180 - 55+20) - 120/2;
         
-        jBntFornecedorInicialSair.setBounds(espacoBNTSair,CentralizarAltura(60, 15, 12),120,40);
-        jBntFornecedorInicialSair.setBackground(corFundo6);
+        jBntSairFornecedor.setBounds(espacoBNTSair,CentralizarAltura(60, 15, 12),120,40);
+        jBntSairFornecedor.setBackground(corFundo6);
 
     }
     

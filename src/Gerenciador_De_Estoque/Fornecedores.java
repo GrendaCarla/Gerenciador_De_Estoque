@@ -96,6 +96,16 @@ public class Fornecedores extends EnderecosContatos{
         
     }
     
+    public void LimparFornecedor(){
+       
+        this.IDFornecedor.clear();
+        this.CNPJ.clear();
+        this.RazaoSocial.clear();
+        this.NomeFantasia.clear();
+        
+        LimparEnderecosContatos();
+    }
+    
     //---------------------------------------------------//
 
     public List<Integer> getIDFornecedor() {
