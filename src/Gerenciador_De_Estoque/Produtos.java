@@ -2,26 +2,29 @@ package Gerenciador_De_Estoque;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Produtos {
     // lembrar de deixar privado depois
-    private  int IDProduto;
-    private  String Nome;
-    private  String Marca;
-    private  String Medida;
-    private  float ValorVenda;
-    private  int Quantidade;
-    private  int Ativo;
-    private  String Descricao;
+    private List<Integer> IDProduto  = new ArrayList<Integer>();
+    private List<String> Nome = new ArrayList<String>();
+    private List<String> Marca = new ArrayList<String>();
+    private List<String> Medida = new ArrayList<String>();
+    private List<Float> ValorVenda = new ArrayList<Float>();
+    private List<Integer> Quantidade = new ArrayList<Integer>();
+    private List<Integer> Ativo = new ArrayList<Integer>();
+    private List<String> Descricao = new ArrayList<String>();
+    
      // um vetor com as informações q seram exibidas na pagina principal pro administrador escolher qual quer clicar
     String sql;
     ResultSet resultado;
     
     //------------------------------------------------//
     
-    public void CadastrarProduto()throws SQLException{
+    public void CadastrarProduto(String nome, String marca, String medida, float valorVenda, int quantidade, String descricao)throws SQLException{
         
-        sql = "INSERT INTO Produtos (Nome, Marca, Medida, ValorVenda, Quantidade, Ativo, Descricao) VALUES('" + getNome() +  "', '" + getMarca() + "', '" + getMedida() + "', " + getValorVenda() + ", " + getQuantidade() + ", " + getAtivo() + ", '" + getDescricao()+"') ";
+        sql = "INSERT INTO Produtos (Nome, Marca, Medida, ValorVenda, Quantidade, Ativo, Descricao) VALUES('" + nome +  "', '" + marca + "', '" + medida + "', " + valorVenda + ", " + quantidade + ", 1, '" + descricao +"') ";
         
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;
@@ -29,9 +32,9 @@ public class Produtos {
         
     }
     
-    public void AlterarProduto()throws SQLException{
+    public void AlterarProduto(String nome, String marca, String medida, float valorVenda, int quantidade, String descricao, int ativo, int num)throws SQLException{
         
-       sql = "UPDATE Produtos\n" + "SET Nome = '" + getNome() + "', Marca = '" + getMarca() + "', Medida = '" + getMedida() + "', ValorVenda = " + getValorVenda() + ", Quantidade = " + getQuantidade() + ", Ativo = " + getAtivo() + ", Descricao = '" + getDescricao() + "'\n" + "WHERE IDProduto = " + getIDProduto() + "\n";
+       sql = "UPDATE Produtos\n" + "SET Nome = '" + nome + "', Marca = '" + marca + "', Medida = '" + medida + "', ValorVenda = " + valorVenda + ", Quantidade = " + quantidade + ", Ativo = " + ativo + ", Descricao = '" + descricao + "'\n" + "WHERE IDProduto = " + getIDProduto().get(num) + "\n";
        
        ConnectionFactory conect = new ConnectionFactory();
        conect.sql = this.sql;
@@ -40,7 +43,7 @@ public class Produtos {
     
     public void ConsultarProdutos()throws SQLException{
         
-        sql = "select * from Produtos \n" + "where IDProduto = " + getIDProduto();
+        sql = "select * from Produtos \n";
         
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;
@@ -76,70 +79,83 @@ public class Produtos {
         return valor;
     }
     
+    public void LimparProduto(){
+       
+        this.IDProduto.clear();
+        this.Nome.clear();
+        this.Marca.clear();
+        this.Medida.clear();
+        this.ValorVenda.clear();
+        this.Quantidade.clear();
+        this.Ativo.clear();
+        this.Descricao.clear();
+        
+    }
+    
     //-----------------------------------------------------//
 
-    public int getIDProduto() {
+    public List<Integer> getIDProduto() {
         return IDProduto;
     }
 
     public void setIDProduto(int IDProduto) {
-        this.IDProduto = IDProduto;
+        this.IDProduto.add(IDProduto);
     }
 
-    public String getNome() {
+    public List<String> getNome() {
         return Nome;
     }
 
     public void setNome(String Nome) {
-        this.Nome = Nome;
+        this.Nome.add(Nome);
     }
 
-    public String getMarca() {
+    public List<String> getMarca() {
         return Marca;
     }
 
     public void setMarca(String Marca) {
-        this.Marca = Marca;
+        this.Marca.add(Marca);
     }
 
-    public String getMedida() {
+    public List<String> getMedida() {
         return Medida;
     }
 
     public void setMedida(String Medida) {
-        this.Medida = Medida;
+        this.Medida.add(Medida);
     }
 
-    public float getValorVenda() {
+    public List<Float> getValorVenda() {
         return ValorVenda;
     }
 
     public void setValorVenda(float ValorVenda) {
-        this.ValorVenda = ValorVenda;
+        this.ValorVenda.add(ValorVenda);
     }
 
-    public int getQuantidade() {
+    public List<Integer> getQuantidade() {
         return Quantidade;
     }
 
     public void setQuantidade(int Quantidade) {
-        this.Quantidade = Quantidade;
+        this.Quantidade.add(Quantidade);
     }
 
-    public int getAtivo() {
+    public List<Integer> getAtivo() {
         return Ativo;
     }
 
     public void setAtivo(int Ativo) {
-        this.Ativo = Ativo;
+        this.Ativo.add(Ativo);
     }
 
-    public String getDescricao() {
+    public List<String> getDescricao() {
         return Descricao;
     }
 
     public void setDescricao(String Descricao) {
-        this.Descricao = Descricao;
+        this.Descricao.add(Descricao);
     }
     
     

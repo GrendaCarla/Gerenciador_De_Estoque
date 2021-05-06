@@ -7,7 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
-public final class TelaCadastroCompras extends javax.swing.JFrame {
+public final class TelaCompraCadastro extends javax.swing.JFrame {
 
     Toolkit tk = Toolkit.getDefaultToolkit();
     Dimension d = tk.getScreenSize();
@@ -19,7 +19,7 @@ public final class TelaCadastroCompras extends javax.swing.JFrame {
     Color corFundo2 = new Color(227, 215, 206);
     Color corFundo3 = new Color(249,242,234);
     
-    public TelaCadastroCompras() {
+    public TelaCompraCadastro() {
         initComponents();
         corDeFundo();
         TamanhoDoFundo();
@@ -71,20 +71,21 @@ public final class TelaCadastroCompras extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCompraCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCompraCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCompraCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCompraCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastroCompras().setVisible(true);
+                new TelaCompraCadastro().setVisible(true);
             }
         });
     }

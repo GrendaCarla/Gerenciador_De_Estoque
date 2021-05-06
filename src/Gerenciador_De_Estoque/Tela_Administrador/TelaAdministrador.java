@@ -1,9 +1,11 @@
 package Gerenciador_De_Estoque.Tela_Administrador;
 
 import Gerenciador_De_Estoque.Fornecedores;
+import Gerenciador_De_Estoque.Produtos;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +33,11 @@ public class TelaAdministrador extends javax.swing.JFrame {
     Color corFont1 = new Color(0,0,0);
     Color corFont2 = new Color(195,195,195);
     
-    List<Integer> pesquisa = new ArrayList<Integer>();
+    List<Integer> pesquisaFornecedor = new ArrayList<Integer>();
+    List<Integer> pesquisaProduto = new ArrayList<Integer>();
+    
     Fornecedores fornecedor = new Fornecedores();
+    Produtos produto = new Produtos();
 
     public TelaAdministrador() throws SQLException {
         initComponents();
@@ -40,6 +45,9 @@ public class TelaAdministrador extends javax.swing.JFrame {
         TamanhoDoFundo();
         iniciarPesquisaFornecedor();
         AlinhamentoDosItensFornecedor();
+        
+        iniciarPesquisaProduto();
+        AlinhamentoDosItensProduto();
     }
 
     @SuppressWarnings("unchecked")
@@ -48,16 +56,24 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
         JTabbedPane = new javax.swing.JTabbedPane();
         JP_Fornecedores = new javax.swing.JPanel();
+        jBntSairFornecedor = new javax.swing.JButton();
         jScrollPaneFornecedor = new javax.swing.JScrollPane();
         jTFornecedor = new javax.swing.JTable();
         jBntLupaFornecedor = new javax.swing.JButton();
         jTFBarraDeBuscaFornecedor = new javax.swing.JTextField();
-        jBntSairFornecedor = new javax.swing.JButton();
         jBntCadastrarFornecedor = new javax.swing.JButton();
         jLbBarraDeBuscaFornecedor = new javax.swing.JLabel();
         jBntVoltarFornecedor = new javax.swing.JButton();
         JP_Compras = new javax.swing.JPanel();
-        JP_Estoque = new javax.swing.JPanel();
+        JP_Produto = new javax.swing.JPanel();
+        jBntVoltarProduto = new javax.swing.JButton();
+        jBntLupaProduto = new javax.swing.JButton();
+        jBntCadastrarProduto = new javax.swing.JButton();
+        jBntSairProduto = new javax.swing.JButton();
+        jLbBarraDeBuscaProduto = new javax.swing.JLabel();
+        jScrollPaneProduto = new javax.swing.JScrollPane();
+        jTProduto = new javax.swing.JTable();
+        jTFBarraDeBuscaProduto = new javax.swing.JTextField();
         JP_Clientes = new javax.swing.JPanel();
         JP_Vendas = new javax.swing.JPanel();
         JP_Entregas = new javax.swing.JPanel();
@@ -77,6 +93,18 @@ public class TelaAdministrador extends javax.swing.JFrame {
         JP_Fornecedores.setPreferredSize(new java.awt.Dimension(300, 500));
         JP_Fornecedores.setLayout(null);
 
+        jBntSairFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBntSairFornecedor.setForeground(new java.awt.Color(255, 255, 255));
+        jBntSairFornecedor.setText("SAIR");
+        jBntSairFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntSairFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntSairFornecedorActionPerformed(evt);
+            }
+        });
+        JP_Fornecedores.add(jBntSairFornecedor);
+        jBntSairFornecedor.setBounds(1090, 560, 150, 60);
+
         jScrollPaneFornecedor.setBackground(new java.awt.Color(102, 255, 51));
         jScrollPaneFornecedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 15));
         jScrollPaneFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -84,18 +112,18 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "NOME FANTARIA", "E-MAIL", "ENDEREÇO"
+                "NOME FANTASIA", "RAZÃO SOCIAL", "E-MAIL", "ENDEREÇO"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -159,22 +187,15 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 jTFBarraDeBuscaFornecedorActionPerformed(evt);
             }
         });
+        jTFBarraDeBuscaFornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFBarraDeBuscaFornecedorKeyPressed(evt);
+            }
+        });
         JP_Fornecedores.add(jTFBarraDeBuscaFornecedor);
         jTFBarraDeBuscaFornecedor.setBounds(40, 30, 920, 30);
 
-        jBntSairFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBntSairFornecedor.setForeground(new java.awt.Color(255, 255, 255));
-        jBntSairFornecedor.setText("Sair");
-        jBntSairFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBntSairFornecedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBntSairFornecedorActionPerformed(evt);
-            }
-        });
-        JP_Fornecedores.add(jBntSairFornecedor);
-        jBntSairFornecedor.setBounds(1090, 560, 150, 60);
-
-        jBntCadastrarFornecedor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jBntCadastrarFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBntCadastrarFornecedor.setForeground(new java.awt.Color(255, 255, 255));
         jBntCadastrarFornecedor.setText("CADASTRAR");
         jBntCadastrarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -217,18 +238,139 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
         JTabbedPane.addTab("Compras", JP_Compras);
 
-        javax.swing.GroupLayout JP_EstoqueLayout = new javax.swing.GroupLayout(JP_Estoque);
-        JP_Estoque.setLayout(JP_EstoqueLayout);
-        JP_EstoqueLayout.setHorizontalGroup(
-            JP_EstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1291, Short.MAX_VALUE)
-        );
-        JP_EstoqueLayout.setVerticalGroup(
-            JP_EstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 654, Short.MAX_VALUE)
-        );
+        JP_Produto.setLayout(null);
 
-        JTabbedPane.addTab("Estoque", JP_Estoque);
+        jBntVoltarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/voltar.PNG"))); // NOI18N
+        jBntVoltarProduto.setBorder(null);
+        jBntVoltarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntVoltarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntVoltarProdutoActionPerformed(evt);
+            }
+        });
+        JP_Produto.add(jBntVoltarProduto);
+        jBntVoltarProduto.setBounds(1170, 40, 30, 24);
+
+        jBntLupaProduto.setBackground(new java.awt.Color(255, 255, 255));
+        jBntLupaProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa.PNG"))); // NOI18N
+        jBntLupaProduto.setBorder(null);
+        jBntLupaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntLupaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntLupaProdutoActionPerformed(evt);
+            }
+        });
+        JP_Produto.add(jBntLupaProduto);
+        jBntLupaProduto.setBounds(980, 110, 20, 19);
+
+        jBntCadastrarProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBntCadastrarProduto.setForeground(new java.awt.Color(255, 255, 255));
+        jBntCadastrarProduto.setText("CADASTRAR");
+        jBntCadastrarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntCadastrarProdutoActionPerformed(evt);
+            }
+        });
+        JP_Produto.add(jBntCadastrarProduto);
+        jBntCadastrarProduto.setBounds(1050, 230, 210, 60);
+
+        jBntSairProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBntSairProduto.setForeground(new java.awt.Color(255, 255, 255));
+        jBntSairProduto.setText("SAIR");
+        jBntSairProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntSairProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntSairProdutoActionPerformed(evt);
+            }
+        });
+        JP_Produto.add(jBntSairProduto);
+        jBntSairProduto.setBounds(1090, 560, 150, 60);
+
+        jLbBarraDeBuscaProduto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 8));
+        jLbBarraDeBuscaProduto.setOpaque(true);
+        JP_Produto.add(jLbBarraDeBuscaProduto);
+        jLbBarraDeBuscaProduto.setBounds(30, 10, 120, 20);
+
+        jScrollPaneProduto.setBackground(new java.awt.Color(102, 255, 51));
+        jScrollPaneProduto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 15));
+        jScrollPaneProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jTProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTProduto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID PRODUTO", "NOME", "MARCA", "MEDIDA", "QUANTIDADE", "PREÇO", "ATIVO"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Byte.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jTProduto.setDragEnabled(true);
+        jTProduto.setGridColor(new java.awt.Color(204, 204, 204));
+        jTProduto.setRowHeight(25);
+        jTProduto.getTableHeader().setReorderingAllowed(false);
+        jTProduto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTProdutoFocusGained(evt);
+            }
+        });
+        jTProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTProdutoMouseClicked(evt);
+            }
+        });
+        jScrollPaneProduto.setViewportView(jTProduto);
+        if (jTProduto.getColumnModel().getColumnCount() > 0) {
+            jTProduto.getColumnModel().getColumn(0).setResizable(false);
+            jTProduto.getColumnModel().getColumn(1).setResizable(false);
+            jTProduto.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        JP_Produto.add(jScrollPaneProduto);
+        jScrollPaneProduto.setBounds(40, 80, 920, 540);
+
+        jTFBarraDeBuscaProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFBarraDeBuscaProduto.setToolTipText("");
+        jTFBarraDeBuscaProduto.setBorder(null);
+        jTFBarraDeBuscaProduto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFBarraDeBuscaProdutoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFBarraDeBuscaProdutoFocusLost(evt);
+            }
+        });
+        jTFBarraDeBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFBarraDeBuscaProdutoActionPerformed(evt);
+            }
+        });
+        jTFBarraDeBuscaProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFBarraDeBuscaProdutoKeyPressed(evt);
+            }
+        });
+        JP_Produto.add(jTFBarraDeBuscaProduto);
+        jTFBarraDeBuscaProduto.setBounds(40, 30, 920, 30);
+
+        JTabbedPane.addTab("Estoque", JP_Produto);
 
         javax.swing.GroupLayout JP_ClientesLayout = new javax.swing.GroupLayout(JP_Clientes);
         JP_Clientes.setLayout(JP_ClientesLayout);
@@ -328,7 +470,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 infoFornededor.setSize(d.width + 8, d.height - 37);
                 infoFornededor.setResizable(false);
 
-                infoFornededor.PegarDados(pesquisa.get(jTFornecedor.getSelectedRow()));
+                infoFornededor.PegarDados(pesquisaFornecedor.get(jTFornecedor.getSelectedRow()));
 
                 infoFornededor.show();
                 dispose();
@@ -342,7 +484,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private void jBntLupaFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntLupaFornecedorActionPerformed
         if(jTFBarraDeBuscaFornecedor.getText() != ""){
             try {
-                pesquisa.clear();
+                pesquisaFornecedor.clear();
 
                 for(int i=0; i< fornecedor.getNomeFantasia().size(); i++){
 
@@ -352,7 +494,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                        comparaStrings(fornecedor.getCidade().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
                        comparaStrings(fornecedor.getBairro().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65){
 
-                       pesquisa.add(i);
+                       pesquisaFornecedor.add(i);
                     }
 
                 }
@@ -372,6 +514,74 @@ public class TelaAdministrador extends javax.swing.JFrame {
             Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBntVoltarFornecedorActionPerformed
+
+    private void jTFBarraDeBuscaFornecedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaFornecedorKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(jTFBarraDeBuscaFornecedor.getText() != ""){
+                try {
+                    pesquisaFornecedor.clear();
+
+                    for(int i=0; i< fornecedor.getNomeFantasia().size(); i++){
+
+                        if(comparaStrings(fornecedor.getNomeFantasia().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
+                           comparaStrings(fornecedor.getEmail1().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
+                           comparaStrings(fornecedor.getEstado().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
+                           comparaStrings(fornecedor.getCidade().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
+                           comparaStrings(fornecedor.getBairro().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65){
+
+                           pesquisaFornecedor.add(i);
+                        }
+
+                    }
+
+                    criarTabelaFornecedor();
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_jTFBarraDeBuscaFornecedorKeyPressed
+
+    private void jBntSairProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSairProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBntSairProdutoActionPerformed
+
+    private void jTProdutoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTProdutoFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTProdutoFocusGained
+
+    private void jTProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTProdutoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTProdutoMouseClicked
+
+    private void jBntLupaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntLupaProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBntLupaProdutoActionPerformed
+
+    private void jTFBarraDeBuscaProdutoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaProdutoFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFBarraDeBuscaProdutoFocusGained
+
+    private void jTFBarraDeBuscaProdutoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaProdutoFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFBarraDeBuscaProdutoFocusLost
+
+    private void jTFBarraDeBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFBarraDeBuscaProdutoActionPerformed
+
+    private void jTFBarraDeBuscaProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaProdutoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFBarraDeBuscaProdutoKeyPressed
+
+    private void jBntCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCadastrarProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBntCadastrarProdutoActionPerformed
+
+    private void jBntVoltarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntVoltarProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBntVoltarProdutoActionPerformed
 
     public static void main(String args[]) {
         
@@ -411,18 +621,26 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel JP_Clientes;
     private javax.swing.JPanel JP_Compras;
     private javax.swing.JPanel JP_Entregas;
-    private javax.swing.JPanel JP_Estoque;
     private javax.swing.JPanel JP_Fornecedores;
+    private javax.swing.JPanel JP_Produto;
     private javax.swing.JPanel JP_Vendas;
     private javax.swing.JTabbedPane JTabbedPane;
     private javax.swing.JButton jBntCadastrarFornecedor;
+    private javax.swing.JButton jBntCadastrarProduto;
     private javax.swing.JButton jBntLupaFornecedor;
+    private javax.swing.JButton jBntLupaProduto;
     private javax.swing.JButton jBntSairFornecedor;
+    private javax.swing.JButton jBntSairProduto;
     private javax.swing.JButton jBntVoltarFornecedor;
+    private javax.swing.JButton jBntVoltarProduto;
     private javax.swing.JLabel jLbBarraDeBuscaFornecedor;
+    private javax.swing.JLabel jLbBarraDeBuscaProduto;
     private javax.swing.JScrollPane jScrollPaneFornecedor;
+    private javax.swing.JScrollPane jScrollPaneProduto;
     private javax.swing.JTextField jTFBarraDeBuscaFornecedor;
+    private javax.swing.JTextField jTFBarraDeBuscaProduto;
     private javax.swing.JTable jTFornecedor;
+    private javax.swing.JTable jTProduto;
     // End of variables declaration//GEN-END:variables
 
     public double comparaStrings(String stringA, String stringB) {
@@ -430,14 +648,44 @@ public class TelaAdministrador extends javax.swing.JFrame {
         return algorithm.getSimilarity(stringA, stringB);
     }
     
+    public void corDeFundo() {
+        
+       getContentPane().setBackground(corFundo3);
+       JTabbedPane.setBackground(corFundo2);
+       
+       // ---------------------------- FORNECEDOR ---------------------------------
+       
+       JP_Fornecedores.setBackground(corFundo1);
+       
+       // ---------------------------- PRODUTO ---------------------------------
+               
+       JP_Produto.setBackground(corFundo1);
+       
+    }
+    
+    public void TamanhoDoFundo() {
+
+        JTabbedPane.setBounds(0, 0, largura, altura);
+    }
+    
+    public int CentralizarLargura(int tamanhoObjeto, int posicao, int muti) { 
+        return (largura/posicao)*muti - (tamanhoObjeto/2);
+    }
+    
+    public int CentralizarAltura(int tamanhoObjeto, int posicao, int muti) { 
+        return (altura/posicao)* muti - (tamanhoObjeto/2);
+    }
+    
+    //------------------------------------------- FORNECEDOR -----------------------------------------------
+    
     public void iniciarPesquisaFornecedor() throws SQLException{
         fornecedor.LimparFornecedor();
         
         fornecedor.ConsultarFornecedor();
-        pesquisa.clear();
+        pesquisaFornecedor.clear();
         
         for(int i=0; i< fornecedor.getIDFornecedor().size(); i++){
-            pesquisa.add(i);
+            pesquisaFornecedor.add(i);
         }
         
         criarTabelaFornecedor();
@@ -454,14 +702,14 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
             new String [] {
-                "NOME FANTASIA", "E-MAIL", "ENDEREÇO"
+                "NOME FANTASIA", "RAZÃO SOCIAL", "E-MAIL", "ENDEREÇO"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -480,69 +728,149 @@ public class TelaAdministrador extends javax.swing.JFrame {
             jTFornecedor.getColumnModel().getColumn(0).setResizable(false);
             jTFornecedor.getColumnModel().getColumn(1).setResizable(false);
             jTFornecedor.getColumnModel().getColumn(2).setResizable(false);
-            jTFornecedor.getColumnModel().getColumn(0).setMinWidth(280);
-            jTFornecedor.getColumnModel().getColumn(0).setMaxWidth(280);
-            jTFornecedor.getColumnModel().getColumn(1).setMinWidth(350);
-            jTFornecedor.getColumnModel().getColumn(1).setMaxWidth(350);
+            jTFornecedor.getColumnModel().getColumn(3).setResizable(false);
+            jTFornecedor.getColumnModel().getColumn(0).setMinWidth(290);
+            jTFornecedor.getColumnModel().getColumn(0).setMaxWidth(290);
+            jTFornecedor.getColumnModel().getColumn(1).setMinWidth(290);
+            jTFornecedor.getColumnModel().getColumn(1).setMaxWidth(290);
+            jTFornecedor.getColumnModel().getColumn(2).setMinWidth(310);
+            jTFornecedor.getColumnModel().getColumn(2).setMaxWidth(310);
         }
         
-        for(int i=0; i< pesquisa.size(); i++){
+        for(int i=0; i< pesquisaFornecedor.size(); i++){
 
             DefaultTableModel model = (DefaultTableModel) jTFornecedor.getModel();
-            model.addRow(new Object[]{" " + fornecedor.getNomeFantasia().get(pesquisa.get(i)), " " + fornecedor.getEmail1().get(pesquisa.get(i)), " " +fornecedor.getCidade().get(pesquisa.get(i)) + ", " + fornecedor.getBairro().get(pesquisa.get(i)) + ", " + fornecedor.getEstado().get(pesquisa.get(i))});
+            model.addRow(new Object[]{" " + fornecedor.getNomeFantasia().get(pesquisaFornecedor.get(i)), " " + fornecedor.getRazaoSocial().get(pesquisaFornecedor.get(i)), " " + fornecedor.getEmail1().get(pesquisaFornecedor.get(i)), " " +fornecedor.getCidade().get(pesquisaFornecedor.get(i)) + ", " + fornecedor.getBairro().get(pesquisaFornecedor.get(i)) + ", " + fornecedor.getEstado().get(pesquisaFornecedor.get(i))});
         }
     }
 
-    public void corDeFundo() {
-        
-       getContentPane().setBackground(corFundo3);
-       JTabbedPane.setBackground(corFundo2);
-       
-       JP_Fornecedores.setBackground(corFundo1);
-    }
     
-    public void TamanhoDoFundo() {
-
-        JTabbedPane.setBounds(0, 0, largura, altura);
-    }
-    
-    public int CentralizarLargura(int tamanhoObjeto, int posicao, int muti) { 
-        return (largura/posicao)*muti - (tamanhoObjeto/2);
-    }
-    
-    public int CentralizarAltura(int tamanhoObjeto, int posicao, int muti) { 
-        return (altura/posicao)* muti - (tamanhoObjeto/2);
-    }
     
     public void AlinhamentoDosItensFornecedor() {
         
-        jTFBarraDeBuscaFornecedor.setBounds(20 + 8+ 8,CentralizarAltura(28, 20, 2),largura - 40 - 180 - 55 - 50 - 8-8 - 30 - 10,28);
-        jLbBarraDeBuscaFornecedor.setBounds(20,CentralizarAltura(28, 20, 2)-8,largura - 40 - 180 - 55 - 30 -10,44);
+        jTFBarraDeBuscaFornecedor.setBounds(30 + 8+ 8,CentralizarAltura(28, 20, 1) + 6,largura - 25 - 34 - 4 - 12 - 8 - 8 - 24 - 60 - 8 - 8 - 8,28);
+        jLbBarraDeBuscaFornecedor.setBounds(30,CentralizarAltura(28, 20, 1)-8  + 6,largura - 60 - 25 - 34 - 14,44);
         jLbBarraDeBuscaFornecedor.setBackground(corFundo3);
         jLbBarraDeBuscaFornecedor.setOpaque(true);
         
-        jBntLupaFornecedor.setBounds(largura - 40 - 180 - 55 - 12 - 30 - 10 - 2,CentralizarAltura(24, 20, 2),24,23);
+        jBntLupaFornecedor.setBounds(largura - 60 - 31 - 4 - 12 - 8 - 2 - 24,CentralizarAltura(24, 20, 1) + 6,24,23);
         
-        jBntVoltarFornecedor.setBounds(largura - 40 - 180 - 55 - 12,CentralizarAltura(34, 20, 2),34,34);
+        jBntVoltarFornecedor.setBounds(largura - 25 - 34 - 2 - 30,CentralizarAltura(34, 20, 1) + 6,34,34);
         jBntVoltarFornecedor.setBackground(corFundo1);
         jBntVoltarFornecedor.setOpaque(true);
         
-        jScrollPaneFornecedor.setBounds(20,CentralizarAltura(28, 40,7),largura - 40 - 180 - 55,altura - 37 - CentralizarAltura(28, 40,7) - 80);
+        jScrollPaneFornecedor.setBounds(30,CentralizarAltura(28, 40,5) + 6,largura - 46 - 20, altura - 37 - CentralizarAltura(28, 40,5) - 80 - 70 - 6);
         jScrollPaneFornecedor.setBackground(corFundo4);
         
         jTFornecedor.setGridColor(corFundo2);
         jTFornecedor.setSelectionBackground(corFundo1);
         
         
-        int espacoBNTCadastrar = (largura - (largura - 40 - 180 - 55+20))/2 + (largura - 40 - 180 - 55+20) - 180/2;
-        
-        jBntCadastrarFornecedor.setBounds(espacoBNTCadastrar,CentralizarAltura(60, 15, 5)+10,180,60);
+        jBntCadastrarFornecedor.setBounds(CentralizarLargura(116, 18,3), altura - 120 - 50,140,50);
         jBntCadastrarFornecedor.setBackground(corFundo2);
         
-        int espacoBNTSair = (largura - (largura - 40 - 180 - 55+20))/2 + (largura - 40 - 180 - 55+20) - 120/2;
-        
-        jBntSairFornecedor.setBounds(espacoBNTSair,CentralizarAltura(60, 15, 12),120,40);
+        jBntSairFornecedor.setBounds(largura - CentralizarLargura(116, 18,3) - 140, altura - 120 - 50,140,50);
         jBntSairFornecedor.setBackground(corFundo6);
+
+    }
+    
+    
+    //------------------------------------------- PRODUTO -----------------------------------------------
+    
+    
+    public void iniciarPesquisaProduto() throws SQLException{
+        produto.LimparProduto();
+        
+        produto.ConsultarProdutos();
+        pesquisaProduto.clear();
+        
+        for(int i=0; i< produto.getIDProduto().size(); i++){
+            pesquisaProduto.add(i);
+        }
+        
+        criarTabelaProduto();
+    }
+    
+    public void criarTabelaProduto() throws SQLException {
+        
+        jTProduto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {},
+            new String [] {
+                "ID PRODUTO", "NOME", "MARCA", "MEDIDA", "QUANTIDADE", "PREÇO", "ATIVO"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Byte.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        
+        });
+        
+        
+        jTProduto.setRowHeight(25);
+        jTProduto.getTableHeader().setReorderingAllowed(false);
+        
+        jScrollPaneProduto.setViewportView(jTProduto);
+        if (jTProduto.getColumnModel().getColumnCount() > 0) {
+            jTProduto.getColumnModel().getColumn(0).setResizable(false);
+            jTProduto.getColumnModel().getColumn(1).setResizable(false);
+            jTProduto.getColumnModel().getColumn(2).setResizable(false);
+            jTProduto.getColumnModel().getColumn(3).setResizable(false);
+            jTProduto.getColumnModel().getColumn(4).setResizable(false);
+            jTProduto.getColumnModel().getColumn(5).setResizable(false);
+            jTProduto.getColumnModel().getColumn(6).setResizable(false);
+            /*jTProduto.getColumnModel().getColumn(0).setMinWidth(290);
+            jTProduto.getColumnModel().getColumn(0).setMaxWidth(290);
+            jTProduto.getColumnModel().getColumn(1).setMinWidth(290);
+            jTProduto.getColumnModel().getColumn(1).setMaxWidth(290);
+            jTProduto.getColumnModel().getColumn(2).setMinWidth(310);
+            jTProduto.getColumnModel().getColumn(2).setMaxWidth(310);*/
+        }
+        
+        for(int i=0; i< pesquisaProduto.size(); i++){
+
+            DefaultTableModel model = (DefaultTableModel) jTProduto.getModel();
+            model.addRow(new Object[]{" " + produto.getIDProduto().get(pesquisaProduto.get(i)), " " + produto.getNome().get(pesquisaProduto.get(i)), " " + produto.getMarca().get(pesquisaProduto.get(i)), " " + produto.getMedida().get(pesquisaProduto.get(i)), " " + produto.getQuantidade().get(pesquisaProduto.get(i)), " " + produto.getValorVenda().get(pesquisaProduto.get(i)), " " + produto.getAtivo().get(pesquisaProduto.get(i))});
+        }
+    }
+
+    
+    
+    public void AlinhamentoDosItensProduto() {
+        
+        jTFBarraDeBuscaProduto.setBounds(30 + 8+ 8,CentralizarAltura(28, 20, 1) + 6,largura - 25 - 34 - 4 - 12 - 8 - 8 - 24 - 60 - 8 - 8 - 8,28);
+        jLbBarraDeBuscaProduto.setBounds(30,CentralizarAltura(28, 20, 1)-8  + 6,largura - 60 - 25 - 34 - 14,44);
+        jLbBarraDeBuscaProduto.setBackground(corFundo3);
+        jLbBarraDeBuscaProduto.setOpaque(true);
+        
+        jBntLupaProduto.setBounds(largura - 60 - 31 - 4 - 12 - 8 - 2 - 24,CentralizarAltura(24, 20, 1) + 6,24,23);
+        
+        jBntVoltarProduto.setBounds(largura - 25 - 34 - 2 - 30,CentralizarAltura(34, 20, 1) + 6,34,34);
+        jBntVoltarProduto.setBackground(corFundo1);
+        jBntVoltarProduto.setOpaque(true);
+        
+        jScrollPaneProduto.setBounds(30,CentralizarAltura(28, 40,5) + 6,largura - 46 - 20, altura - 37 - CentralizarAltura(28, 40,5) - 80 - 70 - 6);
+        jScrollPaneProduto.setBackground(corFundo4);
+        
+        jTProduto.setGridColor(corFundo2);
+        jTProduto.setSelectionBackground(corFundo1);
+        
+        
+        jBntCadastrarProduto.setBounds(CentralizarLargura(116, 18,3), altura - 120 - 50,140,50);
+        jBntCadastrarProduto.setBackground(corFundo2);
+        
+        jBntSairProduto.setBounds(largura - CentralizarLargura(116, 18,3) - 140, altura - 120 - 50,140,50);
+        jBntSairProduto.setBackground(corFundo6);
 
     }
     

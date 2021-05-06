@@ -1,7 +1,7 @@
 package Gerenciador_De_Estoque;
 
 import Gerenciador_De_Estoque.Tela_Administrador.TelaAdministrador;
-import Gerenciador_De_Estoque.Tela_Administrador.TelaCadastroCompras;
+import Gerenciador_De_Estoque.Tela_Administrador.TelaCompraCadastro;
 import Gerenciador_De_Estoque.Tela_Administrador.TelaClienteCadastro;
 import Gerenciador_De_Estoque.Tela_Administrador.TelaFornecedorCadastro;
 import java.awt.Dimension;
