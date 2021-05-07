@@ -66,6 +66,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jBntVoltarFornecedor = new javax.swing.JButton();
         JP_Compras = new javax.swing.JPanel();
         JP_Produto = new javax.swing.JPanel();
+        jTFBarraDeBuscaProduto = new javax.swing.JTextField();
         jBntVoltarProduto = new javax.swing.JButton();
         jBntLupaProduto = new javax.swing.JButton();
         jBntCadastrarProduto = new javax.swing.JButton();
@@ -73,7 +74,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jLbBarraDeBuscaProduto = new javax.swing.JLabel();
         jScrollPaneProduto = new javax.swing.JScrollPane();
         jTProduto = new javax.swing.JTable();
-        jTFBarraDeBuscaProduto = new javax.swing.JTextField();
         JP_Clientes = new javax.swing.JPanel();
         JP_Vendas = new javax.swing.JPanel();
         JP_Entregas = new javax.swing.JPanel();
@@ -240,6 +240,31 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
         JP_Produto.setLayout(null);
 
+        jTFBarraDeBuscaProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFBarraDeBuscaProduto.setToolTipText("");
+        jTFBarraDeBuscaProduto.setBorder(null);
+        jTFBarraDeBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTFBarraDeBuscaProduto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFBarraDeBuscaProdutoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFBarraDeBuscaProdutoFocusLost(evt);
+            }
+        });
+        jTFBarraDeBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFBarraDeBuscaProdutoActionPerformed(evt);
+            }
+        });
+        jTFBarraDeBuscaProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFBarraDeBuscaProdutoKeyPressed(evt);
+            }
+        });
+        JP_Produto.add(jTFBarraDeBuscaProduto);
+        jTFBarraDeBuscaProduto.setBounds(40, 30, 920, 30);
+
         jBntVoltarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/voltar.PNG"))); // NOI18N
         jBntVoltarProduto.setBorder(null);
         jBntVoltarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -346,30 +371,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         JP_Produto.add(jScrollPaneProduto);
         jScrollPaneProduto.setBounds(40, 80, 920, 540);
 
-        jTFBarraDeBuscaProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFBarraDeBuscaProduto.setToolTipText("");
-        jTFBarraDeBuscaProduto.setBorder(null);
-        jTFBarraDeBuscaProduto.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTFBarraDeBuscaProdutoFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTFBarraDeBuscaProdutoFocusLost(evt);
-            }
-        });
-        jTFBarraDeBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFBarraDeBuscaProdutoActionPerformed(evt);
-            }
-        });
-        jTFBarraDeBuscaProduto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTFBarraDeBuscaProdutoKeyPressed(evt);
-            }
-        });
-        JP_Produto.add(jTFBarraDeBuscaProduto);
-        jTFBarraDeBuscaProduto.setBounds(40, 30, 920, 30);
-
         JTabbedPane.addTab("Estoque", JP_Produto);
 
         javax.swing.GroupLayout JP_ClientesLayout = new javax.swing.GroupLayout(JP_Clientes);
@@ -432,16 +433,16 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jBntSairFornecedorActionPerformed
 
     private void jBntCadastrarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCadastrarFornecedorActionPerformed
-        TelaFornecedorCadastro principalFornededor = new TelaFornecedorCadastro();
-        //principalFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        TelaFornecedorCadastro cadastroFornededor = new TelaFornecedorCadastro();
+        //cadastroFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
 
-        principalFornededor.setSize(d.width + 8, d.height - 37);
-        principalFornededor.setResizable(false);
+        cadastroFornededor.setSize(d.width + 8, d.height - 37);
+        cadastroFornededor.setResizable(false);
            
-        principalFornededor.show();
+        cadastroFornededor.show();
         dispose();
     }//GEN-LAST:event_jBntCadastrarFornecedorActionPerformed
 
@@ -462,7 +463,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             
             try {
                 TelaFornecedorInfo infoFornededor = new TelaFornecedorInfo();
-                //principalFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                //infoFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 
                 Toolkit tk = Toolkit.getDefaultToolkit();
                 Dimension d = tk.getScreenSize();
@@ -552,11 +553,52 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTProdutoFocusGained
 
     private void jTProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTProdutoMouseClicked
-        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            
+            try {
+                TelaProdutoInfo infoProduto = new TelaProdutoInfo();
+                //infoProduto.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                
+                Toolkit tk = Toolkit.getDefaultToolkit();
+                Dimension d = tk.getScreenSize();
+
+                infoProduto.setSize(d.width + 8, d.height - 37);
+                infoProduto.setResizable(false);
+
+                infoProduto.PegarDados(pesquisaProduto.get(jTProduto.getSelectedRow()));
+
+                infoProduto.show();
+                dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
     }//GEN-LAST:event_jTProdutoMouseClicked
 
     private void jBntLupaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntLupaProdutoActionPerformed
-        // TODO add your handling code here:
+        if(jTFBarraDeBuscaProduto.getText() != ""){
+            try {
+                pesquisaProduto.clear();
+
+                for(int i=0; i< produto.getIDProduto().size(); i++){
+
+                    if(comparaStrings(("" + produto.getIDProduto().get(i)).toLowerCase(), jTFBarraDeBuscaProduto.getText().toLowerCase()) >= 0.65 || 
+                       comparaStrings(produto.getNome().get(i).toLowerCase(), jTFBarraDeBuscaProduto.getText().toLowerCase()) >= 0.65 || 
+                       comparaStrings(produto.getMarca().get(i).toLowerCase(), jTFBarraDeBuscaProduto.getText().toLowerCase()) >= 0.65 || 
+                       comparaStrings(("" + produto.getAtivo().get(i)).toLowerCase(), jTFBarraDeBuscaProduto.getText().toLowerCase()) >= 0.65){
+
+                       pesquisaProduto.add(i);
+                    }
+
+                }
+
+                criarTabelaProduto();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jBntLupaProdutoActionPerformed
 
     private void jTFBarraDeBuscaProdutoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaProdutoFocusGained
@@ -572,15 +614,52 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFBarraDeBuscaProdutoActionPerformed
 
     private void jTFBarraDeBuscaProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaProdutoKeyPressed
-        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(jTFBarraDeBuscaProduto.getText() != ""){
+                try {
+                    pesquisaProduto.clear();
+
+                    for(int i=0; i< produto.getIDProduto().size(); i++){
+
+                        if(comparaStrings(("" + produto.getIDProduto().get(i)).toLowerCase(), jTFBarraDeBuscaProduto.getText().toLowerCase()) >= 0.65 || 
+                           comparaStrings(produto.getNome().get(i).toLowerCase(), jTFBarraDeBuscaProduto.getText().toLowerCase()) >= 0.65 || 
+                           comparaStrings(produto.getMarca().get(i).toLowerCase(), jTFBarraDeBuscaProduto.getText().toLowerCase()) >= 0.65 || 
+                           comparaStrings(("" + produto.getAtivo().get(i)).toLowerCase(), jTFBarraDeBuscaProduto.getText().toLowerCase()) >= 0.65){
+
+                           pesquisaProduto.add(i);
+                        }
+
+                    }
+
+                    criarTabelaProduto();
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }//GEN-LAST:event_jTFBarraDeBuscaProdutoKeyPressed
 
     private void jBntCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCadastrarProdutoActionPerformed
-        // TODO add your handling code here:
+        TelaProdutoCadastro cadastroProduto = new TelaProdutoCadastro();
+        //principalFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension d = tk.getScreenSize();
+
+        cadastroProduto.setSize(d.width + 8, d.height - 37);
+        cadastroProduto.setResizable(false);
+           
+        cadastroProduto.show();
+        dispose();
     }//GEN-LAST:event_jBntCadastrarProdutoActionPerformed
 
     private void jBntVoltarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntVoltarProdutoActionPerformed
-        // TODO add your handling code here:
+        try {
+            iniciarPesquisaProduto();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jBntVoltarProdutoActionPerformed
 
     public static void main(String args[]) {

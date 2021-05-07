@@ -629,12 +629,12 @@ public class TelaFornecedorAlterar extends javax.swing.JFrame {
         jTFNumero.setBackground(corFundo4);
         jTFNumero.setOpaque(true);
         
-        jBntSalvar.setBounds(CentralizarLargura(116, 18,6),CentralizarAltura(30, 30, 24),150,40);
+        jBntSalvar.setBounds(CentralizarLargura(116, 18,3),CentralizarAltura(30, 30, 24),150,40);
         jBntSalvar.setBackground(corFundo5);
         jBntSalvar.setOpaque(true);
         jBntSalvar.setForeground(corFundo3);
         
-        jBntCancelar.setBounds(largura - CentralizarLargura(116, 18,6) - 150,CentralizarAltura(30, 30, 24),150,40);
+        jBntCancelar.setBounds(largura - CentralizarLargura(116, 18,3) - 150,CentralizarAltura(30, 30, 24),150,40);
         jBntCancelar.setBackground(corFundo6);
         jBntCancelar.setOpaque(true);
         jBntCancelar.setForeground(corFundo3);
