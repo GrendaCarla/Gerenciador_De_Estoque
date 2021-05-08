@@ -43,16 +43,15 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
 
         jTFMedida = new javax.swing.JTextField();
         jTFQuantidade = new javax.swing.JTextField();
-        jTFAtivo = new javax.swing.JTextField();
         jTFValorVenda = new javax.swing.JTextField();
         jTFNome = new javax.swing.JTextField();
         jTFMarca = new javax.swing.JTextField();
-        jTFDescricao = new javax.swing.JTextField();
+        jTFDescricao = new javax.swing.JScrollPane();
+        jTextAreaDescricao = new javax.swing.JTextArea();
         jLbMedida = new javax.swing.JLabel();
         jLbQuantidade = new javax.swing.JLabel();
-        jLbValorVenda = new javax.swing.JLabel();
-        jLbAtivo = new javax.swing.JLabel();
         jLbNome = new javax.swing.JLabel();
+        jLbValorVenda = new javax.swing.JLabel();
         jLbMarca = new javax.swing.JLabel();
         jLbTitulo = new javax.swing.JLabel();
         jLbDescricao = new javax.swing.JLabel();
@@ -65,38 +64,29 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jTFMedida.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFMedida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTFMedida.setBorder(null);
         jTFMedida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFMedidaActionPerformed(evt);
             }
         });
         getContentPane().add(jTFMedida);
-        jTFMedida.setBounds(340, 300, 258, 24);
+        jTFMedida.setBounds(340, 300, 258, 22);
 
         jTFQuantidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFQuantidade.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTFQuantidade.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTFQuantidade.setBorder(null);
         jTFQuantidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFQuantidadeActionPerformed(evt);
             }
         });
         getContentPane().add(jTFQuantidade);
-        jTFQuantidade.setBounds(810, 300, 258, 24);
-
-        jTFAtivo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFAtivo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTFAtivo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTFAtivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFAtivoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTFAtivo);
-        jTFAtivo.setBounds(790, 350, 258, 24);
+        jTFQuantidade.setBounds(810, 300, 258, 22);
 
         jTFValorVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFValorVenda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTFValorVenda.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTFValorVenda.setBorder(null);
         jTFValorVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTFValorVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,10 +94,10 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTFValorVenda);
-        jTFValorVenda.setBounds(320, 350, 258, 24);
+        jTFValorVenda.setBounds(320, 350, 258, 22);
 
         jTFNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFNome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTFNome.setBorder(null);
         jTFNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFNomeActionPerformed(evt);
@@ -117,7 +107,7 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
         jTFNome.setBounds(690, 30, 280, 30);
 
         jTFMarca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFMarca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTFMarca.setBorder(null);
         jTFMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFMarcaActionPerformed(evt);
@@ -126,40 +116,35 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
         getContentPane().add(jTFMarca);
         jTFMarca.setBounds(140, 20, 308, 30);
 
-        jTFDescricao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFDescricao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTFDescricao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFDescricaoActionPerformed(evt);
-            }
-        });
+        jTextAreaDescricao.setColumns(20);
+        jTextAreaDescricao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextAreaDescricao.setLineWrap(true);
+        jTextAreaDescricao.setRows(5);
+        jTextAreaDescricao.setBorder(null);
+        jTFDescricao.setViewportView(jTextAreaDescricao);
+
         getContentPane().add(jTFDescricao);
-        jTFDescricao.setBounds(250, 380, 258, 24);
+        jTFDescricao.setBounds(20, 20, 310, 240);
 
         jLbMedida.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbMedida.setText("  Medida:");
         getContentPane().add(jLbMedida);
-        jLbMedida.setBounds(240, 300, 90, 22);
+        jLbMedida.setBounds(240, 300, 80, 22);
 
         jLbQuantidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbQuantidade.setText("  Quantidade:");
         getContentPane().add(jLbQuantidade);
         jLbQuantidade.setBounds(700, 300, 120, 22);
 
-        jLbValorVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbValorVenda.setText("  Preço:");
-        getContentPane().add(jLbValorVenda);
-        jLbValorVenda.setBounds(240, 350, 90, 22);
-
-        jLbAtivo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbAtivo.setText(" Ativo?:");
-        getContentPane().add(jLbAtivo);
-        jLbAtivo.setBounds(700, 350, 70, 22);
-
         jLbNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbNome.setText("  Nome:");
         getContentPane().add(jLbNome);
-        jLbNome.setBounds(460, 100, 80, 22);
+        jLbNome.setBounds(460, 100, 70, 22);
+
+        jLbValorVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbValorVenda.setText("  Preço:");
+        getContentPane().add(jLbValorVenda);
+        jLbValorVenda.setBounds(140, 270, 70, 22);
 
         jLbMarca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbMarca.setText("  Marca:");
@@ -222,10 +207,6 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTFDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFDescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFDescricaoActionPerformed
-
     private void jTFMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFMedidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFMedidaActionPerformed
@@ -233,10 +214,6 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
     private void jTFQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFQuantidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFQuantidadeActionPerformed
-
-    private void jTFAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFAtivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFAtivoActionPerformed
 
     private void jTFValorVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFValorVendaActionPerformed
         // TODO add your handling code here:
@@ -273,7 +250,7 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
         Produtos produtos = new Produtos();
 
         try {
-            produtos.CadastrarProduto(jTFNome.getText(), jTFMarca.getText(), jTFMedida.getText(), Float.parseFloat(jTFValorVenda.getText()), Integer.parseInt(jTFQuantidade.getText()), jTFDescricao.getText());
+            produtos.CadastrarProduto(jTFNome.getText(), jTFMarca.getText(), jTFMedida.getText(), Float.parseFloat(jTFValorVenda.getText()), Integer.parseInt(jTFQuantidade.getText()), jTFDescricao.getToolTipText());
         } catch (SQLException ex) {
             Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -334,7 +311,6 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBntCancelar;
     private javax.swing.JButton jBntSalvar;
-    private javax.swing.JLabel jLbAtivo;
     private javax.swing.JLabel jLbDescricao;
     private javax.swing.JLabel jLbMarca;
     private javax.swing.JLabel jLbMedida;
@@ -344,13 +320,13 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLbValorVenda;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTFAtivo;
-    private javax.swing.JTextField jTFDescricao;
+    private javax.swing.JScrollPane jTFDescricao;
     private javax.swing.JTextField jTFMarca;
     private javax.swing.JTextField jTFMedida;
     private javax.swing.JTextField jTFNome;
     private javax.swing.JTextField jTFQuantidade;
     private javax.swing.JTextField jTFValorVenda;
+    private javax.swing.JTextArea jTextAreaDescricao;
     // End of variables declaration//GEN-END:variables
 
     
@@ -387,55 +363,50 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
         jLbTitulo.setBackground(corFundo4);
          
         
-        jLbNome.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 4),140 + 370 + 15 + 4,30);
-        jTFNome.setBounds(CentralizarLargura(116, 18,2)+ 70 + 15,CentralizarAltura(30, 15, 4),435,30);
+        jLbNome.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 25, 7),140 + 370 + 15 + 4,30);
+        jTFNome.setBounds(CentralizarLargura(116, 18,2)+ 70 + 15,CentralizarAltura(30, 25, 7),440,30);
         jLbNome.setBackground(corFundo4);
         jLbNome.setOpaque(true);
         jTFNome.setBackground(corFundo4);
         jTFNome.setOpaque(true);
         
         
-        jLbMarca.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(26, 15, 4),140 + 370 + 15 + 4,30);
-        jTFMarca.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 80 + 15, CentralizarAltura(30, 15, 4),445,30);
+        jLbMarca.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(30, 25, 7),140 + 370 + 15 + 4,30);
+        jTFMarca.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 70 + 15, CentralizarAltura(30, 25, 7),440,30); 
         jLbMarca.setBackground(corFundo4);
         jLbMarca.setOpaque(true);
         jTFMarca.setBackground(corFundo4);
         jTFMarca.setOpaque(true);
         
-        jLbMedida.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 5),140 + 370 + 15 + 4,30);
-        jTFMedida.setBounds(CentralizarLargura(116, 18,2)+ 60 + 15,CentralizarAltura(30, 15, 5),450,30);
+        jLbMedida.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 25, 9),140 + 370 + 15 + 4,30);
+        jTFMedida.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15,CentralizarAltura(30, 25, 9),430,30);
         jLbMedida.setBackground(corFundo4);
         jLbMedida.setOpaque(true);
         jTFMedida.setBackground(corFundo4);
         jTFMedida.setOpaque(true);
         
-        jLbValorVenda.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 55),140 + 370 + 15 + 4,30);
-        jTFValorVenda.setBounds(CentralizarLargura(116, 18,2)+ 110 +15,CentralizarAltura(30, 120, 55),400,30);
+        
+        jLbValorVenda.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(30, 25, 9),140 + 370 + 15 + 4,30);
+        jTFValorVenda.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 70 + 15, CentralizarAltura(30, 25, 9),440,30);
         jLbValorVenda.setBackground(corFundo4);
         jLbValorVenda.setOpaque(true);
         jTFValorVenda.setBackground(corFundo4);
         jTFValorVenda.setOpaque(true);
         
-        jLbQuantidade.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(30, 120, 55),140 + 370 + 15 + 4,30);
-        jTFQuantidade.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 90 + 15, CentralizarAltura(30, 120, 55),420,30);
+        jLbQuantidade.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 25, 11),140 + 370 + 15 + 4,30);
+        jTFQuantidade.setBounds(CentralizarLargura(116, 18,2)+ 115 + 15,CentralizarAltura(30, 25, 11),395,30);
         jLbQuantidade.setBackground(corFundo4);
         jLbQuantidade.setOpaque(true);
         jTFQuantidade.setBackground(corFundo4);
         jTFQuantidade.setOpaque(true);
         
-        jLbAtivo.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 64),140 + 370 + 15 + 4,30);
-        jTFAtivo.setBounds(CentralizarLargura(116, 18,2)+ 110 + 15,CentralizarAltura(30, 120, 64),400,30);
-        jLbAtivo.setBackground(corFundo4);
-        jLbAtivo.setOpaque(true);
-        jTFAtivo.setBackground(corFundo4);
-        jTFAtivo.setOpaque(true);
-        
-        jLbDescricao.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(30, 120, 64),140 + 370 + 15 + 4,30);
-        jTFDescricao.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 90 + 15, CentralizarAltura(30, 120, 64),420,30);
+        jLbDescricao.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 25, 13), 100,30);
+        jTFDescricao.setBounds(CentralizarLargura(116, 18,2)+ 100 + 15,CentralizarAltura(30, 25, 13),largura-CentralizarLargura(116, 18, 2)-CentralizarLargura(116, 18, 2) - 100-15,CentralizarAltura(30, 30, 23) - CentralizarAltura(30, 25, 13));
         jLbDescricao.setBackground(corFundo4);
         jLbDescricao.setOpaque(true);
-        jTFDescricao.setBackground(corFundo4);
-        jTFDescricao.setOpaque(true);
+        jTextAreaDescricao.setBackground(corFundo4);
+        jTextAreaDescricao.setOpaque(true);
+        
         
         jBntSalvar.setBounds(CentralizarLargura(116, 18,3),CentralizarAltura(30, 30, 24),150,40);
         jBntSalvar.setBackground(corFundo5);
