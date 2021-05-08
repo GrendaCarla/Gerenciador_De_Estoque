@@ -332,7 +332,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Byte.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -879,7 +879,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Byte.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -908,18 +908,24 @@ public class TelaAdministrador extends javax.swing.JFrame {
             jTProduto.getColumnModel().getColumn(4).setResizable(false);
             jTProduto.getColumnModel().getColumn(5).setResizable(false);
             jTProduto.getColumnModel().getColumn(6).setResizable(false);
-            /*jTProduto.getColumnModel().getColumn(0).setMinWidth(290);
-            jTProduto.getColumnModel().getColumn(0).setMaxWidth(290);
-            jTProduto.getColumnModel().getColumn(1).setMinWidth(290);
+            jTProduto.getColumnModel().getColumn(0).setMinWidth(100);
+            jTProduto.getColumnModel().getColumn(0).setMaxWidth(100);
+            /*jTProduto.getColumnModel().getColumn(1).setMinWidth(290);
             jTProduto.getColumnModel().getColumn(1).setMaxWidth(290);
             jTProduto.getColumnModel().getColumn(2).setMinWidth(310);
             jTProduto.getColumnModel().getColumn(2).setMaxWidth(310);*/
+             jTProduto.getColumnModel().getColumn(6).setMinWidth(100);
+            jTProduto.getColumnModel().getColumn(6).setMaxWidth(100);
         }
         
+        String ativo;
+        
         for(int i=0; i< pesquisaProduto.size(); i++){
+            
+            ativo = produto.getAtivo().get(pesquisaProduto.get(i)) == 1 ? "Ativo" : "Inativo";
 
             DefaultTableModel model = (DefaultTableModel) jTProduto.getModel();
-            model.addRow(new Object[]{" " + produto.getIDProduto().get(pesquisaProduto.get(i)), " " + produto.getNome().get(pesquisaProduto.get(i)), " " + produto.getMarca().get(pesquisaProduto.get(i)), " " + produto.getMedida().get(pesquisaProduto.get(i)), " " + produto.getQuantidade().get(pesquisaProduto.get(i)), " " + produto.getValorVenda().get(pesquisaProduto.get(i)), " " + produto.getAtivo().get(pesquisaProduto.get(i))});
+            model.addRow(new Object[]{" " + produto.getIDProduto().get(pesquisaProduto.get(i)), " " + produto.getNome().get(pesquisaProduto.get(i)), " " + produto.getMarca().get(pesquisaProduto.get(i)), " " + produto.getMedida().get(pesquisaProduto.get(i)), " " + produto.getQuantidade().get(pesquisaProduto.get(i)), " R$     " + produto.getValorVenda().get(pesquisaProduto.get(i)), " " + ativo});
         }
     }
 
