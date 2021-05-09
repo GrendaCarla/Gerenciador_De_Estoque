@@ -6,11 +6,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import Gerenciador_De_Estoque.Fornecedores;
 import java.sql.SQLException;
 
 public class TelaProdutoInfo extends javax.swing.JFrame {
@@ -28,6 +25,7 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
     Color corFundo4 = new Color(207,220,212);
     Color corFundo5 = new Color(5,180,145);
     Color corFundo6 = new Color(129,88,119);
+    Color corFonte = new Color(170,88,119);
     
     int numero;
     
@@ -203,9 +201,9 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         jLbQuantidade.setBounds(700, 300, 120, 22);
 
         jLbValorVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbValorVenda.setText("  Preço:");
+        jLbValorVenda.setText("  Preço:   R$");
         getContentPane().add(jLbValorVenda);
-        jLbValorVenda.setBounds(140, 270, 70, 22);
+        jLbValorVenda.setBounds(140, 270, 110, 22);
 
         jLbNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbNome.setText("  Nome:");
@@ -227,9 +225,9 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         jLbDescricao.setBounds(90, 370, 100, 22);
 
         jLbAtivo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbAtivo.setText("  Ativo:");
+        jLbAtivo.setText("  Ativo?:");
         getContentPane().add(jLbAtivo);
-        jLbAtivo.setBounds(570, 60, 70, 22);
+        jLbAtivo.setBounds(570, 60, 80, 22);
 
         jLbIDProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbIDProduto.setText("  ID:");
@@ -304,6 +302,8 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
 
             Janela.setSize(d.width + 8, d.height - 37);
             Janela.setResizable(false);
+            Janela.MudarAba(2);
+            
 
             Janela.show();
             dispose();
@@ -314,7 +314,7 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
 
     private void jBntAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntAlterarActionPerformed
         
-        //try {
+        try {
             TelaProdutoAlterar alterProduto = new TelaProdutoAlterar();
             //principalFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -324,13 +324,13 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
             alterProduto.setSize(d.width + 8, d.height - 37);
             alterProduto.setResizable(false);
 
-           //alterProduto.PegarDados(numero);
+           alterProduto.PegarDados(numero);
 
             alterProduto.show();
             dispose();
-        //} catch (SQLException ex) {
-            //Logger.getLogger(TelaProdutoAlterar.class.getName()).log(Level.SEVERE, null, ex);
-        //}
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaProdutoAlterar.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jBntAlterarActionPerformed
 
@@ -468,24 +468,24 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         jTFMedida.setOpaque(true);
         
         // conta prara saber aonde deve colocar a ValorVenda para q fique centralizado entre o medida e quantidade
-        int espacoValorVenda = (((largura - CentralizarLargura(116, 18, 2) - 70 - 15 - 100 - 4)- (CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4)) - (115 + 15 + 150 + 4) - (70 + 15 + 180 + 4))/3;
+        int espacoValorVenda = (((largura - CentralizarLargura(116, 18, 2) - 80 - 15 - 100 - 4)- (CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4)) - (110 + 15 + 150 + 4) - (110 + 15 + 150 + 4))/3;
         
-        jLbValorVenda.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda, CentralizarAltura(30, 30, 12),70 + 15 + 180 + 4,30);
-        jTFValorVenda.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda + 70 + 15, CentralizarAltura(30, 30, 12),180,30);
+        jLbValorVenda.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda, CentralizarAltura(30, 30, 12),110 + 15 + 150 + 4,30);
+        jTFValorVenda.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda + 110 + 15, CentralizarAltura(30, 30, 12),150,30);
         jLbValorVenda.setBackground(corFundo4);
         jLbValorVenda.setOpaque(true);
         jTFValorVenda.setBackground(corFundo4);
         jTFValorVenda.setOpaque(true);
         
-        jLbQuantidade.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda+70+15+180+4 + espacoValorVenda, CentralizarAltura(30, 30, 12),115 + 15 + 150 + 4,30);
-        jFTFQuantidade.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda+70+15+180+4 + espacoValorVenda +115+15, CentralizarAltura(30, 30, 12),150,30);
+        jLbQuantidade.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda+110+15+150+4 + espacoValorVenda, CentralizarAltura(30, 30, 12),115 + 15 + 150 + 4,30);
+        jFTFQuantidade.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda+110+15+150+4 + espacoValorVenda +115+15, CentralizarAltura(30, 30, 12),150,30);
         jLbQuantidade.setBackground(corFundo4);
         jLbQuantidade.setOpaque(true);
         jFTFQuantidade.setBackground(corFundo4);
         jFTFQuantidade.setOpaque(true);
         
-        jLbAtivo.setBounds(largura - CentralizarLargura(116, 18,2) - 70 - 15 - 100 - 4, CentralizarAltura(30, 30, 12),70 + 15 + 100 + 4,30);
-        jTFAtivo.setBounds(largura - CentralizarLargura(116, 18,2)- 105 - 4, CentralizarAltura(30, 30, 12),105,30);
+        jLbAtivo.setBounds(largura - CentralizarLargura(116, 18,2) - 80 - 15 - 90 - 4, CentralizarAltura(30, 30, 12),80 + 15 + 90 + 4,30);
+        jTFAtivo.setBounds(largura - CentralizarLargura(116, 18,2)- 90 - 4, CentralizarAltura(30, 30, 12),90,30);
         jLbAtivo.setBackground(corFundo4);
         jLbAtivo.setOpaque(true);
         jTFAtivo.setBackground(corFundo4);
@@ -536,10 +536,15 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         jTFMarca.setText(produto.getMarca().get(num));
         
         jTFMedida.setText(produto.getMedida().get(num));
-        jTFValorVenda.setText("R$      " + produto.getValorVenda().get(num));
+        jTFValorVenda.setText("" + produto.getValorVenda().get(num));
         jFTFQuantidade.setText(produto.getQuantidade().get(num) + "");
         jTFAtivo.setText(produto.getAtivo().get(num) == 0 ? "Inativo" : "Ativo");
-        
+        if(produto.getAtivo().get(num) == 1){
+            jTFAtivo.setForeground(corFundo5);
+        }
+        else{
+            jTFAtivo.setForeground(corFonte);
+        }
         jTextAreaDescricao.setText(produto.getDescricao().get(num));
         
     }

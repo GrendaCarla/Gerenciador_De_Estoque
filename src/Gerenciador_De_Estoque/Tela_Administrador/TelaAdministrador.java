@@ -3,6 +3,7 @@ package Gerenciador_De_Estoque.Tela_Administrador;
 import Gerenciador_De_Estoque.Fornecedores;
 import Gerenciador_De_Estoque.Produtos;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -11,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.SmithWatermanGotoh;
@@ -38,7 +42,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
     
     Fornecedores fornecedor = new Fornecedores();
     Produtos produto = new Produtos();
-
+    
     public TelaAdministrador() throws SQLException {
         initComponents();
         corDeFundo();
@@ -48,6 +52,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
         
         iniciarPesquisaProduto();
         AlinhamentoDosItensProduto();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -332,7 +337,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -872,14 +877,20 @@ public class TelaAdministrador extends javax.swing.JFrame {
     
     public void criarTabelaProduto() throws SQLException {
         
+        jTProduto.setFont(new java.awt.Font("Tahoma", 0, 18));
+        
+        JTableHeader cabecalho = jTProduto.getTableHeader();
+        cabecalho.setFont(new java.awt.Font("Tahoma", 0, 18));
+        cabecalho.setBackground(corFundo4);
+        
         jTProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
             new String [] {
-                "ID PRODUTO", "NOME", "MARCA", "MEDIDA", "QUANTIDADE", "PREÇO", "ATIVO"
+                "ID", "NOME", "MARCA", "MEDIDA", "QUANT.", "PREÇO", "ATIVO"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -900,6 +911,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTProduto.getTableHeader().setReorderingAllowed(false);
         
         jScrollPaneProduto.setViewportView(jTProduto);
+        
         if (jTProduto.getColumnModel().getColumnCount() > 0) {
             jTProduto.getColumnModel().getColumn(0).setResizable(false);
             jTProduto.getColumnModel().getColumn(1).setResizable(false);
@@ -910,11 +922,13 @@ public class TelaAdministrador extends javax.swing.JFrame {
             jTProduto.getColumnModel().getColumn(6).setResizable(false);
             jTProduto.getColumnModel().getColumn(0).setMinWidth(100);
             jTProduto.getColumnModel().getColumn(0).setMaxWidth(100);
-            /*jTProduto.getColumnModel().getColumn(1).setMinWidth(290);
-            jTProduto.getColumnModel().getColumn(1).setMaxWidth(290);
-            jTProduto.getColumnModel().getColumn(2).setMinWidth(310);
-            jTProduto.getColumnModel().getColumn(2).setMaxWidth(310);*/
-             jTProduto.getColumnModel().getColumn(6).setMinWidth(100);
+            jTProduto.getColumnModel().getColumn(3).setMinWidth(160);
+            jTProduto.getColumnModel().getColumn(3).setMaxWidth(160);
+            jTProduto.getColumnModel().getColumn(4).setMinWidth(100);
+            jTProduto.getColumnModel().getColumn(4).setMaxWidth(100);
+            jTProduto.getColumnModel().getColumn(5).setMinWidth(150);
+            jTProduto.getColumnModel().getColumn(5).setMaxWidth(150);
+            jTProduto.getColumnModel().getColumn(6).setMinWidth(100);
             jTProduto.getColumnModel().getColumn(6).setMaxWidth(100);
         }
         
@@ -925,11 +939,43 @@ public class TelaAdministrador extends javax.swing.JFrame {
             ativo = produto.getAtivo().get(pesquisaProduto.get(i)) == 1 ? "Ativo" : "Inativo";
 
             DefaultTableModel model = (DefaultTableModel) jTProduto.getModel();
-            model.addRow(new Object[]{" " + produto.getIDProduto().get(pesquisaProduto.get(i)), " " + produto.getNome().get(pesquisaProduto.get(i)), " " + produto.getMarca().get(pesquisaProduto.get(i)), " " + produto.getMedida().get(pesquisaProduto.get(i)), " " + produto.getQuantidade().get(pesquisaProduto.get(i)), " R$     " + produto.getValorVenda().get(pesquisaProduto.get(i)), " " + ativo});
+            model.addRow(new Object[]{" " + produto.getIDProduto().get(pesquisaProduto.get(i)), " " + produto.getNome().get(pesquisaProduto.get(i)), " " + produto.getMarca().get(pesquisaProduto.get(i)), " " + produto.getMedida().get(pesquisaProduto.get(i)), " " + produto.getQuantidade().get(pesquisaProduto.get(i)), " " + produto.getValorVenda().get(pesquisaProduto.get(i)), " " + ativo});
         }
-    }
+        
+        
+        jTProduto.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+            
+            public DefaultTableCellRenderer DEFAULT_RENDERER = new DefaultTableCellRenderer();
+            
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component renderer = DEFAULT_RENDERER.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
+                Color background;
+                if ( produto.getAtivo().get(pesquisaProduto.get(row)) == 0) {
+                    background = Color.GRAY;
+                } else {
+                    background = Color.BLACK;
+                }
+                renderer.setForeground(background);
+
+                if (column == 0 || column == 4 || column == 6) {
+                    DEFAULT_RENDERER.setHorizontalAlignment(SwingConstants.CENTER);
+                }
+                else if(column == 1 || column == 2){
+                    DEFAULT_RENDERER.setHorizontalAlignment(SwingConstants.LEFT);
+                }
+                else{
+                    DEFAULT_RENDERER.setHorizontalAlignment(SwingConstants.RIGHT);
+                }
+                
+                return renderer;
+            }
+        }); 
+    } 
     
+   
+
     
     public void AlinhamentoDosItensProduto() {
         
@@ -957,6 +1003,10 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jBntSairProduto.setBounds(largura - CentralizarLargura(116, 18,3) - 140, altura - 120 - 50,140,50);
         jBntSairProduto.setBackground(corFundo6);
 
+    }
+    
+    public void MudarAba(int num){
+         JTabbedPane.setSelectedIndex(num);
     }
     
 }

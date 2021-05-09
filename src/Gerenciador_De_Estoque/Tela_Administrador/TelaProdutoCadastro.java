@@ -65,6 +65,7 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jTFMedida.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFMedida.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTFMedida.setBorder(null);
         jTFMedida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,6 +237,7 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
 
             Janela.setSize(d.width + 8, d.height - 37);
             Janela.setResizable(false);
+            Janela.MudarAba(2);
 
             Janela.show();
             dispose();
@@ -280,6 +282,7 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
 
             Janela.setSize(d.width + 8, d.height - 37);
             Janela.setResizable(false);
+            Janela.MudarAba(2);
 
             Janela.show();
             dispose();
