@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Produtos {
-    // lembrar de deixar privado depois
     private List<Integer> IDProduto  = new ArrayList<Integer>();
     private List<String> Nome = new ArrayList<String>();
     private List<String> Marca = new ArrayList<String>();
@@ -16,7 +15,6 @@ public class Produtos {
     private List<Integer> Ativo = new ArrayList<Integer>();
     private List<String> Descricao = new ArrayList<String>();
     
-     // um vetor com as informações q seram exibidas na pagina principal pro administrador escolher qual quer clicar
     String sql;
     ResultSet resultado;
     
@@ -43,7 +41,7 @@ public class Produtos {
     
     public void ConsultarProdutos()throws SQLException{
         
-        sql = "select * from Produtos \n";
+        sql = "select * from Produtos";
         
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;

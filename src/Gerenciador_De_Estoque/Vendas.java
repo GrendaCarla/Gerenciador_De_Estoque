@@ -69,10 +69,6 @@ public class Vendas extends ItensVendidos {
         ConsultarItem();
     }
     
-    public void ConsultarVendasPorPeriodo()throws SQLException{
-        
-    }
-    
     //-----------------------------------------------//
 
     public int getIDCliente() {

@@ -4,12 +4,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Clientes extends EnderecosContatos{
-    // lembrar de deixar privado depois
+
     private int IDCliente;
     private String CPF;
     private String Nome;
     private String DataDeNascimento;
-    // um vetor com as informações q seram exibidas na pagina principal pro atendente escolher qual quer clicar
+
     String sql;
     ResultSet resultado;
     
@@ -91,23 +91,7 @@ public class Clientes extends EnderecosContatos{
             setEmail2(resultado.getString(18));
         }
     }
-    
-    public void ConsultarClientesPorTelefone(){
-        
-    }
-    
-    public void ConsultarClientesPorCPF(){
-        
-    }
-    
-    public void ConsultarVendas(){
-        
-    }
-    
-    public void PegarListaClientes(){
-        
-    }
-    
+
     //------------------------------------------------------------//
 
     public int getIDCliente() {
@@ -141,7 +125,5 @@ public class Clientes extends EnderecosContatos{
     public void setDataDeNascimento(String DataDeNascimento) {
         this.DataDeNascimento = DataDeNascimento;
     }
-    
-    
     
 }

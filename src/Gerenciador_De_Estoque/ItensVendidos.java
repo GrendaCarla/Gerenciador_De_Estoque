@@ -10,7 +10,8 @@ public abstract class ItensVendidos {
     private ArrayList<Integer> IDProduto = new ArrayList<>();
     private ArrayList<Integer> Quantidade = new ArrayList<>();
     private ArrayList<Float> ValorUnitario = new ArrayList<>();
-    // um vetor com as informações q seram exibidas na pagina principal pro administrador escolher qual quer clicar
+    
+    
     String sql;
     ResultSet resultado;
     int i;

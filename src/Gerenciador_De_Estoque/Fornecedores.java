@@ -11,7 +11,6 @@ public class Fornecedores extends EnderecosContatos{
     private List<String> RazaoSocial = new ArrayList<String>();
     private List<String> NomeFantasia = new ArrayList<String>();
     
-    // um vetor com as informações q seram exibidas na pagina principal pro administrador escolher qual quer clicar
     String sql;
     ResultSet resultado;
     
@@ -91,10 +90,6 @@ public class Fornecedores extends EnderecosContatos{
             setEmail1(resultado.getString(17));
             setEmail2(resultado.getString(18));
         }
-    }
-    
-    public void ConsultarComprasPorFornecedor(){
-        
     }
     
     public void LimparFornecedor(){

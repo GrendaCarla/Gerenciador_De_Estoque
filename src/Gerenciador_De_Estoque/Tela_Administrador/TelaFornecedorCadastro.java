@@ -645,6 +645,4 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         jBntCancelar.setForeground(corFundo3);
         
     }
-
-
 }

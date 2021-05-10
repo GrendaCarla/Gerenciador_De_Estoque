@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class EnderecosContatos {
-    // lembrar de deixar privado depois
     private List<Integer> IDEndereco = new ArrayList<Integer>();
     private List<String> Pais = new ArrayList<String>();
     private List<String> Estado = new ArrayList<String>();
@@ -137,8 +136,5 @@ public abstract class EnderecosContatos {
     public void setEmail2(String Email2) {
         this.Email2.add(Email2);
     }
-    
-    
-    
     
 }
