@@ -17,36 +17,31 @@ public class Compras extends ItensComprados{
     
     //-------------------------------------------------------//
     
-    public void CadastrarCompras(int idFornecedor, String DataHoraDaCompra, float ValorTotal)throws SQLException{
-                
+    public int CadastrarCompras(int idFornecedor, String DataHoraDaCompra, float ValorTotal)throws SQLException{
+ 
         sql = "INSERT INTO Compras (IDFornecedor, DataHoraDaCompra, ValorTotal) VALUES(" + idFornecedor +  ", " + DataHoraDaCompra + ", " + ValorTotal+ ") ";
            
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;
         conect.inserir();
         
-    }
-    
-    public void CadastrarItem(int qntLinha, int idProduto, int quantidade, float valorUnitario)throws SQLException{
-        int idCompra = 0;
-        
-        ConnectionFactory conect = new ConnectionFactory();
-        
         sql = "select TOP 1 IDCompra FROM Compras ORDER BY IDCompra DESC";
         conect.sql = this.sql;
         resultado = conect.retirar();
         
-        while (resultado.next()){
-            idCompra = resultado.getInt(1);
-            break;
-        }
+        resultado.next();
+        return resultado.getInt(1);
+         
+    }
+    
+    public void CadastrarItem(int idCompra, int idProduto, int quantidade, float valorUnitario)throws SQLException{
+
+        ConnectionFactory conect = new ConnectionFactory();
         
-        for(int i = 0; i < qntLinha; i++){
-            
-            sql = "INSERT INTO ItensComprados (IDCompra, IDProduto, Quantidade, ValorUnitario) VALUES(" + idCompra +  ", " + idProduto + ", " + quantidade  + ", " + valorUnitario  + ") ";
-            conect.sql = this.sql;
-            conect.inserir();
-        }
+        sql = "INSERT INTO ItensComprados (IDCompra, IDProduto, Quantidade, ValorUnitario) VALUES(" + idCompra +  ", " + idProduto + ", " + quantidade  + ", " + valorUnitario  + ") ";
+        conect.sql = this.sql;
+        conect.inserir();
+        
     }
     
     /*public void AtualizarProdutos()throws SQLException{

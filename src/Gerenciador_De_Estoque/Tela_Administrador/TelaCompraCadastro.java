@@ -401,19 +401,34 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSalvarActionPerformed
-   
+        int cel = 0;
+        for(int i=0; i<100; i++){
+            if(jTItensComprado.getValueAt(i, 0) != null && jTItensComprado.getValueAt(i, 4) != null){
+                cel = 1;
+                break;
+            }
+        }
         
-       if(jCBFornecedor.getSelectedIndex() == -1 || jTFData1.getText().isEmpty() == true || jTFData2.getText().isEmpty() == true || jTFData3.getText().isEmpty() == true || jTFHora1.getText().isEmpty() == true || jTFHora2.getText().isEmpty() == true || jFTFValorTotal.getText().isEmpty() == true){
+       if(jCBFornecedor.getSelectedIndex() == -1 || jTFData1.getText().isEmpty() == true || jTFData2.getText().isEmpty() == true || jTFData3.getText().isEmpty() == true || jTFHora1.getText().isEmpty() == true || jTFHora2.getText().isEmpty() == true || jFTFValorTotal.getText().isEmpty() == true || cel == 0){
             
             UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
             JOptionPane.showMessageDialog(null, "É obrigatório o preenchimento de todos os campos.\nA tabela de itens comprados necessita de no mínimo\numa linha preenchida, exceto o campo preço. \n\n\n\n");
-          
+        }else if(Integer.parseInt(jTFData3.getText()) < 1753 || Integer.parseInt(jTFData3.getText()) > 9999){
+            UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
+            JOptionPane.showMessageDialog(null, "O ano digitado está fora do intervalo de tempo (1753 a 9999) que podemos armazenar. \n\n\n\n");
         }else{
         
             try{
                 compra.ConsultarCompras();
                 
-                compra.CadastrarCompras(fornecedor.getIDFornecedor().get(jCBFornecedor.getSelectedIndex()-1), ("'"+jTFData3.getText()+"-" + jTFData2.getText() + "-" + jTFData1.getText()+ " " + jTFHora1.getText() + ":" + jTFHora1.getText() + ":20.3'"), Float.parseFloat(jFTFValorTotal.getText().replaceAll(",",".")));
+                int idCompra = compra.CadastrarCompras(fornecedor.getIDFornecedor().get(jCBFornecedor.getSelectedIndex()-1), ("'"+jTFData3.getText()+"-" + jTFData1.getText() + "-" + jTFData2.getText()+ " " + jTFHora1.getText() + ":" + jTFHora2.getText() + ":20.3'"), Float.parseFloat(jFTFValorTotal.getText().replaceAll(",",".")));
+                
+                for(int i=0; i<100; i++){
+                    if(jTItensComprado.getValueAt(i, 0) != null && jTItensComprado.getValueAt(i, 4) != null){
+                        System.out.println("enteou");
+                        compra.CadastrarItem(idCompra, Integer.parseInt(jTItensComprado.getValueAt(i, 0)+""), Integer.parseInt(jTItensComprado.getValueAt(i, 4)+""), Float.parseFloat((jTItensComprado.getValueAt(i, 5) == null ? 0 : jTItensComprado.getValueAt(i, 5))+""));
+                    }
+                }
             }catch (SQLException ex) {
                 Logger.getLogger(TelaProdutoCadastro.class.getName()).log(Level.SEVERE, null, ex);
             }
