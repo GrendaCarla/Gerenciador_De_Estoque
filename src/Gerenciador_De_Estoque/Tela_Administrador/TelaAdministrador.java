@@ -130,18 +130,18 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "NOME FANTASIA", "RAZÃO SOCIAL", "E-MAIL", "ENDEREÇO"
+                "ID", "NOME FANTASIA", "RAZÃO SOCIAL", "E-MAIL", "ENDEREÇO"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -800,17 +800,23 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFBarraDeBuscaCompraKeyPressed
 
     private void jBntCadastrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCadastrarCompraActionPerformed
-        TelaCompraCadastro cadastroCompra = new TelaCompraCadastro();
-        //cadastroFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        Dimension d = tk.getScreenSize();
+        try {
+            TelaCompraCadastro cadastroCompra = new TelaCompraCadastro();
+            //cadastroFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        cadastroCompra.setSize(d.width + 8, d.height - 37);
-        cadastroCompra.setResizable(false);
-           
-        cadastroCompra.show();
-        dispose();
+            Toolkit tk = Toolkit.getDefaultToolkit();
+            Dimension d = tk.getScreenSize();
+
+            cadastroCompra.setSize(d.width + 8, d.height - 37);
+            cadastroCompra.setResizable(false);
+        
+            cadastroCompra.criarTabelaItensCompra();
+            
+            cadastroCompra.show();
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jBntCadastrarCompraActionPerformed
 
     private void jBntVoltarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntVoltarCompraActionPerformed
@@ -1012,14 +1018,14 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
             new String [] {
-                "NOME FANTASIA", "RAZÃO SOCIAL", "E-MAIL", "ENDEREÇO"
+                "ID", "NOME FANTASIA", "RAZÃO SOCIAL", "E-MAIL", "ENDEREÇO"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false,false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1039,19 +1045,34 @@ public class TelaAdministrador extends javax.swing.JFrame {
             jTFornecedor.getColumnModel().getColumn(1).setResizable(false);
             jTFornecedor.getColumnModel().getColumn(2).setResizable(false);
             jTFornecedor.getColumnModel().getColumn(3).setResizable(false);
-            jTFornecedor.getColumnModel().getColumn(0).setMinWidth(290);
-            jTFornecedor.getColumnModel().getColumn(0).setMaxWidth(290);
+            jTFornecedor.getColumnModel().getColumn(4).setResizable(false);
+            jTFornecedor.getColumnModel().getColumn(0).setMinWidth(100);
+            jTFornecedor.getColumnModel().getColumn(0).setMaxWidth(100);
             jTFornecedor.getColumnModel().getColumn(1).setMinWidth(290);
             jTFornecedor.getColumnModel().getColumn(1).setMaxWidth(290);
-            jTFornecedor.getColumnModel().getColumn(2).setMinWidth(310);
-            jTFornecedor.getColumnModel().getColumn(2).setMaxWidth(310);
+            jTFornecedor.getColumnModel().getColumn(2).setMinWidth(290);
+            jTFornecedor.getColumnModel().getColumn(2).setMaxWidth(290);
+            jTFornecedor.getColumnModel().getColumn(3).setMinWidth(310);
+            jTFornecedor.getColumnModel().getColumn(3).setMaxWidth(310);
         }
+        
+        DefaultTableCellRenderer centro = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer esquerda = new DefaultTableCellRenderer();
+        
+        centro.setHorizontalAlignment(SwingConstants.CENTER);
+        esquerda.setHorizontalAlignment(SwingConstants.LEFT);
+        
+        jTFornecedor.getColumnModel().getColumn(0).setCellRenderer(centro);
+        jTFornecedor.getColumnModel().getColumn(1).setCellRenderer(esquerda);
+        jTFornecedor.getColumnModel().getColumn(2).setCellRenderer(esquerda);
+        jTFornecedor.getColumnModel().getColumn(3).setCellRenderer(esquerda);
         
         for(int i=0; i< pesquisaFornecedor.size(); i++){
 
             DefaultTableModel model = (DefaultTableModel) jTFornecedor.getModel();
-            model.addRow(new Object[]{" " + fornecedor.getNomeFantasia().get(pesquisaFornecedor.get(i)), " " + fornecedor.getRazaoSocial().get(pesquisaFornecedor.get(i)), " " + fornecedor.getEmail1().get(pesquisaFornecedor.get(i)), " " +fornecedor.getCidade().get(pesquisaFornecedor.get(i)) + ", " + fornecedor.getBairro().get(pesquisaFornecedor.get(i)) + ", " + fornecedor.getEstado().get(pesquisaFornecedor.get(i))});
+            model.addRow(new Object[]{ "" + fornecedor.getIDFornecedor().get(pesquisaFornecedor.get(i))," " + fornecedor.getNomeFantasia().get(pesquisaFornecedor.get(i)), " " + fornecedor.getRazaoSocial().get(pesquisaFornecedor.get(i)), " " + fornecedor.getEmail1().get(pesquisaFornecedor.get(i)), " " +fornecedor.getCidade().get(pesquisaFornecedor.get(i)) + ", " + fornecedor.getBairro().get(pesquisaFornecedor.get(i)) + ", " + fornecedor.getEstado().get(pesquisaFornecedor.get(i))});
         }
+       
     }
 
     
@@ -1165,7 +1186,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             ativo = produto.getAtivo().get(pesquisaProduto.get(i)) == 1 ? "Ativo" : "Inativo";
 
             DefaultTableModel model = (DefaultTableModel) jTProduto.getModel();
-            model.addRow(new Object[]{" " + produto.getIDProduto().get(pesquisaProduto.get(i)), " " + produto.getNome().get(pesquisaProduto.get(i)), " " + produto.getMarca().get(pesquisaProduto.get(i)), " " + produto.getMedida().get(pesquisaProduto.get(i)), " " + produto.getQuantidade().get(pesquisaProduto.get(i)), " " + produto.getValorVenda().get(pesquisaProduto.get(i)), " " + ativo});
+            model.addRow(new Object[]{"" + produto.getIDProduto().get(pesquisaProduto.get(i)), " " + produto.getNome().get(pesquisaProduto.get(i)), " " + produto.getMarca().get(pesquisaProduto.get(i)), " " + produto.getMedida().get(pesquisaProduto.get(i)), " " + produto.getQuantidade().get(pesquisaProduto.get(i)), " " + produto.getValorVenda().get(pesquisaProduto.get(i)), " " + ativo});
         }
         
         
@@ -1311,7 +1332,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
         for(int i=0; i< pesquisaCompra.size(); i++){
             
             DefaultTableModel model = (DefaultTableModel) jTCompra.getModel();
-            model.addRow(new Object[]{" " + compra.getIDCompra().get(pesquisaCompra.get(i)), " " + fornecedor.getNomeFantasia().get(compra.getIDFornecedor().get(pesquisaCompra.get(i))), " " +  compra.getDataHoraDaCompra().get(pesquisaCompra.get(i)).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(pesquisaCompra.get(i)).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(pesquisaCompra.get(i)).substring(0,4), compra.getDataHoraDaCompra().get(pesquisaCompra.get(i)).substring(11, 13) + " : " + compra.getDataHoraDaCompra().get(pesquisaCompra.get(i)).substring(14, 16)});
+            model.addRow(new Object[]{"" + compra.getIDCompra().get(pesquisaCompra.get(i)), " " + fornecedor.getNomeFantasia().get(fornecedor.getIDFornecedor().indexOf(compra.getIDFornecedor().get(pesquisaCompra.get(i)))), " " +  compra.getDataHoraDaCompra().get(pesquisaCompra.get(i)).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(pesquisaCompra.get(i)).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(pesquisaCompra.get(i)).substring(0,4), compra.getDataHoraDaCompra().get(pesquisaCompra.get(i)).substring(11, 13) + " : " + compra.getDataHoraDaCompra().get(pesquisaCompra.get(i)).substring(14, 16)});
         }
         
     } 

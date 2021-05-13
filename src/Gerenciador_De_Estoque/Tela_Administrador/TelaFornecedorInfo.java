@@ -41,6 +41,7 @@ public class TelaFornecedorInfo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTFID = new javax.swing.JTextField();
         jTFEmail2 = new javax.swing.JTextField();
         jTFEmail1 = new javax.swing.JTextField();
         jTFTelefone2 = new javax.swing.JTextField();
@@ -51,9 +52,10 @@ public class TelaFornecedorInfo extends javax.swing.JFrame {
         jTFBairro = new javax.swing.JTextField();
         jTFEstado = new javax.swing.JTextField();
         jTFNumero = new javax.swing.JTextField();
-        jTFCNPJ = new javax.swing.JTextField();
+        jFTFCNPJ = new javax.swing.JFormattedTextField();
         jTFNomeFantasia = new javax.swing.JTextField();
         jTFRazaoSocial = new javax.swing.JTextField();
+        jLbID = new javax.swing.JLabel();
         jLbPais = new javax.swing.JLabel();
         jLbEstado = new javax.swing.JLabel();
         jLbCidade = new javax.swing.JLabel();
@@ -77,6 +79,18 @@ public class TelaFornecedorInfo extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1340, 690));
         setSize(new java.awt.Dimension(1340, 690));
         getContentPane().setLayout(null);
+
+        jTFID.setEditable(false);
+        jTFID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFID.setBorder(null);
+        jTFID.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTFID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFIDActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTFID);
+        jTFID.setBounds(240, 530, 258, 22);
 
         jTFEmail2.setEditable(false);
         jTFEmail2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -198,17 +212,22 @@ public class TelaFornecedorInfo extends javax.swing.JFrame {
         getContentPane().add(jTFNumero);
         jTFNumero.setBounds(1170, 570, 110, 22);
 
-        jTFCNPJ.setEditable(false);
-        jTFCNPJ.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFCNPJ.setBorder(null);
-        jTFCNPJ.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTFCNPJ.addActionListener(new java.awt.event.ActionListener() {
+        jFTFCNPJ.setEditable(false);
+        jFTFCNPJ.setBorder(null);
+        try {
+            jFTFCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFTFCNPJ.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jFTFCNPJ.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jFTFCNPJ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFCNPJActionPerformed(evt);
+                jFTFCNPJActionPerformed(evt);
             }
         });
-        getContentPane().add(jTFCNPJ);
-        jTFCNPJ.setBounds(370, 170, 280, 30);
+        getContentPane().add(jFTFCNPJ);
+        jFTFCNPJ.setBounds(120, 140, 50, 22);
 
         jTFNomeFantasia.setEditable(false);
         jTFNomeFantasia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -233,6 +252,12 @@ public class TelaFornecedorInfo extends javax.swing.JFrame {
         });
         getContentPane().add(jTFRazaoSocial);
         jTFRazaoSocial.setBounds(690, 130, 308, 30);
+
+        jLbID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbID.setText("  ID:");
+        jLbID.setToolTipText("");
+        getContentPane().add(jLbID);
+        jLbID.setBounds(171, 530, 60, 22);
 
         jLbPais.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbPais.setText("  País:");
@@ -391,10 +416,6 @@ public class TelaFornecedorInfo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFNumeroActionPerformed
 
-    private void jTFCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCNPJActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFCNPJActionPerformed
-
     private void jTFNomeFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeFantasiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFNomeFantasiaActionPerformed
@@ -443,6 +464,14 @@ public class TelaFornecedorInfo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jBntAlterarActionPerformed
 
+    private void jFTFCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFTFCNPJActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFTFCNPJActionPerformed
+
+    private void jTFIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFIDActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -483,12 +512,14 @@ public class TelaFornecedorInfo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBntAlterar;
     private javax.swing.JButton jBntVoltar;
+    private javax.swing.JFormattedTextField jFTFCNPJ;
     private javax.swing.JLabel jLbBairro;
     private javax.swing.JLabel jLbCNPJ;
     private javax.swing.JLabel jLbCidade;
     private javax.swing.JLabel jLbEmail1;
     private javax.swing.JLabel jLbEmail2;
     private javax.swing.JLabel jLbEstado;
+    private javax.swing.JLabel jLbID;
     private javax.swing.JLabel jLbNomeFantasia;
     private javax.swing.JLabel jLbNumero;
     private javax.swing.JLabel jLbPais;
@@ -500,11 +531,11 @@ public class TelaFornecedorInfo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTFBairro;
-    private javax.swing.JTextField jTFCNPJ;
     private javax.swing.JTextField jTFCidade;
     private javax.swing.JTextField jTFEmail1;
     private javax.swing.JTextField jTFEmail2;
     private javax.swing.JTextField jTFEstado;
+    private javax.swing.JTextField jTFID;
     private javax.swing.JTextField jTFNomeFantasia;
     private javax.swing.JTextField jTFNumero;
     private javax.swing.JTextField jTFPais;
@@ -545,29 +576,40 @@ public class TelaFornecedorInfo extends javax.swing.JFrame {
         jLbTitulo.setBounds(CentralizarLargura(550, 2, 1),CentralizarAltura(55, 18, 1),550,55);
         jLbTitulo.setForeground(corFundo3);
         jLbTitulo.setBackground(corFundo4);
-         
         
-        jLbNomeFantasia.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 4),140 + 370 + 15 + 4,30);
-        jTFNomeFantasia.setBounds(CentralizarLargura(116, 18,2)+ 140 + 15,CentralizarAltura(30, 15, 4),370,30);
+        jLbID.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 4),40 + 15 + 100 + 4,30);
+        jTFID.setBounds(CentralizarLargura(116, 18,2)+ 40 + 15,CentralizarAltura(30, 15, 4),100,30);
+        jLbID.setBackground(corFundo4);
+        jLbID.setOpaque(true);
+        jTFID.setBackground(corFundo4);
+        jTFID.setOpaque(true);
+        
+        
+        // conta prara saber aonde deve colocar o nome para q fique centralizado entre o id e a razão
+        int espacoNome = (((largura - CentralizarLargura(116, 18, 2) - 120 - 15 - 300 - 4)- (CentralizarLargura(116, 18,2)+ 40 + 15 + 100 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 40 + 15 + 100 + 4)) - (140 + 15 + 300 + 4)/2;
+        
+        
+        jLbNomeFantasia.setBounds(espacoNome,CentralizarAltura(30, 15, 4),140 + 300 + 15 + 4,30);
+        jTFNomeFantasia.setBounds(espacoNome + 140 + 15,CentralizarAltura(30, 15, 4),300,30);
         jLbNomeFantasia.setBackground(corFundo4);
         jLbNomeFantasia.setOpaque(true);
         jTFNomeFantasia.setBackground(corFundo4);
         jTFNomeFantasia.setOpaque(true);
         
         
-        jLbRazaoSocial.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(26, 15, 4),140 + 370 + 15 + 4,30);
-        jTFRazaoSocial.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 120 + 15, CentralizarAltura(26, 15, 4),390,30);
+        jLbRazaoSocial.setBounds(largura - CentralizarLargura(116, 18,2) - 120 - 300 - 15 - 4, CentralizarAltura(26, 15, 4),120 + 15 + 300 + 4,30);
+        jTFRazaoSocial.setBounds(largura - CentralizarLargura(116, 18,2) - 300 - 4, CentralizarAltura(26, 15, 4),300,30);
         jLbRazaoSocial.setBackground(corFundo4);
         jLbRazaoSocial.setOpaque(true);
         jTFRazaoSocial.setBackground(corFundo4);
         jTFRazaoSocial.setOpaque(true);
         
         jLbCNPJ.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 5),140 + 370 + 15 + 4,30);
-        jTFCNPJ.setBounds(CentralizarLargura(116, 18,2)+ 60 + 15,CentralizarAltura(30, 15, 5),450,30);
+        jFTFCNPJ.setBounds(CentralizarLargura(116, 18,2)+ 60 + 15,CentralizarAltura(30, 15, 5),450,30);
         jLbCNPJ.setBackground(corFundo4);
         jLbCNPJ.setOpaque(true);
-        jTFCNPJ.setBackground(corFundo4);
-        jTFCNPJ.setOpaque(true);
+        jFTFCNPJ.setBackground(corFundo4);
+        jFTFCNPJ.setOpaque(true);
         
         // ----------------------------------------------------------------------------------------------------
         
@@ -669,9 +711,10 @@ public class TelaFornecedorInfo extends javax.swing.JFrame {
         
         fornecedor.ConsultarFornecedor();
         
+        jTFID.setText(""+fornecedor.getIDFornecedor().get(num));
         jTFNomeFantasia.setText(fornecedor.getNomeFantasia().get(num));
         jTFRazaoSocial.setText(fornecedor.getRazaoSocial().get(num));
-        jTFCNPJ.setText(fornecedor.getCNPJ().get(num));
+        jFTFCNPJ.setText(fornecedor.getCNPJ().get(num));
         
         jTFTelefone1.setText(fornecedor.getTelefone1().get(num));
         jTFTelefone2.setText(fornecedor.getTelefone2().get(num));

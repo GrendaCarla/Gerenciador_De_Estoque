@@ -6,12 +6,16 @@ import Gerenciador_De_Estoque.Produtos;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
 public class TelaProdutoAlterar extends javax.swing.JFrame {
     
@@ -49,7 +53,6 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
         jTFMarca = new javax.swing.JTextField();
         jFTFValorVenda = new javax.swing.JFormattedTextField();
         jFTFQuantidade = new javax.swing.JFormattedTextField();
-        jFTFIDProduto = new javax.swing.JFormattedTextField();
         jCBAtivo = new javax.swing.JComboBox<>();
         jLbEscondeLinha1 = new javax.swing.JLabel();
         jLbEscondeLinha2 = new javax.swing.JLabel();
@@ -65,7 +68,6 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
         jLbTitulo = new javax.swing.JLabel();
         jLbDescricao = new javax.swing.JLabel();
         jLbAtivo = new javax.swing.JLabel();
-        jLbIDProduto = new javax.swing.JLabel();
         jBntSalvar = new javax.swing.JButton();
         jBntCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -128,21 +130,6 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
         });
         getContentPane().add(jFTFQuantidade);
         jFTFQuantidade.setBounds(330, 100, 110, 22);
-
-        jFTFIDProduto.setEditable(false);
-        jFTFIDProduto.setBorder(null);
-        jFTFIDProduto.setForeground(new java.awt.Color(102, 102, 102));
-        jFTFIDProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        jFTFIDProduto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jFTFIDProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jFTFIDProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jFTFIDProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFTFIDProdutoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jFTFIDProduto);
-        jFTFIDProduto.setBounds(330, 100, 110, 22);
 
         jCBAtivo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jCBAtivo.setForeground(new java.awt.Color(255, 255, 255));
@@ -223,12 +210,6 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
         getContentPane().add(jLbAtivo);
         jLbAtivo.setBounds(570, 60, 80, 22);
 
-        jLbIDProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbIDProduto.setForeground(new java.awt.Color(102, 102, 102));
-        jLbIDProduto.setText("  ID:");
-        getContentPane().add(jLbIDProduto);
-        jLbIDProduto.setBounds(500, 80, 50, 22);
-
         jBntSalvar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBntSalvar.setForeground(new java.awt.Color(0, 153, 0));
         jBntSalvar.setText("Salvar");
@@ -287,10 +268,6 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFTFQuantidadeActionPerformed
 
-    private void jFTFIDProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFTFIDProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFTFIDProdutoActionPerformed
-
     private void jBntCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCancelarActionPerformed
 
         try {
@@ -311,31 +288,33 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
     }//GEN-LAST:event_jBntCancelarActionPerformed
 
     private void jBntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSalvarActionPerformed
-
-        String preco = jFTFValorVenda.getText().replaceAll(",",".");
-        
-        try {
+        if(jTFNome.getText().isEmpty() == true || jTFMarca.getText().isEmpty() == true || jTFMedida.getText().isEmpty() == true || jFTFValorVenda.getText().isEmpty() == true){
             
-            Produtos produto = new Produtos();
-            produto.ConsultarProdutos();
-            
-            produto.AlterarProduto(jTFNome.getText(), jTFMarca.getText(), jTFMedida.getText(), Float.parseFloat(preco), Integer.parseInt(jFTFQuantidade.getText()), jTextAreaDescricao.getText(), jCBAtivo.getSelectedIndex(), numero);
+            UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
+            JOptionPane.showMessageDialog(null, "É obrigatório o preenchimento de todos os campos.\nExceto: Descrição\n\n\n\n");
+  
+        }else{
+            try {
+                Produtos produto = new Produtos();
+                produto.ConsultarProdutos();
 
-            
-            TelaAdministrador Janela = new TelaAdministrador();
-            //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                produto.AlterarProduto(jTFNome.getText(), jTFMarca.getText(), jTFMedida.getText(), Float.parseFloat(jFTFValorVenda.getText().replaceAll(",",".")), Integer.parseInt(jFTFQuantidade.getText()), jTextAreaDescricao.getText(), jCBAtivo.getSelectedIndex(), numero);
 
-            Toolkit tk = Toolkit.getDefaultToolkit();
-            Dimension d = tk.getScreenSize();
+                TelaAdministrador Janela = new TelaAdministrador();
+                //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-            Janela.setSize(d.width + 8, d.height - 37);
-            Janela.setResizable(false);
-            Janela.MudarAba(2);
+                Toolkit tk = Toolkit.getDefaultToolkit();
+                Dimension d = tk.getScreenSize();
 
-            Janela.show();
-            dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                Janela.setSize(d.width + 8, d.height - 37);
+                Janela.setResizable(false);
+                Janela.MudarAba(2);
+
+                Janela.show();
+                dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jBntSalvarActionPerformed
 
@@ -380,7 +359,6 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
     private javax.swing.JButton jBntCancelar;
     private javax.swing.JButton jBntSalvar;
     private javax.swing.JComboBox<String> jCBAtivo;
-    private javax.swing.JFormattedTextField jFTFIDProduto;
     private javax.swing.JFormattedTextField jFTFQuantidade;
     private javax.swing.JFormattedTextField jFTFValorVenda;
     private javax.swing.JLabel jLbAtivo;
@@ -389,7 +367,6 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
     private javax.swing.JLabel jLbEscondeLinha2;
     private javax.swing.JLabel jLbEscondeLinha3;
     private javax.swing.JLabel jLbEscondeLinha4;
-    private javax.swing.JLabel jLbIDProduto;
     private javax.swing.JLabel jLbMarca;
     private javax.swing.JLabel jLbMedida;
     private javax.swing.JLabel jLbNome;
@@ -438,50 +415,40 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
         jLbTitulo.setBackground(corFundo4);
          
         
-        jLbIDProduto.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 30, 9),45 + 15 + 70 + 4,30);
-        jFTFIDProduto.setBounds(CentralizarLargura(116, 18,2)+ 45 + 15,CentralizarAltura(30, 30, 9),70,30);
-        jLbIDProduto.setBackground(corFundo4);
-        jLbIDProduto.setOpaque(true);
-        jFTFIDProduto.setBackground(corFundo4);
-        jFTFIDProduto.setOpaque(true);
-        
-        // conta prara saber aonde deve colocar a nome para q fique centralizado entre o produto e marca
-        int espacoNome = (((largura - CentralizarLargura(116, 18, 2) - 70 - 15 - 390 - 4)- (CentralizarLargura(116, 18,2)+ 45 + 15 + 70 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 45 + 15 + 70 + 4)) - (70 + 15 + 390 + 4)/2;
-        
-        jLbNome.setBounds(espacoNome,CentralizarAltura(30, 30, 9), 70 + 15 + 390 + 4, 30);
-        jTFNome.setBounds(espacoNome + 70 + 15,CentralizarAltura(30, 30, 9), 390, 30);
+        jLbNome.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 30, 9),140 + 370 + 15 + 4,30);
+        jTFNome.setBounds(CentralizarLargura(116, 18,2)+ 70 + 15,CentralizarAltura(30, 30, 9),440,30);
         jLbNome.setBackground(corFundo4);
         jLbNome.setOpaque(true);
         jTFNome.setBackground(corFundo4);
         jTFNome.setOpaque(true);
         
         
-        jLbMarca.setBounds(largura - CentralizarLargura(116, 18,2) - 70 - 15 - 390 - 4, CentralizarAltura(30, 30, 9),70 + 15 + 390 + 4,30);
-        jTFMarca.setBounds(largura - CentralizarLargura(116, 18,2) - 390 - 4, CentralizarAltura(30, 30, 9),390,30); 
+        jLbMarca.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(30, 30, 9),140 + 370 + 15 + 4,30);
+        jTFMarca.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 70 + 15, CentralizarAltura(30, 30, 9),440,30); 
         jLbMarca.setBackground(corFundo4);
         jLbMarca.setOpaque(true);
         jTFMarca.setBackground(corFundo4);
         jTFMarca.setOpaque(true);
         
-        jLbMedida.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 30, 12),80 + 15 + 190 + 4,30);
-        jTFMedida.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15,CentralizarAltura(30, 30, 12),190,30);
+        jLbMedida.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 30, 12),80 + 15 + 160 + 4,30);
+        jTFMedida.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15,CentralizarAltura(30, 30, 12),160,30);
         jLbMedida.setBackground(corFundo4);
         jLbMedida.setOpaque(true);
         jTFMedida.setBackground(corFundo4);
         jTFMedida.setOpaque(true);
         
         // conta prara saber aonde deve colocar a ValorVenda para q fique centralizado entre o medida e quantidade
-        int espacoValorVenda = (((largura - CentralizarLargura(116, 18, 2) - 80 - 15 - 100 - 4)- (CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4)) - (110 + 15 + 150 + 4) - (110 + 15 + 150 + 4))/3;
+        int espacoValorVenda = (((largura - CentralizarLargura(116, 18, 2) - 80 - 15 - 100 - 4)- (CentralizarLargura(116, 18,2)+ 80 + 15 + 160 + 4)) - (110 + 15 + 150 + 4) - (110 + 15 + 130 + 4))/3;
         
-        jLbValorVenda.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda, CentralizarAltura(30, 30, 12),110 + 15 + 150 + 4,30);
-        jFTFValorVenda.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda + 110 + 15, CentralizarAltura(30, 30, 12),150,30);
+        jLbValorVenda.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 160 + 4 + espacoValorVenda, CentralizarAltura(30, 30, 12),110 + 15 + 150 + 4,30);
+        jFTFValorVenda.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 160 + 4 + espacoValorVenda + 110 + 15, CentralizarAltura(30, 30, 12),150,30);
         jLbValorVenda.setBackground(corFundo4);
         jLbValorVenda.setOpaque(true);
         jFTFValorVenda.setBackground(corFundo4);
         jFTFValorVenda.setOpaque(true);
         
-        jLbQuantidade.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda+110+15+150+4 + espacoValorVenda, CentralizarAltura(30, 30, 12),115 + 15 + 150 + 4,30);
-        jFTFQuantidade.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda+110+15+150+4 + espacoValorVenda +115+15, CentralizarAltura(30, 30, 12),150,30);
+        jLbQuantidade.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 160 + 4 + espacoValorVenda+110+15+150+4 + espacoValorVenda, CentralizarAltura(30, 30, 12),115 + 15 + 130 + 4,30);
+        jFTFQuantidade.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 160 + 4 + espacoValorVenda+110+15+150+4 + espacoValorVenda +115+15, CentralizarAltura(30, 30, 12),130,30);
         jLbQuantidade.setBackground(corFundo4);
         jLbQuantidade.setOpaque(true);
         jFTFQuantidade.setBackground(corFundo4);
@@ -534,7 +501,7 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
         
         produto.ConsultarProdutos();
         
-        jFTFIDProduto.setText(produto.getIDProduto().get(num) + "");
+        
         jTFNome.setText(produto.getNome().get(num));
         jTFMarca.setText(produto.getMarca().get(num));
         

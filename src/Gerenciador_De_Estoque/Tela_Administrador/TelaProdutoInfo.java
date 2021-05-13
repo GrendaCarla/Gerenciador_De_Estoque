@@ -460,25 +460,25 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         jTFMarca.setBackground(corFundo4);
         jTFMarca.setOpaque(true);
         
-        jLbMedida.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 30, 12),80 + 15 + 190 + 4,30);
-        jTFMedida.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15,CentralizarAltura(30, 30, 12),190,30);
+        jLbMedida.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 30, 12),80 + 15 + 160 + 4,30);
+        jTFMedida.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15,CentralizarAltura(30, 30, 12),160,30);
         jLbMedida.setBackground(corFundo4);
         jLbMedida.setOpaque(true);
         jTFMedida.setBackground(corFundo4);
         jTFMedida.setOpaque(true);
         
         // conta prara saber aonde deve colocar a ValorVenda para q fique centralizado entre o medida e quantidade
-        int espacoValorVenda = (((largura - CentralizarLargura(116, 18, 2) - 80 - 15 - 100 - 4)- (CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4)) - (110 + 15 + 150 + 4) - (110 + 15 + 150 + 4))/3;
+        int espacoValorVenda = (((largura - CentralizarLargura(116, 18, 2) - 80 - 15 - 100 - 4)- (CentralizarLargura(116, 18,2)+ 80 + 15 + 160 + 4)) - (110 + 15 + 150 + 4) - (110 + 15 + 130 + 4))/3;
         
-        jLbValorVenda.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda, CentralizarAltura(30, 30, 12),110 + 15 + 150 + 4,30);
-        jTFValorVenda.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda + 110 + 15, CentralizarAltura(30, 30, 12),150,30);
+        jLbValorVenda.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 160 + 4 + espacoValorVenda, CentralizarAltura(30, 30, 12),110 + 15 + 150 + 4,30);
+        jTFValorVenda.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 160 + 4 + espacoValorVenda + 110 + 15, CentralizarAltura(30, 30, 12),150,30);
         jLbValorVenda.setBackground(corFundo4);
         jLbValorVenda.setOpaque(true);
         jTFValorVenda.setBackground(corFundo4);
         jTFValorVenda.setOpaque(true);
         
-        jLbQuantidade.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda+110+15+150+4 + espacoValorVenda, CentralizarAltura(30, 30, 12),115 + 15 + 150 + 4,30);
-        jFTFQuantidade.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 190 + 4 + espacoValorVenda+110+15+150+4 + espacoValorVenda +115+15, CentralizarAltura(30, 30, 12),150,30);
+        jLbQuantidade.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 160 + 4 + espacoValorVenda+110+15+150+4 + espacoValorVenda, CentralizarAltura(30, 30, 12),115 + 15 + 130 + 4,30);
+        jFTFQuantidade.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15 + 160 + 4 + espacoValorVenda+110+15+150+4 + espacoValorVenda +115+15, CentralizarAltura(30, 30, 12),130,30);
         jLbQuantidade.setBackground(corFundo4);
         jLbQuantidade.setOpaque(true);
         jFTFQuantidade.setBackground(corFundo4);
