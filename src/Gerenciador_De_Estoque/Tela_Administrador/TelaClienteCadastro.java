@@ -9,7 +9,6 @@ import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 
 public final class TelaClienteCadastro extends javax.swing.JFrame {
 
@@ -77,11 +76,6 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
 
         jTFPais.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFPais.setBorder(null);
-        jTFPais.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFPaisActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFPais);
         jTFPais.setBounds(620, 110, 10, 22);
 
@@ -92,11 +86,6 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
 
         jTFDataDeNascimento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFDataDeNascimento.setBorder(null);
-        jTFDataDeNascimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFDataDeNascimentoActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFDataDeNascimento);
         jTFDataDeNascimento.setBounds(680, 70, 59, 22);
 
@@ -112,11 +101,6 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
 
         jTFNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFNome.setBorder(null);
-        jTFNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFNomeActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFNome);
         jTFNome.setBounds(640, 10, 59, 22);
 
@@ -127,11 +111,6 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
 
         jTFEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFEstado.setBorder(null);
-        jTFEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFEstadoActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFEstado);
         jTFEstado.setBounds(630, 140, 0, 22);
 
@@ -275,22 +254,6 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTFNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFNomeActionPerformed
-
-    private void jTFDataDeNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFDataDeNascimentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFDataDeNascimentoActionPerformed
-
-    private void jTFEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFEstadoActionPerformed
-
-    private void jTFPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFPaisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFPaisActionPerformed
 
     private void jBntCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCadastrarActionPerformed
         Clientes clientes = new Clientes();

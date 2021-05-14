@@ -83,51 +83,26 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
 
         jTFPais.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFPais.setBorder(null);
-        jTFPais.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFPaisActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFPais);
         jTFPais.setBounds(240, 530, 258, 22);
 
         jTFEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFEstado.setBorder(null);
-        jTFEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFEstadoActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFEstado);
         jTFEstado.setBounds(580, 560, 91, 22);
 
         jTFCidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFCidade.setBorder(null);
-        jTFCidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFCidadeActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFCidade);
         jTFCidade.setBounds(790, 560, 327, 22);
 
         jTFBairro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFBairro.setBorder(null);
-        jTFBairro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFBairroActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFBairro);
         jTFBairro.setBounds(270, 560, 256, 22);
 
         jTFRua.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFRua.setBorder(null);
-        jTFRua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFRuaActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFRua);
         jTFRua.setBounds(150, 540, 327, 22);
 
@@ -139,63 +114,33 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
 
         jTFTelefone1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFTelefone1.setBorder(null);
-        jTFTelefone1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFTelefone1ActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFTelefone1);
         jTFTelefone1.setBounds(340, 300, 258, 22);
 
         jTFTelefone2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFTelefone2.setBorder(null);
-        jTFTelefone2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFTelefone2ActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFTelefone2);
         jTFTelefone2.setBounds(810, 300, 258, 22);
 
         jTFEmail2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFEmail2.setBorder(null);
         jTFEmail2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTFEmail2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFEmail2ActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFEmail2);
         jTFEmail2.setBounds(790, 350, 258, 22);
 
         jTFEmail1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFEmail1.setBorder(null);
         jTFEmail1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTFEmail1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFEmail1ActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFEmail1);
         jTFEmail1.setBounds(320, 350, 258, 22);
 
         jTFNomeFantasia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFNomeFantasia.setBorder(null);
-        jTFNomeFantasia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFNomeFantasiaActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFNomeFantasia);
         jTFNomeFantasia.setBounds(370, 130, 280, 30);
 
         jTFRazaoSocial.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFRazaoSocial.setBorder(null);
-        jTFRazaoSocial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFRazaoSocialActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFRazaoSocial);
         jTFRazaoSocial.setBounds(690, 130, 308, 30);
 
@@ -380,50 +325,6 @@ public final class TelaFornecedorCadastro extends javax.swing.JFrame {
         
        
     }//GEN-LAST:event_jBntCancelarActionPerformed
-
-    private void jTFRazaoSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRazaoSocialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFRazaoSocialActionPerformed
-
-    private void jTFNomeFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeFantasiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFNomeFantasiaActionPerformed
-
-    private void jTFEmail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEmail1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFEmail1ActionPerformed
-
-    private void jTFEmail2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEmail2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFEmail2ActionPerformed
-
-    private void jTFTelefone2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelefone2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFTelefone2ActionPerformed
-
-    private void jTFTelefone1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelefone1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFTelefone1ActionPerformed
-
-    private void jTFRuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRuaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFRuaActionPerformed
-
-    private void jTFBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFBairroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFBairroActionPerformed
-
-    private void jTFCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFCidadeActionPerformed
-
-    private void jTFEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFEstadoActionPerformed
-
-    private void jTFPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFPaisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFPaisActionPerformed
 
 
     public static void main(String args[]) {

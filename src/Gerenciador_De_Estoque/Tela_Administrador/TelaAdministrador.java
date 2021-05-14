@@ -9,10 +9,13 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -230,11 +233,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
         JTabbedPane.addTab("Fornecedores", JP_Fornecedores);
 
-        JP_Compras.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JP_ComprasMouseClicked(evt);
-            }
-        });
         JP_Compras.setLayout(null);
 
         jBntLupaCompra.setBackground(new java.awt.Color(255, 255, 255));
@@ -754,7 +752,28 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTCompraFocusGained
 
     private void jTCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTCompraMouseClicked
-        // TODO add your handling code here:
+        
+        if (evt.getClickCount() == 2) {
+            
+            try {
+                TelaCompraInfo infoCompra = new TelaCompraInfo();
+                //infoProduto.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                
+                Toolkit tk = Toolkit.getDefaultToolkit();
+                Dimension d = tk.getScreenSize();
+
+                infoCompra.setSize(d.width + 8, d.height - 37);
+                infoCompra.setResizable(false);
+
+                infoCompra.PegarDados(pesquisaCompra.get(jTCompra.getSelectedRow()));
+
+                infoCompra.show();
+                dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
     }//GEN-LAST:event_jTCompraMouseClicked
 
     private void jTFBarraDeBuscaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaCompraActionPerformed
@@ -768,22 +787,23 @@ public class TelaAdministrador extends javax.swing.JFrame {
                     pesquisaCompra.clear();
 
                     for(int i=0; i< compra.getIDCompra().size(); i++){
+                        System.out.println(Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false);
 
-                        if(("" + compra.getIDCompra().get(i)).equals(jTFBarraDeBuscaCompra.getText().toLowerCase()) || 
-                           comparaStrings(fornecedor.getNomeFantasia().get(compra.getIDFornecedor().get(i)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.65 || 
-                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("/")) ||
-                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("-")) ||
-                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.7 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals(" ")) ||
-                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 1 && jTFBarraDeBuscaCompra.getText().length() == 4) ||
-                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("/")) ||
-                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("-")) ||
-                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals(" ")) ||
-                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaCompra.getText().length() == 8) ||
-                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals("/")) ||
-                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals("-")) ||
-                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals(" ")) ||
-                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 10) ||
-                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.77 && jTFBarraDeBuscaCompra.getText().length() == 14)){
+                        if((("" + compra.getIDCompra().get(i)).equals(jTFBarraDeBuscaCompra.getText().toLowerCase()) && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) || 
+                           comparaStrings(fornecedor.getNomeFantasia().get(fornecedor.getIDFornecedor().indexOf(compra.getIDFornecedor().get(i))).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.65 || 
+                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.7 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 1 && jTFBarraDeBuscaCompra.getText().length() == 4 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaCompra.getText().length() == 8 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 10 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                           (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.77 && jTFBarraDeBuscaCompra.getText().length() == 14 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false)){
 
                            pesquisaCompra.add(i);
                         }
@@ -834,22 +854,23 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 pesquisaCompra.clear();
                 
                 for(int i=0; i< compra.getIDCompra().size(); i++){
+                    System.out.println(Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false);
                     
-                    if(("" + compra.getIDCompra().get(i)).equals(jTFBarraDeBuscaCompra.getText().toLowerCase()) || 
-                       comparaStrings(fornecedor.getNomeFantasia().get(compra.getIDFornecedor().get(i)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.65 || 
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("/")) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("-")) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.7 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals(" ")) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 1 && jTFBarraDeBuscaCompra.getText().length() == 4) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("/")) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("-")) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals(" ")) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaCompra.getText().length() == 8) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals("/")) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals("-")) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals(" ")) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 10) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.77 && jTFBarraDeBuscaCompra.getText().length() == 14)){
+                    if((("" + compra.getIDCompra().get(i)).equals(jTFBarraDeBuscaCompra.getText().toLowerCase()) && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) || 
+                       comparaStrings(fornecedor.getNomeFantasia().get(fornecedor.getIDFornecedor().indexOf(compra.getIDFornecedor().get(i))).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.65 || 
+                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.7 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 1 && jTFBarraDeBuscaCompra.getText().length() == 4 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaCompra.getText().length() == 8 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 10 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
+                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.77 && jTFBarraDeBuscaCompra.getText().length() == 14 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false)){
 
                        pesquisaCompra.add(i);
                     }
@@ -863,30 +884,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jBntLupaCompraActionPerformed
-
-    private void JP_ComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JP_ComprasMouseClicked
-        /*if (evt.getClickCount() == 2) {
-            
-            try {
-                TelaCompraInfo infoCompra = new TelaCompraInfo();
-                //infoCompra.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                
-                Toolkit tk = Toolkit.getDefaultToolkit();
-                Dimension d = tk.getScreenSize();
-
-                infoCompra.setSize(d.width + 8, d.height - 37);
-                infoCompra.setResizable(false);
-
-                infoCompra.PegarDados(pesquisaCompra.get(jTCompra.getSelectedRow()));
-
-                infoCompra.show();
-                dispose();
-            } catch (SQLException ex) {
-                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }*/
-    }//GEN-LAST:event_JP_ComprasMouseClicked
 
     public static void main(String args[]) {
         
@@ -906,8 +903,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
        
 
         /* Create and display the form */
@@ -958,6 +953,14 @@ public class TelaAdministrador extends javax.swing.JFrame {
     public double comparaStrings(String stringA, String stringB) {
         SmithWatermanGotoh algorithm = new SmithWatermanGotoh();
         return algorithm.getSimilarity(stringA, stringB);
+    }
+    
+    
+    public String FormataFloat(float num){
+        
+        NumberFormat formatter = new DecimalFormat("0.00");
+        return (formatter.format(num));
+        
     }
     
     public void corDeFundo() {
@@ -1186,7 +1189,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             ativo = produto.getAtivo().get(pesquisaProduto.get(i)) == 1 ? "Ativo" : "Inativo";
 
             DefaultTableModel model = (DefaultTableModel) jTProduto.getModel();
-            model.addRow(new Object[]{"" + produto.getIDProduto().get(pesquisaProduto.get(i)), " " + produto.getNome().get(pesquisaProduto.get(i)), " " + produto.getMarca().get(pesquisaProduto.get(i)), " " + produto.getMedida().get(pesquisaProduto.get(i)), " " + produto.getQuantidade().get(pesquisaProduto.get(i)), " " + produto.getValorVenda().get(pesquisaProduto.get(i)), " " + ativo});
+            model.addRow(new Object[]{"" + produto.getIDProduto().get(pesquisaProduto.get(i)), " " + produto.getNome().get(pesquisaProduto.get(i)), " " + produto.getMarca().get(pesquisaProduto.get(i)), produto.getMedida().get(pesquisaProduto.get(i)) + " ", "" + produto.getQuantidade().get(pesquisaProduto.get(i)), FormataFloat(produto.getValorVenda().get(pesquisaProduto.get(i))) + " ", "" + ativo});
         }
         
         

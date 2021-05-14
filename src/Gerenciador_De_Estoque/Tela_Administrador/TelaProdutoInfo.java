@@ -9,6 +9,8 @@ import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 public class TelaProdutoInfo extends javax.swing.JFrame {
 
@@ -76,11 +78,6 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         jTFMedida.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTFMedida.setBorder(null);
         jTFMedida.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTFMedida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFMedidaActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFMedida);
         jTFMedida.setBounds(340, 300, 258, 22);
 
@@ -89,11 +86,6 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         jTFAtivo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTFAtivo.setBorder(null);
         jTFAtivo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTFAtivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFAtivoActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFAtivo);
         jTFAtivo.setBounds(340, 300, 258, 22);
 
@@ -101,11 +93,6 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         jTFNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFNome.setBorder(null);
         jTFNome.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTFNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFNomeActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFNome);
         jTFNome.setBounds(690, 30, 280, 30);
 
@@ -113,11 +100,6 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         jTFMarca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFMarca.setBorder(null);
         jTFMarca.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTFMarca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFMarcaActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFMarca);
         jTFMarca.setBounds(140, 20, 308, 30);
 
@@ -126,11 +108,6 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         jTFValorVenda.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTFValorVenda.setBorder(null);
         jTFValorVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTFValorVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFValorVendaActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFValorVenda);
         jTFValorVenda.setBounds(690, 30, 280, 30);
 
@@ -140,11 +117,6 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         jFTFQuantidade.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jFTFQuantidade.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jFTFQuantidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jFTFQuantidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFTFQuantidadeActionPerformed(evt);
-            }
-        });
         getContentPane().add(jFTFQuantidade);
         jFTFQuantidade.setBounds(330, 100, 110, 22);
 
@@ -154,11 +126,6 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         jFTFIDProduto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jFTFIDProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jFTFIDProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jFTFIDProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFTFIDProdutoActionPerformed(evt);
-            }
-        });
         getContentPane().add(jFTFIDProduto);
         jFTFIDProduto.setBounds(330, 100, 110, 22);
 
@@ -276,22 +243,6 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTFMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFMedidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFMedidaActionPerformed
-
-    private void jTFNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFNomeActionPerformed
-
-    private void jTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFMarcaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFMarcaActionPerformed
-
-    private void jFTFQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFTFQuantidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFTFQuantidadeActionPerformed
-
     private void jBntCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCancelarActionPerformed
 
         try {
@@ -333,18 +284,6 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jBntAlterarActionPerformed
-
-    private void jFTFIDProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFTFIDProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFTFIDProdutoActionPerformed
-
-    private void jTFAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFAtivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFAtivoActionPerformed
-
-    private void jTFValorVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFValorVendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFValorVendaActionPerformed
 
     public static void main(String args[]) {
        
@@ -536,7 +475,7 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
         jTFMarca.setText(produto.getMarca().get(num));
         
         jTFMedida.setText(produto.getMedida().get(num));
-        jTFValorVenda.setText("" + produto.getValorVenda().get(num));
+        jTFValorVenda.setText("" + FormataFloat(produto.getValorVenda().get(num)));
         jFTFQuantidade.setText(produto.getQuantidade().get(num) + "");
         jTFAtivo.setText(produto.getAtivo().get(num) == 0 ? "Inativo" : "Ativo");
         if(produto.getAtivo().get(num) == 1){
@@ -546,6 +485,13 @@ public class TelaProdutoInfo extends javax.swing.JFrame {
             jTFAtivo.setForeground(corFonte);
         }
         jTextAreaDescricao.setText(produto.getDescricao().get(num));
+        
+    }
+    
+    public String FormataFloat(float num){
+        
+        NumberFormat formatter = new DecimalFormat("0.00");
+        return (formatter.format(num));
         
     }
     

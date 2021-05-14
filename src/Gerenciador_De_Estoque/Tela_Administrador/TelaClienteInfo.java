@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
-import javax.swing.JFrame;
 
 public class TelaClienteInfo extends javax.swing.JFrame {
 

@@ -44,26 +44,17 @@ public class Compras extends ItensComprados{
         
     }
     
-    /*public void AtualizarProdutos()throws SQLException{
+    public void AtualizarCompra(int idCompra, int idFornecedor, String dataHoraDaCompra , float valorTotal)throws SQLException{
         
        ConnectionFactory conect = new ConnectionFactory();
        
-       for(int i = 0; i < getIDProduto().size(); i++){
-            sql = "select Quantidade FROM Produtos where IDProduto = " + getIDProduto().get(i);
-            conect.sql = this.sql;
-            resultado = conect.retirar();
-            int valor = 0;
-                    
-            while (resultado.next()){
-                valor = resultado.getInt(1);
-            }
-            
-            sql = "UPDATE Produtos\n" + "SET Quantidade = " + (getQuantidade().get(i) + valor) + "\n" + "WHERE IDProduto = " + getIDProduto().get(i) + "\n";
-            conect.sql = this.sql;
-            conect.inserir();
-       }
-    }*/
+        sql = "UPDATE Compras\n" + "SET IDFornecedor = " + idFornecedor + ", DataHoraDaCompra = " + dataHoraDaCompra + ", ValorTotal = " + valorTotal + "\n" + "WHERE IDCompra = " + idCompra + "\n";
+        conect.sql = this.sql;
+        conect.inserir();
+       
+    }
     
+
     public void ConsultarCompras()throws SQLException{
         
         sql = "select * from Compras";
@@ -80,22 +71,9 @@ public class Compras extends ItensComprados{
             setValorTotal(resultado.getFloat(4));
         }
         
-        //ConsultarItem();
-    }
-  
-    public void LimparCompra(){
-       
-        this.IDCompra.clear();
-        this.IDFornecedor.clear();
-        this.DataHoraDaCompra.clear();
-        this.ValorTotal.clear();
-        
-        LimparItensComprados();
     }
     
-    
-     
-    /*public void ConsultarItem(int idCompra)throws SQLException{
+    public void ConsultarItem(int idCompra)throws SQLException{
         
         ConnectionFactory conect = new ConnectionFactory();
         
@@ -112,7 +90,28 @@ public class Compras extends ItensComprados{
             setQuantidade(resultado.getInt(4));
             setValorUnitario(resultado.getFloat(5));
         }
-    }*/
+    }
+    
+    public void DeletarItem(int idCompra)throws SQLException{
+        
+       ConnectionFactory conect = new ConnectionFactory();
+       
+        sql = "DELETE FROM ItensComprados \n" + "WHERE IDCompra = " + idCompra + "\n";
+        
+        conect.sql = this.sql;
+        conect.inserir();
+       
+    }
+  
+    public void LimparCompra(){
+       
+        this.IDCompra.clear();
+        this.IDFornecedor.clear();
+        this.DataHoraDaCompra.clear();
+        this.ValorTotal.clear();
+        
+        LimparItensComprados();
+    }
     
     
     //-----------------------------------------------------//

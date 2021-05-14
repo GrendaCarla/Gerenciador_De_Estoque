@@ -69,31 +69,16 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
         jTFMedida.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFMedida.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTFMedida.setBorder(null);
-        jTFMedida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFMedidaActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFMedida);
         jTFMedida.setBounds(340, 300, 258, 22);
 
         jTFNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFNome.setBorder(null);
-        jTFNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFNomeActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFNome);
         jTFNome.setBounds(690, 30, 280, 30);
 
         jTFMarca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFMarca.setBorder(null);
-        jTFMarca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFMarcaActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTFMarca);
         jTFMarca.setBounds(140, 20, 308, 30);
 
@@ -198,18 +183,6 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTFMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFMedidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFMedidaActionPerformed
-
-    private void jTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFMarcaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFMarcaActionPerformed
-
-    private void jTFNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFNomeActionPerformed
 
     private void jBntCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCancelarActionPerformed
 
@@ -380,10 +353,7 @@ public class TelaProdutoCadastro extends javax.swing.JFrame {
         jLbMedida.setOpaque(true);
         jTFMedida.setBackground(corFundo4);
         jTFMedida.setOpaque(true);
-        
-        // conta prara saber aonde deve colocar a ValorVenda para q fique centralizado entre o medida e quantidade
-        //int espacoValorVenda = (((largura - CentralizarLargura(116, 18, 2) - 115 - 15 - 200 - 4)- (CentralizarLargura(116, 18,2)+ 80 + 15 + 200 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 80 + 15 + 200 + 4)) - (70 + 15 + 200 + 4)/2;
-        
+       
         jLbValorVenda.setBounds(CentralizarLargura(116, 18,2) + 80 + 15 + 160 + 4 + 80, CentralizarAltura(30, 30, 12),110 + 15 + 150 + 4,30);
         jFTFValorVenda.setBounds(CentralizarLargura(116, 18,2) + 80 + 15 + 160 + 4 + 80 + 110 + 15, CentralizarAltura(30, 30, 12),150,30);
         jLbValorVenda.setBackground(corFundo4);

@@ -2,12 +2,13 @@ package Gerenciador_De_Estoque;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ItensComprados {
-    private ArrayList<ArrayList<Integer>> IDItemComprado = new ArrayList<ArrayList<Integer>>();
-    private ArrayList<ArrayList<Integer>> IDProduto = new ArrayList<ArrayList<Integer>>();
-    private ArrayList<ArrayList<Integer>> Quantidade = new ArrayList<ArrayList<Integer>>();
-    private ArrayList<ArrayList<Float>> ValorUnitario = new ArrayList<ArrayList<Float>>();
+    private List<Integer> IDItemComprado = new ArrayList<Integer>();
+    private List<Integer> IDProduto = new ArrayList<Integer>();
+    private List<Integer> Quantidade = new ArrayList<Integer>();
+    private List<Float> ValorUnitario = new ArrayList<Float>();
     
     String sql;
     ResultSet resultado;
@@ -23,36 +24,36 @@ public abstract class ItensComprados {
     
     //--------------------------------------------------------//
 
-    public ArrayList<ArrayList<Integer>> getIDItemComprado() {
+    public List<Integer> getIDItemComprado() {
         return IDItemComprado;
     }
 
-    public void setIDItemComprado(int num, ArrayList<Integer> IDItemComprado) {
-        this.IDItemComprado.add(num, IDItemComprado);
+    public void setIDItemComprado(int IDItemComprado) {
+        this.IDItemComprado.add(IDItemComprado);
     }
 
-    public ArrayList<ArrayList<Integer>> getIDProduto() {
+    public List<Integer> getIDProduto() {
         return IDProduto;
     }
 
-    public void setIDProduto(int num, ArrayList<Integer> IDProduto) {
-        this.IDProduto.add(num, IDProduto);
+    public void setIDProduto(int IDProduto) {
+        this.IDProduto.add(IDProduto);
     }
 
-    public ArrayList<ArrayList<Integer>> getQuantidade() {
+    public List<Integer> getQuantidade() {
         return Quantidade;
     }
 
-    public void setQuantidade(int num, ArrayList<Integer> Quantidade) {
-        this.Quantidade.add(num, Quantidade);
+    public void setQuantidade(int Quantidade) {
+        this.Quantidade.add(Quantidade);
     }
 
-    public ArrayList<ArrayList<Float>> getValorUnitario() {
+    public List<Float> getValorUnitario() {
         return ValorUnitario;
     }
 
-    public void setValorUnitario(int num, ArrayList<Float> ValorUnitario) {
-        this.ValorUnitario.add(num, ValorUnitario);
+    public void setValorUnitario(float ValorUnitario) {
+        this.ValorUnitario.add(ValorUnitario);
     }
     
 }
