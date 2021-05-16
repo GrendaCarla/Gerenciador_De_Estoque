@@ -1,4 +1,3 @@
-
 package Gerenciador_De_Estoque.Tela_Administrador;
 
 import Gerenciador_De_Estoque.Clientes;
@@ -14,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
-public final class TelaClienteCadastro extends javax.swing.JFrame {
+public class TelaClienteAlterar extends javax.swing.JFrame {
 
     // resolução tela pc
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -30,15 +29,17 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
     Color corFundo5 = new Color(5,180,145);
     Color corFundo6 = new Color(129,88,119);
     
-    public TelaClienteCadastro() {
-        initComponents();  
+    int numero;
+    
+    public TelaClienteAlterar() {
+        initComponents();
         
         corDeFundo();
         TamanhoDoFundo();
         AlinhamentoDosItens();
     }
+
     
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -80,7 +81,6 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(1200, 465));
         getContentPane().setLayout(null);
 
         jLbData1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -232,7 +232,7 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jLbTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jLbTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbTitulo.setText("CADASTRAR FORNECEDOR");
+        jLbTitulo.setText("ALTERAR FORNECEDOR");
         jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
         jLbTitulo.setOpaque(true);
         getContentPane().add(jLbTitulo);
@@ -317,6 +317,18 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTFData1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFData1KeyReleased
+        if (jTFData1.getText().length() == 2) {
+            jTFData2.requestFocus();
+        }
+    }//GEN-LAST:event_jTFData1KeyReleased
+
+    private void jTFData2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFData2KeyReleased
+        if (jTFData2.getText().length() == 2) {
+            jTFData3.requestFocus();
+        }
+    }//GEN-LAST:event_jTFData2KeyReleased
+
     private void jBntCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCancelarActionPerformed
 
         try {
@@ -328,13 +340,12 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
             Janela.setSize(d.width + 8, d.height - 37);
             Janela.setResizable(false);
             Janela.MudarAba(3);
-            
+
             Janela.show();
             dispose();
         } catch (SQLException ex) {
             Logger.getLogger(TelaClienteCadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jBntCancelarActionPerformed
 
     private void jBntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSalvarActionPerformed
@@ -345,9 +356,11 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
 
         }else{
             try {
+                
                 Clientes cliente = new Clientes();
+                cliente.ConsultarClientes();
 
-                cliente.CadastrarCliente(jTFPais.getText(), jTFEstado.getText(), jTFCidade.getText(), jTFBairro.getText(), jTFRua.getText(), jFTFNumero.getText(), jTFTelefone1.getText(), jTFTelefone2.getText(), jTFEmail1.getText(), jTFEmail2.getText(), (jFTFCPF.getText().substring(0, 3) + jFTFCPF.getText().substring(6, 9) + jFTFCPF.getText().substring(12, 15) + jFTFCPF.getText().substring(18, 20)), (jTFData3.getText() + "-" + jTFData2.getText()  + "-" + jTFData1.getText()), jTFNome.getText());
+                cliente.AlterarCliente(jTFPais.getText(), jTFEstado.getText(), jTFCidade.getText(), jTFBairro.getText(), jTFRua.getText(), jFTFNumero.getText(), jTFTelefone1.getText(), jTFTelefone2.getText(), jTFEmail1.getText(), jTFEmail2.getText(), (jFTFCPF.getText().substring(0, 3) + jFTFCPF.getText().substring(6, 9) + jFTFCPF.getText().substring(12, 15) + jFTFCPF.getText().substring(18, 20)), (jTFData3.getText() + "-" + jTFData2.getText()  + "-" + jTFData1.getText()), jTFNome.getText(), numero);
             } catch (SQLException ex) {
                 Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -371,25 +384,8 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBntSalvarActionPerformed
 
-    private void jTFData2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFData2KeyReleased
-        if (jTFData2.getText().length() == 2) {
-            jTFData3.requestFocus();
-        }
-    }//GEN-LAST:event_jTFData2KeyReleased
-
-    private void jTFData1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFData1KeyReleased
-        if (jTFData1.getText().length() == 2) {
-            jTFData2.requestFocus();
-        }
-    }//GEN-LAST:event_jTFData1KeyReleased
-
-    
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -398,20 +394,19 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaClienteCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClienteAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaClienteCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClienteAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaClienteCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClienteAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaClienteCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClienteAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaClienteCadastro().setVisible(true);
+                new TelaClienteAlterar().setVisible(true);
             }
         });
     }
@@ -516,7 +511,6 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jTFData3.setBackground(corFundo4);
         jTFData3.setOpaque(true);
         
-        
         jLbCPF.setBounds(espacodata,CentralizarAltura(30, 120, 34),60 + 170 + 15 + 15,30);
         jFTFCPF.setBounds(espacodata + 60 + 15,CentralizarAltura(30, 120, 34),170,30);
         jLbCPF.setBackground(corFundo4);
@@ -610,11 +604,38 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jBntSalvar.setOpaque(true);
         jBntSalvar.setForeground(corFundo3);
         
-        jBntCancelar.setBounds(largura - CentralizarLargura(116, 18,3) - 150,CentralizarAltura(30, 30, 24),150,40);
+        jBntCancelar.setBounds(largura - CentralizarLargura(116, 18, 3) - 150, CentralizarAltura(30, 30, 24),150,40);
         jBntCancelar.setBackground(corFundo6);
         jBntCancelar.setOpaque(true);
         jBntCancelar.setForeground(corFundo3);
         
     }
     
+    public void PegarDados(int num) throws SQLException {
+        numero = num;
+                
+        Clientes cliente = new Clientes();
+        
+        cliente.ConsultarClientes();
+        
+        jTFNome.setText(cliente.getNome().get(num));
+        jTFData1.setText((cliente.getDataDeNascimento().get(num)).substring(8, 10));
+        jTFData2.setText((cliente.getDataDeNascimento().get(num)).substring(5, 7));
+        jTFData3.setText((cliente.getDataDeNascimento().get(num)).substring(0, 4));
+        jFTFCPF.setText(cliente.getCPF().get(num));
+        
+        jTFTelefone1.setText(cliente.getTelefone1().get(num));
+        jTFTelefone2.setText(cliente.getTelefone2().get(num));
+        jTFEmail1.setText(cliente.getEmail1().get(num));
+        jTFEmail2.setText(cliente.getEmail2().get(num));
+        
+        jTFPais.setText(cliente.getPais().get(num));
+        jTFEstado.setText(cliente.getEstado().get(num));
+        jTFCidade.setText(cliente.getCidade().get(num));
+        jTFBairro.setText(cliente.getBairro().get(num));
+        jTFRua.setText(cliente.getRua().get(num));
+        jFTFNumero.setText(cliente.getNumero().get(num));
+        
+    }
+
 }

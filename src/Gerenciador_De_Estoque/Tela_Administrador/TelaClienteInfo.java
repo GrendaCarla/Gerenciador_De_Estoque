@@ -307,7 +307,7 @@ public class TelaClienteInfo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBntAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntAlterarActionPerformed
-        /*try {
+        try {
             TelaClienteAlterar alterCliente = new TelaClienteAlterar();
             //principalFornededor.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -323,7 +323,7 @@ public class TelaClienteInfo extends javax.swing.JFrame {
             dispose();
         } catch (SQLException ex) {
             Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
     }//GEN-LAST:event_jBntAlterarActionPerformed
 
     private void jBntVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntVoltarActionPerformed
