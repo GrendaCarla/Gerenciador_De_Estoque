@@ -43,6 +43,8 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLbData1 = new javax.swing.JLabel();
+        jLbData2 = new javax.swing.JLabel();
         jTFPais = new javax.swing.JTextField();
         jTFEstado = new javax.swing.JTextField();
         jTFCidade = new javax.swing.JTextField();
@@ -70,8 +72,6 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jLbEmail1 = new javax.swing.JLabel();
         jLbEmail2 = new javax.swing.JLabel();
         jLbNome = new javax.swing.JLabel();
-        jLbData1 = new javax.swing.JLabel();
-        jLbData2 = new javax.swing.JLabel();
         jLbDataDeNascimento = new javax.swing.JLabel();
         jLbCPF = new javax.swing.JLabel();
         jBntCancelar = new javax.swing.JButton();
@@ -82,6 +82,18 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1200, 465));
         getContentPane().setLayout(null);
+
+        jLbData1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbData1.setText("/");
+        jLbData1.setToolTipText("");
+        getContentPane().add(jLbData1);
+        jLbData1.setBounds(240, 120, 60, 22);
+
+        jLbData2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbData2.setText("/");
+        jLbData2.setToolTipText("");
+        getContentPane().add(jLbData2);
+        jLbData2.setBounds(270, 110, 60, 22);
 
         jTFPais.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFPais.setBorder(null);
@@ -248,30 +260,18 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jLbNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbNome.setText("  Nome:");
         getContentPane().add(jLbNome);
-        jLbNome.setBounds(230, 130, 140, 22);
-
-        jLbData1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbData1.setText("/");
-        jLbData1.setToolTipText("");
-        getContentPane().add(jLbData1);
-        jLbData1.setBounds(340, 150, 60, 22);
-
-        jLbData2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbData2.setText("/");
-        jLbData2.setToolTipText("");
-        getContentPane().add(jLbData2);
-        jLbData2.setBounds(340, 150, 60, 22);
+        jLbNome.setBounds(230, 130, 70, 22);
 
         jLbDataDeNascimento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbDataDeNascimento.setText("  Data de Nascimento:");
         getContentPane().add(jLbDataDeNascimento);
-        jLbDataDeNascimento.setBounds(630, 130, 120, 22);
+        jLbDataDeNascimento.setBounds(500, 130, 180, 22);
 
         jLbCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbCPF.setText("  CPF:");
         jLbCPF.setToolTipText("");
         getContentPane().add(jLbCPF);
-        jLbCPF.setBounds(340, 150, 60, 22);
+        jLbCPF.setBounds(170, 110, 60, 30);
 
         jBntCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBntCancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -337,7 +337,7 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
 
     private void jBntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSalvarActionPerformed
 
-        if(jTFPais.getText().isEmpty() == true || jTFEstado.getText().isEmpty() == true || jTFCidade.getText().isEmpty() == true || jTFBairro.getText().isEmpty() == true || jTFRua.getText().isEmpty() == true || jFTFNumero.getText().isEmpty() == true || jTFTelefone1.getText().isEmpty() == true || (jFTFCPF.getText().replaceAll(" ","")).length() != 11 || jTFData1.getText().isEmpty() == true || jTFData2.getText().isEmpty() == true || jTFData3.getText().isEmpty() == true || jTFNome.getText().isEmpty() == true){
+        if(jTFPais.getText().isEmpty() == true || jTFEstado.getText().isEmpty() == true || jTFCidade.getText().isEmpty() == true || jTFBairro.getText().isEmpty() == true || jTFRua.getText().isEmpty() == true || jFTFNumero.getText().isEmpty() == true || jTFTelefone1.getText().isEmpty() == true || jFTFCPF.getText().isEmpty() == true || jTFData1.getText().isEmpty() == true || jTFData2.getText().isEmpty() == true || jTFData3.getText().isEmpty() == true || jTFNome.getText().isEmpty() == true){
             UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
             JOptionPane.showMessageDialog(null, "É obrigatório o preenchimento de todos os campos.\nExceto: Telefone 2, E-mail 1 e E-mail 2\n\n\n\n");
 
@@ -345,7 +345,7 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
             try {
                 Clientes cliente = new Clientes();
 
-                cliente.CadastrarCliente(jTFPais.getText(), jTFEstado.getText(), jTFCidade.getText(), jTFBairro.getText(), jTFRua.getText(), jFTFNumero.getText(), jTFTelefone1.getText(), jTFTelefone2.getText(), jTFEmail1.getText(), jTFEmail2.getText(), (jFTFCPF.getText().substring(0, 3) + jFTFCPF.getText().substring(4, 7) + jFTFCPF.getText().substring(8, 11) + jFTFCPF.getText().substring(12, 14)), (jTFData3.getText() + "-" + jTFData1.getText()  + "-" + jTFData2.getText()), jTFNome.getText());
+                cliente.CadastrarCliente(jTFPais.getText(), jTFEstado.getText(), jTFCidade.getText(), jTFBairro.getText(), jTFRua.getText(), jFTFNumero.getText(), jTFTelefone1.getText(), jTFTelefone2.getText(), jTFEmail1.getText(), jTFEmail2.getText(), (jFTFCPF.getText().substring(0, 3) + jFTFCPF.getText().substring(4, 7) + jFTFCPF.getText().substring(8, 11) + jFTFCPF.getText().substring(12, 14)), (jTFData3.getText() + "-" + jTFData2.getText()  + "-" + jTFData1.getText()), jTFNome.getText());
             } catch (SQLException ex) {
                 Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -364,7 +364,7 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
                 Janela.show();
                 dispose();
             } catch (SQLException ex) {
-                Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaClienteCadastro.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jBntSalvarActionPerformed
@@ -483,22 +483,24 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jLbTitulo.setBackground(corFundo4);
          
         
-        jLbNome.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 4),140 + 370 + 15 + 4,30);
-        jTFNome.setBounds(CentralizarLargura(116, 18,2)+ 140 + 15,CentralizarAltura(30, 15, 4),370,30);
+        jLbNome.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 34),70 + 400 + 15 + 4,30);
+        jTFNome.setBounds(CentralizarLargura(116, 18,2)+ 70 + 15,CentralizarAltura(30, 120, 34),400,30);
         jLbNome.setBackground(corFundo4);
         jLbNome.setOpaque(true);
         jTFNome.setBackground(corFundo4);
         jTFNome.setOpaque(true);
         
-        // conta prara saber aonde deve colocar a data para q fique centralizado entre o fornecedor e a hora
-        int espacoData = (((largura - CentralizarLargura(116, 18,2) - 110 - 15 - 150 - 4)- (CentralizarLargura(116, 18,2)+ 110 + 15 + 300 + 4)) - (60 + 15 + 20 + 10 + 20 + 20) - (60 + 15 + 20 + 10 + 20 + 10 + 40 + 20))/3;
-       
-        jLbDataDeNascimento.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData,CentralizarAltura(30, 15, 3),60 + 15 + 20 + 10 + 20 + 10 + 40 + 20,30);
-        jTFData1.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15,CentralizarAltura(30, 15, 3),20,30);
-        jLbData1.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15 + 20 ,CentralizarAltura(30, 15, 3),10,30);
-        jTFData2.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15 + 20 + 10,CentralizarAltura(30, 15, 3),20,30);
-        jLbData2.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20,CentralizarAltura(30, 15, 3),10,30);
-        jTFData3.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20 + 10,CentralizarAltura(30, 15, 3),40,30);
+        
+        // conta prara saber aonde deve colocar o estado para q fique centralizado entre o pais e a cidade
+        int espacodata = (((largura - CentralizarLargura(116, 18,2)-180-15-20-10-20-10-40-20)- (CentralizarLargura(116, 18,2)+ 70 + 400 + 15 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 70 + 400 + 15 + 4)) - (60 + 150 + 15 + 4)/2;
+        
+        
+        jLbDataDeNascimento.setBounds(largura - CentralizarLargura(116, 18,2)-180-15-20-10-20-10-40-20, CentralizarAltura(30, 120, 34),180 + 15 + 20 + 10 + 20 + 10 + 40 + 20,30);
+        jTFData1.setBounds(largura - CentralizarLargura(116, 18,2)-20-10-20-10-40-20, CentralizarAltura(30, 120, 34),20,30);
+        jLbData1.setBounds(largura - CentralizarLargura(116, 18,2)-10-20-10-40-20, CentralizarAltura(30, 120, 34),10,30);
+        jTFData2.setBounds(largura - CentralizarLargura(116, 18,2)-20-10-40-20, CentralizarAltura(30, 120, 34),20,30);
+        jLbData2.setBounds(largura - CentralizarLargura(116, 18,2)-10-40-20, CentralizarAltura(30, 120, 34),10,30);
+        jTFData3.setBounds(largura - CentralizarLargura(116, 18,2)-40-20, CentralizarAltura(30, 120, 34),40,30);
         jLbDataDeNascimento.setBackground(corFundo4);
         jLbDataDeNascimento.setOpaque(true);
         jLbData1.setBackground(corFundo4);
@@ -512,8 +514,8 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jTFData3.setBackground(corFundo4);
         jTFData3.setOpaque(true);
         
-        jLbCPF.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 5),140 + 370 + 15 + 4,30);
-        jFTFCPF.setBounds(CentralizarLargura(116, 18,2)+ 60 + 15,CentralizarAltura(30, 15, 5),450,30);
+        jLbCPF.setBounds(espacodata,CentralizarAltura(30, 120, 34),60 + 150 + 15 + 4,30);
+        jFTFCPF.setBounds(espacodata + 60 + 15,CentralizarAltura(30, 120, 34),150,30);
         jLbCPF.setBackground(corFundo4);
         jLbCPF.setOpaque(true);
         jFTFCPF.setBackground(corFundo4);
@@ -521,29 +523,29 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         
         // ----------------------------------------------------------------------------------------------------
         
-        jLbTelefone1.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 55),140 + 370 + 15 + 4,30);
-        jTFTelefone1.setBounds(CentralizarLargura(116, 18,2)+ 110 +15,CentralizarAltura(30, 120, 55),400,30);
+        jLbTelefone1.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 48),140 + 370 + 15 + 4,30);
+        jTFTelefone1.setBounds(CentralizarLargura(116, 18,2)+ 110 +15,CentralizarAltura(30, 120, 48),400,30);
         jLbTelefone1.setBackground(corFundo4);
         jLbTelefone1.setOpaque(true);
         jTFTelefone1.setBackground(corFundo4);
         jTFTelefone1.setOpaque(true);
         
-        jLbEmail1.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(30, 120, 55),140 + 370 + 15 + 4,30);
-        jTFEmail1.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 90 + 15, CentralizarAltura(30, 120, 55),420,30);
+        jLbEmail1.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(30, 120, 48),140 + 370 + 15 + 4,30);
+        jTFEmail1.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 90 + 15, CentralizarAltura(30, 120, 48),420,30);
         jLbEmail1.setBackground(corFundo4);
         jLbEmail1.setOpaque(true);
         jTFEmail1.setBackground(corFundo4);
         jTFEmail1.setOpaque(true);
         
-        jLbTelefone2.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 64),140 + 370 + 15 + 4,30);
-        jTFTelefone2.setBounds(CentralizarLargura(116, 18,2)+ 110 + 15,CentralizarAltura(30, 120, 64),400,30);
+        jLbTelefone2.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 58),140 + 370 + 15 + 4,30);
+        jTFTelefone2.setBounds(CentralizarLargura(116, 18,2)+ 110 + 15,CentralizarAltura(30, 120, 58),400,30);
         jLbTelefone2.setBackground(corFundo4);
         jLbTelefone2.setOpaque(true);
         jTFTelefone2.setBackground(corFundo4);
         jTFTelefone2.setOpaque(true);
         
-        jLbEmail2.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(30, 120, 64),140 + 370 + 15 + 4,30);
-        jTFEmail2.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 90 + 15, CentralizarAltura(30, 120, 64),420,30);
+        jLbEmail2.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(30, 120, 58),140 + 370 + 15 + 4,30);
+        jTFEmail2.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 90 + 15, CentralizarAltura(30, 120, 58),420,30);
         jLbEmail2.setBackground(corFundo4);
         jLbEmail2.setOpaque(true);
         jTFEmail2.setBackground(corFundo4);
@@ -551,8 +553,8 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         
         // ----------------------------------------------------------------------------------------------------
         
-        jLbPais.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 9),60 + 15 + 220 + 4,30);
-        jTFPais.setBounds(CentralizarLargura(116, 18,2)+ 60 + 15,CentralizarAltura(30, 15, 9),220,30);
+        jLbPais.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 72),60 + 15 + 220 + 4,30);
+        jTFPais.setBounds(CentralizarLargura(116, 18,2)+ 60 + 15,CentralizarAltura(30, 120, 72),220,30);
         jLbPais.setBackground(corFundo4);
         jLbPais.setOpaque(true);
         jTFPais.setBackground(corFundo4);
@@ -561,23 +563,23 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         // conta prara saber aonde deve colocar o estado para q fique centralizado entre o pais e a cidade
         int espacoEstado = (((largura - CentralizarLargura(116, 18, 2) - 80 - 15 - 270 - 4)- (CentralizarLargura(116, 18,2)+ 60 + 220 + 15 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 60 + 220 + 15 + 4)) - (80 + 15 + 270 + 4)/2;
         
-        jLbEstado.setBounds(espacoEstado,CentralizarAltura(30, 15, 9),80 + 15 + 270 + 4,30);
-        jTFEstado.setBounds(espacoEstado + 80+ 15,CentralizarAltura(30, 15, 9),270,30);
+        jLbEstado.setBounds(espacoEstado,CentralizarAltura(30, 120, 72),80 + 15 + 270 + 4,30);
+        jTFEstado.setBounds(espacoEstado + 80+ 15,CentralizarAltura(30, 120, 72),270,30);
         jLbEstado.setBackground(corFundo4);
         jLbEstado.setOpaque(true);
         jTFEstado.setBackground(corFundo4);
         jTFEstado.setOpaque(true);
         
-        jLbCidade.setBounds(largura - CentralizarLargura(116, 18, 2) - 80 - 15 - 270 - 4,CentralizarAltura(30, 15, 9),80 + 15 + 270 + 4,30);
-        jTFCidade.setBounds(largura - CentralizarLargura(116, 18, 2) - 270 - 4,CentralizarAltura(30, 15, 9),270,30);
+        jLbCidade.setBounds(largura - CentralizarLargura(116, 18, 2) - 80 - 15 - 270 - 4,CentralizarAltura(30, 120, 72),80 + 15 + 270 + 4,30);
+        jTFCidade.setBounds(largura - CentralizarLargura(116, 18, 2) - 270 - 4,CentralizarAltura(30, 120, 72),270,30);
         jLbCidade.setBackground(corFundo4);
         jLbCidade.setOpaque(true);
         jTFCidade.setBackground(corFundo4);
         jTFCidade.setOpaque(true);
         
         
-        jLbBairro.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 10),70 + 15 + 300 + 4,30);
-        jTFBairro.setBounds(CentralizarLargura(116, 18,2)+ 70 + 15,CentralizarAltura(30, 15, 10),300,30);
+        jLbBairro.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 82),70 + 15 + 300 + 4,30);
+        jTFBairro.setBounds(CentralizarLargura(116, 18,2)+ 70 + 15,CentralizarAltura(30, 120, 82),300,30);
         jLbBairro.setBackground(corFundo4);
         jLbBairro.setOpaque(true);
         jTFBairro.setBackground(corFundo4);
@@ -586,15 +588,15 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         // conta prara saber aonde deve colocar a rua para q fique centralizado entre o bairro e a numero
         int espacoRua = (((largura - CentralizarLargura(116, 18, 2) - 90 - 15 - 100 - 4)- (CentralizarLargura(116, 18,2)+ 70 + 15 + 300 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 70 + 15 + 300 + 4)) - (50 + 15 + 320 + 4)/2;
         
-        jLbRua.setBounds(espacoRua,CentralizarAltura(30, 15, 10),50 + 15 + 320 + 4,30);
-        jTFRua.setBounds(espacoRua + 50 + 15,CentralizarAltura(30, 15, 10),320,30);
+        jLbRua.setBounds(espacoRua,CentralizarAltura(30, 120, 82),50 + 15 + 320 + 4,30);
+        jTFRua.setBounds(espacoRua + 50 + 15,CentralizarAltura(30, 120, 82),320,30);
         jLbRua.setBackground(corFundo4);
         jLbRua.setOpaque(true);
         jTFRua.setBackground(corFundo4);
         jTFRua.setOpaque(true);
         
-        jLbNumero.setBounds(largura - CentralizarLargura(116, 18, 2) - 90 - 15 - 100 - 4,CentralizarAltura(30, 15, 10),90 + 15 + 100 + 4,30);
-        jFTFNumero.setBounds(largura - CentralizarLargura(116, 18, 2) - 100 - 4,CentralizarAltura(30, 15, 10),100,30);
+        jLbNumero.setBounds(largura - CentralizarLargura(116, 18, 2) - 90 - 15 - 100 - 4,CentralizarAltura(30, 120, 82),90 + 15 + 100 + 4,30);
+        jFTFNumero.setBounds(largura - CentralizarLargura(116, 18, 2) - 100 - 4,CentralizarAltura(30, 120, 82),100,30);
         jLbNumero.setBackground(corFundo4);
         jLbNumero.setOpaque(true);
         jFTFNumero.setBackground(corFundo4);
