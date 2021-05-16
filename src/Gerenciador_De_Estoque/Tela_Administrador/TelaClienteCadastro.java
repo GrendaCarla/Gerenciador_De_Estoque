@@ -5,10 +5,14 @@ import Gerenciador_De_Estoque.Clientes;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
 public final class TelaClienteCadastro extends javax.swing.JFrame {
 
@@ -27,7 +31,8 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
     Color corFundo6 = new Color(129,88,119);
     
     public TelaClienteCadastro() {
-        initComponents();      
+        initComponents();  
+        
         corDeFundo();
         TamanhoDoFundo();
         AlinhamentoDosItens();
@@ -39,34 +44,38 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
     private void initComponents() {
 
         jTFPais = new javax.swing.JTextField();
-        jTFCidade = new javax.swing.JTextField();
-        jTFDataDeNascimento = new javax.swing.JTextField();
-        jTFCPF = new javax.swing.JTextField();
-        jTFBairro = new javax.swing.JTextField();
-        jTFNome = new javax.swing.JTextField();
-        jTFRua = new javax.swing.JTextField();
         jTFEstado = new javax.swing.JTextField();
+        jTFCidade = new javax.swing.JTextField();
+        jTFBairro = new javax.swing.JTextField();
+        jTFRua = new javax.swing.JTextField();
+        jFTFNumero = new javax.swing.JFormattedTextField();
         jTFTelefone1 = new javax.swing.JTextField();
         jTFTelefone2 = new javax.swing.JTextField();
-        jTFEmail1 = new javax.swing.JTextField();
         jTFEmail2 = new javax.swing.JTextField();
-        jTFNumero = new javax.swing.JTextField();
-        jLbEmail1 = new javax.swing.JLabel();
-        jLbBairro = new javax.swing.JLabel();
-        jLbEmail2 = new javax.swing.JLabel();
-        jLbTelefone1 = new javax.swing.JLabel();
+        jTFEmail1 = new javax.swing.JTextField();
+        jTFNome = new javax.swing.JTextField();
+        jTFData1 = new javax.swing.JFormattedTextField();
+        jTFData2 = new javax.swing.JFormattedTextField();
+        jTFData3 = new javax.swing.JFormattedTextField();
+        jFTFCPF = new javax.swing.JFormattedTextField();
+        jLbPais = new javax.swing.JLabel();
         jLbEstado = new javax.swing.JLabel();
         jLbCidade = new javax.swing.JLabel();
-        jLbTelefone2 = new javax.swing.JLabel();
-        jLbNumero = new javax.swing.JLabel();
-        jLbPais = new javax.swing.JLabel();
-        jLbCPF = new javax.swing.JLabel();
+        jLbBairro = new javax.swing.JLabel();
         jLbRua = new javax.swing.JLabel();
-        jLbDataDeNascimento = new javax.swing.JLabel();
-        jLbNome = new javax.swing.JLabel();
+        jLbNumero = new javax.swing.JLabel();
         jLbTitulo = new javax.swing.JLabel();
-        jBntCadastrar = new javax.swing.JButton();
+        jLbTelefone1 = new javax.swing.JLabel();
+        jLbTelefone2 = new javax.swing.JLabel();
+        jLbEmail1 = new javax.swing.JLabel();
+        jLbEmail2 = new javax.swing.JLabel();
+        jLbNome = new javax.swing.JLabel();
+        jLbData1 = new javax.swing.JLabel();
+        jLbData2 = new javax.swing.JLabel();
+        jLbDataDeNascimento = new javax.swing.JLabel();
+        jLbCPF = new javax.swing.JLabel();
         jBntCancelar = new javax.swing.JButton();
+        jBntSalvar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
 
@@ -77,153 +86,192 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jTFPais.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFPais.setBorder(null);
         getContentPane().add(jTFPais);
-        jTFPais.setBounds(620, 110, 10, 22);
-
-        jTFCidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFCidade.setBorder(null);
-        getContentPane().add(jTFCidade);
-        jTFCidade.setBounds(610, 170, 0, 22);
-
-        jTFDataDeNascimento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFDataDeNascimento.setBorder(null);
-        getContentPane().add(jTFDataDeNascimento);
-        jTFDataDeNascimento.setBounds(680, 70, 59, 22);
-
-        jTFCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFCPF.setBorder(null);
-        getContentPane().add(jTFCPF);
-        jTFCPF.setBounds(610, 40, 0, 22);
-
-        jTFBairro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFBairro.setBorder(null);
-        getContentPane().add(jTFBairro);
-        jTFBairro.setBounds(610, 200, 0, 22);
-
-        jTFNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFNome.setBorder(null);
-        getContentPane().add(jTFNome);
-        jTFNome.setBounds(640, 10, 59, 22);
-
-        jTFRua.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFRua.setBorder(null);
-        getContentPane().add(jTFRua);
-        jTFRua.setBounds(610, 230, 0, 22);
+        jTFPais.setBounds(240, 530, 258, 22);
 
         jTFEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFEstado.setBorder(null);
         getContentPane().add(jTFEstado);
-        jTFEstado.setBounds(630, 140, 0, 22);
+        jTFEstado.setBounds(580, 560, 91, 22);
+
+        jTFCidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFCidade.setBorder(null);
+        getContentPane().add(jTFCidade);
+        jTFCidade.setBounds(790, 560, 327, 22);
+
+        jTFBairro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFBairro.setBorder(null);
+        getContentPane().add(jTFBairro);
+        jTFBairro.setBounds(270, 560, 256, 22);
+
+        jTFRua.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFRua.setBorder(null);
+        getContentPane().add(jTFRua);
+        jTFRua.setBounds(150, 540, 327, 22);
+
+        jFTFNumero.setBorder(null);
+        jFTFNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFTFNumero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getContentPane().add(jFTFNumero);
+        jFTFNumero.setBounds(120, 140, 90, 22);
 
         jTFTelefone1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFTelefone1.setBorder(null);
         getContentPane().add(jTFTelefone1);
-        jTFTelefone1.setBounds(650, 290, 0, 22);
+        jTFTelefone1.setBounds(340, 300, 258, 22);
 
         jTFTelefone2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFTelefone2.setBorder(null);
         getContentPane().add(jTFTelefone2);
-        jTFTelefone2.setBounds(640, 330, 0, 22);
-
-        jTFEmail1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFEmail1.setBorder(null);
-        getContentPane().add(jTFEmail1);
-        jTFEmail1.setBounds(650, 370, 0, 22);
+        jTFTelefone2.setBounds(810, 300, 258, 22);
 
         jTFEmail2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFEmail2.setBorder(null);
+        jTFEmail2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         getContentPane().add(jTFEmail2);
-        jTFEmail2.setBounds(650, 410, 0, 22);
+        jTFEmail2.setBounds(790, 350, 258, 22);
 
-        jTFNumero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFNumero.setBorder(null);
-        getContentPane().add(jTFNumero);
-        jTFNumero.setBounds(600, 210, 0, 22);
+        jTFEmail1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFEmail1.setBorder(null);
+        jTFEmail1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        getContentPane().add(jTFEmail1);
+        jTFEmail1.setBounds(320, 350, 258, 22);
 
-        jLbEmail1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbEmail1.setText("  Email1:");
-        getContentPane().add(jLbEmail1);
-        jLbEmail1.setBounds(580, 370, 80, 22);
+        jTFNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFNome.setBorder(null);
+        getContentPane().add(jTFNome);
+        jTFNome.setBounds(370, 130, 280, 30);
 
-        jLbBairro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbBairro.setText("  Bairro:");
-        getContentPane().add(jLbBairro);
-        jLbBairro.setBounds(560, 200, 80, 22);
+        jTFData1.setBorder(null);
+        jTFData1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd"))));
+        jTFData1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTFData1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTFData1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFData1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFData1KeyReleased(evt);
+            }
+        });
+        getContentPane().add(jTFData1);
+        jTFData1.setBounds(810, 130, 110, 22);
 
-        jLbEmail2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbEmail2.setText("  Email2:");
-        getContentPane().add(jLbEmail2);
-        jLbEmail2.setBounds(580, 410, 80, 22);
+        jTFData2.setBorder(null);
+        jTFData2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM"))));
+        jTFData2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTFData2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTFData2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFData2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFData2KeyReleased(evt);
+            }
+        });
+        getContentPane().add(jTFData2);
+        jTFData2.setBounds(810, 130, 110, 22);
 
-        jLbTelefone1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbTelefone1.setText("  Telefone1:");
-        getContentPane().add(jLbTelefone1);
-        jLbTelefone1.setBounds(570, 290, 60, 22);
+        jTFData3.setBorder(null);
+        jTFData3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy"))));
+        jTFData3.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTFData3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTFData3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getContentPane().add(jTFData3);
+        jTFData3.setBounds(810, 130, 110, 22);
+
+        jFTFCPF.setBorder(null);
+        try {
+            jFTFCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFTFCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getContentPane().add(jFTFCPF);
+        jFTFCPF.setBounds(120, 140, 50, 22);
+
+        jLbPais.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbPais.setText("  País:");
+        getContentPane().add(jLbPais);
+        jLbPais.setBounds(171, 530, 60, 22);
 
         jLbEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbEstado.setText("  Estado:");
         getContentPane().add(jLbEstado);
-        jLbEstado.setBounds(570, 140, 80, 22);
+        jLbEstado.setBounds(483, 560, 80, 22);
 
         jLbCidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbCidade.setText("  Cidade:");
         getContentPane().add(jLbCidade);
-        jLbCidade.setBounds(560, 170, 80, 22);
+        jLbCidade.setBounds(723, 560, 80, 22);
 
-        jLbTelefone2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbTelefone2.setText("  Telefone2:");
-        getContentPane().add(jLbTelefone2);
-        jLbTelefone2.setBounds(570, 330, 110, 22);
-
-        jLbNumero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbNumero.setText("  Numero:");
-        getContentPane().add(jLbNumero);
-        jLbNumero.setBounds(570, 260, 90, 22);
-
-        jLbPais.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbPais.setText("  Pais:");
-        getContentPane().add(jLbPais);
-        jLbPais.setBounds(580, 110, 60, 22);
-
-        jLbCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbCPF.setText("  CPF:");
-        getContentPane().add(jLbCPF);
-        jLbCPF.setBounds(570, 40, 70, 22);
+        jLbBairro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbBairro.setText("  Bairro:");
+        getContentPane().add(jLbBairro);
+        jLbBairro.setBounds(186, 560, 70, 22);
 
         jLbRua.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbRua.setText("  Rua:");
         getContentPane().add(jLbRua);
-        jLbRua.setBounds(570, 224, 80, 30);
+        jLbRua.setBounds(90, 540, 50, 22);
 
-        jLbDataDeNascimento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbDataDeNascimento.setText("  Data de Nascimento:");
-        getContentPane().add(jLbDataDeNascimento);
-        jLbDataDeNascimento.setBounds(420, 20, 190, 22);
-
-        jLbNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbNome.setText("  Nome:");
-        getContentPane().add(jLbNome);
-        jLbNome.setBounds(640, 70, 80, 22);
+        jLbNumero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbNumero.setText("  Número:");
+        getContentPane().add(jLbNumero);
+        jLbNumero.setBounds(1072, 570, 90, 22);
 
         jLbTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jLbTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbTitulo.setText("CADASTRO DE CLIENTE");
+        jLbTitulo.setText("CADASTRAR FORNECEDOR");
         jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
         jLbTitulo.setOpaque(true);
         getContentPane().add(jLbTitulo);
-        jLbTitulo.setBounds(40, 10, 570, 60);
+        jLbTitulo.setBounds(212, 11, 750, 60);
 
-        jBntCadastrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBntCadastrar.setForeground(new java.awt.Color(0, 153, 0));
-        jBntCadastrar.setText("Cadastrar");
-        jBntCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBntCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBntCadastrarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jBntCadastrar);
-        jBntCadastrar.setBounds(250, 420, 107, 31);
+        jLbTelefone1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbTelefone1.setText("  Telefone 1:");
+        getContentPane().add(jLbTelefone1);
+        jLbTelefone1.setBounds(240, 300, 110, 22);
+
+        jLbTelefone2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbTelefone2.setText("  Telefone 2:");
+        getContentPane().add(jLbTelefone2);
+        jLbTelefone2.setBounds(700, 300, 110, 22);
+
+        jLbEmail1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbEmail1.setText("  E-mail 1:");
+        getContentPane().add(jLbEmail1);
+        jLbEmail1.setBounds(240, 350, 90, 22);
+
+        jLbEmail2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbEmail2.setText("  E-mail 2:");
+        getContentPane().add(jLbEmail2);
+        jLbEmail2.setBounds(700, 350, 90, 22);
+
+        jLbNome.setBackground(new java.awt.Color(51, 255, 153));
+        jLbNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbNome.setText("  Nome:");
+        getContentPane().add(jLbNome);
+        jLbNome.setBounds(230, 130, 140, 22);
+
+        jLbData1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbData1.setText("/");
+        jLbData1.setToolTipText("");
+        getContentPane().add(jLbData1);
+        jLbData1.setBounds(340, 150, 60, 22);
+
+        jLbData2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbData2.setText("/");
+        jLbData2.setToolTipText("");
+        getContentPane().add(jLbData2);
+        jLbData2.setBounds(340, 150, 60, 22);
+
+        jLbDataDeNascimento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbDataDeNascimento.setText("  Data de Nascimento:");
+        getContentPane().add(jLbDataDeNascimento);
+        jLbDataDeNascimento.setBounds(630, 130, 120, 22);
+
+        jLbCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbCPF.setText("  CPF:");
+        jLbCPF.setToolTipText("");
+        getContentPane().add(jLbCPF);
+        jLbCPF.setBounds(340, 150, 60, 22);
 
         jBntCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBntCancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -235,7 +283,19 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jBntCancelar);
-        jBntCancelar.setBounds(110, 400, 99, 31);
+        jBntCancelar.setBounds(290, 610, 150, 40);
+
+        jBntSalvar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBntSalvar.setForeground(new java.awt.Color(0, 153, 0));
+        jBntSalvar.setText("Salvar");
+        jBntSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntSalvarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBntSalvar);
+        jBntSalvar.setBounds(460, 630, 150, 40);
 
         jPanel1.setBackground(new java.awt.Color(235, 223, 218));
         jPanel1.setEnabled(false);
@@ -247,7 +307,7 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(1200, 465));
         jPanel2.setLayout(null);
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 1200, 465);
+        jPanel2.setBounds(50, 24, 1200, 465);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(30, 50, 1260, 550);
@@ -255,71 +315,71 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBntCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCadastrarActionPerformed
-        Clientes clientes = new Clientes();
-        
-        clientes.setTelefone1(jTFTelefone1.getText());
-        clientes.setTelefone2(jTFTelefone2.getText());
-        clientes.setEmail1(jTFEmail1.getText());
-        clientes.setEmail2(jTFEmail2.getText());
-        
-        clientes.setPais(jTFPais.getText());
-        clientes.setEstado(jTFEstado.getText());
-        clientes.setCidade(jTFCidade.getText());
-        clientes.setBairro(jTFBairro.getText());
-        clientes.setRua(jTFRua.getText());
-        clientes.setNumero(jTFNumero.getText());
-       
-        clientes.setNome(jTFNome.getText());
-        clientes.setDataDeNascimento(jTFDataDeNascimento.getText());
-        clientes.setCPF(jTFCPF.getText());
-        
-        
-        try {
-            clientes.CadastrarCliente();
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaClienteCadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        try {
-            TelaAdministrador Janela = new TelaAdministrador();
-            //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            
-            Toolkit tk = Toolkit.getDefaultToolkit();
-            Dimension d = tk.getScreenSize();
-
-            Janela.setSize(d.width + 8, d.height - 37);
-            Janela.setResizable(false);
-
-            Janela.show();
-            dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaClienteCadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-    }//GEN-LAST:event_jBntCadastrarActionPerformed
-
     private void jBntCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCancelarActionPerformed
-        
+
         try {
             TelaAdministrador Janela = new TelaAdministrador();
             //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            
             Toolkit tk = Toolkit.getDefaultToolkit();
             Dimension d = tk.getScreenSize();
 
             Janela.setSize(d.width + 8, d.height - 37);
             Janela.setResizable(false);
+            Janela.MudarAba(3);
+            
             Janela.show();
             dispose();
         } catch (SQLException ex) {
             Logger.getLogger(TelaClienteCadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }//GEN-LAST:event_jBntCancelarActionPerformed
+
+    private void jBntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSalvarActionPerformed
+
+        if(jTFPais.getText().isEmpty() == true || jTFEstado.getText().isEmpty() == true || jTFCidade.getText().isEmpty() == true || jTFBairro.getText().isEmpty() == true || jTFRua.getText().isEmpty() == true || jFTFNumero.getText().isEmpty() == true || jTFTelefone1.getText().isEmpty() == true || (jFTFCPF.getText().replaceAll(" ","")).length() != 11 || jTFData1.getText().isEmpty() == true || jTFData2.getText().isEmpty() == true || jTFData3.getText().isEmpty() == true || jTFNome.getText().isEmpty() == true){
+            UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
+            JOptionPane.showMessageDialog(null, "É obrigatório o preenchimento de todos os campos.\nExceto: Telefone 2, E-mail 1 e E-mail 2\n\n\n\n");
+
+        }else{
+            try {
+                Clientes cliente = new Clientes();
+
+                cliente.CadastrarCliente(jTFPais.getText(), jTFEstado.getText(), jTFCidade.getText(), jTFBairro.getText(), jTFRua.getText(), jFTFNumero.getText(), jTFTelefone1.getText(), jTFTelefone2.getText(), jTFEmail1.getText(), jTFEmail2.getText(), (jFTFCPF.getText().substring(0, 3) + jFTFCPF.getText().substring(4, 7) + jFTFCPF.getText().substring(8, 11) + jFTFCPF.getText().substring(12, 14)), (jTFData3.getText() + "-" + jTFData1.getText()  + "-" + jTFData2.getText()), jTFNome.getText());
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                TelaAdministrador Janela = new TelaAdministrador();
+                //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+                Toolkit tk = Toolkit.getDefaultToolkit();
+                Dimension d = tk.getScreenSize();
+
+                Janela.setSize(d.width + 8, d.height - 37);
+                Janela.setResizable(false);
+                Janela.MudarAba(3);
+
+                Janela.show();
+                dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaFornecedorCadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jBntSalvarActionPerformed
+
+    private void jTFData2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFData2KeyReleased
+        if (jTFData2.getText().length() == 2) {
+            jTFData3.requestFocus();
+        }
+    }//GEN-LAST:event_jTFData2KeyReleased
+
+    private void jTFData1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFData1KeyReleased
+        if (jTFData1.getText().length() == 2) {
+            jTFData2.requestFocus();
+        }
+    }//GEN-LAST:event_jTFData1KeyReleased
 
     
     public static void main(String args[]) {
@@ -355,11 +415,15 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBntCadastrar;
     private javax.swing.JButton jBntCancelar;
+    private javax.swing.JButton jBntSalvar;
+    private javax.swing.JFormattedTextField jFTFCPF;
+    private javax.swing.JFormattedTextField jFTFNumero;
     private javax.swing.JLabel jLbBairro;
     private javax.swing.JLabel jLbCPF;
     private javax.swing.JLabel jLbCidade;
+    private javax.swing.JLabel jLbData1;
+    private javax.swing.JLabel jLbData2;
     private javax.swing.JLabel jLbDataDeNascimento;
     private javax.swing.JLabel jLbEmail1;
     private javax.swing.JLabel jLbEmail2;
@@ -374,14 +438,14 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTFBairro;
-    private javax.swing.JTextField jTFCPF;
     private javax.swing.JTextField jTFCidade;
-    private javax.swing.JTextField jTFDataDeNascimento;
+    private javax.swing.JFormattedTextField jTFData1;
+    private javax.swing.JFormattedTextField jTFData2;
+    private javax.swing.JFormattedTextField jTFData3;
     private javax.swing.JTextField jTFEmail1;
     private javax.swing.JTextField jTFEmail2;
     private javax.swing.JTextField jTFEstado;
     private javax.swing.JTextField jTFNome;
-    private javax.swing.JTextField jTFNumero;
     private javax.swing.JTextField jTFPais;
     private javax.swing.JTextField jTFRua;
     private javax.swing.JTextField jTFTelefone1;
@@ -419,27 +483,41 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jLbTitulo.setBackground(corFundo4);
          
         
-        jLbNome.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 4),80 + 15 + 430 + 4,30);
-        jTFNome.setBounds(CentralizarLargura(116, 18,2)+ 80 + 15,CentralizarAltura(30, 15, 4),430,30);
+        jLbNome.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 4),140 + 370 + 15 + 4,30);
+        jTFNome.setBounds(CentralizarLargura(116, 18,2)+ 140 + 15,CentralizarAltura(30, 15, 4),370,30);
         jLbNome.setBackground(corFundo4);
         jLbNome.setOpaque(true);
         jTFNome.setBackground(corFundo4);
         jTFNome.setOpaque(true);
         
-        
-        jLbDataDeNascimento.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(26, 15, 4),140 + 370 + 15 + 4,30);
-        jTFDataDeNascimento.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 190 + 15, CentralizarAltura(26, 15, 4),320,30);
+        // conta prara saber aonde deve colocar a data para q fique centralizado entre o fornecedor e a hora
+        int espacoData = (((largura - CentralizarLargura(116, 18,2) - 110 - 15 - 150 - 4)- (CentralizarLargura(116, 18,2)+ 110 + 15 + 300 + 4)) - (60 + 15 + 20 + 10 + 20 + 20) - (60 + 15 + 20 + 10 + 20 + 10 + 40 + 20))/3;
+       
+        jLbDataDeNascimento.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData,CentralizarAltura(30, 15, 3),60 + 15 + 20 + 10 + 20 + 10 + 40 + 20,30);
+        jTFData1.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15,CentralizarAltura(30, 15, 3),20,30);
+        jLbData1.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15 + 20 ,CentralizarAltura(30, 15, 3),10,30);
+        jTFData2.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15 + 20 + 10,CentralizarAltura(30, 15, 3),20,30);
+        jLbData2.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20,CentralizarAltura(30, 15, 3),10,30);
+        jTFData3.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20 + 10,CentralizarAltura(30, 15, 3),40,30);
         jLbDataDeNascimento.setBackground(corFundo4);
         jLbDataDeNascimento.setOpaque(true);
-        jTFDataDeNascimento.setBackground(corFundo4);
-        jTFDataDeNascimento.setOpaque(true);
+        jLbData1.setBackground(corFundo4);
+        jLbData1.setOpaque(true);
+        jLbData2.setBackground(corFundo4);
+        jLbData2.setOpaque(true);
+        jTFData1.setBackground(corFundo4);
+        jTFData1.setOpaque(true);
+        jTFData2.setBackground(corFundo4);
+        jTFData2.setOpaque(true);
+        jTFData3.setBackground(corFundo4);
+        jTFData3.setOpaque(true);
         
-        jLbCPF.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 5),140 + 170 + 15 + 4,30);
-        jTFCPF.setBounds(CentralizarLargura(116, 18,2)+ 60 + 15,CentralizarAltura(30, 15, 5),250,30);
+        jLbCPF.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 5),140 + 370 + 15 + 4,30);
+        jFTFCPF.setBounds(CentralizarLargura(116, 18,2)+ 60 + 15,CentralizarAltura(30, 15, 5),450,30);
         jLbCPF.setBackground(corFundo4);
         jLbCPF.setOpaque(true);
-        jTFCPF.setBackground(corFundo4);
-        jTFCPF.setOpaque(true);
+        jFTFCPF.setBackground(corFundo4);
+        jFTFCPF.setOpaque(true);
         
         // ----------------------------------------------------------------------------------------------------
         
@@ -516,23 +594,22 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jTFRua.setOpaque(true);
         
         jLbNumero.setBounds(largura - CentralizarLargura(116, 18, 2) - 90 - 15 - 100 - 4,CentralizarAltura(30, 15, 10),90 + 15 + 100 + 4,30);
-        jTFNumero.setBounds(largura - CentralizarLargura(116, 18, 2) - 100 - 4,CentralizarAltura(30, 15, 10),100,30);
+        jFTFNumero.setBounds(largura - CentralizarLargura(116, 18, 2) - 100 - 4,CentralizarAltura(30, 15, 10),100,30);
         jLbNumero.setBackground(corFundo4);
         jLbNumero.setOpaque(true);
-        jTFNumero.setBackground(corFundo4);
-        jTFNumero.setOpaque(true);
+        jFTFNumero.setBackground(corFundo4);
+        jFTFNumero.setOpaque(true);
         
-        jBntCadastrar.setBounds(CentralizarLargura(116, 18,6),CentralizarAltura(30, 30, 24),150,40);
-        jBntCadastrar.setBackground(corFundo5);
-        jBntCadastrar.setOpaque(true);
-        jBntCadastrar.setForeground(corFundo3);
+        jBntSalvar.setBounds(CentralizarLargura(116, 18,3),CentralizarAltura(30, 30, 24),150,40);
+        jBntSalvar.setBackground(corFundo5);
+        jBntSalvar.setOpaque(true);
+        jBntSalvar.setForeground(corFundo3);
         
-        jBntCancelar.setBounds(largura - CentralizarLargura(116, 18,6) - 150,CentralizarAltura(30, 30, 24),150,40);
+        jBntCancelar.setBounds(largura - CentralizarLargura(116, 18,3) - 150,CentralizarAltura(30, 30, 24),150,40);
         jBntCancelar.setBackground(corFundo6);
         jBntCancelar.setOpaque(true);
         jBntCancelar.setForeground(corFundo3);
         
     }
-
-
+    
 }
