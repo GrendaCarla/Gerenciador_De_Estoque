@@ -1124,7 +1124,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTClienteFocusGained
 
     private void jTClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTClienteMouseClicked
-        /*if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {
             
             try {
                 TelaClienteInfo infoCliente = new TelaClienteInfo();
@@ -1144,7 +1144,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        }*/
+        }
     }//GEN-LAST:event_jTClienteMouseClicked
 
     private void jBntSairClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSairClienteActionPerformed
