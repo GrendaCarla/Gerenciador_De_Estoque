@@ -10,6 +10,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
@@ -23,7 +25,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
 
-public final class TelaVendaCadastro extends javax.swing.JFrame {
+public class TelaVendaAlterar extends javax.swing.JFrame {
 
     // resolução tela pc
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -39,22 +41,26 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
     Color corFundo5 = new Color(5,180,145);
     Color corFundo6 = new Color(129,88,119);
     
+    int numero;
     Produtos produto = new Produtos();
     Clientes cliente = new Clientes();
     Vendas venda = new Vendas();
     
-    public TelaVendaCadastro() {
+    
+    public TelaVendaAlterar() {
         initComponents();
         
         corDeFundo();
         TamanhoDoFundo();
         AlinhamentoDosItens();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLbData2 = new javax.swing.JLabel();
+        jLbData1 = new javax.swing.JLabel();
         jFTFValorTotal = new javax.swing.JFormattedTextField();
         jTFHora2 = new javax.swing.JFormattedTextField();
         jTFHora1 = new javax.swing.JFormattedTextField();
@@ -65,8 +71,6 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         jCBCliente = new javax.swing.JComboBox<>();
         jLbFormaDePagamento = new javax.swing.JLabel();
         jLbValorTotal = new javax.swing.JLabel();
-        jLbData2 = new javax.swing.JLabel();
-        jLbData1 = new javax.swing.JLabel();
         jLbData = new javax.swing.JLabel();
         jLbCliente = new javax.swing.JLabel();
         jLbHora1 = new javax.swing.JLabel();
@@ -84,6 +88,20 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jLbData2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbData2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbData2.setText("/");
+        jLbData2.setToolTipText("");
+        getContentPane().add(jLbData2);
+        jLbData2.setBounds(340, 150, 60, 22);
+
+        jLbData1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbData1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbData1.setText("/");
+        jLbData1.setToolTipText("");
+        getContentPane().add(jLbData1);
+        jLbData1.setBounds(340, 150, 60, 22);
 
         jFTFValorTotal.setBorder(null);
         jFTFValorTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
@@ -169,20 +187,6 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         jLbValorTotal.setText("  Total:  R$");
         getContentPane().add(jLbValorTotal);
         jLbValorTotal.setBounds(180, 90, 100, 20);
-
-        jLbData2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbData2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbData2.setText("/");
-        jLbData2.setToolTipText("");
-        getContentPane().add(jLbData2);
-        jLbData2.setBounds(340, 150, 60, 22);
-
-        jLbData1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbData1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbData1.setText("/");
-        jLbData1.setToolTipText("");
-        getContentPane().add(jLbData1);
-        jLbData1.setBounds(340, 150, 60, 22);
 
         jLbData.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbData.setText("  Data:");
@@ -512,12 +516,15 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
 
             try{
                 venda.ConsultarVendas();
+                
+                venda.AtualizarVenda(venda.getIDVenda().get(numero), cliente.getIDCliente().get(jCBCliente.getSelectedIndex()-1), ("'"+jTFData3.getText()+"-" + jTFData1.getText() + "-" + jTFData2.getText()+ " " + jTFHora1.getText() + ":" + jTFHora2.getText() + ":20.3'"), Float.parseFloat(jFTFValorTotal.getText().replaceAll(",",".")), jTFFormaDePagamento.getText());
 
-                int idVenda = venda.CadastrarVendas(cliente.getIDCliente().get(jCBCliente.getSelectedIndex()-1), ("'"+jTFData3.getText()+"-" + jTFData1.getText() + "-" + jTFData2.getText()+ " " + jTFHora1.getText() + ":" + jTFHora2.getText() + ":20.3'"), Float.parseFloat(jFTFValorTotal.getText().replaceAll(",",".")), jTFFormaDePagamento.getText());
+                venda.DeletarItem(venda.getIDVenda().get(numero));
 
+                
                 for(int i=0; i<100; i++){
                     if(jTItensVendido.getValueAt(i, 0) != null && jTItensVendido.getValueAt(i, 4) != null){
-                        venda.CadastrarItem(idVenda, Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""), Integer.parseInt(jTItensVendido.getValueAt(i, 4)+""), Float.parseFloat((jTItensVendido.getValueAt(i, 5) == null ? 0 : jTItensVendido.getValueAt(i, 5))+""));
+                        venda.CadastrarItem(venda.getIDVenda().get(numero), Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""), Integer.parseInt(jTItensVendido.getValueAt(i, 4)+""), Float.parseFloat((jTItensVendido.getValueAt(i, 5) == null ? 0 : jTItensVendido.getValueAt(i, 5))+""));
                     }
                 }
             }catch (SQLException ex) {
@@ -545,7 +552,8 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jBntSalvarActionPerformed
 
     public static void main(String args[]) {
-     
+       
+       
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -554,21 +562,20 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaVendaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVendaAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaVendaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVendaAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaVendaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVendaAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaVendaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVendaAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-     
 
-        /* Create and display the form */
+      
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaVendaCadastro().setVisible(true);
+                new TelaVendaAlterar().setVisible(true);
             }
         });
     }
@@ -601,8 +608,7 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jTFHora2;
     private javax.swing.JTable jTItensVendido;
     // End of variables declaration//GEN-END:variables
-       
-    
+
     public void corDeFundo() {
         
         getContentPane().setBackground(corFundo1);
@@ -651,8 +657,8 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         jTFData1.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15,CentralizarAltura(30, 15, 3),20,30);
         jLbData1.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15 + 20 ,CentralizarAltura(30, 15, 3),20,30);
         jTFData2.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15 + 20 + 20,CentralizarAltura(30, 15, 3),20,30);
-        jLbData2.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15 + 20 + 20 + 20,CentralizarAltura(30, 15, 3),20,30);
-        jTFData3.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15 + 20 + 20 + 20 + 20,CentralizarAltura(30, 15, 3),45,30);
+        jLbData2.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15  + 20 + 20 + 20,CentralizarAltura(30, 15, 3),20,30);
+        jTFData3.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 20,CentralizarAltura(30, 15, 3),45,30);
         jLbData.setBackground(corFundo4);
         jLbData.setOpaque(true);
         jLbData1.setBackground(corFundo4);
@@ -707,7 +713,7 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         
     }
     
-    public void criarTabelaItensVendido() throws SQLException{
+     public void criarTabelaItensVenda(int num) throws SQLException{
         
         produto.ConsultarProdutos();
         
@@ -774,11 +780,25 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         jTItensVendido.getColumnModel().getColumn(1).setCellRenderer(esquerda);
         jTItensVendido.getColumnModel().getColumn(2).setCellRenderer(esquerda);
         jTItensVendido.getColumnModel().getColumn(3).setCellRenderer(direita);
+        
+        
+        cliente.ConsultarClientes();
+        venda.ConsultarVendas();
+        produto.ConsultarProdutos();
+        venda.ConsultarItem(venda.getIDVenda().get(num));
 
+        
         for(int i=0; i< 100; i++){
 
-            DefaultTableModel model = (DefaultTableModel) jTItensVendido.getModel();
-            model.addRow(new Object[]{null, "", "", "", null, null});
+            if(i< venda.getIDItemVendido().size()){
+
+                DefaultTableModel model = (DefaultTableModel) jTItensVendido.getModel();
+                model.addRow(new Object[]{""+venda.getIDProduto().get(i), ""+produto.getNome().get(produto.getIDProduto().indexOf(venda.getIDProduto().get(i))), ""+produto.getMarca().get(produto.getIDProduto().indexOf(venda.getIDProduto().get(i))), produto.getMedida().get(produto.getIDProduto().indexOf(venda.getIDProduto().get(i)))+"", venda.getQuantidade().get(i), venda.getValorUnitario().get(i)});
+            }else{
+                DefaultTableModel model = (DefaultTableModel) jTItensVendido.getModel();
+                model.addRow(new Object[]{null, "", "", "", null, null});
+            }
+            
         }
 
         TableColumn idColumn = jTItensVendido.getColumnModel().getColumn(0);
@@ -792,17 +812,46 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
             jComboBox2.addItem(produto.getIDProduto().get(i) + "");
             jComboBox1.addItem(produto.getNome().get(i) + "  /  " + produto.getMarca().get(i) + "  /  " + produto.getMedida().get(i));  
         }
-
+        
+        
         idColumn.setCellEditor(new DefaultCellEditor(jComboBox2));
         nomeColumn.setCellEditor(new DefaultCellEditor(jComboBox1));
         
-        cliente.ConsultarClientes();
         
         jCBCliente.addItem(null);
         
         for(int i=0; i<cliente.getIDCliente().size(); i++){
             jCBCliente.addItem(cliente.getNome().get(i) + "");
         }
+        
+        PegarDados(num);
     } 
+    
+    public void PegarDados(int num) throws SQLException {
+        numero = num;
+        
+        cliente.ConsultarClientes();
+        venda.ConsultarVendas();
+        produto.ConsultarProdutos();
+        venda.ConsultarItem(venda.getIDVenda().get(num));
+        
+        
+        jCBCliente.setSelectedIndex(cliente.getIDCliente().indexOf(venda.getIDCliente().get(num))+1);
+        jTFData1.setText(venda.getDataHoraDaVenda().get(num).substring(8, 10));
+        jTFData2.setText(venda.getDataHoraDaVenda().get(num).substring(5, 7));
+        jTFData3.setText(venda.getDataHoraDaVenda().get(num).substring(0, 4));
+        jTFHora1.setText(venda.getDataHoraDaVenda().get(num).substring(11, 13));
+        jTFHora2.setText(venda.getDataHoraDaVenda().get(num).substring(14, 16));
+        jFTFValorTotal.setText((FormataFloat(venda.getValorTotal().get(num))).replace(".",","));
+        jTFFormaDePagamento.setText("" + venda.getFormaDePagamento().get(num));
+        
+    }
+    
+    public String FormataFloat(float num){
+        
+        NumberFormat formatter = new DecimalFormat("0.00");
+        return (formatter.format(num));
+        
+    }
 
 }

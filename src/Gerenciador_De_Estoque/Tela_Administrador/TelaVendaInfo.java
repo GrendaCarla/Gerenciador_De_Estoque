@@ -330,7 +330,7 @@ public class TelaVendaInfo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBntAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntAlterarActionPerformed
-        /*try {
+        try {
             TelaVendaAlterar alterVenda = new TelaVendaAlterar();
 
             Toolkit tk = Toolkit.getDefaultToolkit();
@@ -345,7 +345,7 @@ public class TelaVendaInfo extends javax.swing.JFrame {
             dispose();
         } catch (SQLException ex) {
             Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
     }//GEN-LAST:event_jBntAlterarActionPerformed
 
     private void jBntVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntVoltarActionPerformed
@@ -450,7 +450,7 @@ public class TelaVendaInfo extends javax.swing.JFrame {
     
     public void AlinhamentoDosItens() {
         
-        jLbTitulo.setBounds(CentralizarLargura(750, 2, 1),CentralizarAltura(55, 18, 1),750,55);
+        jLbTitulo.setBounds(CentralizarLargura(550, 2, 1),CentralizarAltura(55, 18, 1),550,55);
         jLbTitulo.setForeground(corFundo3);
         jLbTitulo.setBackground(corFundo4);
         
