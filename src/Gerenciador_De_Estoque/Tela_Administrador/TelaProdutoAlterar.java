@@ -173,7 +173,7 @@ public class TelaProdutoAlterar extends javax.swing.JFrame {
         jLbTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jLbTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbTitulo.setText("ALTERAR PRODUTO");
+        jLbTitulo.setText("ALTERAR  PRODUTO");
         jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
         jLbTitulo.setOpaque(true);
         getContentPane().add(jLbTitulo);

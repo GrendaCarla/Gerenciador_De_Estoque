@@ -144,7 +144,7 @@ public class TelaFornecedorAlterar extends javax.swing.JFrame {
 
         jFTFCNPJ.setBorder(null);
         try {
-            jFTFCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+            jFTFCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("## . ### . ### / #### - ##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -185,7 +185,7 @@ public class TelaFornecedorAlterar extends javax.swing.JFrame {
         jLbTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jLbTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbTitulo.setText("ALTERAR FORNECEDOR");
+        jLbTitulo.setText("ALTERAR  FORNECEDOR");
         jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
         jLbTitulo.setOpaque(true);
         getContentPane().add(jLbTitulo);
@@ -298,7 +298,7 @@ public class TelaFornecedorAlterar extends javax.swing.JFrame {
                 Fornecedores fornecedor = new Fornecedores();
                 fornecedor.ConsultarFornecedor();
 
-                fornecedor.AlterarFornecedor(jTFPais.getText(), jTFEstado.getText(), jTFCidade.getText(), jTFBairro.getText(), jTFRua.getText(), jFTFNumero.getText(), jTFTelefone1.getText(), jTFTelefone2.getText(), jTFEmail1.getText(), jTFEmail2.getText(), (jFTFCNPJ.getText().substring(0, 2) + jFTFCNPJ.getText().substring(3, 6) + jFTFCNPJ.getText().substring(7, 10) + jFTFCNPJ.getText().substring(11, 15) + jFTFCNPJ.getText().substring(16, 18)), jTFRazaoSocial.getText(), jTFNomeFantasia.getText(), numero);
+                fornecedor.AlterarFornecedor(jTFPais.getText(), jTFEstado.getText(), jTFCidade.getText(), jTFBairro.getText(), jTFRua.getText(), jFTFNumero.getText(), jTFTelefone1.getText(), jTFTelefone2.getText(), jTFEmail1.getText(), jTFEmail2.getText(), (jFTFCNPJ.getText().substring(0, 2) + jFTFCNPJ.getText().substring(5, 8) + jFTFCNPJ.getText().substring(11, 14) + jFTFCNPJ.getText().substring(17, 21) + jFTFCNPJ.getText().substring(24, 26)), jTFRazaoSocial.getText(), jTFNomeFantasia.getText(), numero);
 
 
                 TelaAdministrador Janela = new TelaAdministrador();

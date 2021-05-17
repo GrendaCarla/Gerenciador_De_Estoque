@@ -157,12 +157,14 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
         jLbValorTotal.setBounds(340, 150, 110, 22);
 
         jLbData2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbData2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbData2.setText("/");
         jLbData2.setToolTipText("");
         getContentPane().add(jLbData2);
         jLbData2.setBounds(340, 150, 60, 22);
 
         jLbData1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbData1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbData1.setText("/");
         jLbData1.setToolTipText("");
         getContentPane().add(jLbData1);
@@ -183,7 +185,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
         jLbHora1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbHora1.setText(":");
         getContentPane().add(jLbHora1);
-        jLbHora1.setBounds(540, 110, 10, 22);
+        jLbHora1.setBounds(440, 100, 40, 22);
 
         jLbHora.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbHora.setText("  Hora:");
@@ -193,7 +195,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
         jLbTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jLbTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbTitulo.setText("CADASTRAR COMPRA");
+        jLbTitulo.setText("CADASTRAR  COMPRA");
         jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
         jLbTitulo.setOpaque(true);
         getContentPane().add(jLbTitulo);
@@ -630,15 +632,15 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
         jCBFornecedor.setOpaque(true);
         
         // conta prara saber aonde deve colocar a data para q fique centralizado entre o fornecedor e a hora
-        int espacoData = (((largura - CentralizarLargura(116, 18,2) - 110 - 15 - 150 - 4)- (CentralizarLargura(116, 18,2)+ 110 + 15 + 300 + 4)) - (60 + 15 + 20 + 10 + 20 + 20) - (60 + 15 + 20 + 10 + 20 + 10 + 40 + 20))/3;
+        int espacoData = (((largura - CentralizarLargura(116, 18,2) - 110 - 15 - 150 - 4)- (CentralizarLargura(116, 18,2)+ 110 + 15 + 300 + 4)) - (60 + 15 + 20 + 20 + 20 + 20) - (60 + 15 + 20 + 20 + 20 + 20 + 45 + 20))/3;
        
         
-        jLbData.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData,CentralizarAltura(30, 15, 3),60 + 15 + 20 + 10 + 20 + 10 + 40 + 20,30);
+        jLbData.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData,CentralizarAltura(30, 15, 3),60 + 15 + 20 + 20 + 20 + 20 + 45 + 20,30);
         jTFData1.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15,CentralizarAltura(30, 15, 3),20,30);
-        jLbData1.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15 + 20 ,CentralizarAltura(30, 15, 3),10,30);
-        jTFData2.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15 + 20 + 10,CentralizarAltura(30, 15, 3),20,30);
-        jLbData2.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20,CentralizarAltura(30, 15, 3),10,30);
-        jTFData3.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20 + 10,CentralizarAltura(30, 15, 3),40,30);
+        jLbData1.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15 + 20 ,CentralizarAltura(30, 15, 3),20,30);
+        jTFData2.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15 + 20 + 20,CentralizarAltura(30, 15, 3),20,30);
+        jLbData2.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 20 + 20,CentralizarAltura(30, 15, 3),20,30);
+        jTFData3.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 20,CentralizarAltura(30, 15, 3),45,30);
         jLbData.setBackground(corFundo4);
         jLbData.setOpaque(true);
         jLbData1.setBackground(corFundo4);
@@ -652,10 +654,10 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
         jTFData3.setBackground(corFundo4);
         jTFData3.setOpaque(true);
         
-        jLbHora.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20 + 10 + 40 + 20 + espacoData,CentralizarAltura(30, 15, 3),60 + 15 + 20 + 10 + 20 + 20,30);
-        jTFHora1.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20 + 10 + 40 + 20 + espacoData + 60 + 15,CentralizarAltura(30, 15, 3),20,30);
-        jLbHora1.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20 + 10 + 40 + 20 + espacoData + 60 + 15 + 20,CentralizarAltura(30, 15, 3),10,30);
-        jTFHora2.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20 + 10 + 40 + 20 + espacoData + 60 + 15 + 20 + 10,CentralizarAltura(30, 15, 3),20,30);
+        jLbHora.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 20 + 45 + 20 + espacoData,CentralizarAltura(30, 15, 3),60 + 15 + 20 + 20 + 20 + 20,30);
+        jTFHora1.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 20 + 45 + 20 + espacoData + 60 + 15,CentralizarAltura(30, 15, 3),20,30);
+        jLbHora1.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 20 + 45 + 20 + espacoData + 60 + 15 + 20,CentralizarAltura(30, 15, 3),20,30);
+        jTFHora2.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 20 + 45 + 20 + espacoData + 60 + 15 + 20 + 20,CentralizarAltura(30, 15, 3),20,30);
         jLbHora.setBackground(corFundo4);
         jLbHora.setOpaque(true);
         jTFHora1.setBackground(corFundo4);

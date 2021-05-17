@@ -232,7 +232,7 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         jLbTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jLbTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbTitulo.setText("CADASTRAR FORNECEDOR");
+        jLbTitulo.setText("CADASTRAR  CLIENTE");
         jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
         jLbTitulo.setOpaque(true);
         getContentPane().add(jLbTitulo);
@@ -494,15 +494,15 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
         
         
         // conta prara saber aonde deve colocar o estado para q fique centralizado entre o pais e a cidade
-        int espacodata = (((largura - CentralizarLargura(116, 18,2)-180-15-20-20-20-20-40-15)- (CentralizarLargura(116, 18,2)+ 70 + 400 + 15 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 70 + 400 + 15 + 4)) - (60 + 170 + 15 + 15)/2;
+        int espacodata = (((largura - CentralizarLargura(116, 18,2)-180-15-20-20-20-20-45-15)- (CentralizarLargura(116, 18,2)+ 70 + 400 + 15 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 70 + 400 + 15 + 4)) - (60 + 175 + 15 + 15)/2;
         
         
-        jLbDataDeNascimento.setBounds(largura - CentralizarLargura(116, 18,2)-180-15-20-20-20-20-40-15, CentralizarAltura(30, 120, 34),180 + 15 + 20 + 20 + 20 + 20 + 40 + 15,30);
-        jTFData1.setBounds(largura - CentralizarLargura(116, 18,2)-20-20-20-20-40-15, CentralizarAltura(30, 120, 34),20,30);
-        jLbData1.setBounds(largura - CentralizarLargura(116, 18,2)-20-20-20-40-15, CentralizarAltura(30, 120, 34),20,30);
-        jTFData2.setBounds(largura - CentralizarLargura(116, 18,2)-20-20-40-15, CentralizarAltura(30, 120, 34),20,30);
-        jLbData2.setBounds(largura - CentralizarLargura(116, 18,2)-20-40-15, CentralizarAltura(30, 120, 34),20,30);
-        jTFData3.setBounds(largura - CentralizarLargura(116, 18,2)-40-15, CentralizarAltura(30, 120, 34),40,30);
+        jLbDataDeNascimento.setBounds(largura - CentralizarLargura(116, 18,2)-180-15-20-20-20-20-45-15, CentralizarAltura(30, 120, 34),180 + 15 + 20 + 20 + 20 + 20 + 45 + 15,30);
+        jTFData1.setBounds(largura - CentralizarLargura(116, 18,2)-20-20-20-20-45-15, CentralizarAltura(30, 120, 34),20,30);
+        jLbData1.setBounds(largura - CentralizarLargura(116, 18,2)-20-20-20-45-15, CentralizarAltura(30, 120, 34),20,30);
+        jTFData2.setBounds(largura - CentralizarLargura(116, 18,2)-20-20-45-15, CentralizarAltura(30, 120, 34),20,30);
+        jLbData2.setBounds(largura - CentralizarLargura(116, 18,2)-20-45-15, CentralizarAltura(30, 120, 34),20,30);
+        jTFData3.setBounds(largura - CentralizarLargura(116, 18,2)-45-15, CentralizarAltura(30, 120, 34),45,30);
         jLbDataDeNascimento.setBackground(corFundo4);
         jLbDataDeNascimento.setOpaque(true);
         jLbData1.setBackground(corFundo4);

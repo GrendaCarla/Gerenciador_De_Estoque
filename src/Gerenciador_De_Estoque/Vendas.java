@@ -49,7 +49,7 @@ public class Vendas extends ItensVendidos {
         
        ConnectionFactory conect = new ConnectionFactory();
        
-        sql = "UPDATE Vendas\n" + "SET IDCliente = " + idCliente + ", DataHoraDaVenda = " + dataHoraDaVenda + ", ValorTotal = " + valorTotal + ", FormaDePagamento = " + FormaDePagamento + "\n" + "WHERE IDVenda = " + idVenda + "\n";
+        sql = "UPDATE Vendas\n" + "SET IDCliente = " + idCliente + ", DataHoraDaVenda = " + dataHoraDaVenda + ", ValorTotal = " + valorTotal + ", FormaDePagamento = " + formaDePagamento + "\n" + "WHERE IDVenda = " + idVenda + "\n";
         conect.sql = this.sql;
         conect.inserir();
        
@@ -79,7 +79,7 @@ public class Vendas extends ItensVendidos {
         
         ConnectionFactory conect = new ConnectionFactory();
         
-        sql = "select * from ItensVendas c\n"
+        sql = "select * from ItensVendidos c\n"
         + "where IDVenda = " + idVenda;
         
         conect.sql = this.sql;
@@ -111,6 +111,7 @@ public class Vendas extends ItensVendidos {
         this.IDCliente.clear();
         this.DataHoraDaVenda.clear();
         this.ValorTotal.clear();
+        this.FormaDePagamento.clear();
         
         LimparItensVendidos();
     }

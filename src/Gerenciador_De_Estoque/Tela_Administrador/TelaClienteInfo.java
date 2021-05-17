@@ -456,7 +456,7 @@ public class TelaClienteInfo extends javax.swing.JFrame {
         jTFID.setOpaque(true);
         
         // conta prara saber aonde deve colocar o estado para q fique centralizado entre o pais e a cidade
-        int espacodata = (((largura - CentralizarLargura(116, 18,2)-180-15-120-15)- (CentralizarLargura(116, 18,2)+ 40 + 15 + 100 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 40 + 15 + 100 + 4)) - (70 + 460 + 15 + 4)/2;
+        int espacodata = (((largura - CentralizarLargura(116, 18,2)-180-15-125-15)- (CentralizarLargura(116, 18,2)+ 40 + 15 + 100 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 40 + 15 + 100 + 4)) - (70 + 460 + 15 + 4)/2;
         
         
         jLbNome.setBounds(espacodata, CentralizarAltura(30, 15, 4),70 + 460 + 15 + 4,30);
@@ -467,8 +467,8 @@ public class TelaClienteInfo extends javax.swing.JFrame {
         jTFNome.setOpaque(true);
         
         
-        jLbDataDeNascimento.setBounds(largura - CentralizarLargura(116, 18,2)-180-15-120-15, CentralizarAltura(30, 15, 4),180 + 15 + 120 + 15,30);
-        jTFData.setBounds(largura - CentralizarLargura(116, 18,2)-120 - 15, CentralizarAltura(30, 15, 4),120,30);
+        jLbDataDeNascimento.setBounds(largura - CentralizarLargura(116, 18,2)-180-15-125-15, CentralizarAltura(30, 15, 4),180 + 15 + 125 + 15,30);
+        jTFData.setBounds(largura - CentralizarLargura(116, 18,2)-125 - 15, CentralizarAltura(30, 15, 4),125,30);
         jLbDataDeNascimento.setBackground(corFundo4);
         jLbDataDeNascimento.setOpaque(true);
         jTFData.setBackground(corFundo4);

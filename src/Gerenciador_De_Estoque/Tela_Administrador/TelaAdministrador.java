@@ -1222,7 +1222,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jBntSairVendaActionPerformed
 
     private void jTVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTVendaMouseClicked
-        /*if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {
             
             try {
                 TelaVendaInfo infoVenda = new TelaVendaInfo();
@@ -1242,7 +1242,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        }*/
+        }
     }//GEN-LAST:event_jTVendaMouseClicked
 
     private void jTFBarraDeBuscaVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaVendaKeyPressed

@@ -160,23 +160,25 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
 
         jLbFormaDePagamento.setBackground(new java.awt.Color(51, 255, 153));
         jLbFormaDePagamento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbFormaDePagamento.setText("  Forma de Pagamento:");
+        jLbFormaDePagamento.setText("  Pagamento:");
         getContentPane().add(jLbFormaDePagamento);
-        jLbFormaDePagamento.setBounds(340, 150, 200, 22);
+        jLbFormaDePagamento.setBounds(110, 290, 110, 22);
 
         jLbValorTotal.setBackground(new java.awt.Color(51, 255, 153));
         jLbValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbValorTotal.setText("  Total:   R$");
+        jLbValorTotal.setText("  Total:  R$");
         getContentPane().add(jLbValorTotal);
-        jLbValorTotal.setBounds(340, 150, 110, 22);
+        jLbValorTotal.setBounds(180, 90, 100, 20);
 
         jLbData2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbData2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbData2.setText("/");
         jLbData2.setToolTipText("");
         getContentPane().add(jLbData2);
         jLbData2.setBounds(340, 150, 60, 22);
 
         jLbData1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbData1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbData1.setText("/");
         jLbData1.setToolTipText("");
         getContentPane().add(jLbData1);
@@ -207,7 +209,7 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         jLbTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jLbTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbTitulo.setText("CADASTRAR VENDA");
+        jLbTitulo.setText(" CADASTRAR  VENDA");
         jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
         jLbTitulo.setOpaque(true);
         getContentPane().add(jLbTitulo);
@@ -499,7 +501,7 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
             }
         }
 
-        if(jCBCliente.getSelectedIndex() == -1 || jTFData1.getText().isEmpty() == true || jTFData2.getText().isEmpty() == true || jTFData3.getText().isEmpty() == true || jTFHora1.getText().isEmpty() == true || jTFHora2.getText().isEmpty() == true || jFTFValorTotal.getText().isEmpty() == true || cel == 0){
+        if(jCBCliente.getSelectedIndex() == -1 || jTFData1.getText().isEmpty() == true || jTFData2.getText().isEmpty() == true || jTFData3.getText().isEmpty() == true || jTFHora1.getText().isEmpty() == true || jTFHora2.getText().isEmpty() == true || jFTFValorTotal.getText().isEmpty() == true || jTFFormaDePagamento.getText().isEmpty() == true || cel == 0){
 
             UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
             JOptionPane.showMessageDialog(null, "É obrigatório o preenchimento de todos os campos.\nA tabela de itens vendidos necessita de no mínimo\numa linha preenchida, exceto o campo preço. \n\n\n\n");
@@ -611,11 +613,11 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
 
     public void TamanhoDoFundo() {
 
-        jPanel1.setSize(largura - 40, altura - 200);
-        jPanel1.setLocation(20, 110);
+        jPanel1.setSize(largura - 20, altura - 200);
+        jPanel1.setLocation(10, 110);
 
-        jPanel2.setPreferredSize(new Dimension ((largura - 40)-30, (altura - 200)-40)); 
-        jPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 10));
+        jPanel2.setPreferredSize(new Dimension ((largura - 20)-20, (altura - 200)-40)); 
+        jPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
         
     }
     
@@ -634,23 +636,23 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         jLbTitulo.setBackground(corFundo4);
         
         
-        jLbCliente.setBounds(CentralizarLargura(116, 36,3),CentralizarAltura(30, 15, 3),80 + 15 + 300 + 4,30);
-        jCBCliente.setBounds(CentralizarLargura(116, 36,3)+ 80 + 15,CentralizarAltura(30, 15, 3),300,30);
+        jLbCliente.setBounds(CentralizarLargura(116, 44,3),CentralizarAltura(30, 15, 3),80 + 15 + 250 + 4,30);
+        jCBCliente.setBounds(CentralizarLargura(116, 44,3)+ 80 + 15,CentralizarAltura(30, 15, 3),250,30);
         jLbCliente.setBackground(corFundo4);
         jLbCliente.setOpaque(true);
         jCBCliente.setBackground(corFundo4);
         jCBCliente.setOpaque(true);
         
         // conta prara saber aonde deve colocar a data para q fique centralizado entre o fornecedor e a hora
-        int espacoData = (((largura - CentralizarLargura(116, 36,3) - 110 - 15 - 140 - 4)- (CentralizarLargura(116, 36,3)+ 80 + 15 + 300 + 4)) - (60 + 15 + 20 + 10 + 20 + 20) - (60 + 15 + 20 + 10 + 20 + 10 + 40 + 20))/3;
+        int espacoData = (((largura - CentralizarLargura(116, 44,3) - 100 - 15 - 130 - 4)- (CentralizarLargura(116, 44,3)+ 80 + 15 + 250 + 4)) - (110 + 15 + 120 + 4) - (60 + 15 + 20 + 20 + 20 + 20) - (60 + 15 + 20 + 20 + 20 + 20 + 45 + 4))/4;
        
         
-        jLbData.setBounds(CentralizarLargura(116, 36,3) + 80 + 15 + 300 + 4 + espacoData,CentralizarAltura(30, 15, 3),60 + 15 + 20 + 10 + 20 + 10 + 40 + 20,30);
-        jTFData1.setBounds(CentralizarLargura(116, 36,3) + 80 + 15 + 300 + 4 + espacoData + 60 + 15,CentralizarAltura(30, 15, 3),20,30);
-        jLbData1.setBounds(CentralizarLargura(116, 36,3) + 80 + 15 + 300 + 4 + espacoData + 60 + 15 + 20 ,CentralizarAltura(30, 15, 3),10,30);
-        jTFData2.setBounds(CentralizarLargura(116, 36,3) + 80 + 15 + 300 + 4 + espacoData + 60 + 15 + 20 + 10,CentralizarAltura(30, 15, 3),20,30);
-        jLbData2.setBounds(CentralizarLargura(116, 36,3) + 80 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20,CentralizarAltura(30, 15, 3),10,30);
-        jTFData3.setBounds(CentralizarLargura(116, 36,3) + 80 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20 + 10,CentralizarAltura(30, 15, 3),40,30);
+        jLbData.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData,CentralizarAltura(30, 15, 3),60 + 15 + 20 + 20 + 20 + 20 + 45 + 4,30);
+        jTFData1.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15,CentralizarAltura(30, 15, 3),20,30);
+        jLbData1.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15 + 20 ,CentralizarAltura(30, 15, 3),20,30);
+        jTFData2.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15 + 20 + 20,CentralizarAltura(30, 15, 3),20,30);
+        jLbData2.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15  + 20 + 20 + 20,CentralizarAltura(30, 15, 3),20,30);
+        jTFData3.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 10,CentralizarAltura(30, 15, 3),45,30);
         jLbData.setBackground(corFundo4);
         jLbData.setOpaque(true);
         jLbData1.setBackground(corFundo4);
@@ -664,10 +666,10 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         jTFData3.setBackground(corFundo4);
         jTFData3.setOpaque(true);
         
-        jLbHora.setBounds(CentralizarLargura(116, 36,3) + 80 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20 + 10 + 40 + 20 + espacoData,CentralizarAltura(30, 15, 3),60 + 15 + 20 + 10 + 20 + 20,30);
-        jTFHora1.setBounds(CentralizarLargura(116, 36,3) + 80 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20 + 10 + 40 + 20 + espacoData + 60 + 15,CentralizarAltura(30, 15, 3),20,30);
-        jLbHora1.setBounds(CentralizarLargura(116, 36,3) + 80 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20 + 10 + 40 + 20 + espacoData + 60 + 15 + 20,CentralizarAltura(30, 15, 3),10,30);
-        jTFHora2.setBounds(CentralizarLargura(116, 36,3) + 80 + 15 + 300 + 4 + espacoData + 60 + 15  + 20 + 10 + 20 + 10 + 40 + 20 + espacoData + 60 + 15 + 20 + 10,CentralizarAltura(30, 15, 3),20,30);
+        jLbHora.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 20 + 45 + 4 + espacoData,CentralizarAltura(30, 15, 3),60 + 15 + 20 + 20 + 20 + 20,30);
+        jTFHora1.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 20 + 45 + 4 + espacoData + 60 + 15,CentralizarAltura(30, 15, 3),20,30);
+        jLbHora1.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 20 + 45 + 4 + espacoData + 60 + 15 + 20,CentralizarAltura(30, 15, 3),20,30);
+        jTFHora2.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 20 + 45 + 4 + espacoData + 60 + 15 + 20 + 20,CentralizarAltura(30, 15, 3),20,30);
         jLbHora.setBackground(corFundo4);
         jLbHora.setOpaque(true);
         jTFHora1.setBackground(corFundo4);
@@ -675,8 +677,15 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         jTFHora2.setBackground(corFundo4);
         jTFHora2.setOpaque(true);
         
-        jLbValorTotal.setBounds(largura - CentralizarLargura(116, 36,3) - 110 - 15 - 140 - 4,CentralizarAltura(30, 15, 3),110 + 15 + 140 + 4,30);
-        jFTFValorTotal.setBounds(largura - CentralizarLargura(116, 36,3)- 150 - 4,CentralizarAltura(30, 15, 3),140,30);
+        jLbFormaDePagamento.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 20 + 45 + 4 + espacoData  + 60 + 15 + 20 + 20 + 20 + 20 + espacoData, CentralizarAltura(30, 15, 3),110 + 15 + 120 + 4,30);
+        jTFFormaDePagamento.setBounds(CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 20 + 45 + 4 + espacoData  + 60 + 15 + 20 + 20 + 20 + 20 + espacoData + 110 + 15, CentralizarAltura(30, 15, 3), 120, 30);
+        jLbFormaDePagamento.setBackground(corFundo4);
+        jLbFormaDePagamento.setOpaque(true);
+        jTFFormaDePagamento.setBackground(corFundo4);
+        jTFFormaDePagamento.setOpaque(true);
+                
+        jLbValorTotal.setBounds(largura - CentralizarLargura(116, 44,3) - 100 - 15 - 130 - 4,CentralizarAltura(30, 15, 3),100 + 15 + 130 + 4,30);
+        jFTFValorTotal.setBounds(largura - CentralizarLargura(116, 44,3)- 130 - 4,CentralizarAltura(30, 15, 3),130,30);
         jLbValorTotal.setBackground(corFundo4);
         jLbValorTotal.setOpaque(true);
         jFTFValorTotal.setBackground(corFundo4);

@@ -159,7 +159,7 @@ public class TelaFornecedorInfo extends javax.swing.JFrame {
         jFTFCNPJ.setEditable(false);
         jFTFCNPJ.setBorder(null);
         try {
-            jFTFCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+            jFTFCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("## . ### . ### / #### - ##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
