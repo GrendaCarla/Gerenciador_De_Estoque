@@ -4,6 +4,7 @@ import Gerenciador_De_Estoque.Clientes;
 import Gerenciador_De_Estoque.Compras;
 import Gerenciador_De_Estoque.Fornecedores;
 import Gerenciador_De_Estoque.Produtos;
+import Gerenciador_De_Estoque.Vendas;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -46,11 +47,13 @@ public class TelaAdministrador extends javax.swing.JFrame {
     List<Integer> pesquisaProduto = new ArrayList<Integer>();
     List<Integer> pesquisaCompra = new ArrayList<Integer>();
     List<Integer> pesquisaCliente = new ArrayList<Integer>();
+    List<Integer> pesquisaVenda = new ArrayList<Integer>();
     
     Fornecedores fornecedor = new Fornecedores();
     Produtos produto = new Produtos();
     Compras compra = new Compras();
     Clientes cliente = new Clientes();
+    Vendas venda = new Vendas();
     
     public TelaAdministrador() throws SQLException {
         initComponents();
@@ -68,6 +71,9 @@ public class TelaAdministrador extends javax.swing.JFrame {
         
         iniciarPesquisaCliente();
         AlinhamentoDosItensCliente();
+        
+        iniciarPesquisaVenda();
+        AlinhamentoDosItensVenda();
     }
 
     @SuppressWarnings("unchecked")
@@ -93,7 +99,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jLbBarraDeBuscaCompra = new javax.swing.JLabel();
         jBntCadastrarCompra = new javax.swing.JButton();
         jBntVoltarCompra = new javax.swing.JButton();
-        JP_Produto = new javax.swing.JPanel();
+        JP_Produtos = new javax.swing.JPanel();
         jTFBarraDeBuscaProduto = new javax.swing.JTextField();
         jBntVoltarProduto = new javax.swing.JButton();
         jBntLupaProduto = new javax.swing.JButton();
@@ -112,6 +118,14 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jLbBarraDeBuscaCliente = new javax.swing.JLabel();
         jBntVoltarCliente = new javax.swing.JButton();
         JP_Vendas = new javax.swing.JPanel();
+        jBntLupaVenda = new javax.swing.JButton();
+        jBntSairVenda = new javax.swing.JButton();
+        jScrollPaneVenda = new javax.swing.JScrollPane();
+        jTVenda = new javax.swing.JTable();
+        jTFBarraDeBuscaVenda = new javax.swing.JTextField();
+        jLbBarraDeBuscaVenda = new javax.swing.JLabel();
+        jBntCadastrarVenda = new javax.swing.JButton();
+        jBntVoltarVenda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -174,11 +188,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTFornecedor.setGridColor(new java.awt.Color(204, 204, 204));
         jTFornecedor.setRowHeight(25);
         jTFornecedor.getTableHeader().setReorderingAllowed(false);
-        jTFornecedor.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTFornecedorFocusGained(evt);
-            }
-        });
         jTFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTFornecedorMouseClicked(evt);
@@ -307,11 +316,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTCompra.setGridColor(new java.awt.Color(204, 204, 204));
         jTCompra.setRowHeight(25);
         jTCompra.getTableHeader().setReorderingAllowed(false);
-        jTCompra.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTCompraFocusGained(evt);
-            }
-        });
         jTCompra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTCompraMouseClicked(evt);
@@ -331,11 +335,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTFBarraDeBuscaCompra.setToolTipText("");
         jTFBarraDeBuscaCompra.setBorder(null);
         jTFBarraDeBuscaCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTFBarraDeBuscaCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFBarraDeBuscaCompraActionPerformed(evt);
-            }
-        });
         jTFBarraDeBuscaCompra.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTFBarraDeBuscaCompraKeyPressed(evt);
@@ -374,23 +373,18 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
         JTabbedPane.addTab("Compras", JP_Compras);
 
-        JP_Produto.setLayout(null);
+        JP_Produtos.setLayout(null);
 
         jTFBarraDeBuscaProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFBarraDeBuscaProduto.setToolTipText("");
         jTFBarraDeBuscaProduto.setBorder(null);
         jTFBarraDeBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTFBarraDeBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFBarraDeBuscaProdutoActionPerformed(evt);
-            }
-        });
         jTFBarraDeBuscaProduto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTFBarraDeBuscaProdutoKeyPressed(evt);
             }
         });
-        JP_Produto.add(jTFBarraDeBuscaProduto);
+        JP_Produtos.add(jTFBarraDeBuscaProduto);
         jTFBarraDeBuscaProduto.setBounds(40, 30, 920, 30);
 
         jBntVoltarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/voltar.PNG"))); // NOI18N
@@ -401,7 +395,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 jBntVoltarProdutoActionPerformed(evt);
             }
         });
-        JP_Produto.add(jBntVoltarProduto);
+        JP_Produtos.add(jBntVoltarProduto);
         jBntVoltarProduto.setBounds(1170, 40, 30, 24);
 
         jBntLupaProduto.setBackground(new java.awt.Color(255, 255, 255));
@@ -413,7 +407,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 jBntLupaProdutoActionPerformed(evt);
             }
         });
-        JP_Produto.add(jBntLupaProduto);
+        JP_Produtos.add(jBntLupaProduto);
         jBntLupaProduto.setBounds(980, 110, 20, 19);
 
         jBntCadastrarProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -425,7 +419,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 jBntCadastrarProdutoActionPerformed(evt);
             }
         });
-        JP_Produto.add(jBntCadastrarProduto);
+        JP_Produtos.add(jBntCadastrarProduto);
         jBntCadastrarProduto.setBounds(1050, 230, 210, 60);
 
         jBntSairProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -437,12 +431,12 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 jBntSairProdutoActionPerformed(evt);
             }
         });
-        JP_Produto.add(jBntSairProduto);
+        JP_Produtos.add(jBntSairProduto);
         jBntSairProduto.setBounds(1090, 560, 150, 60);
 
         jLbBarraDeBuscaProduto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 8));
         jLbBarraDeBuscaProduto.setOpaque(true);
-        JP_Produto.add(jLbBarraDeBuscaProduto);
+        JP_Produtos.add(jLbBarraDeBuscaProduto);
         jLbBarraDeBuscaProduto.setBounds(30, 10, 120, 20);
 
         jScrollPaneProduto.setBackground(new java.awt.Color(102, 255, 51));
@@ -479,11 +473,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTProduto.setGridColor(new java.awt.Color(204, 204, 204));
         jTProduto.setRowHeight(25);
         jTProduto.getTableHeader().setReorderingAllowed(false);
-        jTProduto.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTProdutoFocusGained(evt);
-            }
-        });
         jTProduto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTProdutoMouseClicked(evt);
@@ -496,10 +485,10 @@ public class TelaAdministrador extends javax.swing.JFrame {
             jTProduto.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        JP_Produto.add(jScrollPaneProduto);
+        JP_Produtos.add(jScrollPaneProduto);
         jScrollPaneProduto.setBounds(40, 80, 920, 540);
 
-        JTabbedPane.addTab("Estoque", JP_Produto);
+        JTabbedPane.addTab("Estoque", JP_Produtos);
 
         JP_Clientes.setLayout(null);
 
@@ -549,11 +538,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTCliente.setGridColor(new java.awt.Color(204, 204, 204));
         jTCliente.setRowHeight(25);
         jTCliente.getTableHeader().setReorderingAllowed(false);
-        jTCliente.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTClienteFocusGained(evt);
-            }
-        });
         jTCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTClienteMouseClicked(evt);
@@ -622,21 +606,125 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
         JTabbedPane.addTab("Clientes", JP_Clientes);
 
-        javax.swing.GroupLayout JP_VendasLayout = new javax.swing.GroupLayout(JP_Vendas);
-        JP_Vendas.setLayout(JP_VendasLayout);
-        JP_VendasLayout.setHorizontalGroup(
-            JP_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1291, Short.MAX_VALUE)
-        );
-        JP_VendasLayout.setVerticalGroup(
-            JP_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 654, Short.MAX_VALUE)
-        );
+        JP_Vendas.setLayout(null);
+
+        jBntLupaVenda.setBackground(new java.awt.Color(255, 255, 255));
+        jBntLupaVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa.PNG"))); // NOI18N
+        jBntLupaVenda.setBorder(null);
+        jBntLupaVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntLupaVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntLupaVendaActionPerformed(evt);
+            }
+        });
+        JP_Vendas.add(jBntLupaVenda);
+        jBntLupaVenda.setBounds(980, 110, 20, 19);
+
+        jBntSairVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBntSairVenda.setForeground(new java.awt.Color(255, 255, 255));
+        jBntSairVenda.setText("SAIR");
+        jBntSairVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntSairVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntSairVendaActionPerformed(evt);
+            }
+        });
+        JP_Vendas.add(jBntSairVenda);
+        jBntSairVenda.setBounds(1090, 560, 150, 60);
+
+        jScrollPaneVenda.setBackground(new java.awt.Color(102, 255, 51));
+        jScrollPaneVenda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 15));
+        jScrollPaneVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jTVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTVenda.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID PRODUTO", "NOME", "MARCA", "MEDIDA", "QUANTIDADE", "PREÇO", "ATIVO"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jTVenda.setDragEnabled(true);
+        jTVenda.setGridColor(new java.awt.Color(204, 204, 204));
+        jTVenda.setRowHeight(25);
+        jTVenda.getTableHeader().setReorderingAllowed(false);
+        jTVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTVendaMouseClicked(evt);
+            }
+        });
+        jScrollPaneVenda.setViewportView(jTVenda);
+        if (jTVenda.getColumnModel().getColumnCount() > 0) {
+            jTVenda.getColumnModel().getColumn(0).setResizable(false);
+            jTVenda.getColumnModel().getColumn(1).setResizable(false);
+            jTVenda.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        JP_Vendas.add(jScrollPaneVenda);
+        jScrollPaneVenda.setBounds(40, 80, 920, 540);
+
+        jTFBarraDeBuscaVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFBarraDeBuscaVenda.setToolTipText("");
+        jTFBarraDeBuscaVenda.setBorder(null);
+        jTFBarraDeBuscaVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTFBarraDeBuscaVenda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFBarraDeBuscaVendaKeyPressed(evt);
+            }
+        });
+        JP_Vendas.add(jTFBarraDeBuscaVenda);
+        jTFBarraDeBuscaVenda.setBounds(40, 30, 920, 30);
+
+        jLbBarraDeBuscaVenda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 8));
+        jLbBarraDeBuscaVenda.setOpaque(true);
+        JP_Vendas.add(jLbBarraDeBuscaVenda);
+        jLbBarraDeBuscaVenda.setBounds(30, 10, 120, 20);
+
+        jBntCadastrarVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBntCadastrarVenda.setForeground(new java.awt.Color(255, 255, 255));
+        jBntCadastrarVenda.setText("CADASTRAR");
+        jBntCadastrarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntCadastrarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntCadastrarVendaActionPerformed(evt);
+            }
+        });
+        JP_Vendas.add(jBntCadastrarVenda);
+        jBntCadastrarVenda.setBounds(1050, 230, 210, 60);
+
+        jBntVoltarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/voltar.PNG"))); // NOI18N
+        jBntVoltarVenda.setBorder(null);
+        jBntVoltarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntVoltarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntVoltarVendaActionPerformed(evt);
+            }
+        });
+        JP_Vendas.add(jBntVoltarVenda);
+        jBntVoltarVenda.setBounds(1170, 40, 30, 24);
 
         JTabbedPane.addTab("Vendas", JP_Vendas);
 
         getContentPane().add(JTabbedPane);
-        JTabbedPane.setBounds(0, 0, 1296, 690);
+        JTabbedPane.setBounds(0, 0, 1300, 560);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -662,10 +750,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         cadastroFornededor.show();
         dispose();
     }//GEN-LAST:event_jBntCadastrarFornecedorActionPerformed
-
-    private void jTFornecedorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFornecedorFocusGained
-        
-    }//GEN-LAST:event_jTFornecedorFocusGained
 
     private void jTFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFornecedorMouseClicked
         if (evt.getClickCount() == 2) {
@@ -758,10 +842,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBntSairProdutoActionPerformed
 
-    private void jTProdutoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTProdutoFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTProdutoFocusGained
-
     private void jTProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTProdutoMouseClicked
         if (evt.getClickCount() == 2) {
             
@@ -810,10 +890,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jBntLupaProdutoActionPerformed
-
-    private void jTFBarraDeBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFBarraDeBuscaProdutoActionPerformed
 
     private void jTFBarraDeBuscaProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaProdutoKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
@@ -869,10 +945,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBntSairCompraActionPerformed
 
-    private void jTCompraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCompraFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTCompraFocusGained
-
     private void jTCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTCompraMouseClicked
         
         if (evt.getClickCount() == 2) {
@@ -898,43 +970,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTCompraMouseClicked
 
-    private void jTFBarraDeBuscaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaCompraActionPerformed
-        if(jTFBarraDeBuscaCompra.getText() != ""){
-            try {
-                pesquisaCompra.clear();
-
-                for(int i=0; i< compra.getIDCompra().size(); i++){
-                    System.out.println(Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false);
-
-                    if((("" + compra.getIDCompra().get(i)).equals(jTFBarraDeBuscaCompra.getText().toLowerCase()) && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) || 
-                       comparaStrings(fornecedor.getNomeFantasia().get(fornecedor.getIDFornecedor().indexOf(compra.getIDFornecedor().get(i))).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.65 || 
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.7 && jTFBarraDeBuscaCompra.getText().length() == 5 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 1 && jTFBarraDeBuscaCompra.getText().length() == 4 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaCompra.getText().length() == 7 && jTFBarraDeBuscaCompra.getText().substring(2,3).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaCompra.getText().length() == 8 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaCompra.getText().length() == 9 && jTFBarraDeBuscaCompra.getText().substring(3,4).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaCompra.getText().length() == 10 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) ||
-                       (comparaStrings((compra.getDataHoraDaCompra().get(i).substring(8,10) + " / " + compra.getDataHoraDaCompra().get(i).substring(5,7) + " / " + compra.getDataHoraDaCompra().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.77 && jTFBarraDeBuscaCompra.getText().length() == 14 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false)){
-
-                       pesquisaCompra.add(i);
-                    }
-
-                }
-
-                criarTabelaCompra();
-
-            } catch (SQLException ex) {
-                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jTFBarraDeBuscaCompraActionPerformed
-
     private void jTFBarraDeBuscaCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaCompraKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             if(jTFBarraDeBuscaCompra.getText() != ""){
@@ -942,7 +977,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
                     pesquisaCompra.clear();
 
                     for(int i=0; i< compra.getIDCompra().size(); i++){
-                        System.out.println(Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false);
 
                         if((("" + compra.getIDCompra().get(i)).equals(jTFBarraDeBuscaCompra.getText().toLowerCase()) && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) || 
                            comparaStrings(fornecedor.getNomeFantasia().get(fornecedor.getIDFornecedor().indexOf(compra.getIDFornecedor().get(i))).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.65 || 
@@ -1009,7 +1043,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 pesquisaCompra.clear();
                 
                 for(int i=0; i< compra.getIDCompra().size(); i++){
-                    System.out.println(Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false);
                     
                     if((("" + compra.getIDCompra().get(i)).equals(jTFBarraDeBuscaCompra.getText().toLowerCase()) && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaCompra.getText()) == false) || 
                        comparaStrings(fornecedor.getNomeFantasia().get(fornecedor.getIDFornecedor().indexOf(compra.getIDFornecedor().get(i))).toLowerCase(), jTFBarraDeBuscaCompra.getText().toLowerCase()) >= 0.65 || 
@@ -1119,10 +1152,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBntLupaClienteActionPerformed
 
-    private void jTClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTClienteFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTClienteFocusGained
-
     private void jTClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTClienteMouseClicked
         if (evt.getClickCount() == 2) {
             
@@ -1150,6 +1179,139 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private void jBntSairClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSairClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBntSairClienteActionPerformed
+
+    private void jBntLupaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntLupaVendaActionPerformed
+        if(jTFBarraDeBuscaVenda.getText() != ""){
+            try {
+                pesquisaVenda.clear();
+                
+                for(int i=0; i< venda.getIDVenda().size(); i++){
+                    System.out.println(Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false);
+                    
+                    if((("" + venda.getIDVenda().get(i)).equals(jTFBarraDeBuscaVenda.getText().toLowerCase()) && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) || 
+                       comparaStrings(cliente.getNome().get(cliente.getIDCliente().indexOf(venda.getIDCliente().get(i))).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.65 || 
+                       (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaVenda.getText().length() == 5 && jTFBarraDeBuscaVenda.getText().substring(2,3).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                       (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaVenda.getText().length() == 5 && jTFBarraDeBuscaVenda.getText().substring(2,3).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                       (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.7 && jTFBarraDeBuscaVenda.getText().length() == 5 && jTFBarraDeBuscaVenda.getText().substring(2,3).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                       (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 1 && jTFBarraDeBuscaVenda.getText().length() == 4 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                       (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaVenda.getText().length() == 7 && jTFBarraDeBuscaVenda.getText().substring(2,3).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                       (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaVenda.getText().length() == 7 && jTFBarraDeBuscaVenda.getText().substring(2,3).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                       (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaVenda.getText().length() == 7 && jTFBarraDeBuscaVenda.getText().substring(2,3).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                       (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaVenda.getText().length() == 8 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                       (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaVenda.getText().length() == 9 && jTFBarraDeBuscaVenda.getText().substring(3,4).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                       (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaVenda.getText().length() == 9 && jTFBarraDeBuscaVenda.getText().substring(3,4).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                       (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaVenda.getText().length() == 9 && jTFBarraDeBuscaVenda.getText().substring(3,4).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                       (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaVenda.getText().length() == 10 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                       (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.77 && jTFBarraDeBuscaVenda.getText().length() == 14 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false)){
+
+                       pesquisaVenda.add(i);
+                    }
+
+                }
+
+                criarTabelaVenda();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jBntLupaVendaActionPerformed
+
+    private void jBntSairVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSairVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBntSairVendaActionPerformed
+
+    private void jTVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTVendaMouseClicked
+        /*if (evt.getClickCount() == 2) {
+            
+            try {
+                TelaVendaInfo infoVenda = new TelaVendaInfo();
+                //infoVenda.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                
+                Toolkit tk = Toolkit.getDefaultToolkit();
+                Dimension d = tk.getScreenSize();
+
+                infoVenda.setSize(d.width + 8, d.height - 37);
+                infoVenda.setResizable(false);
+
+                infoVenda.PegarDados(pesquisaVenda.get(jTVenda.getSelectedRow()));
+
+                infoVenda.show();
+                dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }*/
+    }//GEN-LAST:event_jTVendaMouseClicked
+
+    private void jTFBarraDeBuscaVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBarraDeBuscaVendaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(jTFBarraDeBuscaVenda.getText() != ""){
+                try {
+                    pesquisaVenda.clear();
+
+                    for(int i=0; i< venda.getIDVenda().size(); i++){
+                        System.out.println(Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false);
+
+                        if((("" + venda.getIDVenda().get(i)).equals(jTFBarraDeBuscaVenda.getText().toLowerCase()) && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) || 
+                           comparaStrings(cliente.getNome().get(cliente.getIDCliente().indexOf(venda.getIDCliente().get(i))).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.65 || 
+                           (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaVenda.getText().length() == 5 && jTFBarraDeBuscaVenda.getText().substring(2,3).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                           (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaVenda.getText().length() == 5 && jTFBarraDeBuscaVenda.getText().substring(2,3).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                           (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.7 && jTFBarraDeBuscaVenda.getText().length() == 5 && jTFBarraDeBuscaVenda.getText().substring(2,3).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                           (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 1 && jTFBarraDeBuscaVenda.getText().length() == 4 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                           (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaVenda.getText().length() == 7 && jTFBarraDeBuscaVenda.getText().substring(2,3).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                           (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaVenda.getText().length() == 7 && jTFBarraDeBuscaVenda.getText().substring(2,3).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                           (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaVenda.getText().length() == 7 && jTFBarraDeBuscaVenda.getText().substring(2,3).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                           (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.4 && jTFBarraDeBuscaVenda.getText().length() == 8 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                           (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.71 && jTFBarraDeBuscaVenda.getText().length() == 9 && jTFBarraDeBuscaVenda.getText().substring(3,4).equals("/") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                           (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaVenda.getText().length() == 9 && jTFBarraDeBuscaVenda.getText().substring(3,4).equals("-") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                           (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.8 && jTFBarraDeBuscaVenda.getText().length() == 9 && jTFBarraDeBuscaVenda.getText().substring(3,4).equals(" ") && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                           (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.6 && jTFBarraDeBuscaVenda.getText().length() == 10 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false) ||
+                           (comparaStrings((venda.getDataHoraDaVenda().get(i).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(i).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(i).substring(0,4)).toLowerCase(), jTFBarraDeBuscaVenda.getText().toLowerCase()) >= 0.77 && jTFBarraDeBuscaVenda.getText().length() == 14 && Pattern.matches("[a-zA-Z]+", jTFBarraDeBuscaVenda.getText()) == false)){
+
+                           pesquisaVenda.add(i);
+                        }
+
+                    }
+
+                    criarTabelaVenda();
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_jTFBarraDeBuscaVendaKeyPressed
+
+    private void jBntCadastrarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCadastrarVendaActionPerformed
+        try {
+            TelaVendaCadastro cadastroVenda = new TelaVendaCadastro();
+            //cadastroVenda.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+            Toolkit tk = Toolkit.getDefaultToolkit();
+            Dimension d = tk.getScreenSize();
+
+            cadastroVenda.setSize(d.width + 8, d.height - 37);
+            cadastroVenda.setResizable(false);
+        
+            cadastroVenda.criarTabelaItensVendido();
+            
+            cadastroVenda.show();
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBntCadastrarVendaActionPerformed
+
+    private void jBntVoltarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntVoltarVendaActionPerformed
+        try {
+            jTFBarraDeBuscaVenda.setText("");
+            iniciarPesquisaVenda();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBntVoltarVendaActionPerformed
 
     public static void main(String args[]) {
         
@@ -1187,41 +1349,49 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel JP_Clientes;
     private javax.swing.JPanel JP_Compras;
     private javax.swing.JPanel JP_Fornecedores;
-    private javax.swing.JPanel JP_Produto;
+    private javax.swing.JPanel JP_Produtos;
     private javax.swing.JPanel JP_Vendas;
     private javax.swing.JTabbedPane JTabbedPane;
     private javax.swing.JButton jBntCadastrarCliente;
     private javax.swing.JButton jBntCadastrarCompra;
     private javax.swing.JButton jBntCadastrarFornecedor;
     private javax.swing.JButton jBntCadastrarProduto;
+    private javax.swing.JButton jBntCadastrarVenda;
     private javax.swing.JButton jBntLupaCliente;
     private javax.swing.JButton jBntLupaCompra;
     private javax.swing.JButton jBntLupaFornecedor;
     private javax.swing.JButton jBntLupaProduto;
+    private javax.swing.JButton jBntLupaVenda;
     private javax.swing.JButton jBntSairCliente;
     private javax.swing.JButton jBntSairCompra;
     private javax.swing.JButton jBntSairFornecedor;
     private javax.swing.JButton jBntSairProduto;
+    private javax.swing.JButton jBntSairVenda;
     private javax.swing.JButton jBntVoltarCliente;
     private javax.swing.JButton jBntVoltarCompra;
     private javax.swing.JButton jBntVoltarFornecedor;
     private javax.swing.JButton jBntVoltarProduto;
+    private javax.swing.JButton jBntVoltarVenda;
     private javax.swing.JLabel jLbBarraDeBuscaCliente;
     private javax.swing.JLabel jLbBarraDeBuscaCompra;
     private javax.swing.JLabel jLbBarraDeBuscaFornecedor;
     private javax.swing.JLabel jLbBarraDeBuscaProduto;
+    private javax.swing.JLabel jLbBarraDeBuscaVenda;
     private javax.swing.JScrollPane jScrollPaneCliente;
     private javax.swing.JScrollPane jScrollPaneCompra;
     private javax.swing.JScrollPane jScrollPaneFornecedor;
     private javax.swing.JScrollPane jScrollPaneProduto;
+    private javax.swing.JScrollPane jScrollPaneVenda;
     private javax.swing.JTable jTCliente;
     private javax.swing.JTable jTCompra;
     private javax.swing.JTextField jTFBarraDeBuscaCliente;
     private javax.swing.JTextField jTFBarraDeBuscaCompra;
     private javax.swing.JTextField jTFBarraDeBuscaFornecedor;
     private javax.swing.JTextField jTFBarraDeBuscaProduto;
+    private javax.swing.JTextField jTFBarraDeBuscaVenda;
     private javax.swing.JTable jTFornecedor;
     private javax.swing.JTable jTProduto;
+    private javax.swing.JTable jTVenda;
     // End of variables declaration//GEN-END:variables
 
     public double comparaStrings(String stringA, String stringB) {
@@ -1252,7 +1422,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
        
        // ---------------------------- PRODUTO ---------------------------------
                
-       JP_Produto.setBackground(corFundo1);
+       JP_Produtos.setBackground(corFundo1);
        
        // ---------------------------- COMPRA ---------------------------------
        
@@ -1261,6 +1431,10 @@ public class TelaAdministrador extends javax.swing.JFrame {
        // ---------------------------- CLIENTE ---------------------------------
        
        JP_Clientes.setBackground(corFundo1);
+       
+        // ---------------------------- VENDA ---------------------------------
+       
+       JP_Vendas.setBackground(corFundo1);
        
     }
     
@@ -1761,6 +1935,118 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jBntSairCliente.setBackground(corFundo6);
 
     }
-  
     
+    //------------------------------------------- VENDA -----------------------------------------------
+    
+    
+    public void iniciarPesquisaVenda() throws SQLException{
+        venda.LimparVenda();
+        
+        venda.ConsultarVendas();
+        pesquisaVenda.clear();
+        
+        for(int i=0; i< venda.getIDVenda().size(); i++){
+            pesquisaVenda.add(i);
+        }
+        
+        criarTabelaVenda();
+    }
+    
+    public void criarTabelaVenda() throws SQLException {
+        
+        jTVenda.setFont(new java.awt.Font("Tahoma", 0, 18));
+        
+        JTableHeader cabecalho = jTVenda.getTableHeader();
+        cabecalho.setFont(new java.awt.Font("Tahoma", 0, 18));
+        cabecalho.setBackground(corFundo4);
+        
+        jTVenda.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {},
+            new String [] {
+                "ID", "CLIENTE", "DATA", "HORA"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        
+        });
+        
+        
+        jTVenda.setRowHeight(25);
+        jTVenda.getTableHeader().setReorderingAllowed(false);
+        
+        jScrollPaneVenda.setViewportView(jTVenda);
+        
+        if (jTVenda.getColumnModel().getColumnCount() > 0) {
+            jTVenda.getColumnModel().getColumn(0).setResizable(false);
+            jTVenda.getColumnModel().getColumn(1).setResizable(false);
+            jTVenda.getColumnModel().getColumn(2).setResizable(false);
+            jTVenda.getColumnModel().getColumn(3).setResizable(false);
+            jTVenda.getColumnModel().getColumn(0).setMinWidth(100);
+            jTVenda.getColumnModel().getColumn(0).setMaxWidth(100);
+            jTVenda.getColumnModel().getColumn(2).setMinWidth(200);
+            jTVenda.getColumnModel().getColumn(2).setMaxWidth(200);
+            jTVenda.getColumnModel().getColumn(3).setMinWidth(200);
+            jTVenda.getColumnModel().getColumn(3).setMaxWidth(200);
+        }
+        
+        DefaultTableCellRenderer centro = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer esquerda = new DefaultTableCellRenderer();
+        
+        centro.setHorizontalAlignment(SwingConstants.CENTER);
+        esquerda.setHorizontalAlignment(SwingConstants.LEFT);
+        
+        jTVenda.getColumnModel().getColumn(0).setCellRenderer(centro);
+        jTVenda.getColumnModel().getColumn(1).setCellRenderer(esquerda);
+        jTVenda.getColumnModel().getColumn(2).setCellRenderer(centro);
+        jTVenda.getColumnModel().getColumn(3).setCellRenderer(centro);
+        
+        for(int i=0; i< pesquisaVenda.size(); i++){
+            
+            DefaultTableModel model = (DefaultTableModel) jTVenda.getModel();
+            model.addRow(new Object[]{"" + venda.getIDVenda().get(pesquisaVenda.get(i)), " " + cliente.getNome().get(cliente.getIDCliente().indexOf(venda.getIDCliente().get(pesquisaVenda.get(i)))), " " +  venda.getDataHoraDaVenda().get(pesquisaVenda.get(i)).substring(8,10) + " / " + venda.getDataHoraDaVenda().get(pesquisaVenda.get(i)).substring(5,7) + " / " + venda.getDataHoraDaVenda().get(pesquisaVenda.get(i)).substring(0,4), venda.getDataHoraDaVenda().get(pesquisaVenda.get(i)).substring(11, 13) + " : " + venda.getDataHoraDaVenda().get(pesquisaVenda.get(i)).substring(14, 16)});
+        }
+        
+    } 
+    
+    public void AlinhamentoDosItensVenda() {
+        
+        jTFBarraDeBuscaVenda.setBounds(30 + 8+ 8,CentralizarAltura(28, 20, 1) + 6,largura - 25 - 34 - 4 - 12 - 8 - 8 - 24 - 60 - 8 - 8 - 8,28);
+        jLbBarraDeBuscaVenda.setBounds(30,CentralizarAltura(28, 20, 1)-8  + 6,largura - 60 - 25 - 34 - 14,44);
+        jLbBarraDeBuscaVenda.setBackground(corFundo3);
+        jLbBarraDeBuscaVenda.setOpaque(true);
+        
+        jBntLupaVenda.setBounds(largura - 60 - 31 - 4 - 12 - 8 - 2 - 24,CentralizarAltura(24, 20, 1) + 6,24,23);
+        
+        jBntVoltarVenda.setBounds(largura - 25 - 34 - 2 - 30,CentralizarAltura(34, 20, 1) + 6,34,34);
+        jBntVoltarVenda.setBackground(corFundo1);
+        jBntVoltarVenda.setOpaque(true);
+        
+        jScrollPaneVenda.setBounds(30,CentralizarAltura(28, 40,5) + 6,largura - 46 - 20, altura - 37 - CentralizarAltura(28, 40,5) - 80 - 70 - 6);
+        jScrollPaneVenda.setBackground(corFundo4);
+        
+        jTVenda.setGridColor(corFundo2);
+        jTVenda.setSelectionBackground(corFundo1);
+        
+        
+        jBntCadastrarVenda.setBounds(CentralizarLargura(116, 18,3), altura - 120 - 50,140,50);
+        jBntCadastrarVenda.setBackground(corFundo2);
+        
+        jBntSairVenda.setBounds(largura - CentralizarLargura(116, 18,3) - 140, altura - 120 - 50,140,50);
+        jBntSairVenda.setBackground(corFundo6);
+
+    }
+  
 }

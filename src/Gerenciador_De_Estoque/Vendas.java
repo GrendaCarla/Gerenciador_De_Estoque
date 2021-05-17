@@ -2,58 +2,63 @@ package Gerenciador_De_Estoque;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Vendas extends ItensVendidos {
-    private int IDCliente;
-    private String DataHoraDaVenda;
-    private float ValorTotal;
-    private String FormaDePagamento;
-    // um vetor com as informações q seram exibidas na pagina principal pro administrador escolher qual quer clicar
-    int i;
+    
+    private List<Integer> IDVenda = new ArrayList<Integer>();
+    private List<Integer> IDCliente = new ArrayList<Integer>();
+    private List<String> DataHoraDaVenda = new ArrayList<String>();
+    private List<Float> ValorTotal = new ArrayList<Float>();
+    private List<String> FormaDePagamento = new ArrayList<String>();
+    
+    String sql;
+    ResultSet resultado;
     
     //-----------------------------------------------//
     
-    public void CadastrarVendas()throws SQLException{
-        for(i = 0; i < getIDProduto().size(); i++){
-            getValorUnitarioProduto();
-        }
-        
-        for(i = 0; i < getIDProduto().size(); i++){
-            setValorTotal(getValorTotal()+ (getValorUnitario().get(i) * getQuantidade().get(i)));
-        }
-        
-        sql = "INSERT INTO Vendas (IDCliente, DataHoraDaVenda, ValorTotal, FormaDePagamento) VALUES(" + getIDCliente() +  ", convert(datetime,'" + getDataHoraDaVenda() + "',103)"  + ", " + getValorTotal() + ", '" + getFormaDePagamento() + "') ";
+    public int CadastrarVendas(int idCliente, String DataHoraDaVenda, float ValorTotal, String formaDePagamento)throws SQLException{
+ 
+        sql = "INSERT INTO Vendas (IDCliente, DataHoraDaVenda, ValorTotal, FormaDePagamento) VALUES(" + idCliente +  ", " + DataHoraDaVenda + ", " + ValorTotal+ ", '" +  formaDePagamento +"') ";
            
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;
         conect.inserir();
         
-        CadastrarItem();
+        sql = "select TOP 1 IDVenda FROM Vendas ORDER BY IDVenda DESC";
+        conect.sql = this.sql;
+        resultado = conect.retirar();
+        
+        resultado.next();
+        return resultado.getInt(1);
+         
     }
     
-    public void AtualizarProdutos()throws SQLException{
+    public void CadastrarItem(int idVenda, int idProduto, int quantidade, float valorUnitario)throws SQLException{
+
+        ConnectionFactory conect = new ConnectionFactory();
+        
+        sql = "INSERT INTO ItensVendidos (IDVenda, IDProduto, Quantidade, ValorUnitario) VALUES(" + idVenda +  ", " + idProduto + ", " + quantidade  + ", " + valorUnitario  + ") ";
+        conect.sql = this.sql;
+        conect.inserir();
+        
+    }
+    
+    public void AtualizarVenda(int idVenda, int idCliente, String dataHoraDaVenda , float valorTotal, String formaDePagamento)throws SQLException{
         
        ConnectionFactory conect = new ConnectionFactory();
        
-       for(i = 0; i < getIDProduto().size(); i++){
-            sql = "select Quantidade FROM Produtos where IDProduto = " + getIDProduto().get(i);
-            conect.sql = this.sql;
-            resultado = conect.retirar();
-            int valor = 0;
-                    
-            while (resultado.next()){
-                valor = resultado.getInt(1);
-            }
-            
-            sql = "UPDATE Produtos\n" + "SET Quantidade = " + (valor - getQuantidade().get(i)) + "\n" + "WHERE IDProduto = " + getIDProduto().get(i) + "\n";
-            conect.sql = this.sql;
-            conect.inserir();
-       }
+        sql = "UPDATE Vendas\n" + "SET IDCliente = " + idCliente + ", DataHoraDaVenda = " + dataHoraDaVenda + ", ValorTotal = " + valorTotal + ", FormaDePagamento = " + FormaDePagamento + "\n" + "WHERE IDVenda = " + idVenda + "\n";
+        conect.sql = this.sql;
+        conect.inserir();
+       
     }
     
+
     public void ConsultarVendas()throws SQLException{
-        sql = "select * from Vendas c\n"
-        + "where IDVenda = " + getIDVenda();
+        
+        sql = "select * from Vendas";
         
         ConnectionFactory conect = new ConnectionFactory();
         conect.sql = this.sql;
@@ -61,46 +66,95 @@ public class Vendas extends ItensVendidos {
         
         while (resultado.next()){
             
+            setIDVenda(resultado.getInt(1));
             setIDCliente(resultado.getInt(2));
             setDataHoraDaVenda(resultado.getString(3));
             setValorTotal(resultado.getFloat(4));
+            setFormaDePagamento(resultado.getString(5));
         }
+        
+    }
+    
+    public void ConsultarItem(int idVenda)throws SQLException{
+        
+        ConnectionFactory conect = new ConnectionFactory();
+        
+        sql = "select * from ItensVendas c\n"
+        + "where IDVenda = " + idVenda;
+        
+        conect.sql = this.sql;
+        resultado = conect.retirar();
+        
+        while (resultado.next()){
             
-        ConsultarItem();
+            setIDItemVendido(resultado.getInt(1));
+            setIDProduto(resultado.getInt(3));
+            setQuantidade(resultado.getInt(4));
+            setValorUnitario(resultado.getFloat(5));
+        }
+    }
+    
+    public void DeletarItem(int idVenda)throws SQLException{
+        
+       ConnectionFactory conect = new ConnectionFactory();
+       
+        sql = "DELETE FROM ItensVendidos \n" + "WHERE IDCompra = " + idVenda + "\n";
+        
+        conect.sql = this.sql;
+        conect.inserir();
+       
+    }
+  
+    public void LimparVenda(){
+       
+        this.IDVenda.clear();
+        this.IDCliente.clear();
+        this.DataHoraDaVenda.clear();
+        this.ValorTotal.clear();
+        
+        LimparItensVendidos();
     }
     
     //-----------------------------------------------//
 
-    public int getIDCliente() {
+    public List<Integer> getIDVenda() {
+        return IDVenda;
+    }
+
+    public void setIDVenda(int idVenda) {
+        this.IDVenda.add(idVenda);
+    }
+    
+    public List<Integer> getIDCliente() {
         return IDCliente;
     }
 
-    public void setIDCliente(int IDCliente) {
-        this.IDCliente = IDCliente;
+    public void setIDCliente(int idCliente) {
+        this.IDCliente.add(idCliente);
     }
-
-    public String getDataHoraDaVenda() {
+    
+    public List<String> getDataHoraDaVenda() {
         return DataHoraDaVenda;
     }
 
-    public void setDataHoraDaVenda(String DataHoraDaVenda) {
-        this.DataHoraDaVenda = DataHoraDaVenda;
+    public void setDataHoraDaVenda(String dataHoraDaVenda) {
+        this.DataHoraDaVenda.add(dataHoraDaVenda);
     }
 
-    public float getValorTotal() {
+    public List<Float> getValorTotal() {
         return ValorTotal;
     }
 
-    public void setValorTotal(float ValorTotal) {
-        this.ValorTotal = ValorTotal;
+    public void setValorTotal(float valorTotal) {
+        this.ValorTotal.add(valorTotal);
     }
 
-    public String getFormaDePagamento() {
+    public List<String> getFormaDePagamento() {
         return FormaDePagamento;
     }
 
-    public void setFormaDePagamento(String FormaDePagamento) {
-        this.FormaDePagamento = FormaDePagamento;
+    public void setFormaDePagamento(String formaDePagamento) {
+        this.FormaDePagamento.add(formaDePagamento);
     }
 
     
