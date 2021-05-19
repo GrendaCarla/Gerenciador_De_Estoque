@@ -1,5 +1,6 @@
 package Gerenciador_De_Estoque.Tela_Administrador;
 
+import Design.Design;
 import Gerenciador_De_Estoque.Clientes;
 import Gerenciador_De_Estoque.Compras;
 import Gerenciador_De_Estoque.Fornecedores;
@@ -8,11 +9,10 @@ import Gerenciador_De_Estoque.Vendas;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,29 +26,14 @@ import javax.swing.table.JTableHeader;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.SmithWatermanGotoh;
         
 public class TelaAdministrador extends javax.swing.JFrame {
-    
-    // resolução tela pc
-    Toolkit tk = Toolkit.getDefaultToolkit();
-    Dimension d = tk.getScreenSize();
 
-    int largura = d.width;
-    int altura = d.height;
-    
-    Color corFundo1 = new Color(238, 247, 242);
-    Color corFundo2 = new Color(3, 152, 158);
-    Color corFundo3 = new Color(255, 255, 255);
-    Color corFundo4 = new Color(207,220,212);
-    Color corFundo5 = new Color(5,180,145);
-    Color corFundo6 = new Color(129,88,119);
-    Color corFont1 = new Color(0,0,0);
-    Color corFont2 = new Color(195,195,195);
-    
     List<Integer> pesquisaFornecedor = new ArrayList<Integer>();
     List<Integer> pesquisaProduto = new ArrayList<Integer>();
     List<Integer> pesquisaCompra = new ArrayList<Integer>();
     List<Integer> pesquisaCliente = new ArrayList<Integer>();
     List<Integer> pesquisaVenda = new ArrayList<Integer>();
     
+    Design design = new Design();
     Fornecedores fornecedor = new Fornecedores();
     Produtos produto = new Produtos();
     Compras compra = new Compras();
@@ -135,6 +120,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
+        JTabbedPane.setBackground(new java.awt.Color(204, 204, 204));
         JTabbedPane.setForeground(new java.awt.Color(255, 255, 255));
         JTabbedPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         JTabbedPane.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -783,6 +769,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 for(int i=0; i< fornecedor.getNomeFantasia().size(); i++){
 
                     if(comparaStrings(fornecedor.getNomeFantasia().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
+                       comparaStrings(fornecedor.getRazaoSocial().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
                        comparaStrings(fornecedor.getEmail1().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
                        comparaStrings(fornecedor.getEstado().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
                        comparaStrings(fornecedor.getCidade().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
@@ -819,6 +806,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                     for(int i=0; i< fornecedor.getNomeFantasia().size(); i++){
 
                         if(comparaStrings(fornecedor.getNomeFantasia().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
+                           comparaStrings(fornecedor.getRazaoSocial().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
                            comparaStrings(fornecedor.getEmail1().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
                            comparaStrings(fornecedor.getEstado().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
                            comparaStrings(fornecedor.getCidade().get(i).toLowerCase(), jTFBarraDeBuscaFornecedor.getText().toLowerCase()) >= 0.65 || 
@@ -1398,57 +1386,41 @@ public class TelaAdministrador extends javax.swing.JFrame {
         SmithWatermanGotoh algorithm = new SmithWatermanGotoh();
         return algorithm.getSimilarity(stringA, stringB);
     }
-    
-    
-    public String FormataFloat(float num){
-        
-        NumberFormat formatter = new DecimalFormat("0.00");
-        return (formatter.format(num));
-        
-    }
-    
+   
     public void MudarAba(int num){
          JTabbedPane.setSelectedIndex(num);
     }
     
     public void corDeFundo() {
         
-       getContentPane().setBackground(corFundo3);
-       JTabbedPane.setBackground(corFundo2);
+       getContentPane().setBackground(design.getCorFundo3());
+       JTabbedPane.setBackground(design.getCorFundo2());
        
        // ---------------------------- FORNECEDOR ---------------------------------
        
-       JP_Fornecedores.setBackground(corFundo1);
+       JP_Fornecedores.setBackground(design.getCorFundo1());
        
        // ---------------------------- PRODUTO ---------------------------------
                
-       JP_Produtos.setBackground(corFundo1);
+       JP_Produtos.setBackground(design.getCorFundo1());
        
        // ---------------------------- COMPRA ---------------------------------
        
-       JP_Compras.setBackground(corFundo1);
+       JP_Compras.setBackground(design.getCorFundo1());
        
        // ---------------------------- CLIENTE ---------------------------------
        
-       JP_Clientes.setBackground(corFundo1);
+       JP_Clientes.setBackground(design.getCorFundo1());
        
         // ---------------------------- VENDA ---------------------------------
        
-       JP_Vendas.setBackground(corFundo1);
+       JP_Vendas.setBackground(design.getCorFundo1());
        
     }
     
     public void TamanhoDoFundo() {
 
-        JTabbedPane.setBounds(0, 0, largura, altura);
-    }
-    
-    public int CentralizarLargura(int tamanhoObjeto, int posicao, int muti) { 
-        return (largura/posicao)*muti - (tamanhoObjeto/2);
-    }
-    
-    public int CentralizarAltura(int tamanhoObjeto, int posicao, int muti) { 
-        return (altura/posicao)* muti - (tamanhoObjeto/2);
+        JTabbedPane.setBounds(0, 0, design.getLargura(), design.getAltura());
     }
     
     //------------------------------------------- FORNECEDOR -----------------------------------------------
@@ -1471,8 +1443,9 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18));
         
         JTableHeader cabecalho = jTFornecedor.getTableHeader();
-        cabecalho.setFont(new java.awt.Font("Tahoma", 0, 18));
-        cabecalho.setBackground(corFundo4);
+        cabecalho.setFont(new java.awt.Font("Tahoma", Font.BOLD, 18));
+        cabecalho.setBackground(design.getCorTituloTabela());
+        cabecalho.setForeground(design.getCorLetra1());
         
         jTFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
@@ -1538,29 +1511,29 @@ public class TelaAdministrador extends javax.swing.JFrame {
     
     public void AlinhamentoDosItensFornecedor() {
         
-        jTFBarraDeBuscaFornecedor.setBounds(30 + 8+ 8,CentralizarAltura(28, 20, 1) + 6,largura - 25 - 34 - 4 - 12 - 8 - 8 - 24 - 60 - 8 - 8 - 8,28);
-        jLbBarraDeBuscaFornecedor.setBounds(30,CentralizarAltura(28, 20, 1)-8  + 6,largura - 60 - 25 - 34 - 14,44);
-        jLbBarraDeBuscaFornecedor.setBackground(corFundo3);
+        jTFBarraDeBuscaFornecedor.setBounds(30 + 8+ 8,design.CentralizarAltura(28, 20, 1) + 6, design.getLargura() - 25 - 34 - 4 - 12 - 8 - 8 - 24 - 60 - 8 - 8 - 8,28);
+        jLbBarraDeBuscaFornecedor.setBounds(30,design.CentralizarAltura(28, 20, 1)-8  + 6,design.getLargura() - 60 - 25 - 34 - 14,44);
+        jLbBarraDeBuscaFornecedor.setBackground(design.getCorFundo3());
         jLbBarraDeBuscaFornecedor.setOpaque(true);
         
-        jBntLupaFornecedor.setBounds(largura - 60 - 31 - 4 - 12 - 8 - 2 - 24,CentralizarAltura(24, 20, 1) + 6,24,23);
+        jBntLupaFornecedor.setBounds(design.getLargura() - 60 - 31 - 4 - 12 - 8 - 2 - 24,design.CentralizarAltura(24, 20, 1) + 6,24,23);
         
-        jBntVoltarFornecedor.setBounds(largura - 25 - 34 - 2 - 30,CentralizarAltura(34, 20, 1) + 6,34,34);
-        jBntVoltarFornecedor.setBackground(corFundo1);
+        jBntVoltarFornecedor.setBounds(design.getLargura() - 25 - 34 - 2 - 30,design.CentralizarAltura(34, 20, 1) + 6,34,34);
+        jBntVoltarFornecedor.setBackground(design.getCorFundo1());
         jBntVoltarFornecedor.setOpaque(true);
         
-        jScrollPaneFornecedor.setBounds(30,CentralizarAltura(28, 40,5) + 6,largura - 46 - 20, altura - 37 - CentralizarAltura(28, 40,5) - 80 - 70 - 6);
-        jScrollPaneFornecedor.setBackground(corFundo4);
+        jScrollPaneFornecedor.setBounds(30,design.CentralizarAltura(28, 40,5) + 6,design.getLargura() - 46 - 20, design.getAltura() - 37 - design.CentralizarAltura(28, 40,5) - 80 - 70 - 6);
+        jScrollPaneFornecedor.setBackground(design.getCorTituloTabela());
         
-        jTFornecedor.setGridColor(corFundo2);
-        jTFornecedor.setSelectionBackground(corFundo1);
+        jTFornecedor.setGridColor(design.getCorFundo2());
+        jTFornecedor.setSelectionBackground(design.getCorFundo1());
         
         
-        jBntCadastrarFornecedor.setBounds(CentralizarLargura(116, 18,3), altura - 120 - 50,140,50);
-        jBntCadastrarFornecedor.setBackground(corFundo2);
+        jBntCadastrarFornecedor.setBounds(design.CentralizarLargura(116, 18,3), design.getAltura() - 120 - 50,140,50);
+        jBntCadastrarFornecedor.setBackground(design.getCorFundo2());
         
-        jBntSairFornecedor.setBounds(largura - CentralizarLargura(116, 18,3) - 140, altura - 120 - 50,140,50);
-        jBntSairFornecedor.setBackground(corFundo6);
+        jBntSairFornecedor.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,3) - 140, design.getAltura() - 120 - 50,140,50);
+        jBntSairFornecedor.setBackground(design.getCorBotaoSairCancelarVoltar());
 
     }
     
@@ -1586,8 +1559,9 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTProduto.setFont(new java.awt.Font("Tahoma", 0, 18));
         
         JTableHeader cabecalho = jTProduto.getTableHeader();
-        cabecalho.setFont(new java.awt.Font("Tahoma", 0, 18));
-        cabecalho.setBackground(corFundo4);
+        cabecalho.setFont(new java.awt.Font("Tahoma", Font.BOLD, 18));
+        cabecalho.setBackground(design.getCorTituloTabela());
+        cabecalho.setForeground(design.getCorLetra1());
         
         jTProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
@@ -1645,7 +1619,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             ativo = produto.getAtivo().get(pesquisaProduto.get(i)) == 1 ? "Ativo" : "Inativo";
 
             DefaultTableModel model = (DefaultTableModel) jTProduto.getModel();
-            model.addRow(new Object[]{"" + produto.getIDProduto().get(pesquisaProduto.get(i)), " " + produto.getNome().get(pesquisaProduto.get(i)), " " + produto.getMarca().get(pesquisaProduto.get(i)), produto.getMedida().get(pesquisaProduto.get(i)) + " ", "" + produto.getQuantidade().get(pesquisaProduto.get(i)), FormataFloat(produto.getValorVenda().get(pesquisaProduto.get(i))) + " ", "" + ativo});
+            model.addRow(new Object[]{"" + produto.getIDProduto().get(pesquisaProduto.get(i)), " " + produto.getNome().get(pesquisaProduto.get(i)), " " + produto.getMarca().get(pesquisaProduto.get(i)), produto.getMedida().get(pesquisaProduto.get(i)) + " ", "" + produto.getQuantidade().get(pesquisaProduto.get(i)), design.FormataFloat(produto.getValorVenda().get(pesquisaProduto.get(i))) + " ", "" + ativo});
         }
         
         
@@ -1685,29 +1659,29 @@ public class TelaAdministrador extends javax.swing.JFrame {
     
     public void AlinhamentoDosItensProduto() {
         
-        jTFBarraDeBuscaProduto.setBounds(30 + 8+ 8,CentralizarAltura(28, 20, 1) + 6,largura - 25 - 34 - 4 - 12 - 8 - 8 - 24 - 60 - 8 - 8 - 8,28);
-        jLbBarraDeBuscaProduto.setBounds(30,CentralizarAltura(28, 20, 1)-8  + 6,largura - 60 - 25 - 34 - 14,44);
-        jLbBarraDeBuscaProduto.setBackground(corFundo3);
+        jTFBarraDeBuscaProduto.setBounds(30 + 8+ 8,design.CentralizarAltura(28, 20, 1) + 6,design.getLargura() - 25 - 34 - 4 - 12 - 8 - 8 - 24 - 60 - 8 - 8 - 8,28);
+        jLbBarraDeBuscaProduto.setBounds(30,design.CentralizarAltura(28, 20, 1)-8  + 6,design.getLargura() - 60 - 25 - 34 - 14,44);
+        jLbBarraDeBuscaProduto.setBackground(design.getCorFundo3());
         jLbBarraDeBuscaProduto.setOpaque(true);
         
-        jBntLupaProduto.setBounds(largura - 60 - 31 - 4 - 12 - 8 - 2 - 24,CentralizarAltura(24, 20, 1) + 6,24,23);
+        jBntLupaProduto.setBounds(design.getLargura() - 60 - 31 - 4 - 12 - 8 - 2 - 24,design.CentralizarAltura(24, 20, 1) + 6,24,23);
         
-        jBntVoltarProduto.setBounds(largura - 25 - 34 - 2 - 30,CentralizarAltura(34, 20, 1) + 6,34,34);
-        jBntVoltarProduto.setBackground(corFundo1);
+        jBntVoltarProduto.setBounds(design.getLargura() - 25 - 34 - 2 - 30,design.CentralizarAltura(34, 20, 1) + 6,34,34);
+        jBntVoltarProduto.setBackground(design.getCorFundo1());
         jBntVoltarProduto.setOpaque(true);
         
-        jScrollPaneProduto.setBounds(30,CentralizarAltura(28, 40,5) + 6,largura - 46 - 20, altura - 37 - CentralizarAltura(28, 40,5) - 80 - 70 - 6);
-        jScrollPaneProduto.setBackground(corFundo4);
+        jScrollPaneProduto.setBounds(30,design.CentralizarAltura(28, 40,5) + 6,design.getLargura() - 46 - 20, design.getAltura() - 37 - design.CentralizarAltura(28, 40,5) - 80 - 70 - 6);
+        jScrollPaneProduto.setBackground(design.getCorTituloTabela());
         
-        jTProduto.setGridColor(corFundo2);
-        jTProduto.setSelectionBackground(corFundo1);
+        jTProduto.setGridColor(design.getCorFundo2());
+        jTProduto.setSelectionBackground(design.getCorFundo1());
         
         
-        jBntCadastrarProduto.setBounds(CentralizarLargura(116, 18,3), altura - 120 - 50,140,50);
-        jBntCadastrarProduto.setBackground(corFundo2);
+        jBntCadastrarProduto.setBounds(design.CentralizarLargura(116, 18,3), design.getAltura() - 120 - 50,140,50);
+        jBntCadastrarProduto.setBackground(design.getCorFundo2());
         
-        jBntSairProduto.setBounds(largura - CentralizarLargura(116, 18,3) - 140, altura - 120 - 50,140,50);
-        jBntSairProduto.setBackground(corFundo6);
+        jBntSairProduto.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,3) - 140, design.getAltura() - 120 - 50,140,50);
+        jBntSairProduto.setBackground(design.getCorBotaoSairCancelarVoltar());
 
     }
     
@@ -1732,8 +1706,9 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTCompra.setFont(new java.awt.Font("Tahoma", 0, 18));
         
         JTableHeader cabecalho = jTCompra.getTableHeader();
-        cabecalho.setFont(new java.awt.Font("Tahoma", 0, 18));
-        cabecalho.setBackground(corFundo4);
+        cabecalho.setFont(new java.awt.Font("Tahoma", Font.BOLD, 18));
+        cabecalho.setBackground(design.getCorTituloTabela());
+        cabecalho.setForeground(design.getCorLetra1());
         
         jTCompra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
@@ -1798,29 +1773,29 @@ public class TelaAdministrador extends javax.swing.JFrame {
     
     public void AlinhamentoDosItensCompra() {
         
-        jTFBarraDeBuscaCompra.setBounds(30 + 8+ 8,CentralizarAltura(28, 20, 1) + 6,largura - 25 - 34 - 4 - 12 - 8 - 8 - 24 - 60 - 8 - 8 - 8,28);
-        jLbBarraDeBuscaCompra.setBounds(30,CentralizarAltura(28, 20, 1)-8  + 6,largura - 60 - 25 - 34 - 14,44);
-        jLbBarraDeBuscaCompra.setBackground(corFundo3);
+        jTFBarraDeBuscaCompra.setBounds(30 + 8+ 8,design.CentralizarAltura(28, 20, 1) + 6,design.getLargura() - 25 - 34 - 4 - 12 - 8 - 8 - 24 - 60 - 8 - 8 - 8,28);
+        jLbBarraDeBuscaCompra.setBounds(30,design.CentralizarAltura(28, 20, 1)-8  + 6,design.getLargura() - 60 - 25 - 34 - 14,44);
+        jLbBarraDeBuscaCompra.setBackground(design.getCorFundo3());
         jLbBarraDeBuscaCompra.setOpaque(true);
         
-        jBntLupaCompra.setBounds(largura - 60 - 31 - 4 - 12 - 8 - 2 - 24,CentralizarAltura(24, 20, 1) + 6,24,23);
+        jBntLupaCompra.setBounds(design.getLargura() - 60 - 31 - 4 - 12 - 8 - 2 - 24,design.CentralizarAltura(24, 20, 1) + 6,24,23);
         
-        jBntVoltarCompra.setBounds(largura - 25 - 34 - 2 - 30,CentralizarAltura(34, 20, 1) + 6,34,34);
-        jBntVoltarCompra.setBackground(corFundo1);
+        jBntVoltarCompra.setBounds(design.getLargura() - 25 - 34 - 2 - 30,design.CentralizarAltura(34, 20, 1) + 6,34,34);
+        jBntVoltarCompra.setBackground(design.getCorFundo1());
         jBntVoltarCompra.setOpaque(true);
         
-        jScrollPaneCompra.setBounds(30,CentralizarAltura(28, 40,5) + 6,largura - 46 - 20, altura - 37 - CentralizarAltura(28, 40,5) - 80 - 70 - 6);
-        jScrollPaneCompra.setBackground(corFundo4);
+        jScrollPaneCompra.setBounds(30,design.CentralizarAltura(28, 40,5) + 6,design.getLargura() - 46 - 20, design.getAltura() - 37 - design.CentralizarAltura(28, 40,5) - 80 - 70 - 6);
+        jScrollPaneCompra.setBackground(design.getCorTituloTabela());
         
-        jTCompra.setGridColor(corFundo2);
-        jTCompra.setSelectionBackground(corFundo1);
+        jTCompra.setGridColor(design.getCorFundo2());
+        jTCompra.setSelectionBackground(design.getCorFundo1());
         
         
-        jBntCadastrarCompra.setBounds(CentralizarLargura(116, 18,3), altura - 120 - 50,140,50);
-        jBntCadastrarCompra.setBackground(corFundo2);
+        jBntCadastrarCompra.setBounds(design.CentralizarLargura(116, 18,3), design.getAltura() - 120 - 50,140,50);
+        jBntCadastrarCompra.setBackground(design.getCorFundo2());
         
-        jBntSairCompra.setBounds(largura - CentralizarLargura(116, 18,3) - 140, altura - 120 - 50,140,50);
-        jBntSairCompra.setBackground(corFundo6);
+        jBntSairCompra.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,3) - 140, design.getAltura() - 120 - 50,140,50);
+        jBntSairCompra.setBackground(design.getCorBotaoSairCancelarVoltar());
 
     }
     
@@ -1844,8 +1819,9 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTCliente.setFont(new java.awt.Font("Tahoma", 0, 18));
         
         JTableHeader cabecalho = jTCliente.getTableHeader();
-        cabecalho.setFont(new java.awt.Font("Tahoma", 0, 18));
-        cabecalho.setBackground(corFundo4);
+        cabecalho.setFont(new java.awt.Font("Tahoma", Font.BOLD, 18));
+        cabecalho.setBackground(design.getCorTituloTabela());
+        cabecalho.setForeground(design.getCorLetra1());
         
         jTCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
@@ -1910,29 +1886,29 @@ public class TelaAdministrador extends javax.swing.JFrame {
     
     public void AlinhamentoDosItensCliente() {
         
-        jTFBarraDeBuscaCliente.setBounds(30 + 8+ 8,CentralizarAltura(28, 20, 1) + 6,largura - 25 - 34 - 4 - 12 - 8 - 8 - 24 - 60 - 8 - 8 - 8,28);
-        jLbBarraDeBuscaCliente.setBounds(30,CentralizarAltura(28, 20, 1)-8  + 6,largura - 60 - 25 - 34 - 14,44);
-        jLbBarraDeBuscaCliente.setBackground(corFundo3);
+        jTFBarraDeBuscaCliente.setBounds(30 + 8+ 8,design.CentralizarAltura(28, 20, 1) + 6,design.getLargura() - 25 - 34 - 4 - 12 - 8 - 8 - 24 - 60 - 8 - 8 - 8,28);
+        jLbBarraDeBuscaCliente.setBounds(30,design.CentralizarAltura(28, 20, 1)-8  + 6,design.getLargura() - 60 - 25 - 34 - 14,44);
+        jLbBarraDeBuscaCliente.setBackground(design.getCorFundo3());
         jLbBarraDeBuscaCliente.setOpaque(true);
         
-        jBntLupaCliente.setBounds(largura - 60 - 31 - 4 - 12 - 8 - 2 - 24,CentralizarAltura(24, 20, 1) + 6,24,23);
+        jBntLupaCliente.setBounds(design.getLargura() - 60 - 31 - 4 - 12 - 8 - 2 - 24,design.CentralizarAltura(24, 20, 1) + 6,24,23);
         
-        jBntVoltarCliente.setBounds(largura - 25 - 34 - 2 - 30,CentralizarAltura(34, 20, 1) + 6,34,34);
-        jBntVoltarCliente.setBackground(corFundo1);
+        jBntVoltarCliente.setBounds(design.getLargura() - 25 - 34 - 2 - 30,design.CentralizarAltura(34, 20, 1) + 6,34,34);
+        jBntVoltarCliente.setBackground(design.getCorFundo1());
         jBntVoltarCliente.setOpaque(true);
         
-        jScrollPaneCliente.setBounds(30,CentralizarAltura(28, 40,5) + 6,largura - 46 - 20, altura - 37 - CentralizarAltura(28, 40,5) - 80 - 70 - 6);
-        jScrollPaneCliente.setBackground(corFundo4);
+        jScrollPaneCliente.setBounds(30,design.CentralizarAltura(28, 40,5) + 6,design.getLargura() - 46 - 20, design.getAltura() - 37 - design.CentralizarAltura(28, 40,5) - 80 - 70 - 6);
+        jScrollPaneCliente.setBackground(design.getCorTituloTabela());
         
-        jTCliente.setGridColor(corFundo2);
-        jTCliente.setSelectionBackground(corFundo1);
+        jTCliente.setGridColor(design.getCorFundo2());
+        jTCliente.setSelectionBackground(design.getCorFundo1());
         
         
-        jBntCadastrarCliente.setBounds(CentralizarLargura(116, 18,3), altura - 120 - 50,140,50);
-        jBntCadastrarCliente.setBackground(corFundo2);
+        jBntCadastrarCliente.setBounds(design.CentralizarLargura(116, 18,3), design.getAltura() - 120 - 50,140,50);
+        jBntCadastrarCliente.setBackground(design.getCorFundo2());
         
-        jBntSairCliente.setBounds(largura - CentralizarLargura(116, 18,3) - 140, altura - 120 - 50,140,50);
-        jBntSairCliente.setBackground(corFundo6);
+        jBntSairCliente.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,3) - 140, design.getAltura() - 120 - 50,140,50);
+        jBntSairCliente.setBackground(design.getCorBotaoSairCancelarVoltar());
 
     }
     
@@ -1957,8 +1933,9 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jTVenda.setFont(new java.awt.Font("Tahoma", 0, 18));
         
         JTableHeader cabecalho = jTVenda.getTableHeader();
-        cabecalho.setFont(new java.awt.Font("Tahoma", 0, 18));
-        cabecalho.setBackground(corFundo4);
+        cabecalho.setFont(new java.awt.Font("Tahoma", Font.BOLD, 18));
+        cabecalho.setBackground(design.getCorTituloTabela());
+        cabecalho.setForeground(design.getCorLetra1());
         
         jTVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
@@ -2023,29 +2000,29 @@ public class TelaAdministrador extends javax.swing.JFrame {
     
     public void AlinhamentoDosItensVenda() {
         
-        jTFBarraDeBuscaVenda.setBounds(30 + 8+ 8,CentralizarAltura(28, 20, 1) + 6,largura - 25 - 34 - 4 - 12 - 8 - 8 - 24 - 60 - 8 - 8 - 8,28);
-        jLbBarraDeBuscaVenda.setBounds(30,CentralizarAltura(28, 20, 1)-8  + 6,largura - 60 - 25 - 34 - 14,44);
-        jLbBarraDeBuscaVenda.setBackground(corFundo3);
+        jTFBarraDeBuscaVenda.setBounds(30 + 8+ 8,design.CentralizarAltura(28, 20, 1) + 6,design.getLargura() - 25 - 34 - 4 - 12 - 8 - 8 - 24 - 60 - 8 - 8 - 8,28);
+        jLbBarraDeBuscaVenda.setBounds(30,design.CentralizarAltura(28, 20, 1)-8  + 6,design.getLargura() - 60 - 25 - 34 - 14,44);
+        jLbBarraDeBuscaVenda.setBackground(design.getCorFundo3());
         jLbBarraDeBuscaVenda.setOpaque(true);
         
-        jBntLupaVenda.setBounds(largura - 60 - 31 - 4 - 12 - 8 - 2 - 24,CentralizarAltura(24, 20, 1) + 6,24,23);
+        jBntLupaVenda.setBounds(design.getLargura() - 60 - 31 - 4 - 12 - 8 - 2 - 24,design.CentralizarAltura(24, 20, 1) + 6,24,23);
         
-        jBntVoltarVenda.setBounds(largura - 25 - 34 - 2 - 30,CentralizarAltura(34, 20, 1) + 6,34,34);
-        jBntVoltarVenda.setBackground(corFundo1);
+        jBntVoltarVenda.setBounds(design.getLargura() - 25 - 34 - 2 - 30,design.CentralizarAltura(34, 20, 1) + 6,34,34);
+        jBntVoltarVenda.setBackground(design.getCorFundo1());
         jBntVoltarVenda.setOpaque(true);
         
-        jScrollPaneVenda.setBounds(30,CentralizarAltura(28, 40,5) + 6,largura - 46 - 20, altura - 37 - CentralizarAltura(28, 40,5) - 80 - 70 - 6);
-        jScrollPaneVenda.setBackground(corFundo4);
+        jScrollPaneVenda.setBounds(30,design.CentralizarAltura(28, 40,5) + 6,design.getLargura() - 46 - 20, design.getAltura() - 37 - design.CentralizarAltura(28, 40,5) - 80 - 70 - 6);
+        jScrollPaneVenda.setBackground(design.getCorTituloTabela());
         
-        jTVenda.setGridColor(corFundo2);
-        jTVenda.setSelectionBackground(corFundo1);
+        jTVenda.setGridColor(design.getCorFundo2());
+        jTVenda.setSelectionBackground(design.getCorFundo1());
         
         
-        jBntCadastrarVenda.setBounds(CentralizarLargura(116, 18,3), altura - 120 - 50,140,50);
-        jBntCadastrarVenda.setBackground(corFundo2);
+        jBntCadastrarVenda.setBounds(design.CentralizarLargura(116, 18,3), design.getAltura() - 120 - 50,140,50);
+        jBntCadastrarVenda.setBackground(design.getCorFundo2());
         
-        jBntSairVenda.setBounds(largura - CentralizarLargura(116, 18,3) - 140, altura - 120 - 50,140,50);
-        jBntSairVenda.setBackground(corFundo6);
+        jBntSairVenda.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,3) - 140, design.getAltura() - 120 - 50,140,50);
+        jBntSairVenda.setBackground(design.getCorBotaoSairCancelarVoltar());
 
     }
   

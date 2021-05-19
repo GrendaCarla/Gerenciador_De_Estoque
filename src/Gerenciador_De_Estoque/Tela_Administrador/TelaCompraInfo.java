@@ -1,16 +1,15 @@
 
 package Gerenciador_De_Estoque.Tela_Administrador;
 
+import Design.Design;
 import Gerenciador_De_Estoque.Compras;
 import Gerenciador_De_Estoque.Fornecedores;
 import Gerenciador_De_Estoque.Produtos;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingConstants;
@@ -20,24 +19,11 @@ import javax.swing.table.JTableHeader;
 
 public class TelaCompraInfo extends javax.swing.JFrame {
     
-    // resolução tela pc
-    Toolkit tk = Toolkit.getDefaultToolkit();
-    Dimension d = tk.getScreenSize();
-
-    int largura = d.width;
-    int altura = d.height;
-    
-    Color corFundo1 = new Color(238, 247, 242);
-    Color corFundo2 = new Color(3, 152, 158);
-    Color corFundo3 = new Color(255, 255, 255);
-    Color corFundo4 = new Color(207,220,212);
-    Color corFundo5 = new Color(5,180,145);
-    Color corFundo6 = new Color(129,88,119);
-    
     int numero;
     Produtos produto = new Produtos();
     Fornecedores fornecedor = new Fornecedores();
     Compras compra = new Compras();
+    Design design = new Design();
 
     public TelaCompraInfo() throws SQLException {
         initComponents();
@@ -411,83 +397,76 @@ public class TelaCompraInfo extends javax.swing.JFrame {
 
     public void corDeFundo() {
         
-        getContentPane().setBackground(corFundo1);
-        jPanel1.setBackground(corFundo2);
-        jPanel2.setBackground(corFundo3);
+        getContentPane().setBackground(design.getCorFundo1());
+        jPanel1.setBackground(design.getCorFundo2());
+        jPanel2.setBackground(design.getCorFundo3());
         
     }
 
     public void TamanhoDoFundo() {
 
-        jPanel1.setSize(largura - 40, altura - 200);
+        jPanel1.setSize(design.getLargura() - 40, design.getAltura() - 200);
         jPanel1.setLocation(20, 110);
 
-        jPanel2.setPreferredSize(new Dimension ((largura - 40)-30, (altura - 200)-40)); 
+        jPanel2.setPreferredSize(new Dimension ((design.getLargura() - 40)-30, (design.getAltura() - 200)-40)); 
         jPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 10));
         
     }
     
-    public int CentralizarLargura(int tamanhoObjeto, int posicao, int muti) { 
-        return (largura/posicao)*muti - (tamanhoObjeto/2);
-    }
-    
-    public int CentralizarAltura(int tamanhoObjeto, int posicao, int muti) { 
-        return (altura/posicao)* muti - (tamanhoObjeto/2);
-    }
-    
     public void AlinhamentoDosItens() {
         
-        jLbTitulo.setBounds(CentralizarLargura(550, 2, 1),CentralizarAltura(55, 18, 1),550,55);
-        jLbTitulo.setForeground(corFundo3);
-        jLbTitulo.setBackground(corFundo4);
+        jLbTitulo.setBounds(design.CentralizarLargura(550, 2, 1),design.CentralizarAltura(55, 18, 1),550,55);
+        jLbTitulo.setForeground(design.getCorLetra1());
+        jLbTitulo.setBackground(design.getCorCampoTexto());
         
         
-        jLbFornecedor.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 3),110 + 15 + 300 + 4,30);
-        jTFFornecedor.setBounds(CentralizarLargura(116, 18,2)+ 110 + 15,CentralizarAltura(30, 15, 3),300,30);
-        jLbFornecedor.setBackground(corFundo4);
+        jLbFornecedor.setBounds(design.CentralizarLargura(116, 18,2),design.CentralizarAltura(30, 15, 3),110 + 15 + 300 + 4,30);
+        jTFFornecedor.setBounds(design.CentralizarLargura(116, 18,2)+ 110 + 15,design.CentralizarAltura(30, 15, 3),300,30);
+        jLbFornecedor.setBackground(design.getCorCampoTexto());
         jLbFornecedor.setOpaque(true);
-        jTFFornecedor.setBackground(corFundo4);
+        jTFFornecedor.setBackground(design.getCorCampoTexto());
         jTFFornecedor.setOpaque(true);
         
         // conta prara saber aonde deve colocar a data para q fique centralizado entre o fornecedor e a hora
-        int espacoData = (((largura - CentralizarLargura(116, 18,2) - 110 - 15 - 150 - 4)- (CentralizarLargura(116, 18,2)+ 110 + 15 + 300 + 4)) - (60 + 15 + 20 + 20 + 20 + 20) - (60 + 15 + 20 + 20 + 20 + 20 + 45 + 20))/3;
+        int espacoData = (((design.getLargura() - design.CentralizarLargura(116, 18,2) - 110 - 15 - 150 - 4)- (design.CentralizarLargura(116, 18,2)+ 110 + 15 + 300 + 4)) - (60 + 15 + 20 + 20 + 20 + 20) - (60 + 15 + 20 + 20 + 20 + 20 + 45 + 20))/3;
        
         
-        jLbData.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData,CentralizarAltura(30, 15, 3),60 + 15 + 125 + 20,30);
-        jTFData.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15,CentralizarAltura(30, 15, 3),125,30);
-        jLbData.setBackground(corFundo4);
+        jLbData.setBounds(design.CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData,design.CentralizarAltura(30, 15, 3),60 + 15 + 125 + 20,30);
+        jTFData.setBounds(design.CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15,design.CentralizarAltura(30, 15, 3),125,30);
+        jLbData.setBackground(design.getCorCampoTexto());
         jLbData.setOpaque(true);
-        jTFData.setBackground(corFundo4);
+        jTFData.setBackground(design.getCorCampoTexto());
         jTFData.setOpaque(true);
         
         
-        jLbHora.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 125 + 20 + espacoData,CentralizarAltura(30, 15, 3),60 + 15 + 60 + 20,30);
-        jTFHora.setBounds(CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 125 + 20 + espacoData + 60 + 15,CentralizarAltura(30, 15, 3),60,30);
-        jLbHora.setBackground(corFundo4);
+        jLbHora.setBounds(design.CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 125 + 20 + espacoData,design.CentralizarAltura(30, 15, 3),60 + 15 + 60 + 20,30);
+        jTFHora.setBounds(design.CentralizarLargura(116, 18,2) + 110 + 15 + 300 + 4 + espacoData + 60 + 15  + 125 + 20 + espacoData + 60 + 15,design.CentralizarAltura(30, 15, 3),60,30);
+        jLbHora.setBackground(design.getCorCampoTexto());
         jLbHora.setOpaque(true);
-        jTFHora.setBackground(corFundo4);
+        jTFHora.setBackground(design.getCorCampoTexto());
         jTFHora.setOpaque(true);
         
-        jLbValorTotal.setBounds(largura - CentralizarLargura(116, 18,2) - 110 - 15 - 150 - 4,CentralizarAltura(30, 15, 3),110 + 15 + 150 + 4,30);
-        jTFValorTotal.setBounds(largura - CentralizarLargura(116, 18,2)- 150 - 4,CentralizarAltura(30, 15, 3),150,30);
-        jLbValorTotal.setBackground(corFundo4);
+        jLbValorTotal.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,2) - 110 - 15 - 150 - 4,design.CentralizarAltura(30, 15, 3),110 + 15 + 150 + 4,30);
+        jTFValorTotal.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,2)- 150 - 4,design.CentralizarAltura(30, 15, 3),150,30);
+        jLbValorTotal.setBackground(design.getCorCampoTexto());
         jLbValorTotal.setOpaque(true);
-        jTFValorTotal.setBackground(corFundo4);
+        jTFValorTotal.setBackground(design.getCorCampoTexto());
         jTFValorTotal.setOpaque(true);
         
         
-        jScrollPaneItensComprado.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 15, 4),largura - (CentralizarLargura(116, 18,2)*2),CentralizarAltura(30, 30, 23) - CentralizarAltura(30, 15, 4));
-
+        jScrollPaneItensComprado.setBounds(design.CentralizarLargura(116, 18,2),design.CentralizarAltura(30, 15, 4),design.getLargura() - (design.CentralizarLargura(116, 18,2)*2),design.CentralizarAltura(30, 30, 23) - design.CentralizarAltura(30, 15, 4));
+        jScrollPaneItensComprado.setBackground(design.getCorTituloTabela());
         
-        jBntAlterar.setBounds(CentralizarLargura(116, 18,3),CentralizarAltura(30, 30, 24),150,40);
-        jBntAlterar.setBackground(corFundo5);
+        
+        jBntAlterar.setBounds(design.CentralizarLargura(116, 18,3),design.CentralizarAltura(30, 30, 24),150,40);
+        jBntAlterar.setBackground(design.getCorBotaoSalvar());
         jBntAlterar.setOpaque(true);
-        jBntAlterar.setForeground(corFundo3);
+        jBntAlterar.setForeground(design.getCorLetra1());
         
-        jBntVoltar.setBounds(largura - CentralizarLargura(116, 18,3) - 150,CentralizarAltura(30, 30, 24),150,40);
-        jBntVoltar.setBackground(corFundo6);
+        jBntVoltar.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,3) - 150,design.CentralizarAltura(30, 30, 24),150,40);
+        jBntVoltar.setBackground(design.getCorBotaoSairCancelarVoltar());
         jBntVoltar.setOpaque(true);
-        jBntVoltar.setForeground(corFundo3);
+        jBntVoltar.setForeground(design.getCorLetra1());
         
     }
     
@@ -498,8 +477,9 @@ public class TelaCompraInfo extends javax.swing.JFrame {
         jTItensComprado.setFont(new java.awt.Font("Tahoma", 0, 18));
 
         JTableHeader cabecalho = jTItensComprado.getTableHeader();
-        cabecalho.setFont(new java.awt.Font("Tahoma", 0, 18));
-        cabecalho.setBackground(corFundo4);
+        cabecalho.setFont(new java.awt.Font("Tahoma", Font.BOLD, 18));
+        cabecalho.setBackground(design.getCorTituloTabela());
+        cabecalho.setForeground(design.getCorLetra1());
 
         jTItensComprado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
@@ -574,21 +554,14 @@ public class TelaCompraInfo extends javax.swing.JFrame {
         jTFFornecedor.setText("" + fornecedor.getNomeFantasia().get(fornecedor.getIDFornecedor().indexOf(compra.getIDFornecedor().get(num))));
         jTFData.setText(compra.getDataHoraDaCompra().get(num).substring(8, 10) + " / " + compra.getDataHoraDaCompra().get(num).substring(5, 7) + " / " + compra.getDataHoraDaCompra().get(num).substring(0, 4));
         jTFHora.setText(compra.getDataHoraDaCompra().get(num).substring(11, 13) + " : " + compra.getDataHoraDaCompra().get(num).substring(14, 16));
-        jTFValorTotal.setText((FormataFloat(compra.getValorTotal().get(num))).replace(".",","));
+        jTFValorTotal.setText((design.FormataFloat(compra.getValorTotal().get(num))).replace(".",","));
         
         for(int i=0; i< compra.getIDItemComprado().size(); i++){
 
             DefaultTableModel model = (DefaultTableModel) jTItensComprado.getModel();
-            model.addRow(new Object[]{""+compra.getIDProduto().get(i), " "+produto.getNome().get(produto.getIDProduto().indexOf(compra.getIDProduto().get(i))), " "+produto.getMarca().get(produto.getIDProduto().indexOf(compra.getIDProduto().get(i))), produto.getMedida().get(produto.getIDProduto().indexOf(compra.getIDProduto().get(i)))+" ", compra.getQuantidade().get(i), FormataFloat(compra.getValorUnitario().get(i)) + " "});
+            model.addRow(new Object[]{""+compra.getIDProduto().get(i), " "+produto.getNome().get(produto.getIDProduto().indexOf(compra.getIDProduto().get(i))), " "+produto.getMarca().get(produto.getIDProduto().indexOf(compra.getIDProduto().get(i))), produto.getMedida().get(produto.getIDProduto().indexOf(compra.getIDProduto().get(i)))+" ", compra.getQuantidade().get(i), design.FormataFloat(compra.getValorUnitario().get(i)) + " "});
         }
         
     }
     
-    public String FormataFloat(float num){
-        
-        NumberFormat formatter = new DecimalFormat("0.00");
-        return (formatter.format(num));
-        
-    }
-
 }

@@ -1,8 +1,8 @@
 
 package Gerenciador_De_Estoque.Tela_Administrador;
 
+import Design.Design;
 import Gerenciador_De_Estoque.Clientes;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -16,19 +16,7 @@ import javax.swing.plaf.FontUIResource;
 
 public final class TelaClienteCadastro extends javax.swing.JFrame {
 
-    // resolução tela pc
-    Toolkit tk = Toolkit.getDefaultToolkit();
-    Dimension d = tk.getScreenSize();
-
-    int largura = d.width;
-    int altura = d.height;
-    
-    Color corFundo1 = new Color(238, 247, 242);
-    Color corFundo2 = new Color(3, 152, 158);
-    Color corFundo3 = new Color(255, 255, 255);
-    Color corFundo4 = new Color(207,220,212);
-    Color corFundo5 = new Color(5,180,145);
-    Color corFundo6 = new Color(129,88,119);
+    Design design = new Design();
     
     public TelaClienteCadastro() {
         initComponents();  
@@ -456,164 +444,156 @@ public final class TelaClienteCadastro extends javax.swing.JFrame {
 
     public void corDeFundo() {
         
-        getContentPane().setBackground(corFundo1);
-        jPanel1.setBackground(corFundo2);
-        jPanel2.setBackground(corFundo3);
+        getContentPane().setBackground(design.getCorFundo1());
+        jPanel1.setBackground(design.getCorFundo2());
+        jPanel2.setBackground(design.getCorFundo3());
     }
 
     public void TamanhoDoFundo() {
 
-        jPanel1.setSize(largura - 40, altura - 200);
+        jPanel1.setSize(design.getLargura() - 40, design.getAltura() - 200);
         jPanel1.setLocation(20, 110);
 
-        jPanel2.setPreferredSize(new Dimension ((largura - 40)-30, (altura - 200)-80)); 
+        jPanel2.setPreferredSize(new Dimension ((design.getLargura() - 40)-30, (design.getAltura() - 200)-80)); 
         jPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 50));
-    }
-
-    public int CentralizarLargura(int tamanhoObjeto, int posicao, int muti) { 
-        return (largura/posicao)*muti - (tamanhoObjeto/2);
-    }
-    
-    public int CentralizarAltura(int tamanhoObjeto, int posicao, int muti) { 
-        return (altura/posicao)* muti - (tamanhoObjeto/2);
     }
     
     public void AlinhamentoDosItens() {
         
-        jLbTitulo.setBounds(CentralizarLargura(750, 2, 1),CentralizarAltura(55, 18, 1),750,55);
-        jLbTitulo.setForeground(corFundo3);
-        jLbTitulo.setBackground(corFundo4);
+        jLbTitulo.setBounds(design.CentralizarLargura(750, 2, 1),design.CentralizarAltura(55, 18, 1),750,55);
+        jLbTitulo.setForeground(design.getCorLetra1());
+        jLbTitulo.setBackground(design.getCorCampoTexto());
          
         
-        jLbNome.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 34),70 + 400 + 15 + 4,30);
-        jTFNome.setBounds(CentralizarLargura(116, 18,2)+ 70 + 15,CentralizarAltura(30, 120, 34),400,30);
-        jLbNome.setBackground(corFundo4);
+        jLbNome.setBounds(design.CentralizarLargura(116, 18,2),design.CentralizarAltura(30, 120, 34),70 + 400 + 15 + 4,30);
+        jTFNome.setBounds(design.CentralizarLargura(116, 18,2)+ 70 + 15,design.CentralizarAltura(30, 120, 34),400,30);
+        jLbNome.setBackground(design.getCorCampoTexto());
         jLbNome.setOpaque(true);
-        jTFNome.setBackground(corFundo4);
+        jTFNome.setBackground(design.getCorCampoTexto());
         jTFNome.setOpaque(true);
         
         
         // conta prara saber aonde deve colocar o estado para q fique centralizado entre o pais e a cidade
-        int espacodata = (((largura - CentralizarLargura(116, 18,2)-180-15-20-20-20-20-45-15)- (CentralizarLargura(116, 18,2)+ 70 + 400 + 15 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 70 + 400 + 15 + 4)) - (60 + 175 + 15 + 15)/2;
+        int espacodata = (((design.getLargura() - design.CentralizarLargura(116, 18,2)-180-15-20-20-20-20-45-15)- (design.CentralizarLargura(116, 18,2)+ 70 + 400 + 15 + 4)) / 2 + (design.CentralizarLargura(116, 18,2)+ 70 + 400 + 15 + 4)) - (60 + 175 + 15 + 15)/2;
         
         
-        jLbDataDeNascimento.setBounds(largura - CentralizarLargura(116, 18,2)-180-15-20-20-20-20-45-15, CentralizarAltura(30, 120, 34),180 + 15 + 20 + 20 + 20 + 20 + 45 + 15,30);
-        jTFData1.setBounds(largura - CentralizarLargura(116, 18,2)-20-20-20-20-45-15, CentralizarAltura(30, 120, 34),20,30);
-        jLbData1.setBounds(largura - CentralizarLargura(116, 18,2)-20-20-20-45-15, CentralizarAltura(30, 120, 34),20,30);
-        jTFData2.setBounds(largura - CentralizarLargura(116, 18,2)-20-20-45-15, CentralizarAltura(30, 120, 34),20,30);
-        jLbData2.setBounds(largura - CentralizarLargura(116, 18,2)-20-45-15, CentralizarAltura(30, 120, 34),20,30);
-        jTFData3.setBounds(largura - CentralizarLargura(116, 18,2)-45-15, CentralizarAltura(30, 120, 34),45,30);
-        jLbDataDeNascimento.setBackground(corFundo4);
+        jLbDataDeNascimento.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,2)-180-15-20-20-20-20-45-15, design.CentralizarAltura(30, 120, 34),180 + 15 + 20 + 20 + 20 + 20 + 45 + 15,30);
+        jTFData1.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,2)-20-20-20-20-45-15, design.CentralizarAltura(30, 120, 34),20,30);
+        jLbData1.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,2)-20-20-20-45-15, design.CentralizarAltura(30, 120, 34),20,30);
+        jTFData2.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,2)-20-20-45-15, design.CentralizarAltura(30, 120, 34),20,30);
+        jLbData2.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,2)-20-45-15, design.CentralizarAltura(30, 120, 34),20,30);
+        jTFData3.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,2)-45-15, design.CentralizarAltura(30, 120, 34),45,30);
+        jLbDataDeNascimento.setBackground(design.getCorCampoTexto());
         jLbDataDeNascimento.setOpaque(true);
-        jLbData1.setBackground(corFundo4);
+        jLbData1.setBackground(design.getCorCampoTexto());
         jLbData1.setOpaque(true);
-        jLbData2.setBackground(corFundo4);
+        jLbData2.setBackground(design.getCorCampoTexto());
         jLbData2.setOpaque(true);
-        jTFData1.setBackground(corFundo4);
+        jTFData1.setBackground(design.getCorCampoTexto());
         jTFData1.setOpaque(true);
-        jTFData2.setBackground(corFundo4);
+        jTFData2.setBackground(design.getCorCampoTexto());
         jTFData2.setOpaque(true);
-        jTFData3.setBackground(corFundo4);
+        jTFData3.setBackground(design.getCorCampoTexto());
         jTFData3.setOpaque(true);
         
         
-        jLbCPF.setBounds(espacodata,CentralizarAltura(30, 120, 34),60 + 170 + 15 + 15,30);
-        jFTFCPF.setBounds(espacodata + 60 + 15,CentralizarAltura(30, 120, 34),170,30);
-        jLbCPF.setBackground(corFundo4);
+        jLbCPF.setBounds(espacodata,design.CentralizarAltura(30, 120, 34),60 + 170 + 15 + 15,30);
+        jFTFCPF.setBounds(espacodata + 60 + 15,design.CentralizarAltura(30, 120, 34),170,30);
+        jLbCPF.setBackground(design.getCorCampoTexto());
         jLbCPF.setOpaque(true);
-        jFTFCPF.setBackground(corFundo4);
+        jFTFCPF.setBackground(design.getCorCampoTexto());
         jFTFCPF.setOpaque(true);
         
         // ----------------------------------------------------------------------------------------------------
         
-        jLbTelefone1.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 48),140 + 370 + 15 + 4,30);
-        jTFTelefone1.setBounds(CentralizarLargura(116, 18,2)+ 110 +15,CentralizarAltura(30, 120, 48),400,30);
-        jLbTelefone1.setBackground(corFundo4);
+        jLbTelefone1.setBounds(design.CentralizarLargura(116, 18,2),design.CentralizarAltura(30, 120, 48),140 + 370 + 15 + 4,30);
+        jTFTelefone1.setBounds(design.CentralizarLargura(116, 18,2)+ 110 +15,design.CentralizarAltura(30, 120, 48),400,30);
+        jLbTelefone1.setBackground(design.getCorCampoTexto());
         jLbTelefone1.setOpaque(true);
-        jTFTelefone1.setBackground(corFundo4);
+        jTFTelefone1.setBackground(design.getCorCampoTexto());
         jTFTelefone1.setOpaque(true);
         
-        jLbEmail1.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(30, 120, 48),140 + 370 + 15 + 4,30);
-        jTFEmail1.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 90 + 15, CentralizarAltura(30, 120, 48),420,30);
-        jLbEmail1.setBackground(corFundo4);
+        jLbEmail1.setBounds((design.getLargura()/2 -(design.CentralizarLargura(116, 18, 2) + 529)) + design.getLargura()/2, design.CentralizarAltura(30, 120, 48),140 + 370 + 15 + 4,30);
+        jTFEmail1.setBounds((design.getLargura()/2 -(design.CentralizarLargura(116, 18, 2) + 529)) + design.getLargura()/2 + 90 + 15, design.CentralizarAltura(30, 120, 48),420,30);
+        jLbEmail1.setBackground(design.getCorCampoTexto());
         jLbEmail1.setOpaque(true);
-        jTFEmail1.setBackground(corFundo4);
+        jTFEmail1.setBackground(design.getCorCampoTexto());
         jTFEmail1.setOpaque(true);
         
-        jLbTelefone2.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 58),140 + 370 + 15 + 4,30);
-        jTFTelefone2.setBounds(CentralizarLargura(116, 18,2)+ 110 + 15,CentralizarAltura(30, 120, 58),400,30);
-        jLbTelefone2.setBackground(corFundo4);
+        jLbTelefone2.setBounds(design.CentralizarLargura(116, 18,2),design.CentralizarAltura(30, 120, 58),140 + 370 + 15 + 4,30);
+        jTFTelefone2.setBounds(design.CentralizarLargura(116, 18,2)+ 110 + 15,design.CentralizarAltura(30, 120, 58),400,30);
+        jLbTelefone2.setBackground(design.getCorCampoTexto());
         jLbTelefone2.setOpaque(true);
-        jTFTelefone2.setBackground(corFundo4);
+        jTFTelefone2.setBackground(design.getCorCampoTexto());
         jTFTelefone2.setOpaque(true);
         
-        jLbEmail2.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2, CentralizarAltura(30, 120, 58),140 + 370 + 15 + 4,30);
-        jTFEmail2.setBounds((largura/2 -(CentralizarLargura(116, 18, 2) + 529)) + largura/2 + 90 + 15, CentralizarAltura(30, 120, 58),420,30);
-        jLbEmail2.setBackground(corFundo4);
+        jLbEmail2.setBounds((design.getLargura()/2 -(design.CentralizarLargura(116, 18, 2) + 529)) + design.getLargura()/2, design.CentralizarAltura(30, 120, 58),140 + 370 + 15 + 4,30);
+        jTFEmail2.setBounds((design.getLargura()/2 -(design.CentralizarLargura(116, 18, 2) + 529)) + design.getLargura()/2 + 90 + 15, design.CentralizarAltura(30, 120, 58),420,30);
+        jLbEmail2.setBackground(design.getCorCampoTexto());
         jLbEmail2.setOpaque(true);
-        jTFEmail2.setBackground(corFundo4);
+        jTFEmail2.setBackground(design.getCorCampoTexto());
         jTFEmail2.setOpaque(true);
         
         // ----------------------------------------------------------------------------------------------------
         
-        jLbPais.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 72),60 + 15 + 220 + 4,30);
-        jTFPais.setBounds(CentralizarLargura(116, 18,2)+ 60 + 15,CentralizarAltura(30, 120, 72),220,30);
-        jLbPais.setBackground(corFundo4);
+        jLbPais.setBounds(design.CentralizarLargura(116, 18,2),design.CentralizarAltura(30, 120, 72),60 + 15 + 220 + 4,30);
+        jTFPais.setBounds(design.CentralizarLargura(116, 18,2)+ 60 + 15,design.CentralizarAltura(30, 120, 72),220,30);
+        jLbPais.setBackground(design.getCorCampoTexto());
         jLbPais.setOpaque(true);
-        jTFPais.setBackground(corFundo4);
+        jTFPais.setBackground(design.getCorCampoTexto());
         jTFPais.setOpaque(true);
         
         // conta prara saber aonde deve colocar o estado para q fique centralizado entre o pais e a cidade
-        int espacoEstado = (((largura - CentralizarLargura(116, 18, 2) - 80 - 15 - 270 - 4)- (CentralizarLargura(116, 18,2)+ 60 + 220 + 15 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 60 + 220 + 15 + 4)) - (80 + 15 + 270 + 4)/2;
+        int espacoEstado = (((design.getLargura() - design.CentralizarLargura(116, 18, 2) - 80 - 15 - 270 - 4)- (design.CentralizarLargura(116, 18,2)+ 60 + 220 + 15 + 4)) / 2 + (design.CentralizarLargura(116, 18,2)+ 60 + 220 + 15 + 4)) - (80 + 15 + 270 + 4)/2;
         
-        jLbEstado.setBounds(espacoEstado,CentralizarAltura(30, 120, 72),80 + 15 + 270 + 4,30);
-        jTFEstado.setBounds(espacoEstado + 80+ 15,CentralizarAltura(30, 120, 72),270,30);
-        jLbEstado.setBackground(corFundo4);
+        jLbEstado.setBounds(espacoEstado,design.CentralizarAltura(30, 120, 72),80 + 15 + 270 + 4,30);
+        jTFEstado.setBounds(espacoEstado + 80+ 15,design.CentralizarAltura(30, 120, 72),270,30);
+        jLbEstado.setBackground(design.getCorCampoTexto());
         jLbEstado.setOpaque(true);
-        jTFEstado.setBackground(corFundo4);
+        jTFEstado.setBackground(design.getCorCampoTexto());
         jTFEstado.setOpaque(true);
         
-        jLbCidade.setBounds(largura - CentralizarLargura(116, 18, 2) - 80 - 15 - 270 - 4,CentralizarAltura(30, 120, 72),80 + 15 + 270 + 4,30);
-        jTFCidade.setBounds(largura - CentralizarLargura(116, 18, 2) - 270 - 4,CentralizarAltura(30, 120, 72),270,30);
-        jLbCidade.setBackground(corFundo4);
+        jLbCidade.setBounds(design.getLargura() - design.CentralizarLargura(116, 18, 2) - 80 - 15 - 270 - 4,design.CentralizarAltura(30, 120, 72),80 + 15 + 270 + 4,30);
+        jTFCidade.setBounds(design.getLargura() - design.CentralizarLargura(116, 18, 2) - 270 - 4,design.CentralizarAltura(30, 120, 72),270,30);
+        jLbCidade.setBackground(design.getCorCampoTexto());
         jLbCidade.setOpaque(true);
-        jTFCidade.setBackground(corFundo4);
+        jTFCidade.setBackground(design.getCorCampoTexto());
         jTFCidade.setOpaque(true);
         
         
-        jLbBairro.setBounds(CentralizarLargura(116, 18,2),CentralizarAltura(30, 120, 82),70 + 15 + 300 + 4,30);
-        jTFBairro.setBounds(CentralizarLargura(116, 18,2)+ 70 + 15,CentralizarAltura(30, 120, 82),300,30);
-        jLbBairro.setBackground(corFundo4);
+        jLbBairro.setBounds(design.CentralizarLargura(116, 18,2),design.CentralizarAltura(30, 120, 82),70 + 15 + 300 + 4,30);
+        jTFBairro.setBounds(design.CentralizarLargura(116, 18,2)+ 70 + 15,design.CentralizarAltura(30, 120, 82),300,30);
+        jLbBairro.setBackground(design.getCorCampoTexto());
         jLbBairro.setOpaque(true);
-        jTFBairro.setBackground(corFundo4);
+        jTFBairro.setBackground(design.getCorCampoTexto());
         jTFBairro.setOpaque(true);
         
         // conta prara saber aonde deve colocar a rua para q fique centralizado entre o bairro e a numero
-        int espacoRua = (((largura - CentralizarLargura(116, 18, 2) - 90 - 15 - 100 - 4)- (CentralizarLargura(116, 18,2)+ 70 + 15 + 300 + 4)) / 2 + (CentralizarLargura(116, 18,2)+ 70 + 15 + 300 + 4)) - (50 + 15 + 320 + 4)/2;
+        int espacoRua = (((design.getLargura() - design.CentralizarLargura(116, 18, 2) - 90 - 15 - 100 - 4)- (design.CentralizarLargura(116, 18,2)+ 70 + 15 + 300 + 4)) / 2 + (design.CentralizarLargura(116, 18,2)+ 70 + 15 + 300 + 4)) - (50 + 15 + 320 + 4)/2;
         
-        jLbRua.setBounds(espacoRua,CentralizarAltura(30, 120, 82),50 + 15 + 320 + 4,30);
-        jTFRua.setBounds(espacoRua + 50 + 15,CentralizarAltura(30, 120, 82),320,30);
-        jLbRua.setBackground(corFundo4);
+        jLbRua.setBounds(espacoRua,design.CentralizarAltura(30, 120, 82),50 + 15 + 320 + 4,30);
+        jTFRua.setBounds(espacoRua + 50 + 15,design.CentralizarAltura(30, 120, 82),320,30);
+        jLbRua.setBackground(design.getCorCampoTexto());
         jLbRua.setOpaque(true);
-        jTFRua.setBackground(corFundo4);
+        jTFRua.setBackground(design.getCorCampoTexto());
         jTFRua.setOpaque(true);
         
-        jLbNumero.setBounds(largura - CentralizarLargura(116, 18, 2) - 90 - 15 - 100 - 4,CentralizarAltura(30, 120, 82),90 + 15 + 100 + 4,30);
-        jFTFNumero.setBounds(largura - CentralizarLargura(116, 18, 2) - 100 - 4,CentralizarAltura(30, 120, 82),100,30);
-        jLbNumero.setBackground(corFundo4);
+        jLbNumero.setBounds(design.getLargura() - design.CentralizarLargura(116, 18, 2) - 90 - 15 - 100 - 4,design.CentralizarAltura(30, 120, 82),90 + 15 + 100 + 4,30);
+        jFTFNumero.setBounds(design.getLargura() - design.CentralizarLargura(116, 18, 2) - 100 - 4,design.CentralizarAltura(30, 120, 82),100,30);
+        jLbNumero.setBackground(design.getCorCampoTexto());
         jLbNumero.setOpaque(true);
-        jFTFNumero.setBackground(corFundo4);
+        jFTFNumero.setBackground(design.getCorCampoTexto());
         jFTFNumero.setOpaque(true);
         
-        jBntSalvar.setBounds(CentralizarLargura(116, 18,3),CentralizarAltura(30, 30, 24),150,40);
-        jBntSalvar.setBackground(corFundo5);
+        jBntSalvar.setBounds(design.CentralizarLargura(116, 18,3),design.CentralizarAltura(30, 30, 24),150,40);
+        jBntSalvar.setBackground(design.getCorBotaoSalvar());
         jBntSalvar.setOpaque(true);
-        jBntSalvar.setForeground(corFundo3);
+        jBntSalvar.setForeground(design.getCorLetra1());
         
-        jBntCancelar.setBounds(largura - CentralizarLargura(116, 18,3) - 150,CentralizarAltura(30, 30, 24),150,40);
-        jBntCancelar.setBackground(corFundo6);
+        jBntCancelar.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,3) - 150,design.CentralizarAltura(30, 30, 24),150,40);
+        jBntCancelar.setBackground(design.getCorBotaoSairCancelarVoltar());
         jBntCancelar.setOpaque(true);
-        jBntCancelar.setForeground(corFundo3);
+        jBntCancelar.setForeground(design.getCorLetra1());
         
     }
     
