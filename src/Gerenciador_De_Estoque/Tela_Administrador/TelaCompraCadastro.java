@@ -24,6 +24,9 @@ import javax.swing.table.TableColumn;
 
 public final class TelaCompraCadastro extends javax.swing.JFrame {
 
+    int linhaSelecionada;
+    int colunaSelecionada;
+    
     Produtos produto = new Produtos();
     Fornecedores fornecedor = new Fornecedores();
     Compras compra = new Compras();
@@ -63,14 +66,16 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
         jLbFundo1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jFTFValorUnitario = new javax.swing.JFormattedTextField();
+        jFTFQuantidade = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jFTFValorTotal.setEditable(false);
         jFTFValorTotal.setBorder(null);
         jFTFValorTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFTFValorTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jFTFValorTotal.setText("0,00");
         jFTFValorTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jFTFValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         getContentPane().add(jFTFValorTotal);
@@ -342,6 +347,11 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
         jTItensComprado.setGridColor(new java.awt.Color(204, 204, 204));
         jTItensComprado.setRowHeight(25);
         jTItensComprado.getTableHeader().setReorderingAllowed(false);
+        jTItensComprado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTItensCompradoMouseClicked(evt);
+            }
+        });
         jScrollPaneItensComprado.setViewportView(jTItensComprado);
 
         getContentPane().add(jScrollPaneItensComprado);
@@ -381,67 +391,102 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
         getContentPane().add(jComboBox2);
         jComboBox2.setBounds(390, 450, 80, 20);
 
-        jFTFValorUnitario.setBorder(null);
-        jFTFValorUnitario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jFTFValorUnitario.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jFTFValorUnitario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jFTFValorUnitario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        getContentPane().add(jFTFValorUnitario);
-        jFTFValorUnitario.setBounds(450, 490, 110, 22);
+        jFTFQuantidade.setBorder(null);
+        jFTFQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFTFQuantidade.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jFTFQuantidade.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jFTFQuantidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jFTFQuantidade.setOpaque(false);
+        jFTFQuantidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFTFQuantidadeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFTFQuantidadeFocusLost(evt);
+            }
+        });
+        getContentPane().add(jFTFQuantidade);
+        jFTFQuantidade.setBounds(430, 360, 20, 22);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSalvarActionPerformed
-        int cel = 0;
-        for(int i=0; i<100; i++){
-            if(jTItensComprado.getValueAt(i, 0) != null && jTItensComprado.getValueAt(i, 4) != null){
-                cel = 1;
-                break;
-            }
-        }
-        
-       if(jCBFornecedor.getSelectedIndex() == -1 || jTFData1.getText().isEmpty() == true || jTFData2.getText().isEmpty() == true || jTFData3.getText().isEmpty() == true || jTFHora1.getText().isEmpty() == true || jTFHora2.getText().isEmpty() == true || jFTFValorTotal.getText().isEmpty() == true || cel == 0){
+        try {
+            produto.ConsultarProdutos();
+            int caso = 0;
+            int cont = 0;
             
-            UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
-            JOptionPane.showMessageDialog(null, "É obrigatório o preenchimento de todos os campos.\nA tabela de itens comprados necessita de no mínimo\numa linha preenchida, exceto o campo preço. \n\n\n\n");
-        }else if(Integer.parseInt(jTFData3.getText()) < 1753 || Integer.parseInt(jTFData3.getText()) > 9999){
-            UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
-            JOptionPane.showMessageDialog(null, "O ano digitado está fora do intervalo de tempo (1753 a 9999) que podemos armazenar. \n\n\n\n");
-        }else{
-        
-            try{
-                compra.ConsultarCompras();
-                
-                int idCompra = compra.CadastrarCompras(fornecedor.getIDFornecedor().get(jCBFornecedor.getSelectedIndex()-1), ("'"+jTFData3.getText()+"-" + jTFData1.getText() + "-" + jTFData2.getText()+ " " + jTFHora1.getText() + ":" + jTFHora2.getText() + ":20.3'"), Float.parseFloat(jFTFValorTotal.getText().replaceAll(",",".")));
-                
-                for(int i=0; i<100; i++){
-                    if(jTItensComprado.getValueAt(i, 0) != null && jTItensComprado.getValueAt(i, 4) != null){
-                        compra.CadastrarItem(idCompra, Integer.parseInt(jTItensComprado.getValueAt(i, 0)+""), Integer.parseInt(jTItensComprado.getValueAt(i, 4)+""), Float.parseFloat((jTItensComprado.getValueAt(i, 5) == null ? 0 : jTItensComprado.getValueAt(i, 5))+""));
-                        produto.AlterarProduto(produto.getNome().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getMarca().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getMedida().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), (produto.getQuantidade().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))) + Integer.parseInt(jTItensComprado.getValueAt(i, 4) + "")), produto.getDescricao().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getAtivo().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0)));
+            for(; cont<100; cont++){
+                if(jTItensComprado.getValueAt(cont, 0) != null && jTItensComprado.getValueAt(cont, 4) == null){
+                    caso = 1; // nao colocou a quantidade
+
+                    break;
+                }
+                else if(jTItensComprado.getValueAt(cont, 0) != null && jTItensComprado.getValueAt(cont, 4) != null){
+                    
+                    if(jTItensComprado.getValueAt(cont, 0) != null && jTItensComprado.getValueAt(cont, 4) != null){
+                        caso = 2; // pelomenos um item comprado
                     }
                 }
-            }catch (SQLException ex) {
-                Logger.getLogger(TelaProdutoCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                if(cont == 99 && caso != 2){
+                    caso = 3;
+                }
             }
+        
+            if(jCBFornecedor.getSelectedIndex() == -1 || jTFData1.getText().isEmpty() == true || jTFData2.getText().isEmpty() == true || jTFData3.getText().isEmpty() == true || jTFHora1.getText().isEmpty() == true || jTFHora2.getText().isEmpty() == true || jFTFValorTotal.getText().isEmpty() == true){
 
-            TelaAdministrador Janela;
-            try {
-                Janela = new TelaAdministrador();
-                //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
+                JOptionPane.showMessageDialog(null, "É obrigatório o preenchimento de todos os campos da parte superior.\n \n\n\n\n");
+            }else if(Integer.parseInt(jTFData3.getText()) < 1753 || Integer.parseInt(jTFData3.getText()) > 9999){
 
-                Toolkit tk = Toolkit.getDefaultToolkit();
-                Dimension d = tk.getScreenSize();
+                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
+                JOptionPane.showMessageDialog(null, "O ano digitado está fora do intervalo de tempo (1753 a 9999) que pode ser armazenado. \n\n\n\n");
+            }else if(caso == 1){
 
-                Janela.setSize(d.width + 8, d.height - 37);
-                Janela.setResizable(false);
-                Janela.MudarAba(1);
+                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
+                JOptionPane.showMessageDialog(null, "Coloque a quantidade do item comprado.\n\n\n\n");
+            }else if(caso == 3){
 
-                Janela.show();
-                dispose();
-            } catch (SQLException ex) {
-                Logger.getLogger(TelaProdutoCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
+                JOptionPane.showMessageDialog(null, "Preencha no mínimo uma linha da tabela.\n\n\n\n");
+            }else{
+        
+                try{
+                    compra.ConsultarCompras();
+
+                    int idCompra = compra.CadastrarCompras(fornecedor.getIDFornecedor().get(jCBFornecedor.getSelectedIndex()-1), ("'"+jTFData3.getText()+"-" + jTFData1.getText() + "-" + jTFData2.getText()+ " " + jTFHora1.getText() + ":" + jTFHora2.getText() + ":20.3'"), Float.parseFloat(jFTFValorTotal.getText().replaceAll(",",".")));
+
+                    for(int i=0; i<100; i++){
+                        if(jTItensComprado.getValueAt(i, 0) != null && jTItensComprado.getValueAt(i, 4) != null){
+                            compra.CadastrarItem(idCompra, Integer.parseInt(jTItensComprado.getValueAt(i, 0)+""), Integer.parseInt(jTItensComprado.getValueAt(i, 4)+""), Float.parseFloat((jTItensComprado.getValueAt(i, 5) == null ? 0 : jTItensComprado.getValueAt(i, 5))+""));
+                            produto.AlterarProduto(produto.getNome().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getMarca().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getMedida().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), (produto.getQuantidade().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))) + Integer.parseInt(jTItensComprado.getValueAt(i, 4) + "")), produto.getDescricao().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getAtivo().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0)));
+                        }
+                    }
+                }catch (SQLException ex) {
+                    Logger.getLogger(TelaProdutoCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                TelaAdministrador Janela;
+                try {
+                    Janela = new TelaAdministrador();
+                    //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+                    Toolkit tk = Toolkit.getDefaultToolkit();
+                    Dimension d = tk.getScreenSize();
+
+                    Janela.setSize(d.width + 8, d.height - 37);
+                    Janela.setResizable(false);
+                    Janela.MudarAba(1);
+
+                    Janela.show();
+                    dispose();
+                } catch (SQLException ex) {
+                    Logger.getLogger(TelaProdutoCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaVendaCadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBntSalvarActionPerformed
 
@@ -485,6 +530,9 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
         if(jTItensComprado.getSelectedColumn() == 1){
 
             if(jComboBox1.getSelectedIndex() == -1){
+                
+                jFTFValorTotal.setValue(Float.parseFloat(jFTFValorTotal.getValue()+"") - Float.parseFloat((jTItensComprado.getValueAt(jTItensComprado.getSelectedRow(), 5) == null ? 0 : jTItensComprado.getValueAt(jTItensComprado.getSelectedRow(), 5))+""));
+                
                 jTItensComprado.setValueAt(null, jTItensComprado.getSelectedRow(), 0);
                 jTItensComprado.setValueAt("", jTItensComprado.getSelectedRow(), 1);
                 jTItensComprado.setValueAt("", jTItensComprado.getSelectedRow(), 2);
@@ -496,14 +544,31 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
                 jTItensComprado.setValueAt(produto.getNome().get(jComboBox1.getSelectedIndex()-1), jTItensComprado.getSelectedRow(), 1);
                 jTItensComprado.setValueAt(produto.getMarca().get(jComboBox1.getSelectedIndex()-1), jTItensComprado.getSelectedRow(), 2);
                 jTItensComprado.setValueAt(produto.getMedida().get(jComboBox1.getSelectedIndex()-1), jTItensComprado.getSelectedRow(), 3);
+                
+                if(jTItensComprado.getValueAt(jTItensComprado.getSelectedRow(), 4) == null){
+                    
+                    jTItensComprado.setValueAt(produto.getValorVenda().get(jComboBox1.getSelectedIndex()-1), jTItensComprado.getSelectedRow(), 5);
+                }
+                else{
+                    jTItensComprado.setValueAt((produto.getValorVenda().get(jComboBox1.getSelectedIndex()-1) * Integer.parseInt(jTItensComprado.getValueAt(jTItensComprado.getSelectedRow(), 4)+"")), jTItensComprado.getSelectedRow(), 5);
+                    
+                    jFTFValorTotal.setValue(0);
+            
+                    for(int i=0; i<100; i++){
+                        jFTFValorTotal.setValue(Float.parseFloat(jFTFValorTotal.getValue()+"") + Float.parseFloat((jTItensComprado.getValueAt(i, 5) == null ? 0 : jTItensComprado.getValueAt(i, 5))+""));
+                    }
+                }
             }
         }
     }//GEN-LAST:event_jComboBox1FocusLost
 
     private void jComboBox2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox2FocusLost
         if(jTItensComprado.getSelectedColumn() == 0){
-            
+
             if(jComboBox2.getSelectedIndex() == -1){
+                
+                jFTFValorTotal.setValue(Float.parseFloat(jFTFValorTotal.getValue()+"") - Float.parseFloat((jTItensComprado.getValueAt(jTItensComprado.getSelectedRow(), 5) == null ? 0 : jTItensComprado.getValueAt(jTItensComprado.getSelectedRow(), 5))+""));
+                
                 jTItensComprado.setValueAt(null, jTItensComprado.getSelectedRow(), 0);
                 jTItensComprado.setValueAt("", jTItensComprado.getSelectedRow(), 1);
                 jTItensComprado.setValueAt("", jTItensComprado.getSelectedRow(), 2);
@@ -515,9 +580,63 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
                 jTItensComprado.setValueAt(produto.getNome().get(jComboBox2.getSelectedIndex()-1), jTItensComprado.getSelectedRow(), 1);
                 jTItensComprado.setValueAt(produto.getMarca().get(jComboBox2.getSelectedIndex()-1), jTItensComprado.getSelectedRow(), 2);
                 jTItensComprado.setValueAt(produto.getMedida().get(jComboBox2.getSelectedIndex()-1), jTItensComprado.getSelectedRow(), 3);
+                
+                if(jTItensComprado.getValueAt(jTItensComprado.getSelectedRow(), 4) == null){
+                   
+                    jTItensComprado.setValueAt(produto.getValorVenda().get(jComboBox2.getSelectedIndex()-1), jTItensComprado.getSelectedRow(), 5);
+                }
+                else{
+                    jTItensComprado.setValueAt((produto.getValorVenda().get(jComboBox2.getSelectedIndex()-1) * Integer.parseInt(jTItensComprado.getValueAt(jTItensComprado.getSelectedRow(), 4)+"")), jTItensComprado.getSelectedRow(), 5);
+                    
+                    jFTFValorTotal.setValue(0);
+            
+                    for(int i=0; i<100; i++){
+                        jFTFValorTotal.setValue(Float.parseFloat(jFTFValorTotal.getValue()+"") + Float.parseFloat((jTItensComprado.getValueAt(i, 5) == null ? 0 : jTItensComprado.getValueAt(i, 5))+""));
+                    }
+                }
             }
         }
     }//GEN-LAST:event_jComboBox2FocusLost
+
+    private void jFTFQuantidadeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFTFQuantidadeFocusGained
+        linhaSelecionada = jTItensComprado.getSelectedRow();
+        colunaSelecionada = jTItensComprado.getSelectedColumn();
+    }//GEN-LAST:event_jFTFQuantidadeFocusGained
+
+    private void jFTFQuantidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFTFQuantidadeFocusLost
+        if(jTItensComprado.getValueAt(linhaSelecionada, 0) != null && jTItensComprado.getValueAt(linhaSelecionada, 4) != null){
+            jTItensComprado.setValueAt((produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(linhaSelecionada, 0))) * Integer.parseInt(jTItensComprado.getValueAt(linhaSelecionada, 4)+"")), linhaSelecionada, 5);
+
+            jFTFValorTotal.setValue(0);
+
+            for(int i=0; i<100; i++){
+                jFTFValorTotal.setValue(Float.parseFloat(jFTFValorTotal.getValue()+"") + Float.parseFloat((jTItensComprado.getValueAt(i, 5) == null ? 0 : jTItensComprado.getValueAt(i, 5))+""));
+            }
+        }
+    }//GEN-LAST:event_jFTFQuantidadeFocusLost
+
+    private void jTItensCompradoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTItensCompradoMouseClicked
+        if(linhaSelecionada != -1 && colunaSelecionada != -1 && jTItensComprado.getValueAt(linhaSelecionada, colunaSelecionada) != null){
+            
+            jTItensComprado.setValueAt((produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(linhaSelecionada, 0))) * Integer.parseInt(jTItensComprado.getValueAt(linhaSelecionada, 4)+"")), linhaSelecionada, 5);
+            
+            jFTFValorTotal.setValue(0);
+            
+            for(int i=0; i<100; i++){
+                jFTFValorTotal.setValue(Float.parseFloat(jFTFValorTotal.getValue()+"") + Float.parseFloat((jTItensComprado.getValueAt(i, 5) == null ? 0 : jTItensComprado.getValueAt(i, 5))+""));
+            }
+        }
+        
+        if(evt.getClickCount() == 1 && jTItensComprado.getSelectedColumn() == 4 && jTItensComprado.getValueAt(jTItensComprado.getSelectedRow(), 0) != null){
+            
+            linhaSelecionada = jTItensComprado.getSelectedRow();
+            colunaSelecionada = jTItensComprado.getSelectedColumn();
+            
+        } else{
+            linhaSelecionada = -1;
+            colunaSelecionada = -1;
+        }
+    }//GEN-LAST:event_jTItensCompradoMouseClicked
 
     
     public static void main(String args[]) {
@@ -559,8 +678,8 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCBFornecedor;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JFormattedTextField jFTFQuantidade;
     private javax.swing.JFormattedTextField jFTFValorTotal;
-    private javax.swing.JFormattedTextField jFTFValorUnitario;
     private javax.swing.JLabel jLbData;
     private javax.swing.JLabel jLbData1;
     private javax.swing.JLabel jLbData2;
@@ -683,7 +802,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false, false, true, true
+                true, true, false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -739,6 +858,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
 
         TableColumn idColumn = jTItensComprado.getColumnModel().getColumn(0);
         TableColumn nomeColumn = jTItensComprado.getColumnModel().getColumn(1);
+        TableColumn quantidadeColumn = jTItensComprado.getColumnModel().getColumn(4);
         
         
         jComboBox2.addItem(null);
@@ -751,6 +871,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
 
         idColumn.setCellEditor(new DefaultCellEditor(jComboBox2));
         nomeColumn.setCellEditor(new DefaultCellEditor(jComboBox1));
+        quantidadeColumn.setCellEditor(new DefaultCellEditor(jFTFQuantidade));
         
         fornecedor.ConsultarFornecedor();
         

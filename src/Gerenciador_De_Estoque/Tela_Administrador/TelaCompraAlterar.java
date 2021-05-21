@@ -382,11 +382,14 @@ public class TelaCompraAlterar extends javax.swing.JFrame {
         getContentPane().add(jLbFundo1);
         jLbFundo1.setBounds(60, 370, 170, 110);
 
+        jFTFValorUnitario.setEditable(false);
         jFTFValorUnitario.setBorder(null);
         jFTFValorUnitario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFTFValorUnitario.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jFTFValorUnitario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jFTFValorUnitario.setEnabled(false);
         jFTFValorUnitario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jFTFValorUnitario.setOpaque(false);
         jFTFValorUnitario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFTFValorUnitarioActionPerformed(evt);

@@ -378,11 +378,14 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
         getContentPane().add(jComboBox2);
         jComboBox2.setBounds(390, 450, 80, 20);
 
+        jFTFValorUnitario.setEditable(false);
         jFTFValorUnitario.setBorder(null);
         jFTFValorUnitario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFTFValorUnitario.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jFTFValorUnitario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jFTFValorUnitario.setEnabled(false);
         jFTFValorUnitario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jFTFValorUnitario.setOpaque(false);
         getContentPane().add(jFTFValorUnitario);
         jFTFValorUnitario.setBounds(450, 490, 110, 22);
 

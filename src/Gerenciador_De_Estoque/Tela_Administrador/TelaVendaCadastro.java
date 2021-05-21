@@ -24,9 +24,13 @@ import javax.swing.table.TableColumn;
 
 public final class TelaVendaCadastro extends javax.swing.JFrame {
 
+    int linhaSelecionada;
+    int colunaSelecionada;
+    
     Produtos produto = new Produtos();
     Clientes cliente = new Clientes();
     Vendas venda = new Vendas();
+    
     
     Design design = new Design();
     
@@ -66,14 +70,16 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         jLbFundo1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jFTFValorUnitario = new javax.swing.JFormattedTextField();
+        jFTFQuantidade = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jFTFValorTotal.setEditable(false);
         jFTFValorTotal.setBorder(null);
         jFTFValorTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFTFValorTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jFTFValorTotal.setText("0,00");
         jFTFValorTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jFTFValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         getContentPane().add(jFTFValorTotal);
@@ -357,6 +363,11 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         jTItensVendido.setGridColor(new java.awt.Color(204, 204, 204));
         jTItensVendido.setRowHeight(25);
         jTItensVendido.getTableHeader().setReorderingAllowed(false);
+        jTItensVendido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTItensVendidoMouseClicked(evt);
+            }
+        });
         jScrollPaneItensVendido.setViewportView(jTItensVendido);
 
         getContentPane().add(jScrollPaneItensVendido);
@@ -396,13 +407,22 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         getContentPane().add(jComboBox2);
         jComboBox2.setBounds(390, 450, 80, 20);
 
-        jFTFValorUnitario.setBorder(null);
-        jFTFValorUnitario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jFTFValorUnitario.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jFTFValorUnitario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jFTFValorUnitario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        getContentPane().add(jFTFValorUnitario);
-        jFTFValorUnitario.setBounds(450, 490, 110, 22);
+        jFTFQuantidade.setBorder(null);
+        jFTFQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFTFQuantidade.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jFTFQuantidade.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jFTFQuantidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jFTFQuantidade.setOpaque(false);
+        jFTFQuantidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFTFQuantidadeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFTFQuantidadeFocusLost(evt);
+            }
+        });
+        getContentPane().add(jFTFQuantidade);
+        jFTFQuantidade.setBounds(430, 360, 20, 22);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -447,6 +467,9 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         if(jTItensVendido.getSelectedColumn() == 1){
 
             if(jComboBox1.getSelectedIndex() == -1){
+                
+                jFTFValorTotal.setValue(Float.parseFloat(jFTFValorTotal.getValue()+"") - Float.parseFloat((jTItensVendido.getValueAt(jTItensVendido.getSelectedRow(), 5) == null ? 0 : jTItensVendido.getValueAt(jTItensVendido.getSelectedRow(), 5))+""));
+                
                 jTItensVendido.setValueAt(null, jTItensVendido.getSelectedRow(), 0);
                 jTItensVendido.setValueAt("", jTItensVendido.getSelectedRow(), 1);
                 jTItensVendido.setValueAt("", jTItensVendido.getSelectedRow(), 2);
@@ -458,6 +481,20 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
                 jTItensVendido.setValueAt(produto.getNome().get(jComboBox1.getSelectedIndex()-1), jTItensVendido.getSelectedRow(), 1);
                 jTItensVendido.setValueAt(produto.getMarca().get(jComboBox1.getSelectedIndex()-1), jTItensVendido.getSelectedRow(), 2);
                 jTItensVendido.setValueAt(produto.getMedida().get(jComboBox1.getSelectedIndex()-1), jTItensVendido.getSelectedRow(), 3);
+                
+                if(jTItensVendido.getValueAt(jTItensVendido.getSelectedRow(), 4) == null){
+                    
+                    jTItensVendido.setValueAt(produto.getValorVenda().get(jComboBox1.getSelectedIndex()-1), jTItensVendido.getSelectedRow(), 5);
+                }
+                else{
+                    jTItensVendido.setValueAt((produto.getValorVenda().get(jComboBox1.getSelectedIndex()-1) * Integer.parseInt(jTItensVendido.getValueAt(jTItensVendido.getSelectedRow(), 4)+"")), jTItensVendido.getSelectedRow(), 5);
+                    
+                    jFTFValorTotal.setValue(0);
+            
+                    for(int i=0; i<100; i++){
+                        jFTFValorTotal.setValue(Float.parseFloat(jFTFValorTotal.getValue()+"") + Float.parseFloat((jTItensVendido.getValueAt(i, 5) == null ? 0 : jTItensVendido.getValueAt(i, 5))+""));
+                    }
+                }
             }
         }
     }//GEN-LAST:event_jComboBox1FocusLost
@@ -466,6 +503,9 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
         if(jTItensVendido.getSelectedColumn() == 0){
 
             if(jComboBox2.getSelectedIndex() == -1){
+                
+                jFTFValorTotal.setValue(Float.parseFloat(jFTFValorTotal.getValue()+"") - Float.parseFloat((jTItensVendido.getValueAt(jTItensVendido.getSelectedRow(), 5) == null ? 0 : jTItensVendido.getValueAt(jTItensVendido.getSelectedRow(), 5))+""));
+                
                 jTItensVendido.setValueAt(null, jTItensVendido.getSelectedRow(), 0);
                 jTItensVendido.setValueAt("", jTItensVendido.getSelectedRow(), 1);
                 jTItensVendido.setValueAt("", jTItensVendido.getSelectedRow(), 2);
@@ -477,61 +517,154 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
                 jTItensVendido.setValueAt(produto.getNome().get(jComboBox2.getSelectedIndex()-1), jTItensVendido.getSelectedRow(), 1);
                 jTItensVendido.setValueAt(produto.getMarca().get(jComboBox2.getSelectedIndex()-1), jTItensVendido.getSelectedRow(), 2);
                 jTItensVendido.setValueAt(produto.getMedida().get(jComboBox2.getSelectedIndex()-1), jTItensVendido.getSelectedRow(), 3);
+                
+                if(jTItensVendido.getValueAt(jTItensVendido.getSelectedRow(), 4) == null){
+                   
+                    jTItensVendido.setValueAt(produto.getValorVenda().get(jComboBox2.getSelectedIndex()-1), jTItensVendido.getSelectedRow(), 5);
+                }
+                else{
+                    jTItensVendido.setValueAt((produto.getValorVenda().get(jComboBox2.getSelectedIndex()-1) * Integer.parseInt(jTItensVendido.getValueAt(jTItensVendido.getSelectedRow(), 4)+"")), jTItensVendido.getSelectedRow(), 5);
+                    
+                    jFTFValorTotal.setValue(0);
+            
+                    for(int i=0; i<100; i++){
+                        jFTFValorTotal.setValue(Float.parseFloat(jFTFValorTotal.getValue()+"") + Float.parseFloat((jTItensVendido.getValueAt(i, 5) == null ? 0 : jTItensVendido.getValueAt(i, 5))+""));
+                    }
+                }
             }
         }
     }//GEN-LAST:event_jComboBox2FocusLost
 
     private void jBntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSalvarActionPerformed
-        int cel = 0;
-        for(int i=0; i<100; i++){
-            if(jTItensVendido.getValueAt(i, 0) != null && jTItensVendido.getValueAt(i, 4) != null){
-                cel = 1;
-                break;
-            }
-        }
+        try {
+            produto.ConsultarProdutos();
+            int caso = 0;
+            int cont = 0;
+            
+            for(; cont<100; cont++){
+                if(jTItensVendido.getValueAt(cont, 0) != null && jTItensVendido.getValueAt(cont, 4) == null){
+                    caso = 1; // nao colocou a quantidade
 
-        if(jCBCliente.getSelectedIndex() == -1 || jTFData1.getText().isEmpty() == true || jTFData2.getText().isEmpty() == true || jTFData3.getText().isEmpty() == true || jTFHora1.getText().isEmpty() == true || jTFHora2.getText().isEmpty() == true || jFTFValorTotal.getText().isEmpty() == true || jTFFormaDePagamento.getText().isEmpty() == true || cel == 0){
-
-            UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
-            JOptionPane.showMessageDialog(null, "É obrigatório o preenchimento de todos os campos.\nA tabela de itens vendidos necessita de no mínimo\numa linha preenchida, exceto o campo preço. \n\n\n\n");
-        }else if(Integer.parseInt(jTFData3.getText()) < 1753 || Integer.parseInt(jTFData3.getText()) > 9999){
-            UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
-            JOptionPane.showMessageDialog(null, "O ano digitado está fora do intervalo de tempo (1753 a 9999) que podemos armazenar. \n\n\n\n");
-        }else{
-
-            try{
-                venda.ConsultarVendas();
-
-                int idVenda = venda.CadastrarVendas(cliente.getIDCliente().get(jCBCliente.getSelectedIndex()-1), ("'"+jTFData3.getText()+"-" + jTFData1.getText() + "-" + jTFData2.getText()+ " " + jTFHora1.getText() + ":" + jTFHora2.getText() + ":20.3'"), Float.parseFloat(jFTFValorTotal.getText().replaceAll(",",".")), jTFFormaDePagamento.getText());
-
-                for(int i=0; i<100; i++){
-                    if(jTItensVendido.getValueAt(i, 0) != null && jTItensVendido.getValueAt(i, 4) != null){
-                        venda.CadastrarItem(idVenda, Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""), Integer.parseInt(jTItensVendido.getValueAt(i, 4)+""), Float.parseFloat((jTItensVendido.getValueAt(i, 5) == null ? 0 : jTItensVendido.getValueAt(i, 5))+""));
-                    }
+                    break;
                 }
-            }catch (SQLException ex) {
-                Logger.getLogger(TelaProdutoCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                else if(jTItensVendido.getValueAt(cont, 0) != null && jTItensVendido.getValueAt(cont, 4) != null){
+                    if((produto.getQuantidade().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(cont, 0))) - Integer.parseInt(jTItensVendido.getValueAt(cont, 4)+"")) < 0){
+                        caso = 2; // valor de venda é maior do q tem no estoque
+
+                        break;
+                    }
+                    else if(jTItensVendido.getValueAt(cont, 0) != null && jTItensVendido.getValueAt(cont, 4) != null){
+                        caso = 3; // pelomenos um item vendido
+                    }
+                    
+                }
+                if(cont == 99 && caso != 3){
+                    caso = 4;
+                }
             }
+        
+            if(jCBCliente.getSelectedIndex() == -1 || jTFData1.getText().isEmpty() == true || jTFData2.getText().isEmpty() == true || jTFData3.getText().isEmpty() == true || jTFHora1.getText().isEmpty() == true || jTFHora2.getText().isEmpty() == true || jFTFValorTotal.getText().isEmpty() == true || jTFFormaDePagamento.getText().isEmpty() == true){
 
-            TelaAdministrador Janela;
-            try {
-                Janela = new TelaAdministrador();
-                //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
+                JOptionPane.showMessageDialog(null, "É obrigatório o preenchimento de todos os campos da parte superior.\n \n\n\n\n");
+            }else if(Integer.parseInt(jTFData3.getText()) < 1753 || Integer.parseInt(jTFData3.getText()) > 9999){
 
-                Toolkit tk = Toolkit.getDefaultToolkit();
-                Dimension d = tk.getScreenSize();
+                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
+                JOptionPane.showMessageDialog(null, "O ano digitado está fora do intervalo de tempo (1753 a 9999) que pode ser armazenado. \n\n\n\n");
+            }else if(caso == 1){
 
-                Janela.setSize(d.width + 8, d.height - 37);
-                Janela.setResizable(false);
-                Janela.MudarAba(3);
+                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
+                JOptionPane.showMessageDialog(null, "Coloque a quantidade de todos os itens vendido.\n\n\n\n");
+            }else if(caso == 2){
 
-                Janela.show();
-                dispose();
-            } catch (SQLException ex) {
-                Logger.getLogger(TelaProdutoCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
+                JOptionPane.showMessageDialog(null, produto.getNome().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(cont, 0))) + " possui apenas " + produto.getQuantidade().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(cont, 0))) + " unidades no estoque \n\n\n\n");
+            }else if(caso == 4){
+
+                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
+                JOptionPane.showMessageDialog(null, "Preencha no mínimo uma linha da tabela.\n\n\n\n");
+            }else{
+
+                try{
+                    venda.ConsultarVendas();
+
+                    int idVenda = venda.CadastrarVendas(cliente.getIDCliente().get(jCBCliente.getSelectedIndex()-1), ("'"+jTFData3.getText()+"-" + jTFData1.getText() + "-" + jTFData2.getText()+ " " + jTFHora1.getText() + ":" + jTFHora2.getText() + ":20.3'"), Float.parseFloat(jFTFValorTotal.getText().replaceAll(",",".")), jTFFormaDePagamento.getText());
+
+                    for(int i=0; i<100; i++){
+                        if(jTItensVendido.getValueAt(i, 0) != null && jTItensVendido.getValueAt(i, 4) != null){
+                            venda.CadastrarItem(idVenda, Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""), Integer.parseInt(jTItensVendido.getValueAt(i, 4)+""), Float.parseFloat((jTItensVendido.getValueAt(i, 5) == null ? 0 : jTItensVendido.getValueAt(i, 5))+""));
+                            produto.AlterarProduto(produto.getNome().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))), produto.getMarca().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))), produto.getMedida().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))), produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))), (produto.getQuantidade().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))) - Integer.parseInt(jTItensVendido.getValueAt(i, 4) + "")), produto.getDescricao().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))), produto.getAtivo().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))), produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0)));
+
+                        }
+                    }
+                }catch (SQLException ex) {
+                    Logger.getLogger(TelaProdutoCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                TelaAdministrador Janela;
+                try {
+                    Janela = new TelaAdministrador();
+                    //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+                    Toolkit tk = Toolkit.getDefaultToolkit();
+                    Dimension d = tk.getScreenSize();
+
+                    Janela.setSize(d.width + 8, d.height - 37);
+                    Janela.setResizable(false);
+                    Janela.MudarAba(3);
+
+                    Janela.show();
+                    dispose();
+                } catch (SQLException ex) {
+                    Logger.getLogger(TelaProdutoCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaVendaCadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBntSalvarActionPerformed
+
+    private void jFTFQuantidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFTFQuantidadeFocusLost
+        if(jTItensVendido.getValueAt(linhaSelecionada, 0) != null && jTItensVendido.getValueAt(linhaSelecionada, 4) != null){
+            jTItensVendido.setValueAt((produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(linhaSelecionada, 0))) * Integer.parseInt(jTItensVendido.getValueAt(linhaSelecionada, 4)+"")), linhaSelecionada, 5);
+
+            jFTFValorTotal.setValue(0);
+            
+            for(int i=0; i<100; i++){
+                jFTFValorTotal.setValue(Float.parseFloat(jFTFValorTotal.getValue()+"") + Float.parseFloat((jTItensVendido.getValueAt(i, 5) == null ? 0 : jTItensVendido.getValueAt(i, 5))+""));
+            }
+        }
+    }//GEN-LAST:event_jFTFQuantidadeFocusLost
+
+    private void jFTFQuantidadeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFTFQuantidadeFocusGained
+        linhaSelecionada = jTItensVendido.getSelectedRow();
+        colunaSelecionada = jTItensVendido.getSelectedColumn();
+    }//GEN-LAST:event_jFTFQuantidadeFocusGained
+
+    private void jTItensVendidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTItensVendidoMouseClicked
+        
+        if(linhaSelecionada != -1 && colunaSelecionada != -1 && jTItensVendido.getValueAt(linhaSelecionada, colunaSelecionada) != null){
+            
+            jTItensVendido.setValueAt((produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(linhaSelecionada, 0))) * Integer.parseInt(jTItensVendido.getValueAt(linhaSelecionada, 4)+"")), linhaSelecionada, 5);
+            
+            jFTFValorTotal.setValue(0);
+            
+            for(int i=0; i<100; i++){
+                jFTFValorTotal.setValue(Float.parseFloat(jFTFValorTotal.getValue()+"") + Float.parseFloat((jTItensVendido.getValueAt(i, 5) == null ? 0 : jTItensVendido.getValueAt(i, 5))+""));
+            }
+        }
+        
+        if(evt.getClickCount() == 1 && jTItensVendido.getSelectedColumn() == 4 && jTItensVendido.getValueAt(jTItensVendido.getSelectedRow(), 0) != null){
+            
+            linhaSelecionada = jTItensVendido.getSelectedRow();
+            colunaSelecionada = jTItensVendido.getSelectedColumn();
+            
+        } else{
+            linhaSelecionada = -1;
+            colunaSelecionada = -1;
+        }
+        
+    }//GEN-LAST:event_jTItensVendidoMouseClicked
 
     public static void main(String args[]) {
      
@@ -568,8 +701,8 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCBCliente;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JFormattedTextField jFTFQuantidade;
     private javax.swing.JFormattedTextField jFTFValorTotal;
-    private javax.swing.JFormattedTextField jFTFValorUnitario;
     private javax.swing.JLabel jLbCliente;
     private javax.swing.JLabel jLbData;
     private javax.swing.JLabel jLbData1;
@@ -704,7 +837,7 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false, false, true, true
+                true, true, false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -760,6 +893,7 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
 
         TableColumn idColumn = jTItensVendido.getColumnModel().getColumn(0);
         TableColumn nomeColumn = jTItensVendido.getColumnModel().getColumn(1);
+        TableColumn quantidadeColumn = jTItensVendido.getColumnModel().getColumn(4);
         
         
         jComboBox2.addItem(null);
@@ -772,6 +906,7 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
 
         idColumn.setCellEditor(new DefaultCellEditor(jComboBox2));
         nomeColumn.setCellEditor(new DefaultCellEditor(jComboBox1));
+        quantidadeColumn.setCellEditor(new DefaultCellEditor(jFTFQuantidade));
         
         cliente.ConsultarClientes();
         
@@ -781,5 +916,5 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
             jCBCliente.addItem(cliente.getNome().get(i) + "");
         }
     } 
-
+    
 }
