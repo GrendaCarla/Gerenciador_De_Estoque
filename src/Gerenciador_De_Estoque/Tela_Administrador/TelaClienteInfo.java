@@ -4,7 +4,6 @@ package Gerenciador_De_Estoque.Tela_Administrador;
 import Design.Design;
 import Gerenciador_De_Estoque.Clientes;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -19,8 +18,6 @@ public class TelaClienteInfo extends javax.swing.JFrame {
     public TelaClienteInfo() {
         initComponents();
         
-        corDeFundo();
-        TamanhoDoFundo();
         AlinhamentoDosItens();
     }
 
@@ -60,8 +57,8 @@ public class TelaClienteInfo extends javax.swing.JFrame {
         jLbNome = new javax.swing.JLabel();
         jBntAlterar = new javax.swing.JButton();
         jBntVoltar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jLbFundo2 = new javax.swing.JLabel();
+        jLbFundo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1200, 465));
@@ -217,7 +214,7 @@ public class TelaClienteInfo extends javax.swing.JFrame {
         jLbTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbTitulo.setText("CLIENTE");
-        jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
+        jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 8));
         jLbTitulo.setOpaque(true);
         getContentPane().add(jLbTitulo);
         jLbTitulo.setBounds(412, 11, 550, 60);
@@ -272,20 +269,16 @@ public class TelaClienteInfo extends javax.swing.JFrame {
         getContentPane().add(jBntVoltar);
         jBntVoltar.setBounds(290, 610, 150, 40);
 
-        jPanel1.setBackground(new java.awt.Color(235, 223, 218));
-        jPanel1.setEnabled(false);
-        jPanel1.setFocusable(false);
-        jPanel1.setLayout(null);
+        jLbFundo2.setBackground(new java.awt.Color(255, 255, 255));
+        jLbFundo2.setOpaque(true);
+        getContentPane().add(jLbFundo2);
+        jLbFundo2.setBounds(0, 250, 0, 0);
 
-        jPanel2.setBackground(new java.awt.Color(249, 242, 234));
-        jPanel2.setEnabled(false);
-        jPanel2.setPreferredSize(new java.awt.Dimension(1200, 465));
-        jPanel2.setLayout(null);
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(50, 24, 1200, 465);
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(30, 50, 1260, 550);
+        jLbFundo1.setBackground(new java.awt.Color(255, 255, 255));
+        jLbFundo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbFundo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundoTabela.png"))); // NOI18N
+        getContentPane().add(jLbFundo1);
+        jLbFundo1.setBounds(60, 370, 170, 110);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -320,7 +313,7 @@ public class TelaClienteInfo extends javax.swing.JFrame {
 
             Janela.setSize(d.width + 8, d.height - 37);
             Janela.setResizable(false);
-            Janela.MudarAba(3);
+            Janela.MudarAba(4);
 
             Janela.show();
             dispose();
@@ -371,6 +364,8 @@ public class TelaClienteInfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLbEmail1;
     private javax.swing.JLabel jLbEmail2;
     private javax.swing.JLabel jLbEstado;
+    private javax.swing.JLabel jLbFundo1;
+    private javax.swing.JLabel jLbFundo2;
     private javax.swing.JLabel jLbID;
     private javax.swing.JLabel jLbNome;
     private javax.swing.JLabel jLbNumero;
@@ -379,8 +374,6 @@ public class TelaClienteInfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLbTelefone1;
     private javax.swing.JLabel jLbTelefone2;
     private javax.swing.JLabel jLbTitulo;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTFBairro;
     private javax.swing.JTextField jTFCPF;
     private javax.swing.JTextField jTFCidade;
@@ -397,29 +390,18 @@ public class TelaClienteInfo extends javax.swing.JFrame {
     private javax.swing.JTextField jTFTelefone2;
     // End of variables declaration//GEN-END:variables
 
-    public void corDeFundo() {
+    public void AlinhamentoDosItens() {
         
         getContentPane().setBackground(design.getCorFundo1());
-        jPanel1.setBackground(design.getCorFundo2());
-        jPanel2.setBackground(design.getCorFundo3());
         
-    }
-
-    public void TamanhoDoFundo() {
-
-        jPanel1.setSize(design.getLargura() - 40, design.getAltura() - 200);
-        jPanel1.setLocation(20, 110);
-
-        jPanel2.setPreferredSize(new Dimension ((design.getLargura() - 40)-30, (design.getAltura() - 200)-80)); 
-        jPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 50));
+        jLbFundo1.setBounds(20, 110,design.getLargura() - 40, design.getAltura() - 200);
         
-    }
-    
-    public void AlinhamentoDosItens() {
+        jLbFundo2.setBounds(20+15 , 110+50, (design.getLargura() - 40)-30, (design.getAltura() - 200)-80);
+        jLbFundo2.setBackground(design.getCorFundo3());
         
         jLbTitulo.setBounds(design.CentralizarLargura(550, 2, 1),design.CentralizarAltura(55, 18, 1),550,55);
         jLbTitulo.setForeground(design.getCorLetra1());
-        jLbTitulo.setBackground(design.getCorCampoTexto());
+        jLbTitulo.setBackground(design.getCorFundo2());
         
         jLbID.setBounds(design.CentralizarLargura(116, 18,2),design.CentralizarAltura(30, 15, 4),40 + 15 + 100 + 4,30);
         jTFID.setBounds(design.CentralizarLargura(116, 18,2)+ 40 + 15,design.CentralizarAltura(30, 15, 4),100,30);

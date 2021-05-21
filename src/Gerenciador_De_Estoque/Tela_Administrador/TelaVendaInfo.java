@@ -5,7 +5,6 @@ import Gerenciador_De_Estoque.Vendas;
 import Gerenciador_De_Estoque.Clientes;
 import Gerenciador_De_Estoque.Produtos;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.sql.SQLException;
@@ -31,8 +30,6 @@ public class TelaVendaInfo extends javax.swing.JFrame {
     public TelaVendaInfo() throws SQLException {
         initComponents();
         
-        corDeFundo();
-        TamanhoDoFundo();
         AlinhamentoDosItens();
         criarTabelaItensVenda();
     }
@@ -41,7 +38,7 @@ public class TelaVendaInfo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTFValorTotal = new javax.swing.JTextField();
+        jFTFValorTotal = new javax.swing.JFormattedTextField();
         jTFFormaDePagamento = new javax.swing.JTextField();
         jTFData = new javax.swing.JTextField();
         jTFCliente = new javax.swing.JTextField();
@@ -56,20 +53,20 @@ public class TelaVendaInfo extends javax.swing.JFrame {
         jBntVoltar = new javax.swing.JButton();
         jScrollPaneItensVendido = new javax.swing.JScrollPane();
         jTItensVendido = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jLbFundoTabela = new javax.swing.JLabel();
+        jLbFundo2 = new javax.swing.JLabel();
+        jLbFundo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jTFValorTotal.setEditable(false);
-        jTFValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFValorTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTFValorTotal.setBorder(null);
-        jTFValorTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTFValorTotal.setOpaque(false);
-        getContentPane().add(jTFValorTotal);
-        jTFValorTotal.setBounds(40, 40, 0, 22);
+        jFTFValorTotal.setEditable(false);
+        jFTFValorTotal.setBorder(null);
+        jFTFValorTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        jFTFValorTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jFTFValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getContentPane().add(jFTFValorTotal);
+        jFTFValorTotal.setBounds(100, 20, 90, 22);
 
         jTFFormaDePagamento.setEditable(false);
         jTFFormaDePagamento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -116,7 +113,7 @@ public class TelaVendaInfo extends javax.swing.JFrame {
         jLbTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbTitulo.setText("VENDA");
-        jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
+        jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 8));
         jLbTitulo.setOpaque(true);
         getContentPane().add(jLbTitulo);
         jLbTitulo.setBounds(212, 11, 550, 60);
@@ -163,7 +160,7 @@ public class TelaVendaInfo extends javax.swing.JFrame {
         jBntVoltar.setBounds(290, 610, 150, 40);
 
         jScrollPaneItensVendido.setBackground(new java.awt.Color(207, 220, 212));
-        jScrollPaneItensVendido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 15));
+        jScrollPaneItensVendido.setBorder(null);
         jScrollPaneItensVendido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jTItensVendido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -299,20 +296,23 @@ public class TelaVendaInfo extends javax.swing.JFrame {
         getContentPane().add(jScrollPaneItensVendido);
         jScrollPaneItensVendido.setBounds(50, 280, 910, 340);
 
-        jPanel1.setBackground(new java.awt.Color(235, 223, 218));
-        jPanel1.setEnabled(false);
-        jPanel1.setFocusable(false);
-        jPanel1.setLayout(null);
+        jLbFundoTabela.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbFundoTabela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundoTabela.png"))); // NOI18N
+        jLbFundoTabela.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLbFundoTabela.setOpaque(true);
+        getContentPane().add(jLbFundoTabela);
+        jLbFundoTabela.setBounds(60, 80, 850, 430);
 
-        jPanel2.setBackground(new java.awt.Color(249, 242, 234));
-        jPanel2.setEnabled(false);
-        jPanel2.setPreferredSize(new java.awt.Dimension(1200, 465));
-        jPanel2.setLayout(null);
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(50, 24, 1200, 465);
+        jLbFundo2.setBackground(new java.awt.Color(255, 255, 255));
+        jLbFundo2.setOpaque(true);
+        getContentPane().add(jLbFundo2);
+        jLbFundo2.setBounds(0, 250, 0, 0);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(30, 50, 1260, 550);
+        jLbFundo1.setBackground(new java.awt.Color(255, 255, 255));
+        jLbFundo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbFundo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundoTabela.png"))); // NOI18N
+        getContentPane().add(jLbFundo1);
+        jLbFundo1.setBounds(60, 370, 170, 110);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -345,7 +345,7 @@ public class TelaVendaInfo extends javax.swing.JFrame {
 
             Janela.setSize(d.width + 8, d.height - 37);
             Janela.setResizable(false);
-            Janela.MudarAba(4);
+            Janela.MudarAba(3);
 
             Janela.show();
             dispose();
@@ -393,46 +393,44 @@ public class TelaVendaInfo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBntAlterar;
     private javax.swing.JButton jBntVoltar;
+    private javax.swing.JFormattedTextField jFTFValorTotal;
     private javax.swing.JLabel jLbCliente;
     private javax.swing.JLabel jLbData;
     private javax.swing.JLabel jLbFormaDePagamento;
+    private javax.swing.JLabel jLbFundo1;
+    private javax.swing.JLabel jLbFundo2;
+    private javax.swing.JLabel jLbFundoTabela;
     private javax.swing.JLabel jLbHora;
     private javax.swing.JLabel jLbTitulo;
     private javax.swing.JLabel jLbValorTotal;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPaneItensVendido;
     private javax.swing.JTextField jTFCliente;
     private javax.swing.JTextField jTFData;
     private javax.swing.JTextField jTFFormaDePagamento;
     private javax.swing.JTextField jTFHora;
-    private javax.swing.JTextField jTFValorTotal;
     private javax.swing.JTable jTItensVendido;
     // End of variables declaration//GEN-END:variables
 
-    public void corDeFundo() {
+    public void AlinhamentoDosItens() {
         
         getContentPane().setBackground(design.getCorFundo1());
-        jPanel1.setBackground(design.getCorFundo2());
-        jPanel2.setBackground(design.getCorFundo3());
         
-    }
-
-    public void TamanhoDoFundo() {
-
-        jPanel1.setSize(design.getLargura() - 20, design.getAltura() - 200);
-        jPanel1.setLocation(10, 110);
-
-        jPanel2.setPreferredSize(new Dimension ((design.getLargura() - 20)-20, (design.getAltura() - 200)-40)); 
-        jPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        jLbFundo1.setBounds(10, 110,design.getLargura() - 20, design.getAltura() - 200);
         
-    }
-    
-    public void AlinhamentoDosItens() {
+        jLbFundo2.setBounds(10+10 , 110+10, (design.getLargura() - 20)-20, (design.getAltura() - 200)-40);
+        jLbFundo2.setBackground(design.getCorFundo3());
+        
+        jScrollPaneItensVendido.setBounds(design.CentralizarLargura(116, 18,2) + 8,design.CentralizarAltura(30, 15, 4) + 8,design.getLargura() - (design.CentralizarLargura(116, 18,2)*2) - 16,design.CentralizarAltura(30, 30, 23) - design.CentralizarAltura(30, 15, 4)-25);
+        jScrollPaneItensVendido.setBackground(design.getCorTituloTabela());
+        
+        jLbFundoTabela.setBounds(design.CentralizarLargura(116, 18,2), design.CentralizarAltura(30, 15, 4), design.getLargura() - (design.CentralizarLargura(116, 18,2)*2), design.CentralizarAltura(30, 30, 23) - design.CentralizarAltura(30, 15, 4));
+        jLbFundoTabela.setBackground(design.getCorFundo2());
+       
+        
         
         jLbTitulo.setBounds(design.CentralizarLargura(550, 2, 1),design.CentralizarAltura(55, 18, 1),550,55);
         jLbTitulo.setForeground(design.getCorLetra1());
-        jLbTitulo.setBackground(design.getCorCampoTexto());
+        jLbTitulo.setBackground(design.getCorFundo2());
         
         
         jLbCliente.setBounds(design.CentralizarLargura(116, 44,3),design.CentralizarAltura(30, 15, 3),80 + 15 + 250 + 4,30);
@@ -468,15 +466,12 @@ public class TelaVendaInfo extends javax.swing.JFrame {
         jTFFormaDePagamento.setOpaque(true);
                 
         jLbValorTotal.setBounds(design.getLargura() - design.CentralizarLargura(116, 44,3) - 100 - 15 - 130 - 4,design.CentralizarAltura(30, 15, 3),100 + 15 + 130 + 4,30);
-        jTFValorTotal.setBounds(design.getLargura() - design.CentralizarLargura(116, 44,3)- 130 - 4,design.CentralizarAltura(30, 15, 3),130,30);
+        jFTFValorTotal.setBounds(design.getLargura() - design.CentralizarLargura(116, 44,3)- 130 - 4,design.CentralizarAltura(30, 15, 3),130,30);
         jLbValorTotal.setBackground(design.getCorCampoTexto());
         jLbValorTotal.setOpaque(true);
-        jTFValorTotal.setBackground(design.getCorCampoTexto());
-        jTFValorTotal.setOpaque(true);
+        jFTFValorTotal.setBackground(design.getCorCampoTexto());
+        jFTFValorTotal.setOpaque(true);
         
-        
-        jScrollPaneItensVendido.setBounds(design.CentralizarLargura(116, 18,2),design.CentralizarAltura(30, 15, 4),design.getLargura() - (design.CentralizarLargura(116, 18,2)*2),design.CentralizarAltura(30, 30, 23) - design.CentralizarAltura(30, 15, 4));
-        jScrollPaneItensVendido.setBackground(design.getCorTituloTabela());
         
         jBntAlterar.setBounds(design.CentralizarLargura(116, 18,3),design.CentralizarAltura(30, 30, 24),150,40);
         jBntAlterar.setBackground(design.getCorBotaoSalvar());
@@ -574,7 +569,7 @@ public class TelaVendaInfo extends javax.swing.JFrame {
         jTFCliente.setText("" + cliente.getNome().get(cliente.getIDCliente().indexOf(cliente.getIDCliente().get(num))));
         jTFData.setText(venda.getDataHoraDaVenda().get(num).substring(8, 10) + " / " + venda.getDataHoraDaVenda().get(num).substring(5, 7) + " / " + venda.getDataHoraDaVenda().get(num).substring(0, 4));
         jTFHora.setText(venda.getDataHoraDaVenda().get(num).substring(11, 13) + " : " + venda.getDataHoraDaVenda().get(num).substring(14, 16));
-        jTFValorTotal.setText((design.FormataFloat(venda.getValorTotal().get(num))).replace(".",","));
+        jFTFValorTotal.setText((design.FormataFloat(venda.getValorTotal().get(num))).replace(".",","));
         jTFFormaDePagamento.setText("" + venda.getFormaDePagamento().get(num));
         
         for(int i=0; i< venda.getIDItemVendido().size(); i++){

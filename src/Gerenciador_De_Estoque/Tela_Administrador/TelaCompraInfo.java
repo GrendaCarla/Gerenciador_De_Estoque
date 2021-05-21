@@ -6,16 +6,17 @@ import Gerenciador_De_Estoque.Compras;
 import Gerenciador_De_Estoque.Fornecedores;
 import Gerenciador_De_Estoque.Produtos;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultCellEditor;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 
 public class TelaCompraInfo extends javax.swing.JFrame {
     
@@ -28,8 +29,6 @@ public class TelaCompraInfo extends javax.swing.JFrame {
     public TelaCompraInfo() throws SQLException {
         initComponents();
         
-        corDeFundo();
-        TamanhoDoFundo();
         AlinhamentoDosItens();
         criarTabelaItensCompra();
     }
@@ -38,12 +37,10 @@ public class TelaCompraInfo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTFValorTotal = new javax.swing.JTextField();
+        jFTFValorTotal = new javax.swing.JFormattedTextField();
         jTFData = new javax.swing.JTextField();
         jTFHora = new javax.swing.JTextField();
         jTFFornecedor = new javax.swing.JTextField();
-        jScrollPaneItensComprado = new javax.swing.JScrollPane();
-        jTItensComprado = new javax.swing.JTable();
         jLbValorTotal = new javax.swing.JLabel();
         jLbData = new javax.swing.JLabel();
         jLbTitulo = new javax.swing.JLabel();
@@ -51,20 +48,22 @@ public class TelaCompraInfo extends javax.swing.JFrame {
         jLbHora = new javax.swing.JLabel();
         jBntAlterar = new javax.swing.JButton();
         jBntVoltar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jScrollPaneItensComprado = new javax.swing.JScrollPane();
+        jTItensComprado = new javax.swing.JTable();
+        jLbFundoTabela = new javax.swing.JLabel();
+        jLbFundo2 = new javax.swing.JLabel();
+        jLbFundo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jTFValorTotal.setEditable(false);
-        jTFValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTFValorTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTFValorTotal.setBorder(null);
-        jTFValorTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTFValorTotal.setOpaque(false);
-        getContentPane().add(jTFValorTotal);
-        jTFValorTotal.setBounds(40, 40, 0, 22);
+        jFTFValorTotal.setEditable(false);
+        jFTFValorTotal.setBorder(null);
+        jFTFValorTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        jFTFValorTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jFTFValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getContentPane().add(jFTFValorTotal);
+        jFTFValorTotal.setBounds(100, 20, 90, 22);
 
         jTFData.setEditable(false);
         jTFData.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -89,8 +88,63 @@ public class TelaCompraInfo extends javax.swing.JFrame {
         getContentPane().add(jTFFornecedor);
         jTFFornecedor.setBounds(40, 40, 0, 22);
 
+        jLbValorTotal.setBackground(new java.awt.Color(51, 255, 153));
+        jLbValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbValorTotal.setText("  Total:   R$");
+        getContentPane().add(jLbValorTotal);
+        jLbValorTotal.setBounds(340, 150, 110, 22);
+
+        jLbData.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbData.setText("  Data:");
+        getContentPane().add(jLbData);
+        jLbData.setBounds(340, 150, 60, 22);
+
+        jLbTitulo.setBackground(new java.awt.Color(204, 204, 204));
+        jLbTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbTitulo.setText("COMPRA");
+        jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 8));
+        jLbTitulo.setOpaque(true);
+        getContentPane().add(jLbTitulo);
+        jLbTitulo.setBounds(212, 11, 550, 60);
+
+        jLbFornecedor.setBackground(new java.awt.Color(51, 255, 153));
+        jLbFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbFornecedor.setText("  Fornecedor:");
+        getContentPane().add(jLbFornecedor);
+        jLbFornecedor.setBounds(230, 130, 110, 22);
+
+        jLbHora.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbHora.setText("  Hora:");
+        getContentPane().add(jLbHora);
+        jLbHora.setBounds(540, 110, 60, 22);
+
+        jBntAlterar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBntAlterar.setForeground(new java.awt.Color(0, 153, 0));
+        jBntAlterar.setText("Alterar");
+        jBntAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntAlterarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBntAlterar);
+        jBntAlterar.setBounds(460, 630, 150, 40);
+
+        jBntVoltar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBntVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        jBntVoltar.setText("Voltar");
+        jBntVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBntVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBntVoltar);
+        jBntVoltar.setBounds(290, 610, 150, 40);
+
         jScrollPaneItensComprado.setBackground(new java.awt.Color(207, 220, 212));
-        jScrollPaneItensComprado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 15));
+        jScrollPaneItensComprado.setBorder(null);
         jScrollPaneItensComprado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jTItensComprado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -226,75 +280,23 @@ public class TelaCompraInfo extends javax.swing.JFrame {
         getContentPane().add(jScrollPaneItensComprado);
         jScrollPaneItensComprado.setBounds(50, 280, 910, 340);
 
-        jLbValorTotal.setBackground(new java.awt.Color(51, 255, 153));
-        jLbValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbValorTotal.setText("  Total:   R$");
-        getContentPane().add(jLbValorTotal);
-        jLbValorTotal.setBounds(340, 150, 110, 22);
+        jLbFundoTabela.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbFundoTabela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundoTabela.png"))); // NOI18N
+        jLbFundoTabela.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLbFundoTabela.setOpaque(true);
+        getContentPane().add(jLbFundoTabela);
+        jLbFundoTabela.setBounds(60, 80, 850, 430);
 
-        jLbData.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbData.setText("  Data:");
-        getContentPane().add(jLbData);
-        jLbData.setBounds(340, 150, 60, 22);
+        jLbFundo2.setBackground(new java.awt.Color(255, 255, 255));
+        jLbFundo2.setOpaque(true);
+        getContentPane().add(jLbFundo2);
+        jLbFundo2.setBounds(0, 250, 0, 0);
 
-        jLbTitulo.setBackground(new java.awt.Color(204, 204, 204));
-        jLbTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbTitulo.setText("COMPRA");
-        jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 152, 158), 7));
-        jLbTitulo.setOpaque(true);
-        getContentPane().add(jLbTitulo);
-        jLbTitulo.setBounds(212, 11, 550, 60);
-
-        jLbFornecedor.setBackground(new java.awt.Color(51, 255, 153));
-        jLbFornecedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbFornecedor.setText("  Fornecedor:");
-        getContentPane().add(jLbFornecedor);
-        jLbFornecedor.setBounds(230, 130, 110, 22);
-
-        jLbHora.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbHora.setText("  Hora:");
-        getContentPane().add(jLbHora);
-        jLbHora.setBounds(540, 110, 60, 22);
-
-        jBntAlterar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBntAlterar.setForeground(new java.awt.Color(0, 153, 0));
-        jBntAlterar.setText("Alterar");
-        jBntAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBntAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBntAlterarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jBntAlterar);
-        jBntAlterar.setBounds(460, 630, 150, 40);
-
-        jBntVoltar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBntVoltar.setForeground(new java.awt.Color(255, 255, 255));
-        jBntVoltar.setText("Voltar");
-        jBntVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBntVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBntVoltarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jBntVoltar);
-        jBntVoltar.setBounds(290, 610, 150, 40);
-
-        jPanel1.setBackground(new java.awt.Color(235, 223, 218));
-        jPanel1.setEnabled(false);
-        jPanel1.setFocusable(false);
-        jPanel1.setLayout(null);
-
-        jPanel2.setBackground(new java.awt.Color(249, 242, 234));
-        jPanel2.setEnabled(false);
-        jPanel2.setPreferredSize(new java.awt.Dimension(1200, 465));
-        jPanel2.setLayout(null);
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(50, 24, 1200, 465);
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(30, 50, 1260, 550);
+        jLbFundo1.setBackground(new java.awt.Color(255, 255, 255));
+        jLbFundo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbFundo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundoTabela.png"))); // NOI18N
+        getContentPane().add(jLbFundo1);
+        jLbFundo1.setBounds(60, 370, 170, 110);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -380,44 +382,42 @@ public class TelaCompraInfo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBntAlterar;
     private javax.swing.JButton jBntVoltar;
+    private javax.swing.JFormattedTextField jFTFValorTotal;
     private javax.swing.JLabel jLbData;
     private javax.swing.JLabel jLbFornecedor;
+    private javax.swing.JLabel jLbFundo1;
+    private javax.swing.JLabel jLbFundo2;
+    private javax.swing.JLabel jLbFundoTabela;
     private javax.swing.JLabel jLbHora;
     private javax.swing.JLabel jLbTitulo;
     private javax.swing.JLabel jLbValorTotal;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPaneItensComprado;
     private javax.swing.JTextField jTFData;
     private javax.swing.JTextField jTFFornecedor;
     private javax.swing.JTextField jTFHora;
-    private javax.swing.JTextField jTFValorTotal;
     private javax.swing.JTable jTItensComprado;
     // End of variables declaration//GEN-END:variables
 
-    public void corDeFundo() {
+    public void AlinhamentoDosItens() {
         
         getContentPane().setBackground(design.getCorFundo1());
-        jPanel1.setBackground(design.getCorFundo2());
-        jPanel2.setBackground(design.getCorFundo3());
         
-    }
-
-    public void TamanhoDoFundo() {
-
-        jPanel1.setSize(design.getLargura() - 40, design.getAltura() - 200);
-        jPanel1.setLocation(20, 110);
-
-        jPanel2.setPreferredSize(new Dimension ((design.getLargura() - 40)-30, (design.getAltura() - 200)-40)); 
-        jPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 10));
+        jLbFundo1.setBounds(20, 110,design.getLargura() - 40, design.getAltura() - 200);
         
-    }
-    
-    public void AlinhamentoDosItens() {
+        jLbFundo2.setBounds(20+15 , 110+10, (design.getLargura() - 40)-30, (design.getAltura() - 200)-40);
+        jLbFundo2.setBackground(design.getCorFundo3());
+        
+        jScrollPaneItensComprado.setBounds(design.CentralizarLargura(116, 18,2) + 8,design.CentralizarAltura(30, 15, 4) + 8,design.getLargura() - (design.CentralizarLargura(116, 18,2)*2) - 16,design.CentralizarAltura(30, 30, 23) - design.CentralizarAltura(30, 15, 4)-25);
+        jScrollPaneItensComprado.setBackground(design.getCorTituloTabela());
+        
+        jLbFundoTabela.setBounds(design.CentralizarLargura(116, 18,2), design.CentralizarAltura(30, 15, 4), design.getLargura() - (design.CentralizarLargura(116, 18,2)*2), design.CentralizarAltura(30, 30, 23) - design.CentralizarAltura(30, 15, 4));
+        jLbFundoTabela.setBackground(design.getCorFundo2());
+        
+        
         
         jLbTitulo.setBounds(design.CentralizarLargura(550, 2, 1),design.CentralizarAltura(55, 18, 1),550,55);
         jLbTitulo.setForeground(design.getCorLetra1());
-        jLbTitulo.setBackground(design.getCorCampoTexto());
+        jLbTitulo.setBackground(design.getCorFundo2());
         
         
         jLbFornecedor.setBounds(design.CentralizarLargura(116, 18,2),design.CentralizarAltura(30, 15, 3),110 + 15 + 300 + 4,30);
@@ -447,15 +447,11 @@ public class TelaCompraInfo extends javax.swing.JFrame {
         jTFHora.setOpaque(true);
         
         jLbValorTotal.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,2) - 110 - 15 - 150 - 4,design.CentralizarAltura(30, 15, 3),110 + 15 + 150 + 4,30);
-        jTFValorTotal.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,2)- 150 - 4,design.CentralizarAltura(30, 15, 3),150,30);
+        jFTFValorTotal.setBounds(design.getLargura() - design.CentralizarLargura(116, 18,2)- 150 - 4,design.CentralizarAltura(30, 15, 3),150,30);
         jLbValorTotal.setBackground(design.getCorCampoTexto());
         jLbValorTotal.setOpaque(true);
-        jTFValorTotal.setBackground(design.getCorCampoTexto());
-        jTFValorTotal.setOpaque(true);
-        
-        
-        jScrollPaneItensComprado.setBounds(design.CentralizarLargura(116, 18,2),design.CentralizarAltura(30, 15, 4),design.getLargura() - (design.CentralizarLargura(116, 18,2)*2),design.CentralizarAltura(30, 30, 23) - design.CentralizarAltura(30, 15, 4));
-        jScrollPaneItensComprado.setBackground(design.getCorTituloTabela());
+        jFTFValorTotal.setBackground(design.getCorCampoTexto());
+        jFTFValorTotal.setOpaque(true);
         
         
         jBntAlterar.setBounds(design.CentralizarLargura(116, 18,3),design.CentralizarAltura(30, 30, 24),150,40);
@@ -541,6 +537,7 @@ public class TelaCompraInfo extends javax.swing.JFrame {
         jTItensComprado.getColumnModel().getColumn(4).setCellRenderer(centro);
         jTItensComprado.getColumnModel().getColumn(5).setCellRenderer(direita);
         
+        
     } 
     
     public void PegarDados(int num) throws SQLException {
@@ -554,7 +551,7 @@ public class TelaCompraInfo extends javax.swing.JFrame {
         jTFFornecedor.setText("" + fornecedor.getNomeFantasia().get(fornecedor.getIDFornecedor().indexOf(compra.getIDFornecedor().get(num))));
         jTFData.setText(compra.getDataHoraDaCompra().get(num).substring(8, 10) + " / " + compra.getDataHoraDaCompra().get(num).substring(5, 7) + " / " + compra.getDataHoraDaCompra().get(num).substring(0, 4));
         jTFHora.setText(compra.getDataHoraDaCompra().get(num).substring(11, 13) + " : " + compra.getDataHoraDaCompra().get(num).substring(14, 16));
-        jTFValorTotal.setText((design.FormataFloat(compra.getValorTotal().get(num))).replace(".",","));
+        jFTFValorTotal.setText((design.FormataFloat(compra.getValorTotal().get(num))).replace(".",","));
         
         for(int i=0; i< compra.getIDItemComprado().size(); i++){
 

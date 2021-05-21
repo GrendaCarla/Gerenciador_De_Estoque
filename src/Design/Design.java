@@ -15,7 +15,7 @@ public class Design {
     private int largura = d.width;
     private int altura = d.height;
     
-    private Color corFundo1 = new Color(238, 247, 242);
+    private Color corFundo1 = new Color(234, 244, 241);
     private Color corFundo2 = new Color(3, 152, 158);
     private Color corFundo3 = new Color(255, 255, 255);
     
