@@ -454,7 +454,6 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
 
     private void jComboBox1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusLost
         
-        
         if(jTItensVendido.getSelectedColumn() == 1){
             
             if(jComboBox1.getSelectedIndex() == -1){
@@ -594,9 +593,9 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
 
                     for(int i=0; i<100; i++){
                         if((jTItensVendido.getValueAt(i, 0) != null && jTItensVendido.getValueAt(i, 0) != "") && (jTItensVendido.getValueAt(i, 4) != null && jTItensVendido.getValueAt(i, 4) != "" && Integer.parseInt(jTItensVendido.getValueAt(i, 4)+"") != 0)){
-                            venda.CadastrarItem(idVenda, Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""), Integer.parseInt(jTItensVendido.getValueAt(i, 4)+""), Float.parseFloat((jTItensVendido.getValueAt(i, 5) == null || jTItensVendido.getValueAt(i, 5) == "" ? 0 : (produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))) * Integer.parseInt(jTItensVendido.getValueAt(i, 4)+"")))+""));
-                            produto.AlterarProduto(produto.getNome().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))), produto.getMarca().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))), produto.getMedida().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))), produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))), (produto.getQuantidade().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))) - Integer.parseInt(jTItensVendido.getValueAt(i, 4) + "")), produto.getDescricao().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))), produto.getAtivo().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0))), produto.getIDProduto().indexOf(jTItensVendido.getValueAt(i, 0)));
-
+                            
+                            venda.CadastrarItem(idVenda, Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""), Integer.parseInt(jTItensVendido.getValueAt(i, 4)+""), Float.parseFloat((jTItensVendido.getValueAt(i, 5) == null || jTItensVendido.getValueAt(i, 5) == "" ? 0 : (produto.getValorVenda().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))) * Integer.parseInt(jTItensVendido.getValueAt(i, 4)+"")))+""));
+                            produto.AlterarProduto(produto.getNome().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))), produto.getMarca().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))), produto.getMedida().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))), produto.getValorVenda().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))), (produto.getQuantidade().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))) - Integer.parseInt(jTItensVendido.getValueAt(i, 4) + "")), produto.getDescricao().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))), produto.getAtivo().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))), produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+"")));
                         }
                     }
                 }catch (SQLException ex) {
@@ -634,7 +633,7 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
             if(jTItensVendido.getValueAt(linhaSelecionada, 4) != null && jTItensVendido.getValueAt(linhaSelecionada, 4) != ""){
                //se tiver algo na coluna 4
                
-                jTItensVendido.setValueAt((produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(linhaSelecionada, 0))) * Integer.parseInt(jTItensVendido.getValueAt(linhaSelecionada, 4)+"")), linhaSelecionada, 5);
+                jTItensVendido.setValueAt((produto.getValorVenda().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(linhaSelecionada, 0)+""))) * Integer.parseInt(jTItensVendido.getValueAt(linhaSelecionada, 4)+"")), linhaSelecionada, 5);
                 
                 jFTFValorTotal.setValue(0);
                 

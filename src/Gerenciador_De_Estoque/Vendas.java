@@ -79,7 +79,7 @@ public class Vendas extends ItensVendidos {
         
         ConnectionFactory conect = new ConnectionFactory();
         
-        sql = "select * from ItensVendidos c\n"
+        sql = "select * from ItensVendidos \n"
         + "where IDVenda = " + idVenda;
         
         conect.sql = this.sql;

@@ -41,6 +41,8 @@ public class Produtos {
     
     public void ConsultarProdutos()throws SQLException{
         
+        LimparProduto();
+        
         sql = "select * from Produtos";
         
         ConnectionFactory conect = new ConnectionFactory();

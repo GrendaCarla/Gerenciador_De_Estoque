@@ -24,12 +24,13 @@ import javax.swing.table.TableColumn;
 
 public final class TelaCompraCadastro extends javax.swing.JFrame {
 
-    int linhaSelecionada;
-    int colunaSelecionada;
+    int linhaSelecionada = 0;
+    int colunaSelecionada = 0;
     
     Produtos produto = new Produtos();
     Fornecedores fornecedor = new Fornecedores();
     Compras compra = new Compras();
+    
     Design design = new Design();
     
     public TelaCompraCadastro(){
@@ -412,12 +413,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
                     break;
                 }
                 else if((jTItensComprado.getValueAt(cont, 0) != null && jTItensComprado.getValueAt(cont, 0) != "") && (jTItensComprado.getValueAt(cont, 4) != null && jTItensComprado.getValueAt(cont, 4) != "")){
-                    if((produto.getQuantidade().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(cont, 0))) - Integer.parseInt(jTItensComprado.getValueAt(cont, 4)+"")) < 0){
-                        caso = 2; // valor de venda é maior do q tem no estoque
-
-                        break;
-                    }
-                    else if(Integer.parseInt(jTItensComprado.getValueAt(cont, 4)+"") < 0){
+                    if(Integer.parseInt(jTItensComprado.getValueAt(cont, 4)+"") < 0){
                         caso = 5; // se a quantidade for negativa
                         break;
                     }
@@ -442,11 +438,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
             }else if(caso == 1){
 
                 UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
-                JOptionPane.showMessageDialog(null, "Coloque a quantidade de todos os itens Comprados.\n\n\n\n");
-            }else if(caso == 2){
-
-                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
-                JOptionPane.showMessageDialog(null, produto.getNome().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(cont, 0))) + " possui apenas " + produto.getQuantidade().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(cont, 0))) + " unidades no estoque \n\n\n\n");
+                JOptionPane.showMessageDialog(null, "Coloque a quantidade de todos os itens vendido.\n\n\n\n");
             }else if(caso == 4){
 
                 UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
@@ -463,9 +455,12 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
                     int idCompra = compra.CadastrarCompras(fornecedor.getIDFornecedor().get(jCBFornecedor.getSelectedIndex()-1), ("'"+jTFData3.getText()+"-" + jTFData1.getText() + "-" + jTFData2.getText()+ " " + jTFHora1.getText() + ":" + jTFHora2.getText() + ":20.3'"), Float.parseFloat(jFTFValorTotal.getText().replaceAll(",",".")));
 
                     for(int i=0; i<100; i++){
-                        if(jTItensComprado.getValueAt(i, 0) != null && jTItensComprado.getValueAt(i, 4) != null){
-                            compra.CadastrarItem(idCompra, Integer.parseInt(jTItensComprado.getValueAt(i, 0)+""), Integer.parseInt(jTItensComprado.getValueAt(i, 4)+""), Float.parseFloat((jTItensComprado.getValueAt(i, 5) == null ? 0 : jTItensComprado.getValueAt(i, 5))+""));
-                            produto.AlterarProduto(produto.getNome().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getMarca().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getMedida().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), (produto.getQuantidade().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))) + Integer.parseInt(jTItensComprado.getValueAt(i, 4) + "")), produto.getDescricao().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getAtivo().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0))), produto.getIDProduto().indexOf(jTItensComprado.getValueAt(i, 0)));
+                        if((jTItensComprado.getValueAt(i, 0) != null && jTItensComprado.getValueAt(i, 0) != "") && (jTItensComprado.getValueAt(i, 4) != null && jTItensComprado.getValueAt(i, 4) != "" && Integer.parseInt(jTItensComprado.getValueAt(i, 4)+"") != 0)){
+                     
+                            compra.CadastrarItem(idCompra, Integer.parseInt(jTItensComprado.getValueAt(i, 0)+""), Integer.parseInt(jTItensComprado.getValueAt(i, 4)+""), Float.parseFloat((jTItensComprado.getValueAt(i, 5) == null || jTItensComprado.getValueAt(i, 5) == "" ? 0 : (produto.getValorVenda().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensComprado.getValueAt(i, 0)+""))) * Integer.parseInt(jTItensComprado.getValueAt(i, 4)+"")))+""));
+                            
+                            produto.AlterarProduto(produto.getNome().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensComprado.getValueAt(i, 0)+""))), produto.getMarca().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensComprado.getValueAt(i, 0)+""))), produto.getMedida().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensComprado.getValueAt(i, 0)+""))), produto.getValorVenda().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensComprado.getValueAt(i, 0)+""))), (produto.getQuantidade().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensComprado.getValueAt(i, 0)+""))) + Integer.parseInt(jTItensComprado.getValueAt(i, 4) + "")), produto.getDescricao().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensComprado.getValueAt(i, 0)+""))), produto.getAtivo().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensComprado.getValueAt(i, 0)+""))), produto.getIDProduto().indexOf(Integer.parseInt(jTItensComprado.getValueAt(i, 0)+"")));
+                        
                         }
                     }
                 }catch (SQLException ex) {
@@ -532,7 +527,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFHora1KeyReleased
 
     private void jComboBox1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusLost
-         if(jTItensComprado.getSelectedColumn() == 1){
+        if(jTItensComprado.getSelectedColumn() == 1){
             
             if(jComboBox1.getSelectedIndex() == -1){
                 
@@ -612,7 +607,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
             if(jTItensComprado.getValueAt(linhaSelecionada, 4) != null && jTItensComprado.getValueAt(linhaSelecionada, 4) != ""){
                //se tiver algo na coluna 4
                
-                jTItensComprado.setValueAt((produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(linhaSelecionada, 0))) * Integer.parseInt(jTItensComprado.getValueAt(linhaSelecionada, 4)+"")), linhaSelecionada, 5);
+                jTItensComprado.setValueAt((produto.getValorVenda().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensComprado.getValueAt(linhaSelecionada, 0)+""))) * Integer.parseInt(jTItensComprado.getValueAt(linhaSelecionada, 4)+"")), linhaSelecionada, 5);
                 
                 jFTFValorTotal.setValue(0);
                 
@@ -634,7 +629,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jTItensCompradoMouseClicked
 
     private void jComboBox1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusGained
-         if( colunaSelecionada == 4 && (jTItensComprado.getValueAt(linhaSelecionada, 0) != null && jTItensComprado.getValueAt(linhaSelecionada, 0) != "")){ 
+        if( colunaSelecionada == 4 && (jTItensComprado.getValueAt(linhaSelecionada, 0) != null && jTItensComprado.getValueAt(linhaSelecionada, 0) != "")){ 
             // se clicou na 4 e a coluna 0 tiver algo
             
             if(jTItensComprado.getValueAt(linhaSelecionada, 4) != null && jTItensComprado.getValueAt(linhaSelecionada, 4) != ""){
