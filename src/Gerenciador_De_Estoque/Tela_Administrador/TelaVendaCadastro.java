@@ -676,7 +676,7 @@ public final class TelaVendaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1FocusGained
 
     private void jComboBox2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox2FocusGained
-         if( colunaSelecionada == 4 && (jTItensVendido.getValueAt(linhaSelecionada, 0) != null && jTItensVendido.getValueAt(linhaSelecionada, 0) != "")){ 
+        if( colunaSelecionada == 4 && (jTItensVendido.getValueAt(linhaSelecionada, 0) != null && jTItensVendido.getValueAt(linhaSelecionada, 0) != "")){ 
             // se clicou na 4 e a coluna 0 tiver algo
       
             if(jTItensVendido.getValueAt(linhaSelecionada, 4) != null && jTItensVendido.getValueAt(linhaSelecionada, 4) != ""){
