@@ -1,4 +1,4 @@
-package Gerenciador_De_Estoque;
+package Classes;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;

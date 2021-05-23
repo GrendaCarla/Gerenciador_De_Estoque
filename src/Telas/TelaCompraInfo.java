@@ -1,10 +1,10 @@
 
-package Gerenciador_De_Estoque.Tela_Administrador;
+package Telas;
 
 import Design.Design;
-import Gerenciador_De_Estoque.Compras;
-import Gerenciador_De_Estoque.Fornecedores;
-import Gerenciador_De_Estoque.Produtos;
+import Classes.Compras;
+import Classes.Fornecedores;
+import Classes.Produtos;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -303,7 +303,7 @@ public class TelaCompraInfo extends javax.swing.JFrame {
 
     private void jBntVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntVoltarActionPerformed
         try {
-            TelaAdministrador Janela = new TelaAdministrador();
+            TelaPrincipal Janela = new TelaPrincipal();
             //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
             Toolkit tk = Toolkit.getDefaultToolkit();
             Dimension d = tk.getScreenSize();
@@ -334,7 +334,7 @@ public class TelaCompraInfo extends javax.swing.JFrame {
             alterCompra.show();
             dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jBntAlterarActionPerformed

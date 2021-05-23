@@ -1,4 +1,4 @@
-package Gerenciador_De_Estoque;
+package Classes;
 
 import java.util.ArrayList;
 import java.util.List;

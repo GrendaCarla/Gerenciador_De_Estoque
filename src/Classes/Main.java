@@ -1,6 +1,6 @@
-package Gerenciador_De_Estoque;
+package Classes;
 
-import Gerenciador_De_Estoque.Tela_Administrador.TelaAdministrador;
+import Telas.TelaPrincipal;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         
-        TelaAdministrador Janela = new TelaAdministrador();
+        TelaPrincipal Janela = new TelaPrincipal();
         
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();

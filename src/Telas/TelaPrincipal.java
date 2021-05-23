@@ -1,11 +1,11 @@
-package Gerenciador_De_Estoque.Tela_Administrador;
+package Telas;
 
 import Design.Design;
-import Gerenciador_De_Estoque.Clientes;
-import Gerenciador_De_Estoque.Compras;
-import Gerenciador_De_Estoque.Fornecedores;
-import Gerenciador_De_Estoque.Produtos;
-import Gerenciador_De_Estoque.Vendas;
+import Classes.Clientes;
+import Classes.Compras;
+import Classes.Fornecedores;
+import Classes.Produtos;
+import Classes.Vendas;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.SmithWatermanGotoh;
         
-public class TelaAdministrador extends javax.swing.JFrame {
+public class TelaPrincipal extends javax.swing.JFrame {
 
     List<Integer> pesquisaFornecedor = new ArrayList<Integer>();
     List<Integer> pesquisaProduto = new ArrayList<Integer>();
@@ -40,7 +40,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
     Clientes cliente = new Clientes();
     Vendas venda = new Vendas();
     
-    public TelaAdministrador() throws SQLException {
+    public TelaPrincipal() throws SQLException {
         initComponents();
         corDeFundo();
         TamanhoDoFundo();
@@ -840,7 +840,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 infoFornededor.show();
                 dispose();
             } catch (SQLException ex) {
-                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -868,7 +868,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 criarTabelaFornecedor();
 
             } catch (SQLException ex) {
-                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jBntLupaFornecedorActionPerformed
@@ -878,7 +878,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             jTFBarraDeBuscaFornecedor.setText("");
             iniciarPesquisaFornecedor();
         } catch (SQLException ex) {
-            Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBntVoltarFornecedorActionPerformed
 
@@ -905,7 +905,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                     criarTabelaFornecedor();
 
                 } catch (SQLException ex) {
-                    Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -933,7 +933,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 infoProduto.show();
                 dispose();
             } catch (SQLException ex) {
-                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -959,7 +959,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 criarTabelaProduto();
 
             } catch (SQLException ex) {
-                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jBntLupaProdutoActionPerformed
@@ -985,7 +985,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                     criarTabelaProduto();
 
                 } catch (SQLException ex) {
-                    Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -1010,7 +1010,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             jTFBarraDeBuscaProduto.setText("");
             iniciarPesquisaProduto();
         } catch (SQLException ex) {
-            Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBntVoltarProdutoActionPerformed
 
@@ -1037,7 +1037,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 infoCompra.show();
                 dispose();
             } catch (SQLException ex) {
-                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -1075,7 +1075,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                     criarTabelaCompra();
 
                 } catch (SQLException ex) {
-                    Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -1097,7 +1097,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             cadastroCompra.show();
             dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBntCadastrarCompraActionPerformed
 
@@ -1106,7 +1106,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             jTFBarraDeBuscaCompra.setText("");
             iniciarPesquisaCompra();
         } catch (SQLException ex) {
-            Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBntVoltarCompraActionPerformed
 
@@ -1141,7 +1141,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 criarTabelaCompra();
 
             } catch (SQLException ex) {
-                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jBntLupaCompraActionPerformed
@@ -1151,7 +1151,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             jTFBarraDeBuscaCliente.setText("");
             iniciarPesquisaCliente();
         } catch (SQLException ex) {
-            Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBntVoltarClienteActionPerformed
 
@@ -1192,7 +1192,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                     criarTabelaCliente();
 
                 } catch (SQLException ex) {
-                    Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -1220,7 +1220,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 criarTabelaCliente();
 
             } catch (SQLException ex) {
-                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jBntLupaClienteActionPerformed
@@ -1243,7 +1243,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 infoCliente.show();
                 dispose();
             } catch (SQLException ex) {
-                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -1285,7 +1285,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 criarTabelaVenda();
 
             } catch (SQLException ex) {
-                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jBntLupaVendaActionPerformed
@@ -1312,7 +1312,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 infoVenda.show();
                 dispose();
             } catch (SQLException ex) {
-                Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -1351,7 +1351,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
                     criarTabelaVenda();
 
                 } catch (SQLException ex) {
-                    Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -1373,7 +1373,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             cadastroVenda.show();
             dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBntCadastrarVendaActionPerformed
 
@@ -1382,7 +1382,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             jTFBarraDeBuscaVenda.setText("");
             iniciarPesquisaVenda();
         } catch (SQLException ex) {
-            Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBntVoltarVendaActionPerformed
 
@@ -1400,13 +1400,13 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
        
 
@@ -1414,9 +1414,9 @@ public class TelaAdministrador extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new TelaAdministrador().setVisible(true);
+                    new TelaPrincipal().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(TelaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

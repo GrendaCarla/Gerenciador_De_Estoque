@@ -1,10 +1,10 @@
 
-package Gerenciador_De_Estoque.Tela_Administrador;
+package Telas;
 
 import Design.Design;
-import Gerenciador_De_Estoque.Vendas;
-import Gerenciador_De_Estoque.Clientes;
-import Gerenciador_De_Estoque.Produtos;
+import Classes.Vendas;
+import Classes.Clientes;
+import Classes.Produtos;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -22,31 +22,29 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
 
-public class TelaVendaAlterar extends javax.swing.JFrame {
+public final class TelaVendaCadastro extends javax.swing.JFrame {
+
+    int linhaSelecionada = 0;
+    int colunaSelecionada = 0;
     
-    int linhaSelecionada;
-    int colunaSelecionada;
-    
-    int numero;
     
     Produtos produto = new Produtos();
     Clientes cliente = new Clientes();
     Vendas venda = new Vendas();
     
+    
     Design design = new Design();
     
-    public TelaVendaAlterar() {
+    public TelaVendaCadastro() {
         initComponents();
         
         AlinhamentoDosItens();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLbData2 = new javax.swing.JLabel();
-        jLbData1 = new javax.swing.JLabel();
         jFTFValorTotal = new javax.swing.JFormattedTextField();
         jTFHora2 = new javax.swing.JFormattedTextField();
         jTFHora1 = new javax.swing.JFormattedTextField();
@@ -57,6 +55,8 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
         jCBCliente = new javax.swing.JComboBox<>();
         jLbFormaDePagamento = new javax.swing.JLabel();
         jLbValorTotal = new javax.swing.JLabel();
+        jLbData2 = new javax.swing.JLabel();
+        jLbData1 = new javax.swing.JLabel();
         jLbData = new javax.swing.JLabel();
         jLbCliente = new javax.swing.JLabel();
         jLbHora1 = new javax.swing.JLabel();
@@ -66,33 +66,20 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
         jBntCancelar = new javax.swing.JButton();
         jScrollPaneItensVendido = new javax.swing.JScrollPane();
         jTItensVendido = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jLbFundoTabela = new javax.swing.JLabel();
         jLbFundo2 = new javax.swing.JLabel();
         jLbFundo1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-
-        jLbData2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbData2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbData2.setText("/");
-        jLbData2.setToolTipText("");
-        getContentPane().add(jLbData2);
-        jLbData2.setBounds(340, 150, 60, 22);
-
-        jLbData1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLbData1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbData1.setText("/");
-        jLbData1.setToolTipText("");
-        getContentPane().add(jLbData1);
-        jLbData1.setBounds(340, 150, 60, 22);
 
         jFTFValorTotal.setEditable(false);
         jFTFValorTotal.setBorder(null);
         jFTFValorTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFTFValorTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jFTFValorTotal.setText("0,00");
         jFTFValorTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jFTFValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         getContentPane().add(jFTFValorTotal);
@@ -175,6 +162,20 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
         getContentPane().add(jLbValorTotal);
         jLbValorTotal.setBounds(180, 90, 100, 20);
 
+        jLbData2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbData2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbData2.setText("/");
+        jLbData2.setToolTipText("");
+        getContentPane().add(jLbData2);
+        jLbData2.setBounds(340, 150, 60, 22);
+
+        jLbData1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLbData1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbData1.setText("/");
+        jLbData1.setToolTipText("");
+        getContentPane().add(jLbData1);
+        jLbData1.setBounds(340, 150, 60, 22);
+
         jLbData.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLbData.setText("  Data:");
         getContentPane().add(jLbData);
@@ -200,7 +201,7 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
         jLbTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jLbTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbTitulo.setText(" ALTERAR  VENDA");
+        jLbTitulo.setText(" CADASTRAR  VENDA");
         jLbTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 8));
         jLbTitulo.setOpaque(true);
         getContentPane().add(jLbTitulo);
@@ -372,6 +373,24 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
         getContentPane().add(jScrollPaneItensVendido);
         jScrollPaneItensVendido.setBounds(50, 280, 910, 340);
 
+        jLbFundoTabela.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbFundoTabela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundoTabela.png"))); // NOI18N
+        jLbFundoTabela.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLbFundoTabela.setOpaque(true);
+        getContentPane().add(jLbFundoTabela);
+        jLbFundoTabela.setBounds(60, 80, 850, 430);
+
+        jLbFundo2.setBackground(new java.awt.Color(255, 255, 255));
+        jLbFundo2.setOpaque(true);
+        getContentPane().add(jLbFundo2);
+        jLbFundo2.setBounds(0, 250, 0, 0);
+
+        jLbFundo1.setBackground(new java.awt.Color(255, 255, 255));
+        jLbFundo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbFundo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundoTabela.png"))); // NOI18N
+        getContentPane().add(jLbFundo1);
+        jLbFundo1.setBounds(60, 370, 170, 110);
+
         jComboBox1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jComboBox1FocusGained(evt);
@@ -393,24 +412,6 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
         });
         getContentPane().add(jComboBox2);
         jComboBox2.setBounds(390, 450, 80, 20);
-
-        jLbFundoTabela.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbFundoTabela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundoTabela.png"))); // NOI18N
-        jLbFundoTabela.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLbFundoTabela.setOpaque(true);
-        getContentPane().add(jLbFundoTabela);
-        jLbFundoTabela.setBounds(60, 80, 850, 430);
-
-        jLbFundo2.setBackground(new java.awt.Color(255, 255, 255));
-        jLbFundo2.setOpaque(true);
-        getContentPane().add(jLbFundo2);
-        jLbFundo2.setBounds(0, 250, 0, 0);
-
-        jLbFundo1.setBackground(new java.awt.Color(255, 255, 255));
-        jLbFundo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLbFundo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundoTabela.png"))); // NOI18N
-        getContentPane().add(jLbFundo1);
-        jLbFundo1.setBounds(60, 370, 170, 110);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -435,7 +436,7 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
 
     private void jBntCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCancelarActionPerformed
         try {
-            TelaAdministrador Janela = new TelaAdministrador();
+            TelaPrincipal Janela = new TelaPrincipal();
             //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
             Toolkit tk = Toolkit.getDefaultToolkit();
             Dimension d = tk.getScreenSize();
@@ -452,6 +453,7 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
     }//GEN-LAST:event_jBntCancelarActionPerformed
 
     private void jComboBox1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusLost
+        
         if(jTItensVendido.getSelectedColumn() == 1){
             
             if(jComboBox1.getSelectedIndex() == -1){
@@ -489,6 +491,7 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1FocusLost
 
     private void jComboBox2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox2FocusLost
+       
         if(jTItensVendido.getSelectedColumn() == 0){
 
             if(jComboBox2.getSelectedIndex() == -1){
@@ -538,7 +541,12 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
                     break;
                 }
                 else if((jTItensVendido.getValueAt(cont, 0) != null && jTItensVendido.getValueAt(cont, 0) != "") && (jTItensVendido.getValueAt(cont, 4) != null && jTItensVendido.getValueAt(cont, 4) != "")){
-                    if(Integer.parseInt(jTItensVendido.getValueAt(cont, 4)+"") < 0){
+                    if((produto.getQuantidade().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(cont, 0))) - Integer.parseInt(jTItensVendido.getValueAt(cont, 4)+"")) < 0){
+                        caso = 2; // valor de venda é maior do q tem no estoque
+
+                        break;
+                    }
+                    else if(Integer.parseInt(jTItensVendido.getValueAt(cont, 4)+"") < 0){
                         caso = 5; // se a quantidade for negativa
                         break;
                     }
@@ -564,6 +572,10 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
 
                 UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
                 JOptionPane.showMessageDialog(null, "Coloque a quantidade de todos os itens vendido.\n\n\n\n");
+            }else if(caso == 2){
+
+                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
+                JOptionPane.showMessageDialog(null, produto.getNome().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(cont, 0))) + " possui apenas " + produto.getQuantidade().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(cont, 0))) + " unidades no estoque \n\n\n\n");
             }else if(caso == 4){
 
                 UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.PLAIN, 18)));
@@ -575,20 +587,14 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
             }else{
 
                 try{
-                    venda.AtualizarVenda(venda.getIDVenda().get(numero), cliente.getIDCliente().get(jCBCliente.getSelectedIndex()-1), ("'"+jTFData3.getText()+"-" + jTFData1.getText() + "-" + jTFData2.getText()+ " " + jTFHora1.getText() + ":" + jTFHora2.getText() + ":20.3'"), Float.parseFloat(jFTFValorTotal.getText().replaceAll(",",".")), jTFFormaDePagamento.getText());
-                    
-                    for(int i=0; i< venda.getIDItemVendido().size(); i++){
-                       produto.AlterarProduto(produto.getNome().get(produto.getIDProduto().indexOf(venda.getIDProduto().get(i))), produto.getMarca().get(produto.getIDProduto().indexOf(venda.getIDProduto().get(i))), produto.getMedida().get(produto.getIDProduto().indexOf(venda.getIDProduto().get(i))), produto.getValorVenda().get(produto.getIDProduto().indexOf(venda.getIDProduto().get(i))), produto.getQuantidade().get(produto.getIDProduto().indexOf(venda.getIDProduto().get(i))) + venda.getQuantidade().get(i), produto.getDescricao().get(produto.getIDProduto().indexOf(venda.getIDProduto().get(i))), produto.getAtivo().get(produto.getIDProduto().indexOf(venda.getIDProduto().get(i))), produto.getIDProduto().indexOf(venda.getIDProduto().get(i)));
-                    }
-                    
-                    produto.ConsultarProdutos();
-                    
-                    venda.DeletarItem(venda.getIDVenda().get(numero));
+                    venda.ConsultarVendas();
+
+                    int idVenda = venda.CadastrarVendas(cliente.getIDCliente().get(jCBCliente.getSelectedIndex()-1), ("'"+jTFData3.getText()+"-" + jTFData1.getText() + "-" + jTFData2.getText()+ " " + jTFHora1.getText() + ":" + jTFHora2.getText() + ":20.3'"), Float.parseFloat(jFTFValorTotal.getText().replaceAll(",",".")), jTFFormaDePagamento.getText());
 
                     for(int i=0; i<100; i++){
                         if((jTItensVendido.getValueAt(i, 0) != null && jTItensVendido.getValueAt(i, 0) != "") && (jTItensVendido.getValueAt(i, 4) != null && jTItensVendido.getValueAt(i, 4) != "" && Integer.parseInt(jTItensVendido.getValueAt(i, 4)+"") != 0)){
                             
-                            venda.CadastrarItem(venda.getIDVenda().get(numero), Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""), Integer.parseInt(jTItensVendido.getValueAt(i, 4)+""), Float.parseFloat((jTItensVendido.getValueAt(i, 5) == null || jTItensVendido.getValueAt(i, 5) == "" ? 0 : (produto.getValorVenda().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))) * Integer.parseInt(jTItensVendido.getValueAt(i, 4)+"")))+""));
+                            venda.CadastrarItem(idVenda, Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""), Integer.parseInt(jTItensVendido.getValueAt(i, 4)+""), Float.parseFloat((jTItensVendido.getValueAt(i, 5) == null || jTItensVendido.getValueAt(i, 5) == "" ? 0 : (produto.getValorVenda().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))) * Integer.parseInt(jTItensVendido.getValueAt(i, 4)+"")))+""));
                             produto.AlterarProduto(produto.getNome().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))), produto.getMarca().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))), produto.getMedida().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))), produto.getValorVenda().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))), (produto.getQuantidade().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))) - Integer.parseInt(jTItensVendido.getValueAt(i, 4) + "")), produto.getDescricao().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))), produto.getAtivo().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+""))), produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(i, 0)+"")));
                         }
                     }
@@ -596,9 +602,9 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
                     Logger.getLogger(TelaProdutoCadastro.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                TelaAdministrador Janela;
+                TelaPrincipal Janela;
                 try {
-                    Janela = new TelaAdministrador();
+                    Janela = new TelaPrincipal();
                     //Janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
                     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -620,7 +626,7 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
     }//GEN-LAST:event_jBntSalvarActionPerformed
 
     private void jTItensVendidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTItensVendidoMouseClicked
-        
+       
         if(evt.getClickCount() == 1 && colunaSelecionada == 4 && (jTItensVendido.getValueAt(linhaSelecionada, 0) != null && jTItensVendido.getValueAt(linhaSelecionada, 0) != "")){ 
             // se clicou na 4 e a coluna 0 tiver algo
        
@@ -628,7 +634,7 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
                //se tiver algo na coluna 4
                
                 jTItensVendido.setValueAt((produto.getValorVenda().get(produto.getIDProduto().indexOf(Integer.parseInt(jTItensVendido.getValueAt(linhaSelecionada, 0)+""))) * Integer.parseInt(jTItensVendido.getValueAt(linhaSelecionada, 4)+"")), linhaSelecionada, 5);
-            
+                
                 jFTFValorTotal.setValue(0);
                 
                 for(int i=0; i<100; i++){
@@ -649,13 +655,12 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
     }//GEN-LAST:event_jTItensVendidoMouseClicked
 
     private void jComboBox1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusGained
-
         if( colunaSelecionada == 4 && (jTItensVendido.getValueAt(linhaSelecionada, 0) != null && jTItensVendido.getValueAt(linhaSelecionada, 0) != "")){ 
             // se clicou na 4 e a coluna 0 tiver algo
-      
+            
             if(jTItensVendido.getValueAt(linhaSelecionada, 4) != null && jTItensVendido.getValueAt(linhaSelecionada, 4) != ""){
                //se tiver algo na coluna 4
-              
+               
                 jTItensVendido.setValueAt((produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensVendido.getValueAt(linhaSelecionada, 0))) * Integer.parseInt(jTItensVendido.getValueAt(linhaSelecionada, 4)+"")), linhaSelecionada, 5);
                
                 jFTFValorTotal.setValue(0);
@@ -670,7 +675,6 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1FocusGained
 
     private void jComboBox2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox2FocusGained
-        
         if( colunaSelecionada == 4 && (jTItensVendido.getValueAt(linhaSelecionada, 0) != null && jTItensVendido.getValueAt(linhaSelecionada, 0) != "")){ 
             // se clicou na 4 e a coluna 0 tiver algo
       
@@ -691,8 +695,7 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2FocusGained
 
     public static void main(String args[]) {
-       
-       
+     
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -701,20 +704,21 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaVendaAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVendaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaVendaAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVendaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaVendaAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVendaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaVendaAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVendaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+     
 
-      
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaVendaAlterar().setVisible(true);
+                new TelaVendaCadastro().setVisible(true);
             }
         });
     }
@@ -747,7 +751,7 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jTFHora2;
     private javax.swing.JTable jTItensVendido;
     // End of variables declaration//GEN-END:variables
-
+      
     public void AlinhamentoDosItens() {
         
         getContentPane().setBackground(design.getCorFundo1());
@@ -762,7 +766,7 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
         
         jLbFundoTabela.setBounds(design.CentralizarLargura(116, 18,2), design.CentralizarAltura(30, 15, 4), design.getLargura() - (design.CentralizarLargura(116, 18,2)*2), design.CentralizarAltura(30, 30, 23) - design.CentralizarAltura(30, 15, 4));
         jLbFundoTabela.setBackground(design.getCorFundo2());
-       
+        
         
         
         
@@ -786,8 +790,8 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
         jTFData1.setBounds(design.CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15,design.CentralizarAltura(30, 15, 3),20,30);
         jLbData1.setBounds(design.CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15 + 20 ,design.CentralizarAltura(30, 15, 3),20,30);
         jTFData2.setBounds(design.CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15 + 20 + 20,design.CentralizarAltura(30, 15, 3),20,30);
-        jLbData2.setBounds(design.CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15  + 20 + 20 + 20,design.CentralizarAltura(30, 15, 3),20,30);
-        jTFData3.setBounds(design.CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15  + 20 + 20 + 20 + 20,design.CentralizarAltura(30, 15, 3),45,30);
+        jLbData2.setBounds(design.CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15 + 20 + 20 + 20,design.CentralizarAltura(30, 15, 3),20,30);
+        jTFData3.setBounds(design.CentralizarLargura(116, 44,3) + 80 + 15 + 250 + 4 + espacoData + 60 + 15 + 20 + 20 + 20 + 20,design.CentralizarAltura(30, 15, 3),45,30);
         jLbData.setBackground(design.getCorCampoTexto());
         jLbData.setOpaque(true);
         jLbData1.setBackground(design.getCorCampoTexto());
@@ -826,7 +830,6 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
         jFTFValorTotal.setBackground(design.getCorCampoTexto());
         jFTFValorTotal.setOpaque(true);
         
-       
         
         jBntSalvar.setBounds(design.CentralizarLargura(116, 18,3),design.CentralizarAltura(30, 30, 24),150,40);
         jBntSalvar.setBackground(design.getCorBotaoSalvar());
@@ -840,13 +843,9 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
         
     }
     
-    public void criarTabelaItensVenda(int num) throws SQLException{
-        numero = num;
+    public void criarTabelaItensVendido() throws SQLException{
         
         produto.ConsultarProdutos();
-        cliente.ConsultarClientes();
-        venda.ConsultarVendas();
-        venda.ConsultarItem(venda.getIDVenda().get(num));
         
         jTItensVendido.setFont(new java.awt.Font("Tahoma", 0, 18));
 
@@ -912,63 +911,38 @@ public class TelaVendaAlterar extends javax.swing.JFrame {
         jTItensVendido.getColumnModel().getColumn(1).setCellRenderer(esquerda);
         jTItensVendido.getColumnModel().getColumn(2).setCellRenderer(esquerda);
         jTItensVendido.getColumnModel().getColumn(3).setCellRenderer(direita);
-        
-        
+
+        for(int i=0; i< 100; i++){
+
+            DefaultTableModel model = (DefaultTableModel) jTItensVendido.getModel();
+            model.addRow(new Object[]{null, "", "", "", null, null});
+        }
 
         TableColumn idColumn = jTItensVendido.getColumnModel().getColumn(0);
         TableColumn nomeColumn = jTItensVendido.getColumnModel().getColumn(1);
         
+        
         jComboBox2.addItem(null);
         jComboBox1.addItem(null);
-        
         
         for(int i=0; i<produto.getIDProduto().size(); i++){
             if(produto.getAtivo().get(i) == 1){
                 jComboBox2.addItem(produto.getIDProduto().get(i) + "");
                 jComboBox1.addItem(produto.getNome().get(i) + "  /  " + produto.getMarca().get(i) + "  /  " + produto.getMedida().get(i));  
             }
-            
         }
-        
-        
+
         idColumn.setCellEditor(new DefaultCellEditor(jComboBox2));
         nomeColumn.setCellEditor(new DefaultCellEditor(jComboBox1));
         
-        
-        for(int i=0; i< 100; i++){
-
-            if(i< venda.getIDItemVendido().size()){
-                DefaultTableModel model = (DefaultTableModel) jTItensVendido.getModel();
-                model.addRow(new Object[]{""+venda.getIDProduto().get(i), ""+produto.getNome().get(produto.getIDProduto().indexOf(venda.getIDProduto().get(i))), ""+produto.getMarca().get(produto.getIDProduto().indexOf(venda.getIDProduto().get(i))), produto.getMedida().get(produto.getIDProduto().indexOf(venda.getIDProduto().get(i)))+"", venda.getQuantidade().get(i), venda.getValorUnitario().get(i)});
-            }else{
-                DefaultTableModel model = (DefaultTableModel) jTItensVendido.getModel();
-                model.addRow(new Object[]{null, "", "", "", null, null});
-            }
-            
-        }
-        
+        cliente.ConsultarClientes();
         
         jCBCliente.addItem(null);
         
         for(int i=0; i<cliente.getIDCliente().size(); i++){
             jCBCliente.addItem(cliente.getNome().get(i) + "");
         }
-        
-        PegarDados();
     } 
-    
-    public void PegarDados() throws SQLException {
-      
-        jCBCliente.setSelectedIndex(cliente.getIDCliente().indexOf(venda.getIDCliente().get(numero))+1);
-        jTFData1.setText(venda.getDataHoraDaVenda().get(numero).substring(8, 10));
-        jTFData2.setText(venda.getDataHoraDaVenda().get(numero).substring(5, 7));
-        jTFData3.setText(venda.getDataHoraDaVenda().get(numero).substring(0, 4));
-        jTFHora1.setText(venda.getDataHoraDaVenda().get(numero).substring(11, 13));
-        jTFHora2.setText(venda.getDataHoraDaVenda().get(numero).substring(14, 16));
-        jFTFValorTotal.setValue(Float.parseFloat(venda.getValorTotal().get(numero)+""));
-        jTFFormaDePagamento.setText("" + venda.getFormaDePagamento().get(numero));
-        
-    }
     
     public void PegarLinha(){
         linhaSelecionada = jTItensVendido.getSelectedRow();
