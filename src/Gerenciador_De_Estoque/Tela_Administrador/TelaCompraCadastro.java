@@ -418,7 +418,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
             int cont = 0;
             
             for(; cont<100; cont++){
-                if(jTItensComprado.getValueAt(cont, 0) != null && jTItensComprado.getValueAt(cont, 4) == null){
+                if(jTItensComprado.getValueAt(cont, 0) != null && (jTItensComprado.getValueAt(cont, 4) == null || jTItensComprado.getValueAt(cont, 4) == "")){
                     caso = 1; // nao colocou a quantidade
 
                     break;
@@ -527,6 +527,8 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFHora1KeyReleased
 
     private void jComboBox1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusLost
+        PegarLinha();
+                
         if(jTItensComprado.getSelectedColumn() == 1){
 
             if(jComboBox1.getSelectedIndex() == -1){
@@ -563,6 +565,8 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1FocusLost
 
     private void jComboBox2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox2FocusLost
+        PegarLinha();
+        
         if(jTItensComprado.getSelectedColumn() == 0){
 
             if(jComboBox2.getSelectedIndex() == -1){
@@ -599,8 +603,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2FocusLost
 
     private void jFTFQuantidadeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFTFQuantidadeFocusGained
-        linhaSelecionada = jTItensComprado.getSelectedRow();
-        colunaSelecionada = jTItensComprado.getSelectedColumn();
+        PegarLinha();
     }//GEN-LAST:event_jFTFQuantidadeFocusGained
 
     private void jFTFQuantidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFTFQuantidadeFocusLost
@@ -608,7 +611,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
             jTItensComprado.setValueAt((produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(linhaSelecionada, 0))) * Integer.parseInt(jTItensComprado.getValueAt(linhaSelecionada, 4)+"")), linhaSelecionada, 5);
 
             jFTFValorTotal.setValue(0);
-
+            
             for(int i=0; i<100; i++){
                 jFTFValorTotal.setValue(Float.parseFloat(jFTFValorTotal.getValue()+"") + Float.parseFloat((jTItensComprado.getValueAt(i, 5) == null ? 0 : jTItensComprado.getValueAt(i, 5))+""));
             }
@@ -618,7 +621,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
     private void jTItensCompradoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTItensCompradoMouseClicked
         if(linhaSelecionada != -1 && colunaSelecionada != -1 && jTItensComprado.getValueAt(linhaSelecionada, colunaSelecionada) != null){
             
-            jTItensComprado.setValueAt((produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(linhaSelecionada, 0))) * Integer.parseInt(jTItensComprado.getValueAt(linhaSelecionada, 4)+"")), linhaSelecionada, 5);
+            jTItensComprado.setValueAt((produto.getValorVenda().get(produto.getIDProduto().indexOf(jTItensComprado.getValueAt(linhaSelecionada, 0))) * Integer.parseInt((jTItensComprado.getValueAt(linhaSelecionada, 4) == null ? 0 : jTItensComprado.getValueAt(linhaSelecionada, 4))+"")), linhaSelecionada, 5);
             
             jFTFValorTotal.setValue(0);
             
@@ -629,8 +632,7 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
         
         if(evt.getClickCount() == 1 && jTItensComprado.getSelectedColumn() == 4 && jTItensComprado.getValueAt(jTItensComprado.getSelectedRow(), 0) != null){
             
-            linhaSelecionada = jTItensComprado.getSelectedRow();
-            colunaSelecionada = jTItensComprado.getSelectedColumn();
+            PegarLinha();
             
         } else{
             linhaSelecionada = -1;
@@ -881,5 +883,10 @@ public final class TelaCompraCadastro extends javax.swing.JFrame {
             jCBFornecedor.addItem(fornecedor.getNomeFantasia().get(i) + "");
         }
     } 
+    
+    public void PegarLinha(){
+        linhaSelecionada = jTItensComprado.getSelectedRow();
+        colunaSelecionada = jTItensComprado.getSelectedColumn();
+    }
 }
 

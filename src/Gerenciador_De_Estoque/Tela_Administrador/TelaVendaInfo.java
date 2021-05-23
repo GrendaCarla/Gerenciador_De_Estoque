@@ -565,8 +565,8 @@ public class TelaVendaInfo extends javax.swing.JFrame {
         venda.ConsultarVendas();
         produto.ConsultarProdutos();
         venda.ConsultarItem(venda.getIDVenda().get(num));
-        
-        jTFCliente.setText("" + cliente.getNome().get(cliente.getIDCliente().indexOf(cliente.getIDCliente().get(num))));
+       
+        jTFCliente.setText("" + cliente.getNome().get(cliente.getIDCliente().indexOf(venda.getIDCliente().get(num))));
         jTFData.setText(venda.getDataHoraDaVenda().get(num).substring(8, 10) + " / " + venda.getDataHoraDaVenda().get(num).substring(5, 7) + " / " + venda.getDataHoraDaVenda().get(num).substring(0, 4));
         jTFHora.setText(venda.getDataHoraDaVenda().get(num).substring(11, 13) + " : " + venda.getDataHoraDaVenda().get(num).substring(14, 16));
         jFTFValorTotal.setText((design.FormataFloat(venda.getValorTotal().get(num))).replace(".",","));
