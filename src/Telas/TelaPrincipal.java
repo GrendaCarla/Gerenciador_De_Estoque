@@ -805,7 +805,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentHidden
 
     private void jBntSairFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSairFornecedorActionPerformed
-
+        dispose();
     }//GEN-LAST:event_jBntSairFornecedorActionPerformed
 
     private void jBntCadastrarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCadastrarFornecedorActionPerformed
@@ -912,7 +912,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFBarraDeBuscaFornecedorKeyPressed
 
     private void jBntSairProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSairProdutoActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jBntSairProdutoActionPerformed
 
     private void jTProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTProdutoMouseClicked
@@ -1015,7 +1015,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBntVoltarProdutoActionPerformed
 
     private void jBntSairCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSairCompraActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jBntSairCompraActionPerformed
 
     private void jTCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTCompraMouseClicked
@@ -1250,7 +1250,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTClienteMouseClicked
 
     private void jBntSairClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSairClienteActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jBntSairClienteActionPerformed
 
     private void jBntLupaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntLupaVendaActionPerformed
@@ -1291,7 +1291,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBntLupaVendaActionPerformed
 
     private void jBntSairVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSairVendaActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jBntSairVendaActionPerformed
 
     private void jTVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTVendaMouseClicked
