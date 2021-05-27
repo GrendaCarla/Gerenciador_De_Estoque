@@ -805,7 +805,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentHidden
 
     private void jBntSairFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntSairFornecedorActionPerformed
-        dispose();
+        dispose(); 
     }//GEN-LAST:event_jBntSairFornecedorActionPerformed
 
     private void jBntCadastrarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntCadastrarFornecedorActionPerformed
