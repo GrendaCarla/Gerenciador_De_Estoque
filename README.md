@@ -11,14 +11,15 @@ O Fast Stocks é um software de gestão microempresarial amplo e moderno que ofe
 <h1>Diagrama de Classes</h1>
 </br>
 
-<p width="70%"><img align=center src="https://user-images.githubusercontent.com/80162033/116305785-a3bf3d00-a77a-11eb-9913-31fa0bae7dfb.png"></p>
+<p width="70%"><img align=center src="https://user-images.githubusercontent.com/80162033/119914327-43b4e580-bf36-11eb-8cd1-767d70c99e50.png"></p>
 </br></br>
+
 
 
 </br>
 <h1>Diagrama deCaso de Uso</h1>
 </br>
 
-<p width="70%"><img align=center src="https://user-images.githubusercontent.com/80162033/116305886-c3566580-a77a-11eb-8877-ecd49606113e.png"></p>
+<p width="70%"><img align=center src="https://user-images.githubusercontent.com/80162033/119914098-e3be3f00-bf35-11eb-8634-945f121fe69d.png"></p>
 </br></br>
 
