@@ -6,11 +6,17 @@ O Fast Stocks é um software de gestão microempresarial amplo e moderno que ofe
 
 
 * Java
+* SQL Server
 
 
 </br>
-<h1>TÓPICOS</h1>
-</br>
+<h2>Tópicos</h2>
+
+* ### <a href="#Instrucoes">Instruções de Uso</a>
+     * <a href="#Cmain">Alteração na classe Main</a>
+     * <a href="#CconnectionFactory">Alteração na classe ConnectionFactory</a>
+     * <a href="#CtelaCadastroBanco">Alteração na classe TelaCadastroBanco</a>
+     * <a href="#IconnectionFactory">Inserção na classe ConnectionFactory</a>
 
 * ### <a href="#prints">Prints da Interface</a>
      * <a href="#banco">Conectando com o Banco de Dados</a>
@@ -23,6 +29,74 @@ O Fast Stocks é um software de gestão microempresarial amplo e moderno que ofe
 * ### <a href="#classes">Diagrama de Classes</a>
 
 * ### <a href="#casoDeUso">Diagrama de Caso de Uso</a>
+
+
+
+</br>
+<div id="Instrucoes"><h1>Instruções de Uso</h1></div>
+</br>
+
+
+<p>Não foi possível a criação de um método de leitura de arquivo com os dados de conexão com o banco que funcione em um executável .jar, por causa disso existe 2 formas de funcionamento do software:</p>
+</br>
+
+<p>1  -	Através do Netbeans IDE executar os arquivos do programa;</p>
+
+<p>2  -	Alterar o código colocando as informações de acesso ao banco direto nas variáveis, gerar o banco SQL Server manualmente através do arquivo SQL.sql na pasta inicial e comentar determinadas linhas de código para execução direta do software.</p>
+
+</br>
+
+### Forma 2  -	Comente os seguintes trechos de código:
+
+<div id="Cmain"><h3 align="center">Classe Main</h3></div>
+</br>
+
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121233114-ac6e5d00-c868-11eb-8a9d-18bbe4ee348b.PNG"></p>
+</br></br>
+
+
+<div id="CconnectionFactory"><h3 align="center">Classe ConnectionFactory</h3></div>
+</br>
+
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121233358-f6efd980-c868-11eb-9d91-f0cbfe0a1cc7.PNG"></p>
+</br></br>
+
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121233439-1129b780-c869-11eb-901a-481dcb0f099f.PNG"></p>
+</br></br>
+
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121233696-43d3b000-c869-11eb-8143-e45a3b2726b2.PNG"></p>
+</br></br>
+
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121233812-6a91e680-c869-11eb-885b-f5f3c2a13ec6.PNG"></p>
+</br></br>
+
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121233940-8dbc9600-c869-11eb-9bed-98d521de6f14.PNG"></p>
+</br></br>
+
+
+<div id="CtelaCadastroBanco"><h3 align="center">Classe TelaCadastroBanco</h3></div>
+</br>
+
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121233997-9f05a280-c869-11eb-8a51-aeebbeade980.PNG"></p>
+</br></br>
+
+
+### Forma 2  -	Insira os Valores de acesso ao banco SQL Server no seguinte trecho do código:
+
+<div id="IconnectionFactory"><h3 align="center">Classe ConnectionFactory</h3></div>
+</br>
+
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121234586-3e2a9a00-c86a-11eb-9abb-a97eeaf802ac.PNG"></p>
+</br></br>
+
+
+
+
+
+
+
+
+
 
 
 </br>
@@ -92,14 +166,30 @@ O Fast Stocks é um software de gestão microempresarial amplo e moderno que ofe
 <p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121215257-3cef7200-c856-11eb-82d0-8ad91c74582d.PNG"></p>
 </br></br>
 
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121222552-049f6200-c85d-11eb-9c50-88ad14eefbc8.PNG"></p>
+</br></br>
+
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121222580-0bc67000-c85d-11eb-9b3e-723ce31da695.PNG"></p>
+</br></br>
+
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121222614-154fd800-c85d-11eb-8a92-fa4938b58fb9.PNG"></p>
+</br></br>
+
 
 <div id="clientes"><h3 align="center">Clientes</h3></div>
 
 
-<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121215473-6c05e380-c856-11eb-98cb-954eff22be4e.PNG"></p>
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121222285-cace5b80-c85c-11eb-916a-6e1abc325a2b.PNG"></p>
 </br></br>
 
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121223213-ad4dc180-c85d-11eb-97bf-e578b64a5528.PNG"></p>
+</br></br>
 
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121223236-b474cf80-c85d-11eb-950e-b39a3b441ca6.PNG"></p>
+</br></br>
+
+<p width="30%"><img align=center src="https://user-images.githubusercontent.com/80162033/121223305-c3f41880-c85d-11eb-9701-1bb55a73f4d6.PNG"></p>
+</br></br>
 
 
 
