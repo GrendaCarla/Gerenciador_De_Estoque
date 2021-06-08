@@ -1,0 +1,5 @@
+LAPTOP-7SC7R0SE
+Gerenciador_Generico
+EstoqueDeProduto1
+1433
+db_Gerenciador_de_Estoque12
